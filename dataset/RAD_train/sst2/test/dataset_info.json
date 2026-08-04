@@ -1,0 +1,60 @@
+{
+  "citation": "",
+  "dataset_size": 5022007,
+  "description": "",
+  "download_checksums": {
+    "https://huggingface.co/datasets/stanfordnlp/sst2/resolve/8d51e7e4887a4caaa95b3fbebbf53c0490b58bbb/data/train-00000-of-00001.parquet": {
+      "num_bytes": 3110458,
+      "checksum": null
+    },
+    "https://huggingface.co/datasets/stanfordnlp/sst2/resolve/8d51e7e4887a4caaa95b3fbebbf53c0490b58bbb/data/validation-00000-of-00001.parquet": {
+      "num_bytes": 72813,
+      "checksum": null
+    },
+    "https://huggingface.co/datasets/stanfordnlp/sst2/resolve/8d51e7e4887a4caaa95b3fbebbf53c0490b58bbb/data/test-00000-of-00001.parquet": {
+      "num_bytes": 147787,
+      "checksum": null
+    }
+  },
+  "download_size": 3331058,
+  "features": {
+    "idx": {
+      "dtype": "int32",
+      "_type": "Value"
+    },
+    "sentence": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "label": {
+      "names": [
+        "negative",
+        "positive"
+      ],
+      "_type": "ClassLabel"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 8353065,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 4698441,
+      "num_examples": 67349,
+      "dataset_name": "parquet"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 106470,
+      "num_examples": 872,
+      "dataset_name": "parquet"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 217096,
+      "num_examples": 1821,
+      "dataset_name": "parquet"
+    }
+  }
+}

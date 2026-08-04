@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.env
+.env.*
+.venv/
+venv/
+env/
+conda-env/
+*.egg-info/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+.cache/
+cache/
+
+# Hugging Face / PyTorch caches
+**/.cache/huggingface/
+**/.cache/torch/
+huggingface/
+wandb/
+runs/
+
+# Large local models and checkpoints
+models/
+checkpoints/
+**/checkpoints/
+**/saved_models/
+*.bin
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# Generated experiment outputs
+results/*.json
+results/*.jsonl
+results/*.csv
+results/*.png
+results/*.pdf
+
+# Keep documentation/placeholders inside ignored directories
+!results/.gitkeep
+!results/README.md
+!models/README.md
+
+# Dataset artifacts that are commonly large
+dataset/**/*.zip
+dataset/**/*.tar
+dataset/**/*.tar.gz
+dataset/**/*.parquet
+dataset/**/*.arrow
+
+# Local secrets
+*.pem
+*.key
+token.txt
+credentials.json

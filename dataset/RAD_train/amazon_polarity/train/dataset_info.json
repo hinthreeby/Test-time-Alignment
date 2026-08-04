@@ -1,0 +1,69 @@
+{
+  "citation": "",
+  "config_name": "amazon_polarity",
+  "dataset_size": 1783040625,
+  "description": "",
+  "download_checksums": {
+    "https://huggingface.co/datasets/fancyzhx/amazon_polarity/resolve/9d9c45c18f8c3cf1b23a3c27917b60cbf28f3289/amazon_polarity/train-00000-of-00004.parquet": {
+      "num_bytes": 259761770,
+      "checksum": null
+    },
+    "https://huggingface.co/datasets/fancyzhx/amazon_polarity/resolve/9d9c45c18f8c3cf1b23a3c27917b60cbf28f3289/amazon_polarity/train-00001-of-00004.parquet": {
+      "num_bytes": 258363554,
+      "checksum": null
+    },
+    "https://huggingface.co/datasets/fancyzhx/amazon_polarity/resolve/9d9c45c18f8c3cf1b23a3c27917b60cbf28f3289/amazon_polarity/train-00002-of-00004.parquet": {
+      "num_bytes": 255471883,
+      "checksum": null
+    },
+    "https://huggingface.co/datasets/fancyzhx/amazon_polarity/resolve/9d9c45c18f8c3cf1b23a3c27917b60cbf28f3289/amazon_polarity/train-00003-of-00004.parquet": {
+      "num_bytes": 254410930,
+      "checksum": null
+    },
+    "https://huggingface.co/datasets/fancyzhx/amazon_polarity/resolve/9d9c45c18f8c3cf1b23a3c27917b60cbf28f3289/amazon_polarity/test-00000-of-00001.parquet": {
+      "num_bytes": 117422360,
+      "checksum": null
+    }
+  },
+  "download_size": 1145430497,
+  "features": {
+    "label": {
+      "names": [
+        "negative",
+        "positive"
+      ],
+      "_type": "ClassLabel"
+    },
+    "title": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "content": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 2928471122,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 1604814432,
+      "num_examples": 3600000,
+      "shard_lengths": [
+        1110000,
+        1130000,
+        1140000,
+        220000
+      ],
+      "dataset_name": "parquet"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 178226193,
+      "num_examples": 400000,
+      "dataset_name": "parquet"
+    }
+  }
+}
