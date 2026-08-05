@@ -1,0 +1,180 @@
+{
+  "benchmark_files": [
+    "dataset/rad_benchmark/negative_prompts.jsonl",
+    "dataset/rad_benchmark/neutral_prompts.jsonl",
+    "dataset/rad_benchmark/positive_prompts.jsonl"
+  ],
+  "benchmark_string_count": 39920,
+  "data_report_note": "data_report.json is not included in processed_output_hashes because it records hashes.",
+  "field_mapping": {
+    "content": "content",
+    "label": "label",
+    "title": "title"
+  },
+  "final_counts": {
+    "dev": 500,
+    "train": 20000,
+    "validation": 2000
+  },
+  "near_duplicate_method": "token-set Jaccard against benchmark strings",
+  "near_duplicate_threshold": 0.9,
+  "positive_label_mapping": {
+    "label_names": [
+      "negative",
+      "positive"
+    ],
+    "positive": 1
+  },
+  "positive_rows_before_filtering": 1800000,
+  "preprocessing_args": {
+    "batch_size": 8192,
+    "benchmark_dir": "dataset/rad_benchmark",
+    "dev_size": 500,
+    "local_files_only": true,
+    "max_continuation_tokens": 80,
+    "max_split_ratio": 0.6,
+    "max_total_tokens": 150,
+    "min_continuation_tokens": 8,
+    "min_prompt_tokens": 5,
+    "min_split_ratio": 0.3,
+    "min_total_tokens": 20,
+    "near_duplicate_threshold": 0.9,
+    "output_dir": "dataset/RAD_train/router_amazon_polarity",
+    "overwrite": true,
+    "seed": 42,
+    "smoke_dev_size": 0,
+    "smoke_test": false,
+    "smoke_train_size": 1000,
+    "smoke_validation_size": 200,
+    "source_dir": "dataset/RAD_train/amazon_polarity",
+    "tokenizer_name": "gpt2",
+    "train_size": 20000,
+    "validation_size": 2000,
+    "write_dev": true
+  },
+  "processed_input_rows_until_target_met": 54096,
+  "processed_output_hashes": {
+    "dataset/RAD_train/router_amazon_polarity/dev.jsonl": "da38aa8f9760f355d605b0774bfa043692bc4afd1ad30e39bd15b417c4e0a691",
+    "dataset/RAD_train/router_amazon_polarity/manifest.jsonl": "130d7c9b23f2a9793d3daa1edca8d9c358b7641d652bd7135c3c3e3cea617091",
+    "dataset/RAD_train/router_amazon_polarity/train.jsonl": "92486a32e7c451422682afdd3d0c55a47a3016cc977542cb600a6172937c924b",
+    "dataset/RAD_train/router_amazon_polarity/validation.jsonl": "70ee7d2fa35e311f4e0fa4a493564a9188313586668d2986c4e9038eaccac3fd"
+  },
+  "random_seed": 42,
+  "raw_row_counts_by_split": {
+    "test": 400000,
+    "train": 3600000
+  },
+  "removed_benchmark_exact_leakage": 0,
+  "removed_benchmark_leakage": 0,
+  "removed_benchmark_near_leakage": 0,
+  "removed_exact_duplicates": 1,
+  "removed_length_violations": 5239,
+  "removed_malformed_rows": 1,
+  "removed_near_duplicates": 0,
+  "removed_reconstruction_violations": 0,
+  "removed_split_violations": 0,
+  "removed_trivial_continuations": 1,
+  "source_directory": "dataset/RAD_train/amazon_polarity",
+  "source_file_hashes": {
+    "dataset/RAD_train/amazon_polarity/test/data-00000-of-00001.arrow": "404683c77cd9330d5e7c60dd28e4ceaca435bdb72e082182b93dc3aab8226e92",
+    "dataset/RAD_train/amazon_polarity/test/dataset_info.json": "4b0223b3627d8c3628f178fd818b6a71e68307848e29bd3c2976bd9773fbeebe",
+    "dataset/RAD_train/amazon_polarity/test/state.json": "9acfd5801d0c7e5cc7cc694c2412944111d4a8786e354f791763695271419e33",
+    "dataset/RAD_train/amazon_polarity/train/data-00000-of-00004.arrow": "3b326b7cddeeaeb8d9229bde1b4e69ffcba6aa939ca2401d9daf2ca50c346410",
+    "dataset/RAD_train/amazon_polarity/train/data-00001-of-00004.arrow": "a5bc080dd3bd892043676ae696d8104f1ca6fa9dc79fd63fd4d5e716d2de5b38",
+    "dataset/RAD_train/amazon_polarity/train/data-00002-of-00004.arrow": "22e44d31082ef20d8c52c2b18478af915f18285b70b2e71edf424dbefcb73781",
+    "dataset/RAD_train/amazon_polarity/train/data-00003-of-00004.arrow": "c16746db5f3fe56ea415cc86eaaa7257150ce61dafa706c0cf17345a66d47966",
+    "dataset/RAD_train/amazon_polarity/train/dataset_info.json": "4b0223b3627d8c3628f178fd818b6a71e68307848e29bd3c2976bd9773fbeebe",
+    "dataset/RAD_train/amazon_polarity/train/state.json": "995c887a632b3a9d98e7bba836b9414ef8227ed862c1190543872e588f3a2228"
+  },
+  "source_format": "huggingface_saved_arrow",
+  "source_inspection": {
+    "content_field": "content",
+    "data_files": {
+      "test": [
+        "dataset/RAD_train/amazon_polarity/test/data-00000-of-00001.arrow"
+      ],
+      "train": [
+        "dataset/RAD_train/amazon_polarity/train/data-00000-of-00004.arrow",
+        "dataset/RAD_train/amazon_polarity/train/data-00001-of-00004.arrow",
+        "dataset/RAD_train/amazon_polarity/train/data-00002-of-00004.arrow",
+        "dataset/RAD_train/amazon_polarity/train/data-00003-of-00004.arrow"
+      ]
+    },
+    "fields": {
+      "content": "string",
+      "label": "ClassLabel",
+      "title": "string"
+    },
+    "format": "huggingface_saved_arrow",
+    "label_names": [
+      "negative",
+      "positive"
+    ],
+    "official_splits_available": true,
+    "positive_label": 1,
+    "row_counts": {
+      "test": 400000,
+      "train": 3600000
+    },
+    "sample_rows": [
+      {
+        "content": "This sound track was beautiful! It paints the senery in your mind so well I would recomend it even to people who hate vid. game music! I have played the game Ch...",
+        "label": 1,
+        "title": "Stuning even for the non-gamer"
+      },
+      {
+        "content": "I'm reading a lot of reviews saying that this is the best 'game soundtrack' and I figured that I'd write a review to disagree a bit. This in my opinino is Yasun...",
+        "label": 1,
+        "title": "The best soundtrack ever to anything."
+      },
+      {
+        "content": "This soundtrack is my favorite music of all time, hands down. The intense sadness of \"Prisoners of Fate\" (which means all the more if you've played the game) an...",
+        "label": 1,
+        "title": "Amazing!"
+      }
+    ],
+    "source_dir": "dataset/RAD_train/amazon_polarity",
+    "source_file_hashes": {
+      "dataset/RAD_train/amazon_polarity/test/data-00000-of-00001.arrow": "404683c77cd9330d5e7c60dd28e4ceaca435bdb72e082182b93dc3aab8226e92",
+      "dataset/RAD_train/amazon_polarity/test/dataset_info.json": "4b0223b3627d8c3628f178fd818b6a71e68307848e29bd3c2976bd9773fbeebe",
+      "dataset/RAD_train/amazon_polarity/test/state.json": "9acfd5801d0c7e5cc7cc694c2412944111d4a8786e354f791763695271419e33",
+      "dataset/RAD_train/amazon_polarity/train/data-00000-of-00004.arrow": "3b326b7cddeeaeb8d9229bde1b4e69ffcba6aa939ca2401d9daf2ca50c346410",
+      "dataset/RAD_train/amazon_polarity/train/data-00001-of-00004.arrow": "a5bc080dd3bd892043676ae696d8104f1ca6fa9dc79fd63fd4d5e716d2de5b38",
+      "dataset/RAD_train/amazon_polarity/train/data-00002-of-00004.arrow": "22e44d31082ef20d8c52c2b18478af915f18285b70b2e71edf424dbefcb73781",
+      "dataset/RAD_train/amazon_polarity/train/data-00003-of-00004.arrow": "c16746db5f3fe56ea415cc86eaaa7257150ce61dafa706c0cf17345a66d47966",
+      "dataset/RAD_train/amazon_polarity/train/dataset_info.json": "4b0223b3627d8c3628f178fd818b6a71e68307848e29bd3c2976bd9773fbeebe",
+      "dataset/RAD_train/amazon_polarity/train/state.json": "995c887a632b3a9d98e7bba836b9414ef8227ed862c1190543872e588f3a2228"
+    },
+    "splits": [
+      "train",
+      "test"
+    ],
+    "title_field": "title"
+  },
+  "token_stats": {
+    "continuation": {
+      "avg": 40.977644444444444,
+      "max": 80,
+      "min": 10
+    },
+    "prompt": {
+      "avg": 34.73,
+      "max": 90,
+      "min": 7
+    },
+    "split_ratio": {
+      "avg": 0.4551954833997768,
+      "max": 0.6,
+      "min": 0.3
+    },
+    "total": {
+      "avg": 75.70764444444444,
+      "max": 150,
+      "min": 20
+    }
+  },
+  "train_label_counts": {
+    "0": 1800000,
+    "1": 1800000
+  }
+}
