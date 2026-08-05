@@ -24,7 +24,10 @@ METHOD_FILES = {
     "rad-reward": "rad_reward.json",
     "rad-hybrid": "rad_hybrid.json",
     "rad-length": "rad_length.json",
-    "CD": "cd.json",
+    "CD-FUDGE-tokenwise": "fudge/fudge_tokenwise.json",
+    "CD-FUDGE-blockwise": "fudge/fudge_blockwise.json",
+    "CD-Q-tokenwise": "cdq/cdq_tokenwise.json",
+    "CD-Q-blockwise": "cdq/cdq_blockwise.json",
     "GenARM": "genarm.json",
 }
 
@@ -36,7 +39,10 @@ BASE_MODELS = {
     "rad-reward": "gpt2-large",
     "rad-hybrid": "gpt2-large",
     "rad-length": "gpt2-large",
-    "CD": "gpt2-large",
+    "CD-FUDGE-tokenwise": "gpt2-large",
+    "CD-FUDGE-blockwise": "gpt2-large",
+    "CD-Q-tokenwise": "gpt2-large",
+    "CD-Q-blockwise": "gpt2-large",
     "GenARM": "gpt2-large",
 }
 
@@ -48,7 +54,10 @@ REWARD_MODELS = {
     "rad-reward": "rad_rm_sentiment",
     "rad-hybrid": "rad_rm_sentiment",
     "rad-length": "rad_rm_sentiment",
-    "CD": "prefix scorer",
+    "CD-FUDGE-tokenwise": "CD-FUDGE prefix scorer",
+    "CD-FUDGE-blockwise": "CD-FUDGE prefix scorer",
+    "CD-Q-tokenwise": "CD-Q prefix scorer",
+    "CD-Q-blockwise": "CD-Q prefix scorer",
     "GenARM": "genarm-gpt2-medium-hh",
 }
 
