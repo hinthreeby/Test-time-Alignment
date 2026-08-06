@@ -1,0 +1,49 @@
+{
+  "base_model_path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-large",
+  "bootstrap_samples": 300,
+  "bootstrap_seed": 12345,
+  "dataset_dir": "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark",
+  "decoding": {
+    "beta_max": 30.0,
+    "do_sample": false,
+    "inverse": false,
+    "max_new_tokens": 2,
+    "max_reward_length": 256,
+    "temperature": 1.0,
+    "top_k": 20
+  },
+  "device": "cpu",
+  "fixed_beta_sweep": [
+    0.0,
+    10.0,
+    30.0
+  ],
+  "independent_sentiment_evaluator_id": "sentiment-roberta-large-english",
+  "methods": [
+    "base_lm",
+    "fixed_beta_0",
+    "fixed_beta_10",
+    "fixed_beta_30",
+    "learned_router"
+  ],
+  "output_dir": "/home/jupyter-iec2024se10/Reward Decoding/evaluation/pilot",
+  "prompt_classes": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "reward_base_path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-small",
+  "reward_checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment/pytorch_model.bin",
+  "reward_tokenizer_path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment",
+  "router_checkpoint_path": "/tmp/router_train_smoke/best.pt",
+  "seeds": [
+    1,
+    2
+  ],
+  "sentiment_classifier_max_length": 256,
+  "sentiment_classifier_path": "/home/jupyter-iec2024se10/Reward Decoding/models/sentiment-roberta-large-english",
+  "sentiment_classifier_revision": "local",
+  "sentiment_classifier_target_label": "POSITIVE",
+  "test_prompt_limit_per_class": 10,
+  "validation_prompt_limit_per_class": 10
+}

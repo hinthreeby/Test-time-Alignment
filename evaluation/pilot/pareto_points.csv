@@ -1,0 +1,6 @@
+coherence,latency,method,pareto_frontier_success_vs_coherence,pareto_frontier_success_vs_latency,pareto_frontier_success_vs_perplexity,pareto_frontier_success_vs_repetition,perplexity,repetition,sentiment_success
+0.14375,1.7638488583266736,base_lm,0,0,0,0,70.6382719039917,0.0,0.6
+0.14375,1.8387025412055664,fixed_beta_0,0,0,0,0,70.6382719039917,0.0,0.6
+0.1875,1.7333938577154187,fixed_beta_10,1,1,1,1,69.04831562042236,0.0,0.9
+0.1625,2.2124260906537527,fixed_beta_30,0,0,0,1,79.98840026855468,0.0,0.9
+0.1875,2.1565752586495366,learned_router,1,0,1,1,69.04831562042236,0.0,0.9

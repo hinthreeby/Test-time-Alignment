@@ -63,7 +63,7 @@ def get_checkpoint_path(scorer_name):
 
 def get_output_path(scorer_name, mode):
     filename = f"{scorer_name}_{mode}.json"
-    return PROJECT_ROOT / "results" / "CD_new" / scorer_name / filename
+    return PROJECT_ROOT / scorer_name / filename
 
 
 def load_models(checkpoint_path, device):

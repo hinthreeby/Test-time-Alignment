@@ -1,0 +1,96 @@
+{
+  "cli_smoke_equivalence": {
+    "candidate_ids_match": true,
+    "generated_text_match": true,
+    "generated_token_count_constant": 2,
+    "generated_token_count_original": 2,
+    "max_guided_score_difference": 0.0,
+    "max_reward_score_difference": 0.0,
+    "selected_tokens_match": true
+  },
+  "cli_smoke_outputs": {
+    "adaptive_constant_router": {
+      "beta_history": [
+        10.0,
+        10.0
+      ],
+      "selected_token_ids": [
+        13,
+        314
+      ],
+      "text": ". I"
+    },
+    "adaptive_learned_router": {
+      "beta_history": [
+        7.872053623199463,
+        10.895792961120605
+      ],
+      "selected_token_ids": [
+        13,
+        314
+      ],
+      "text": ". I"
+    },
+    "original_fixed_beta": {
+      "selected_token_ids": [
+        13,
+        314
+      ],
+      "text": ". I"
+    }
+  },
+  "config": {
+    "beta": 10.0,
+    "greedy": true,
+    "inverse": false,
+    "max_new_tokens": 2,
+    "max_reward_length": 256,
+    "seed": 123,
+    "top_k": 20
+  },
+  "constant_router_output": {
+    "beta_history": [
+      10.0,
+      10.0
+    ],
+    "generated_text": ". I",
+    "selected_token_ids": [
+      13,
+      314
+    ]
+  },
+  "dependency_versions": {
+    "aiohttp": "3.14.3",
+    "datasets": "5.0.1",
+    "evaluate": "0.4.6"
+  },
+  "equivalence_result": {
+    "candidate_ids_match": true,
+    "generated_text_match": true,
+    "max_guided_score_difference": 0.0,
+    "max_reward_score_difference": 0.0,
+    "selected_tokens_match": true
+  },
+  "learned_router_output": {
+    "beta_history": [
+      7.872053623199463,
+      10.895792961120605
+    ],
+    "generated_text": ". I",
+    "selected_token_ids": [
+      13,
+      314
+    ]
+  },
+  "original_output": {
+    "generated_text": ". I",
+    "selected_token_ids": [
+      13,
+      314
+    ]
+  },
+  "prompt": "It made my hair feel flat and uncooperative",
+  "test_results": {
+    "test_real_original_rad_matches_constant_router": "passed"
+  }
+}

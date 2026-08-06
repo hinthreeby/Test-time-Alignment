@@ -1,0 +1,187 @@
+{
+  "attention_mask_policy": "explicit tokenizer attention_mask",
+  "base_checksum_unchanged": true,
+  "checks": {
+    "base_checksum_unchanged": true,
+    "base_grads_all_none": true,
+    "base_model_frozen": true,
+    "base_requires_grad_all_false": true,
+    "bos_token_id_compatibility": true,
+    "byte_level_bpe_compatibility": true,
+    "candidate_sanity_examples_written": true,
+    "eos_token_id_compatibility": true,
+    "exact_vocab_compatibility": true,
+    "optimizer_contains_only_router": true,
+    "padding_strategy_compatible": true,
+    "reward_checkpoint_compatible_load": true,
+    "reward_checksum_unchanged": true,
+    "reward_direction_verified": true,
+    "reward_grads_all_none": true,
+    "reward_interface_scalar_shape": true,
+    "reward_model_frozen": true,
+    "reward_requires_grad_all_false": true,
+    "vocab_size_compatibility": true
+  },
+  "device": "cpu",
+  "frozen_parameter_counts": {
+    "base_after_dummy_router_step": {
+      "all_frozen": true,
+      "frozen_parameters": 774030080,
+      "total_parameters": 774030080,
+      "trainable_parameters": 0
+    },
+    "base_before_dummy_router_step": {
+      "all_frozen": true,
+      "frozen_parameters": 774030080,
+      "total_parameters": 774030080,
+      "trainable_parameters": 0
+    },
+    "reward_after_dummy_router_step": {
+      "all_frozen": true,
+      "frozen_parameters": 124440577,
+      "total_parameters": 124440577,
+      "trainable_parameters": 0
+    },
+    "reward_before_dummy_router_step": {
+      "all_frozen": true,
+      "frozen_parameters": 124440577,
+      "total_parameters": 124440577,
+      "trainable_parameters": 0
+    }
+  },
+  "max_reward_length": 256,
+  "model_file_hashes": {
+    "reward_checkpoint_sha256": "9fafd202d3a322f77ce03e682bec9a9443b19bb24f461003268966ddaa2fd298"
+  },
+  "model_identifiers": {
+    "base_lm": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-large",
+    "reward_base_model": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-small",
+    "reward_checkpoint": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment/pytorch_model.bin",
+    "reward_tokenizer": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment"
+  },
+  "optimizer_contains_only_router": true,
+  "reward_checksum_unchanged": true,
+  "reward_model_interface": {
+    "attention_mask_policy": "explicit tokenizer attention_mask is passed to the reward model; validation code does not derive it from input_ids.ne(pad_token_id)",
+    "base_architecture": "GPT2LMHeadModel",
+    "calibration_note": "Scores are raw scalar reward-head outputs and are not assumed calibrated.",
+    "candidate_scalar_used_by_existing_RAD": "reward_logits[:, 0]",
+    "class": "Method.RAD.reward_modeling.reward_model.GPT2RewardModel",
+    "forward_use_cache_false_return": "(loss, scores)",
+    "forward_use_cache_true_return": "(loss, scores, past_key_values)",
+    "head": "GPT2LMHeadModel.lm_head replaced with Linear(hidden_size, 1)",
+    "higher_means_more_positive": true,
+    "input": "input_ids LongTensor[batch, seq_len] and explicit tokenizer attention_mask LongTensor[batch, seq_len]",
+    "score_selection": "RAD reward model currently selects last non-pad token internally using input_ids != pad_token_id",
+    "score_shape": "FloatTensor[batch, 1]",
+    "score_transform_for_router_features": "none during validation; existing RAD clamps to [0, 1] when applying beta"
+  },
+  "reward_model_load_result": {
+    "direct_strict_load": false,
+    "filtered_legacy_attention_bias_keys": [
+      "model.transformer.h.0.attn.bias",
+      "model.transformer.h.0.attn.masked_bias",
+      "model.transformer.h.1.attn.bias",
+      "model.transformer.h.1.attn.masked_bias",
+      "model.transformer.h.2.attn.bias",
+      "model.transformer.h.2.attn.masked_bias",
+      "model.transformer.h.3.attn.bias",
+      "model.transformer.h.3.attn.masked_bias",
+      "model.transformer.h.4.attn.bias",
+      "model.transformer.h.4.attn.masked_bias",
+      "model.transformer.h.5.attn.bias",
+      "model.transformer.h.5.attn.masked_bias",
+      "model.transformer.h.6.attn.bias",
+      "model.transformer.h.6.attn.masked_bias",
+      "model.transformer.h.7.attn.bias",
+      "model.transformer.h.7.attn.masked_bias",
+      "model.transformer.h.8.attn.bias",
+      "model.transformer.h.8.attn.masked_bias",
+      "model.transformer.h.9.attn.bias",
+      "model.transformer.h.9.attn.masked_bias",
+      "model.transformer.h.10.attn.bias",
+      "model.transformer.h.10.attn.masked_bias",
+      "model.transformer.h.11.attn.bias",
+      "model.transformer.h.11.attn.masked_bias"
+    ],
+    "missing_keys": [],
+    "unexpected_keys": []
+  },
+  "reward_score_statistics": {
+    "candidate_sanity_rewards": {
+      "max": 0.6853544116020203,
+      "mean": 0.2453204963511477,
+      "min": -0.002383812330663204,
+      "std": 0.19933687427093985
+    },
+    "direction_probe_all": {
+      "max": 1.0017955303192139,
+      "mean": 0.49570936787252623,
+      "min": -0.008873789571225643,
+      "std": 0.5009468873886911
+    },
+    "direction_probe_negative": {
+      "max": -0.001943047158420086,
+      "mean": -0.005209846732517083,
+      "min": -0.008873789571225643,
+      "std": 0.0028433653391284064
+    },
+    "direction_probe_positive": {
+      "max": 1.0017955303192139,
+      "mean": 0.9966285824775696,
+      "min": 0.9869020581245422,
+      "std": 0.00688215964048744
+    }
+  },
+  "router_freeze_probe": {
+    "base_checksum_after": "6393a591d5c2e9999f2798fe65be0a9744788eed74751e989a5d667f1fa31ecc",
+    "base_checksum_before": "6393a591d5c2e9999f2798fe65be0a9744788eed74751e989a5d667f1fa31ecc",
+    "base_checksum_unchanged": true,
+    "base_grads_all_none": true,
+    "base_requires_grad_all_false": true,
+    "optimizer_contains_only_router": true,
+    "reward_checksum_after": "b344f6f9e2178364414a964aca1286c77a9d11efd99ac214587cc319540d77d3",
+    "reward_checksum_before": "b344f6f9e2178364414a964aca1286c77a9d11efd99ac214587cc319540d77d3",
+    "reward_checksum_unchanged": true,
+    "reward_grads_all_none": true,
+    "reward_requires_grad_all_false": true
+  },
+  "special_token_ids": {
+    "base": {
+      "bos_token_id": 50256,
+      "eos_token_id": 50256,
+      "pad_token_id": 50256
+    },
+    "reward": {
+      "bos_token_id": 50256,
+      "eos_token_id": 50256,
+      "pad_token_id": 50256
+    }
+  },
+  "tokenizer_compatibility": {
+    "base_bos_token_id": 50256,
+    "base_eos_token_id": 50256,
+    "base_pad_token_id_after": 50256,
+    "base_pad_token_id_before": null,
+    "base_padding_side": "left",
+    "base_vocab_size": 50257,
+    "bos_token_id_equal": true,
+    "byte_level_bpe_equal": true,
+    "eos_token_id_equal": true,
+    "padding_strategy_compatible": true,
+    "reward_bos_token_id": 50256,
+    "reward_eos_token_id": 50256,
+    "reward_pad_token_id_after": 50256,
+    "reward_pad_token_id_before": 50256,
+    "reward_padding_side": "right",
+    "reward_vocab_size": 50257,
+    "sample_encodings_equal": true,
+    "vocab_equal": true,
+    "vocab_size_equal": true
+  },
+  "tokenizer_identifiers": {
+    "base_tokenizer": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-large",
+    "reward_tokenizer": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment"
+  },
+  "top_k": 20
+}

@@ -1,0 +1,299 @@
+{
+  "best_validation_configuration": {
+    "best_fixed_beta": 0.0,
+    "best_heuristic": "heuristic_reward_range_beta",
+    "fixed_beta_grid": [
+      0.0,
+      10.0,
+      30.0
+    ],
+    "selection_split": "validation"
+  },
+  "final_held_out_test_result": {
+    "conclusion": "statistically_indistinguishable_from_best_fixed_beta",
+    "num_per_sample_records": 300,
+    "prompt_classes": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "seeds": [
+      1,
+      2
+    ]
+  },
+  "pareto_points": [
+    {
+      "coherence": 0.14375,
+      "latency": 1.7638488583266736,
+      "method": "base_lm",
+      "pareto_frontier_success_vs_coherence": 0,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 0,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 70.6382719039917,
+      "repetition": 0.0,
+      "sentiment_success": 0.6
+    },
+    {
+      "coherence": 0.14375,
+      "latency": 1.8387025412055664,
+      "method": "fixed_beta_0",
+      "pareto_frontier_success_vs_coherence": 0,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 0,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 70.6382719039917,
+      "repetition": 0.0,
+      "sentiment_success": 0.6
+    },
+    {
+      "coherence": 0.1875,
+      "latency": 1.7333938577154187,
+      "method": "fixed_beta_10",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 1,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 1,
+      "perplexity": 69.04831562042236,
+      "repetition": 0.0,
+      "sentiment_success": 0.9
+    },
+    {
+      "coherence": 0.1625,
+      "latency": 2.2124260906537527,
+      "method": "fixed_beta_30",
+      "pareto_frontier_success_vs_coherence": 0,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 0,
+      "pareto_frontier_success_vs_repetition": 1,
+      "perplexity": 79.98840026855468,
+      "repetition": 0.0,
+      "sentiment_success": 0.9
+    },
+    {
+      "coherence": 0.1875,
+      "latency": 2.1565752586495366,
+      "method": "learned_router",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 1,
+      "perplexity": 69.04831562042236,
+      "repetition": 0.0,
+      "sentiment_success": 0.9
+    }
+  ],
+  "reproducibility": {
+    "decoding_config": {
+      "beta_max": 30.0,
+      "do_sample": false,
+      "inverse": false,
+      "max_new_tokens": 2,
+      "max_reward_length": 256,
+      "temperature": 1.0,
+      "top_k": 20
+    },
+    "dependency_versions": {
+      "datasets": "5.0.1",
+      "evaluate": "0.4.6",
+      "matplotlib": "3.11.1",
+      "numpy": "2.4.3",
+      "pandas": "3.0.1",
+      "torch": "2.11.0",
+      "transformers": "5.5.3"
+    },
+    "evaluation_model_identifiers": {
+      "coherence": "lexical_overlap_length_proxy_v1",
+      "fluency": "lexical_perplexity_proxy_v1",
+      "independent_sentiment": "sentiment-roberta-large-english",
+      "lexicon_sentiment": "lexicon_sentiment_v1_secondary_metric",
+      "sentiment_classifier": {
+        "label_mapping": {
+          "architectures": [
+            "RobertaForSequenceClassification"
+          ],
+          "id2label": {
+            "0": "NEGATIVE",
+            "1": "POSITIVE"
+          },
+          "label2id": {
+            "NEGATIVE": 0,
+            "POSITIVE": 1
+          },
+          "model_type": "roberta"
+        },
+        "max_length": 256,
+        "model_id": "/home/jupyter-iec2024se10/Reward Decoding/models/sentiment-roberta-large-english",
+        "revision": "local",
+        "target_label": "POSITIVE",
+        "target_probability": "softmax(logits)[POSITIVE]",
+        "truncation": true
+      }
+    },
+    "git": {
+      "commit": "a0f0bf49d12b74eb0696ccbe84ede15ff2ab590d",
+      "status_short": "M Method/CD_new/generate_cd.py\n M Method/RAD/rad.py\n M Method/args/test_args.py\n M eval/evaluate.py\n D results/CD_new/fudge/fudge_blockwise.json\n D results/CD_new/fudge/fudge_tokenwise.json\n?? Method/RAD/adaptive_router_decoding.py\n?? evaluation/\n?? rad/\n?? reports/\n?? router/\n?? scripts/evaluate_router.py\n?? scripts/extract_router_features.py\n?? scripts/run_adaptive_rad.py\n?? scripts/train_router.py\n?? scripts/validate_models.py\n?? tests/test_adaptive_rad_decoding.py\n?? tests/test_model_validation_helpers.py\n?? tests/test_router.py\n?? tests/test_router_evaluation.py\n?? tests/test_router_feature_extraction.py\n?? tests/test_router_training.py"
+    },
+    "hardware": {
+      "cuda_available": false,
+      "device": "cpu",
+      "platform": "Linux-5.15.0-151-generic-x86_64-with-glibc2.39",
+      "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:09:02) [GCC 11.2.0]"
+    },
+    "hashes": {
+      "datasets": {
+        "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark/negative_prompts.jsonl": "b82729cf20e3ee339b2b80e62adab365676010044ad29ad722ecb3ceb5a86950",
+        "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark/neutral_prompts.jsonl": "ebb612696e4e5336c978f8e50f874f80acd8a298e2c1f1b0194a4a889dffb0c8",
+        "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark/positive_prompts.jsonl": "e53c7cdebe1056ea7780687ffbc64a8861cd29a35247cf9b28c31b4309e5cb79"
+      },
+      "original_fixed_rad_source": {
+        "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/generate.py": "32ffc9d6b6d4ed2a2dadf185a4c1cf572e80e9241cb2ab3c769001dc3d447bfe",
+        "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/rad.py": "d0eed8563868b2987c8b367b32ddc0e294c4b15be4bd2a6a148fd7f410ddeb12",
+        "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/utils/logits_processor.py": "ca2b68161e5337e9a81eae2f26a9b253b96ee546ed26a900b1ac8e2afb723b46"
+      },
+      "reward_checkpoint_sha256": "9fafd202d3a322f77ce03e682bec9a9443b19bb24f461003268966ddaa2fd298",
+      "router_checkpoint_sha256": "bace99153fc4dc3183b36085c292dc532a570a224dd8f5885ff906a07bd1c937",
+      "sentiment_classifier_checkpoint_sha256": "805688de73481b1175b1e06f05a971144dceb7e0064b64a84b78a3685eb3209d"
+    },
+    "model_paths": {
+      "base_model": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-large",
+      "reward_base": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-small",
+      "reward_checkpoint": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment/pytorch_model.bin",
+      "reward_tokenizer": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment",
+      "router_checkpoint": "/tmp/router_train_smoke/best.pt",
+      "sentiment_classifier": "/home/jupyter-iec2024se10/Reward Decoding/models/sentiment-roberta-large-english"
+    },
+    "random_seeds": [
+      1,
+      2
+    ]
+  },
+  "sample_counts": {
+    "failed_generations": 0,
+    "missing_values": 300,
+    "records": 300
+  },
+  "statistical_tests_preview": [
+    {
+      "ci_high": 0.13333333333333333,
+      "ci_low": -0.06666666666666667,
+      "cohens_d_paired": 0.08192319205190404,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.03333333333333333,
+      "metric": "classifier_sentiment_success",
+      "p_value": 0.7233333333333334,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.7275747508305648
+    },
+    {
+      "ci_high": 0.13229891231458168,
+      "ci_low": -0.06449488868335417,
+      "cohens_d_paired": 0.08393527018401334,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.033490838205519444,
+      "metric": "classifier_target_probability",
+      "p_value": 0.5966666666666667,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.4152823920265781
+    },
+    {
+      "ci_high": 0.13333333333333333,
+      "ci_low": 0.016666666666666666,
+      "cohens_d_paired": 0.2672612419124244,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.06666666666666667,
+      "metric": "lexicon_sentiment_score",
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.10963455149501661
+    },
+    {
+      "ci_high": 0.4070645491282145,
+      "ci_low": -1.5310728867848715,
+      "cohens_d_paired": -0.11604240829189588,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": -0.4539875348409017,
+      "metric": "base_lm_perplexity",
+      "p_value": 0.46,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.3754152823920266
+    },
+    {
+      "ci_high": 0.030208333333333334,
+      "ci_low": -0.030208333333333334,
+      "cohens_d_paired": 0.0,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.0,
+      "metric": "coherence",
+      "p_value": 1.0,
+      "p_value_bh_adjusted": 1.0,
+      "paired_n": 60,
+      "permutation_p_value": 1.0
+    },
+    {
+      "ci_high": 0.43157551062079924,
+      "ci_low": -0.1553189037697545,
+      "cohens_d_paired": 0.14439816966398245,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.1569265842466848,
+      "metric": "latency_per_token",
+      "p_value": 0.5566666666666666,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.2823920265780731
+    },
+    {
+      "ci_high": 0.13333333333333333,
+      "ci_low": -0.06666666666666667,
+      "cohens_d_paired": 0.08192319205190404,
+      "comparison": "learned_router_vs_fixed_beta_0",
+      "mean_difference": 0.03333333333333333,
+      "metric": "classifier_sentiment_success",
+      "p_value": 0.7233333333333334,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.7275747508305648
+    },
+    {
+      "ci_high": 0.13229891231458168,
+      "ci_low": -0.06449488868335417,
+      "cohens_d_paired": 0.08393527018401334,
+      "comparison": "learned_router_vs_fixed_beta_0",
+      "mean_difference": 0.033490838205519444,
+      "metric": "classifier_target_probability",
+      "p_value": 0.5966666666666667,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.4152823920265781
+    },
+    {
+      "ci_high": 0.13333333333333333,
+      "ci_low": 0.016666666666666666,
+      "cohens_d_paired": 0.2672612419124244,
+      "comparison": "learned_router_vs_fixed_beta_0",
+      "mean_difference": 0.06666666666666667,
+      "metric": "lexicon_sentiment_score",
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.10963455149501661
+    },
+    {
+      "ci_high": 0.4070645491282145,
+      "ci_low": -1.5310728867848715,
+      "cohens_d_paired": -0.11604240829189588,
+      "comparison": "learned_router_vs_fixed_beta_0",
+      "mean_difference": -0.4539875348409017,
+      "metric": "base_lm_perplexity",
+      "p_value": 0.46,
+      "p_value_bh_adjusted": 0.9863636363636364,
+      "paired_n": 60,
+      "permutation_p_value": 0.3754152823920266
+    }
+  ]
+}

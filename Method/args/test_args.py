@@ -1,5 +1,5 @@
 import torch
-from argsearch import ARGS
+from Method.args.argsearch import ARGS
 
 LLM_PATH = "../models/gpt2-large"
 RM_PATH = "../models/gpt2-large-helpful-rm"
