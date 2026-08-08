@@ -14,15 +14,21 @@ LLM_PATH = BASE_DIR / "models" / "gpt2-large"
 RM_PATH = BASE_DIR / "models" / "gpt2-large-helpful-rm"
 
 INPUT_FILE = BASE_DIR / "dataset" / "rad_benchmark" / "negative_prompts.jsonl"
-OUTPUT_FILE = BASE_DIR / "results" / "args.json"
+
 
 
 
 NUM_PROMPTS = 300       # Đặt None để chạy toàn bộ dataset
 TOPK = 10
 WEIGHT = 2.0
-MAX_NEW_TOKEN = 64
-METHOD = "greedy"
+MAX_NEW_TOKEN = 128
+# METHOD = "greedy"
+METHOD = "topk"
+
+if METHOD not in {"topk", "greedy"}:
+    raise ValueError("METHOD phải là 'topk' hoặc 'greedy'")
+
+OUTPUT_FILE = BASE_DIR / "results" / f"args_{METHOD}.json"
 
 
 searcher = ARGS(
@@ -52,12 +58,7 @@ results = []
 
 OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
 
-progress_bar = tqdm(
-    dataset,
-    total=len(dataset),
-    desc="ARGS decoding",
-    unit="prompt",
-)
+progress_bar = tqdm(dataset, total=len(dataset), desc="ARGS decoding", unit="prompt",)
 
 for idx, sample in enumerate(progress_bar):
     prompt = sample["prompt"]["text"]

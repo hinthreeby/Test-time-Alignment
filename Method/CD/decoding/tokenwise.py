@@ -11,15 +11,15 @@ PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 BASE_LM_PATH = PROJECT_ROOT / "models" / "gpt2-large"
 SCORER_BACKBONE_PATH = PROJECT_ROOT / "models" / "gpt2-small"
-SCORER_CHECKPOINT_PATH = PROJECT_ROOT / "Method" / "CD_new" / "checkpoints" / "cd_fudge.pt"
+SCORER_CHECKPOINT_PATH = PROJECT_ROOT / "Method" / "CD" / "checkpoints" / "cd_fudge.pt"
 
-sys.path.insert(0, str(PROJECT_ROOT / "Method" / "CD_new" / "models"))
+sys.path.insert(0, str(PROJECT_ROOT / "Method" / "CD" / "models"))
 from prefix_scorer import PrefixScorer
 
 
 TOP_K = 20
 LAMBDA_WEIGHT = 1.0
-MAX_NEW_TOKENS = 64
+MAX_NEW_TOKENS = 128
 
 
 @torch.inference_mode()

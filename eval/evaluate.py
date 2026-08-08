@@ -15,7 +15,8 @@ from transformers import AutoModelForCausalLM, AutoModelForSequenceClassificatio
 
 METHOD_FILES = {
     "Base": "base.json",
-    "ARGS": "args.json",
+    "ARGS-greedy": "args_greedy.json",
+    "ARGS-topk": "args_topk.json",
     "rad-fixed": "rad_fixed.json",
     "rad-confidence": "rad_confidence.json",
     "rad-reward": "rad_reward.json",
@@ -32,7 +33,8 @@ BASE_MODELS = {method: "gpt2-large" for method in METHOD_FILES}
 
 REWARD_MODELS = {
     "Base": "none",
-    "ARGS": "configured RM",
+    "ARGS-greedy": "configured RM",
+    "ARGS-topk": "configured RM",
     "rad-fixed": "rad_rm_sentiment",
     "rad-confidence": "rad_rm_sentiment",
     "rad-reward": "rad_rm_sentiment",

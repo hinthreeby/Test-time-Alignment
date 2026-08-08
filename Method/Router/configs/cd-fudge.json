@@ -1,0 +1,35 @@
+{
+  "lm_path": "models/gpt2-large",
+  "scorer_model_path": "models/gpt2-small",
+  "checkpoint_path": "Method/CD/checkpoints/cd_fudge.pt",
+  "scorer_max_length": 256,
+  "top_k": 20,
+  "max_response_tokens": 64,
+  "max_new_tokens": 64,
+  "seed": 42,
+  "router": {
+    "hidden_dim": 64,
+    "output_min": 0.0,
+    "output_max": 3.0
+  },
+  "training": {
+    "epochs": 3,
+    "lr": 0.0001,
+    "weight_decay": 0.01
+  },
+  "router_data": {
+    "dataset": "amazon_polarity",
+    "split": "train",
+    "text_field": "content",
+    "label_field": "label",
+    "label_value": 1,
+    "num_train": 1000,
+    "num_val": 200,
+    "prompt_ratio": 0.35,
+    "min_words": 8
+  },
+  "benchmark": {
+    "dataset": "dataset/rad_benchmark/negative_prompts.jsonl",
+    "num_prompts": 100
+  }
+}

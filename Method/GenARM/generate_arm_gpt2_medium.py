@@ -17,11 +17,11 @@ INPUT_FILE = PROJECT_ROOT / "dataset" / "rad_benchmark" / "negative_prompts.json
 OUTPUT_FILE = PROJECT_ROOT / "results" / "genarm.json"
 
 NUM_PROMPTS = 300
-MAX_NEW_TOKENS = 64
-ALPHA = 2.0
+MAX_NEW_TOKENS = 128
+ALPHA = 1.0
 TEMPERATURE = 1.0
 TOP_P = 0.95
-TOP_K = 20
+TOP_K = 0
 SEED = 42
 SAVE_EVERY = 1
 

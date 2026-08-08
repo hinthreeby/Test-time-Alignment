@@ -80,3 +80,5 @@ dataset/**/*.arrow
 *.key
 token.txt
 credentials.json
+evaluation/report_run_32tokens/per_sample_metrics.csv
+evaluation/report_run_32tokens/per_sample_outputs.jsonl

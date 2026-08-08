@@ -11,268 +11,147 @@ from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
-CD_ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+CD_ROOT = PROJECT_ROOT / "Method" / "CD_new"
 
-if str(CD_ROOT) not in sys.path:
-    sys.path.insert(0, str(CD_ROOT))
+BASE_LM_PATH = PROJECT_ROOT / "models" / "gpt2-large"
+SCORER_BACKBONE_PATH = PROJECT_ROOT / "models" / "gpt2-small"
+DATASET_PATH = PROJECT_ROOT / "dataset" / "rad_benchmark" / "negative_prompts.jsonl"
 
-from decoding.cd_decoder import CDGenerationConfig, ControlledDecoder
-from models.prefix_scorer import PrefixScorer, load_prefix_tokenizer
+sys.path.insert(0, str(CD_ROOT / "models"))
+sys.path.insert(0, str(CD_ROOT / "decoding"))
 
-INPUT_PATH = (
-    PROJECT_ROOT
-    / "dataset"
-    / "rad_benchmark"
-    / "negative_prompts.jsonl"
-)
-OUTPUT_PATH = PROJECT_ROOT / "results" / "cd_results.json"
-
-BASE_MODEL_PATH = PROJECT_ROOT / "models" / "gpt2-small"
-PREFIX_SCORER_PATH = PROJECT_ROOT / "models" / "cd_prefix_scorer"
-
-
-# ============================================================
-# GENERATION CONFIG — chỉnh tại đây
-# ============================================================
-
-NUM_PROMPTS = 300
-MAX_NEW_TOKENS = 64
-
-MODE = "tokenwise"          # "tokenwise" hoặc "blockwise"
-LAMBDA_WEIGHT = 4.0
-
-TOP_K = 20
-TEMPERATURE = 1.0
-SAMPLING = "greedy"         # "greedy" hoặc "sample"
-
-BLOCK_SIZE = 8
-NUM_CANDIDATES = 4
-TOP_P = 0.95
+from prefix_scorer import PrefixScorer
+import blockwise
+import tokenwise
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=Path, default=INPUT_PATH)
-    parser.add_argument("--output", type=Path, default=OUTPUT_PATH)
-    parser.add_argument("--base-model", default=str(BASE_MODEL_PATH))
-    parser.add_argument("--prefix-scorer", default=str(PREFIX_SCORER_PATH))
-    parser.add_argument("--num-prompts", type=int, default=NUM_PROMPTS)
-    parser.add_argument("--max-new-tokens", type=int, default=MAX_NEW_TOKENS)
-    parser.add_argument("--mode", choices=["tokenwise", "blockwise"], default=MODE)
-    parser.add_argument("--lambda-weight", type=float, default=LAMBDA_WEIGHT)
-    parser.add_argument("--top-k", type=int, default=TOP_K)
-    parser.add_argument("--temperature", type=float, default=TEMPERATURE)
-    parser.add_argument("--sampling", choices=["greedy", "sample"], default=SAMPLING)
-    parser.add_argument("--block-size", type=int, default=BLOCK_SIZE)
-    parser.add_argument("--num-candidates", type=int, default=NUM_CANDIDATES)
-    parser.add_argument("--top-p", type=float, default=TOP_P)
+    parser.add_argument("--mode", choices=["tokenwise", "blockwise"], default="tokenwise")
+    parser.add_argument("--scorer", choices=["fudge", "cdq"], default="fudge")
+    parser.add_argument("--num-prompts", type=int, default=100)
     return parser.parse_args()
 
 
-def load_dataset(path: Path) -> list[dict]:
-    if not path.exists():
-        raise FileNotFoundError(f"Không tìm thấy input file: {path}")
-
+def load_dataset(path, limit):
     samples = []
 
     with path.open("r", encoding="utf-8") as file:
-        for line_number, line in enumerate(file, start=1):
-            line = line.strip()
-
-            if not line:
+        for line in file:
+            if not line.strip():
                 continue
 
-            try:
-                sample = json.loads(line)
-            except json.JSONDecodeError as error:
-                raise ValueError(
-                    f"JSON lỗi tại dòng {line_number}: {error}"
-                ) from error
+            sample = json.loads(line)
+            prompt = sample.get("prompt", "")
+            prompt = prompt.get("text", "") if isinstance(prompt, dict) else str(prompt)
+            prompt = prompt.strip()
 
-            samples.append(sample)
+            if prompt:
+                samples.append({**sample, "prompt_text": prompt})
 
-    if not samples:
-        raise ValueError(f"Input file không có dữ liệu: {path}")
+            if len(samples) >= limit:
+                break
 
     return samples
 
 
-def save_results(path: Path, results: list[dict]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    with path.open("w", encoding="utf-8") as file:
-        json.dump(results, file, indent=2, ensure_ascii=False)
+def get_checkpoint_path(scorer_name):
+    checkpoint_name = "cd_fudge.pt" if scorer_name == "fudge" else "cd_q.pt"
+    return CD_ROOT / "checkpoints" / checkpoint_name
 
 
-def extract_prompt(sample: dict) -> str:
-    prompt_data = sample.get("prompt", "")
-
-    if isinstance(prompt_data, dict):
-        return str(prompt_data.get("text", ""))
-
-    return str(prompt_data)
+def get_output_path(scorer_name, mode):
+    filename = f"{scorer_name}_{mode}.json"
+    return PROJECT_ROOT / scorer_name / filename
 
 
-def extract_reference(sample: dict):
-    continuation = sample.get("continuation")
+def load_models(checkpoint_path, device):
+    lm_tokenizer = AutoTokenizer.from_pretrained(str(BASE_LM_PATH), local_files_only=True)
+    lm_tokenizer.pad_token = lm_tokenizer.eos_token
 
-    if isinstance(continuation, dict):
-        return continuation.get("text")
+    lm = AutoModelForCausalLM.from_pretrained(str(BASE_LM_PATH), local_files_only=True).to(device).eval()
 
-    return continuation
+    scorer_tokenizer = AutoTokenizer.from_pretrained(str(SCORER_BACKBONE_PATH), local_files_only=True)
+    scorer_tokenizer.pad_token = scorer_tokenizer.eos_token
+    scorer_tokenizer.padding_side = "right"
+
+    scorer = PrefixScorer(str(SCORER_BACKBONE_PATH)).to(device)
+    state_dict = torch.load(checkpoint_path, map_location=device)
+    scorer.load_state_dict(state_dict)
+    scorer.eval()
+
+    return lm, lm_tokenizer, scorer, scorer_tokenizer
+
+
+def generate_response(prompt, mode, lm, lm_tokenizer, scorer, scorer_tokenizer, device):
+    if mode == "tokenwise":
+        return tokenwise.generate_tokenwise(prompt, lm, lm_tokenizer, scorer, scorer_tokenizer, device)
+
+    return blockwise.generate_blockwise(prompt, lm, lm_tokenizer, scorer, scorer_tokenizer, device)
 
 
 def main():
     args = parse_args()
-
-    if args.mode not in {"tokenwise", "blockwise"}:
-        raise ValueError("MODE phải là 'tokenwise' hoặc 'blockwise'.")
-
-    if args.sampling not in {"greedy", "sample"}:
-        raise ValueError("SAMPLING phải là 'greedy' hoặc 'sample'.")
-
-    if not Path(args.base_model).exists():
-        raise FileNotFoundError(f"Không tìm thấy base model: {args.base_model}")
-
-    if not Path(args.prefix_scorer).exists():
-        raise FileNotFoundError(
-            f"Không tìm thấy prefix scorer: {args.prefix_scorer}"
-        )
-
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    print("=" * 70)
-    print("Controlled Decoding")
-    print("=" * 70)
-    print(f"Device: {device}")
-    print(f"Input: {args.input}")
-    print(f"Output: {args.output}")
-    print(f"Base model: {args.base_model}")
-    print(f"Prefix scorer: {args.prefix_scorer}")
-    print(f"Mode: {args.mode}")
-    print(f"Lambda: {args.lambda_weight}")
-    print(f"Number of prompts: {args.num_prompts}")
-    print("=" * 70)
+    checkpoint_path = get_checkpoint_path(args.scorer)
+    output_path = get_output_path(args.scorer, args.mode)
 
-    print("Loading base tokenizer...")
+    if not DATASET_PATH.exists():
+        raise FileNotFoundError(f"Không tìm thấy dataset: {DATASET_PATH}")
 
-    base_tokenizer = AutoTokenizer.from_pretrained(
-        args.base_model,
-        local_files_only=True,
-    )
+    if not checkpoint_path.exists():
+        raise FileNotFoundError(f"Không tìm thấy checkpoint: {checkpoint_path}")
 
-    if base_tokenizer.pad_token_id is None:
-        base_tokenizer.pad_token = base_tokenizer.eos_token
+    print("Device:", device)
+    print("Scorer:", args.scorer)
+    print("Mode:", args.mode)
+    print("Checkpoint:", checkpoint_path)
+    print("Output:", output_path)
 
-    print("Loading base model...")
-
-    base_model = AutoModelForCausalLM.from_pretrained(
-        args.base_model,
-        torch_dtype=torch.float16 if device.type == "cuda" else torch.float32,
-        local_files_only=True,
-    ).to(device)
-
-    base_model.eval()
-
-    print("Loading prefix scorer...")
-
-    prefix_scorer = PrefixScorer.from_pretrained(
-        args.prefix_scorer,
-        map_location=device,
-    ).to(device)
-
-    prefix_scorer.eval()
-
-    scorer_tokenizer = load_prefix_tokenizer(args.prefix_scorer)
-
-    decoder = ControlledDecoder(
-        base_model=base_model,
-        base_tokenizer=base_tokenizer,
-        prefix_scorer=prefix_scorer,
-        scorer_tokenizer=scorer_tokenizer,
-        base_device=device,
-        scorer_device=device,
-    )
-
-    dataset = load_dataset(args.input)
-
-    if args.num_prompts is not None:
-        dataset = dataset[:args.num_prompts]
-
-    print(f"Loaded {len(dataset)} prompts.")
-
+    lm, lm_tokenizer, scorer, scorer_tokenizer = load_models(checkpoint_path, device)
+    samples = load_dataset(DATASET_PATH, args.num_prompts)
     results = []
 
-    progress_bar = tqdm(dataset, desc="CD decoding", unit="prompt")
-
-    for index, sample in enumerate(progress_bar):
-        prompt = extract_prompt(sample)
+    for index, sample in enumerate(tqdm(samples, desc="Generating")):
+        prompt = sample["prompt_text"]
         start_time = time.perf_counter()
 
         try:
-            if args.mode == "tokenwise":
-                response = decoder.generate_tokenwise(
-                    prompt,
-                    CDGenerationConfig(
-                        lambda_weight=args.lambda_weight,
-                        top_k=args.top_k,
-                        max_new_tokens=args.max_new_tokens,
-                        temperature=args.temperature,
-                        method=args.sampling,
-                    ),
-                )
-            else:
-                response = decoder.generate_blockwise(
-                    prompt,
-                    max_new_tokens=args.max_new_tokens,
-                    block_size=args.block_size,
-                    num_candidates=args.num_candidates,
-                    temperature=args.temperature,
-                    top_p=args.top_p,
-                )
-
+            response = generate_response(prompt, args.mode, lm, lm_tokenizer, scorer, scorer_tokenizer, device)
             status = "success"
-            error_message = None
-
-        except Exception as error:
-            response = None
-            status = "failed"
-            error_message = f"{type(error).__name__}: {error}"
-
-        latency = time.perf_counter() - start_time
+            error = None
+        except Exception as exception:
+            response = ""
+            status = "error"
+            error = str(exception)
 
         result = {
-            "id": index,
+            "id": sample.get("id", index),
             "md5_hash": sample.get("md5_hash"),
             "prompt": prompt,
-            "reference": extract_reference(sample),
+            "reference": sample.get("continuation"),
             "response": response,
-            "num_positive": sample.get("num_positive"),
-            "method": "CD",
+            "method": f"CD-{args.scorer.upper()}",
+            "scorer": args.scorer,
             "decoding_mode": args.mode,
-            "lambda_weight": args.lambda_weight,
-            "top_k": args.top_k,
-            "temperature": args.temperature,
-            "sampling": args.sampling,
-            "block_size": args.block_size,
-            "num_candidates": args.num_candidates,
-            "top_p": args.top_p,
-            "max_new_tokens": args.max_new_tokens,
-            "latency": round(latency, 4),
+            "latency": time.perf_counter() - start_time,
             "status": status,
-            "error": error_message,
+            "error": error,
         }
 
         results.append(result)
-        save_results(args.output, results)
 
-        progress_bar.set_postfix(
-            latency=f"{latency:.2f}s",
-            status=status,
-        )
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    print(f"Saved {len(results)} results to {args.output}")
+    with output_path.open("w", encoding="utf-8") as file:
+        json.dump(results, file, indent=2, ensure_ascii=False)
+
+    success_count = sum(result["status"] == "success" for result in results)
+
+    print(f"Completed: {success_count}/{len(results)}")
+    print("Saved:", output_path)
 
 
 if __name__ == "__main__":

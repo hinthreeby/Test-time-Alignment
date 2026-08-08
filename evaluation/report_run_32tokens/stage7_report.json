@@ -1,0 +1,470 @@
+{
+  "best_validation_configuration": {
+    "best_fixed_beta": 30.0,
+    "best_heuristic": "heuristic_linear_decrease",
+    "fixed_beta_grid": [
+      0.0,
+      5.0,
+      10.0,
+      15.0,
+      30.0
+    ],
+    "selection_split": "validation"
+  },
+  "final_held_out_test_result": {
+    "conclusion": "statistically_indistinguishable_from_best_fixed_beta",
+    "num_per_sample_records": 8400,
+    "prompt_classes": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "seeds": [
+      1
+    ]
+  },
+  "pareto_points": [
+    {
+      "coherence": 0.5535229744556606,
+      "latency": 0.030967649147091,
+      "method": "base_lm",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 6.80876336991787,
+      "repetition": 0.13605086752582213,
+      "sentiment_success": 0.39
+    },
+    {
+      "coherence": 0.5155344631782284,
+      "latency": 0.030704424147974967,
+      "method": "best_fixed_beta",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 1,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 1,
+      "perplexity": 10.32533757865429,
+      "repetition": 0.09494369557873128,
+      "sentiment_success": 0.74
+    },
+    {
+      "coherence": 0.521128920917958,
+      "latency": 0.030833639139158445,
+      "method": "best_heuristic",
+      "pareto_frontier_success_vs_coherence": 0,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 0,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 8.778539449572563,
+      "repetition": 0.11052589609644738,
+      "sentiment_success": 0.61
+    },
+    {
+      "coherence": 0.5535229744556606,
+      "latency": 0.03153582623984117,
+      "method": "fixed_beta_0",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 6.80876336991787,
+      "repetition": 0.13605086752582213,
+      "sentiment_success": 0.39
+    },
+    {
+      "coherence": 0.535924533250342,
+      "latency": 0.03020917203959211,
+      "method": "fixed_beta_10",
+      "pareto_frontier_success_vs_coherence": 0,
+      "pareto_frontier_success_vs_latency": 1,
+      "pareto_frontier_success_vs_perplexity": 0,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 7.5870929127931594,
+      "repetition": 0.12573267998510043,
+      "sentiment_success": 0.565
+    },
+    {
+      "coherence": 0.5272320103920364,
+      "latency": 0.03064045666411625,
+      "method": "fixed_beta_15",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 1,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 8.170892301797867,
+      "repetition": 0.10361876380902998,
+      "sentiment_success": 0.665
+    },
+    {
+      "coherence": 0.5155344631782284,
+      "latency": 0.030810524260905737,
+      "method": "fixed_beta_30",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 1,
+      "perplexity": 10.32533757865429,
+      "repetition": 0.09494369557873128,
+      "sentiment_success": 0.74
+    },
+    {
+      "coherence": 0.5434910112094424,
+      "latency": 0.029575354771086828,
+      "method": "fixed_beta_5",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 1,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 7.071466500163078,
+      "repetition": 0.12835341387531196,
+      "sentiment_success": 0.465
+    },
+    {
+      "coherence": 0.5348234306560875,
+      "latency": 0.03181077187011286,
+      "method": "heuristic_constant_beta_10",
+      "pareto_frontier_success_vs_coherence": 0,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 0,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 7.58066030561924,
+      "repetition": 0.12552924900828116,
+      "sentiment_success": 0.57
+    },
+    {
+      "coherence": 0.5419482436242062,
+      "latency": 0.031568232209864835,
+      "method": "heuristic_entropy_beta",
+      "pareto_frontier_success_vs_coherence": 0,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 7.0976976084709165,
+      "repetition": 0.13030721753651653,
+      "sentiment_success": 0.48
+    },
+    {
+      "coherence": 0.521128920917958,
+      "latency": 0.03137088028405633,
+      "method": "heuristic_linear_decrease",
+      "pareto_frontier_success_vs_coherence": 0,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 0,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 8.778539449572563,
+      "repetition": 0.11052589609644738,
+      "sentiment_success": 0.61
+    },
+    {
+      "coherence": 0.5409387695180113,
+      "latency": 0.03137364768390463,
+      "method": "heuristic_linear_increase",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 0,
+      "pareto_frontier_success_vs_repetition": 1,
+      "perplexity": 7.872693231105805,
+      "repetition": 0.09116350483814366,
+      "sentiment_success": 0.6
+    },
+    {
+      "coherence": 0.5431137195192148,
+      "latency": 0.031122926664305006,
+      "method": "heuristic_reward_range_beta",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 7.334853152036667,
+      "repetition": 0.1228241162210535,
+      "sentiment_success": 0.55
+    },
+    {
+      "coherence": 0.5334950898324315,
+      "latency": 0.03348601751845927,
+      "method": "learned_router",
+      "pareto_frontier_success_vs_coherence": 1,
+      "pareto_frontier_success_vs_latency": 0,
+      "pareto_frontier_success_vs_perplexity": 1,
+      "pareto_frontier_success_vs_repetition": 0,
+      "perplexity": 7.541766005158425,
+      "repetition": 0.1131854738099254,
+      "sentiment_success": 0.64
+    }
+  ],
+  "reproducibility": {
+    "decoding_config": {
+      "beta_max": 30.0,
+      "do_sample": false,
+      "inverse": false,
+      "max_new_tokens": 32,
+      "max_reward_length": 256,
+      "temperature": 1.0,
+      "top_k": 20
+    },
+    "dependency_versions": {
+      "datasets": "2.18.0",
+      "evaluate": "not_installed",
+      "matplotlib": "not_installed",
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "torch": "2.2.2",
+      "transformers": "4.39.3"
+    },
+    "evaluation_model_identifiers": {
+      "coherence": "lexical_overlap_length_proxy_v1",
+      "fluency": "lexical_perplexity_proxy_v1",
+      "independent_sentiment": "sentiment-roberta-large-english",
+      "lexicon_sentiment": "lexicon_sentiment_v1_secondary_metric",
+      "sentiment_classifier": {
+        "label_mapping": {
+          "architectures": [
+            "RobertaForSequenceClassification"
+          ],
+          "id2label": {
+            "0": "NEGATIVE",
+            "1": "POSITIVE"
+          },
+          "label2id": {
+            "NEGATIVE": 0,
+            "POSITIVE": 1
+          },
+          "model_type": "roberta"
+        },
+        "max_length": 256,
+        "model_id": "/home/jupyter-iec2024se10/Reward Decoding/models/sentiment-roberta-large-english",
+        "revision": "local",
+        "target_label": "POSITIVE",
+        "target_probability": "softmax(logits)[POSITIVE]",
+        "truncation": true
+      }
+    },
+    "git": {
+      "commit": "91f48bb2dacae79b127c996ba7f0713998dab438",
+      "status_short": "D Method/CD/README.md\n D Method/CD/__init__.py\n D Method/CD/decoding/__init__.py\n D Method/CD/decoding/cd_decoder.py\n M Method/CD/generate_cd.py\n D Method/CD/requirements.txt\n D Method/CD/training/__init__.py\n D Method/CD/training/train_cd_fudge.py\n D Method/CD_new/decoding/blockwise.py\n D Method/CD_new/decoding/tokenwise.py\n D Method/CD_new/generate_cd.py\n D Method/CD_new/train/train_cdq.py\n D Method/CD_new/train/train_fudge.py\n M Method/GenARM/generate_arm_gpt2_medium.py\n M Method/args/generate_args.py\n M eval/evaluate.py\n M evaluation/config.json\n?? Method/CD/decoding/blockwise.py\n?? Method/CD/decoding/tokenwise.py\n?? Method/CD/train/\n?? evaluation/report_run_32tokens/"
+    },
+    "hardware": {
+      "cuda_available": true,
+      "device": "auto",
+      "devices": {
+        "base_model": "auto",
+        "reward_model": "auto",
+        "router": "auto",
+        "sentiment_classifier": "cpu"
+      },
+      "platform": "Linux-5.15.0-151-generic-x86_64-with-glibc2.39",
+      "python": "3.10.20 (main, Jun 11 2026, 15:17:37) [GCC 14.3.0]",
+      "resolved_device_diagnostics": {
+        "base_model": {
+          "cuda_available": true,
+          "cuda_current_device": 0,
+          "cuda_device_count": 1,
+          "driver_version": null,
+          "fallback_reason": null,
+          "gpu_name": "NVIDIA GeForce RTX 3080",
+          "gpu_vram_gb": 9.65435791015625,
+          "nvidia_smi_cuda_version": null,
+          "requested_device": "auto",
+          "resolved_device": "cuda:0",
+          "torch_cuda_version": "12.1",
+          "torch_version": "2.2.2+cu121"
+        },
+        "reward_model": {
+          "cuda_available": true,
+          "cuda_current_device": 0,
+          "cuda_device_count": 1,
+          "driver_version": null,
+          "fallback_reason": null,
+          "gpu_name": "NVIDIA GeForce RTX 3080",
+          "gpu_vram_gb": 9.65435791015625,
+          "nvidia_smi_cuda_version": null,
+          "requested_device": "auto",
+          "resolved_device": "cuda:0",
+          "torch_cuda_version": "12.1",
+          "torch_version": "2.2.2+cu121"
+        },
+        "router": {
+          "cuda_available": true,
+          "cuda_current_device": 0,
+          "cuda_device_count": 1,
+          "driver_version": null,
+          "fallback_reason": null,
+          "gpu_name": "NVIDIA GeForce RTX 3080",
+          "gpu_vram_gb": 9.65435791015625,
+          "nvidia_smi_cuda_version": null,
+          "requested_device": "auto",
+          "resolved_device": "cuda:0",
+          "torch_cuda_version": "12.1",
+          "torch_version": "2.2.2+cu121"
+        },
+        "sentiment_classifier": {
+          "cuda_available": false,
+          "cuda_device_count": 0,
+          "driver_version": null,
+          "fallback_reason": null,
+          "gpu_name": null,
+          "gpu_vram_gb": null,
+          "nvidia_smi_cuda_version": null,
+          "requested_device": "cpu",
+          "resolved_device": "cpu",
+          "torch_cuda_version": "12.1",
+          "torch_version": "2.2.2+cu121"
+        }
+      }
+    },
+    "hashes": {
+      "datasets": {
+        "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark/negative_prompts.jsonl": "b82729cf20e3ee339b2b80e62adab365676010044ad29ad722ecb3ceb5a86950",
+        "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark/neutral_prompts.jsonl": "ebb612696e4e5336c978f8e50f874f80acd8a298e2c1f1b0194a4a889dffb0c8",
+        "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark/positive_prompts.jsonl": "e53c7cdebe1056ea7780687ffbc64a8861cd29a35247cf9b28c31b4309e5cb79"
+      },
+      "original_fixed_rad_source": {
+        "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/generate.py": "32ffc9d6b6d4ed2a2dadf185a4c1cf572e80e9241cb2ab3c769001dc3d447bfe",
+        "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/rad.py": "d0eed8563868b2987c8b367b32ddc0e294c4b15be4bd2a6a148fd7f410ddeb12",
+        "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/utils/logits_processor.py": "ca2b68161e5337e9a81eae2f26a9b253b96ee546ed26a900b1ac8e2afb723b46"
+      },
+      "reward_checkpoint_sha256": "9fafd202d3a322f77ce03e682bec9a9443b19bb24f461003268966ddaa2fd298",
+      "router_checkpoint_sha256": "bace99153fc4dc3183b36085c292dc532a570a224dd8f5885ff906a07bd1c937",
+      "sentiment_classifier_checkpoint_sha256": "805688de73481b1175b1e06f05a971144dceb7e0064b64a84b78a3685eb3209d"
+    },
+    "model_paths": {
+      "base_model": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-large",
+      "reward_base": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-small",
+      "reward_checkpoint": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment/pytorch_model.bin",
+      "reward_tokenizer": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment",
+      "router_checkpoint": "/tmp/router_train_smoke/best.pt",
+      "sentiment_classifier": "/home/jupyter-iec2024se10/Reward Decoding/models/sentiment-roberta-large-english"
+    },
+    "random_seeds": [
+      1
+    ]
+  },
+  "sample_counts": {
+    "failed_generations": 0,
+    "missing_values": 8400,
+    "records": 8400
+  },
+  "statistical_tests_preview": [
+    {
+      "ci_high": 0.2270450751252087,
+      "ci_low": 0.15191986644407346,
+      "cohens_d_paired": 0.39932569669201523,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.18864774624373956,
+      "metric": "classifier_sentiment_success",
+      "p_value": 0.497,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.000999000999000999
+    },
+    {
+      "ci_high": 0.22738230098997056,
+      "ci_low": 0.15421301513235514,
+      "cohens_d_paired": 0.4131008886112928,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.1897252711338397,
+      "metric": "classifier_target_probability",
+      "p_value": 0.482,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.000999000999000999
+    },
+    {
+      "ci_high": 0.1706176961602671,
+      "ci_low": 0.0998330550918197,
+      "cohens_d_paired": 0.28886147773177717,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.1332220367278798,
+      "metric": "lexicon_sentiment_score",
+      "p_value": 0.518,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.000999000999000999
+    },
+    {
+      "ci_high": 0.6168925698492085,
+      "ci_low": 0.2941778171838623,
+      "cohens_d_paired": 0.21588557812893358,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.4482891328744777,
+      "metric": "base_lm_perplexity",
+      "p_value": 0.486,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.000999000999000999
+    },
+    {
+      "ci_high": -0.0019353933853053693,
+      "ci_low": -0.013433645245798903,
+      "cohens_d_paired": -0.10337637586120713,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": -0.007414577951575265,
+      "metric": "coherence",
+      "p_value": 0.513,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.00999000999000999
+    },
+    {
+      "ci_high": 0.0033134262860994848,
+      "ci_low": 0.0015745159865687042,
+      "cohens_d_paired": 0.22238591330262442,
+      "comparison": "learned_router_vs_base_lm",
+      "mean_difference": 0.0024450929248968664,
+      "metric": "latency_per_token",
+      "p_value": 0.49,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.000999000999000999
+    },
+    {
+      "ci_high": -0.03005008347245409,
+      "ci_low": -0.08681135225375626,
+      "cohens_d_paired": -0.16094037941388387,
+      "comparison": "learned_router_vs_fixed_beta_30",
+      "mean_difference": -0.05843071786310518,
+      "metric": "classifier_sentiment_success",
+      "p_value": 0.493,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.000999000999000999
+    },
+    {
+      "ci_high": -0.030821671569486692,
+      "ci_low": -0.08570101615803344,
+      "cohens_d_paired": -0.16510828598858043,
+      "comparison": "learned_router_vs_fixed_beta_30",
+      "mean_difference": -0.05816294132647896,
+      "metric": "classifier_target_probability",
+      "p_value": 0.471,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.000999000999000999
+    },
+    {
+      "ci_high": 0.02782415136338342,
+      "ci_low": -0.0439621591541458,
+      "cohens_d_paired": -0.019083216918507298,
+      "comparison": "learned_router_vs_fixed_beta_30",
+      "mean_difference": -0.008903728436282692,
+      "metric": "lexicon_sentiment_score",
+      "p_value": 0.691,
+      "p_value_bh_adjusted": 0.7591267605633802,
+      "paired_n": 599,
+      "permutation_p_value": 0.6313686313686314
+    },
+    {
+      "ci_high": -1.3383880680510913,
+      "ci_low": -1.896660204124769,
+      "cohens_d_paired": -0.46270494072834073,
+      "comparison": "learned_router_vs_fixed_beta_30",
+      "mean_difference": -1.5909463939364248,
+      "metric": "base_lm_perplexity",
+      "p_value": 0.539,
+      "p_value_bh_adjusted": 0.6815999999999999,
+      "paired_n": 599,
+      "permutation_p_value": 0.000999000999000999
+    }
+  ]
+}
