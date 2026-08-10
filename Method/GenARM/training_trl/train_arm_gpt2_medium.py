@@ -18,11 +18,6 @@ from transformers import (
 )
 from trl import DPOConfig
 
-
-# ============================================================
-# PATHS — chỉnh ở đây
-# ============================================================
-
 TRAINING_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 

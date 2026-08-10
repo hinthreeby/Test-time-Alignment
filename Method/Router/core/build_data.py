@@ -6,7 +6,7 @@ import random
 import sys
 from pathlib import Path
 
-from datasets import load_dataset
+from datasets import load_dataset, load_from_disk
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 if str(PROJECT_ROOT) not in sys.path:
@@ -33,7 +33,10 @@ def main():
     data = config["router_data"]
     random.seed(config["seed"])
 
-    dataset = load_dataset(data["dataset"], split=data["split"])
+    if data.get("local_path"):
+        dataset = load_from_disk(str(PROJECT_ROOT / data["local_path"]))[data["split"]]
+    else:
+        dataset = load_dataset(data["dataset"], split=data["split"])
     texts = []
 
     for item in dataset:

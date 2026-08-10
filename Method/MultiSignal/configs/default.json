@@ -1,0 +1,13 @@
+{
+  "top_k": 20,
+  "controller": {
+    "hidden_dim": 128
+  },
+  "training": {
+    "epochs": 5,
+    "batch_size": 128,
+    "lr": 0.00005,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0
+  }
+}

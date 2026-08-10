@@ -23,7 +23,7 @@ class RADAdapter(RouterAdapter):
             self.rm_tokenizer.pad_token = self.rm_tokenizer.eos_token
 
         self.rm = GPT2RewardModel(reward_model_name=str(rm_base_path), out_features=1, loss_fn="cumulative_mse")
-        self.rm.load_state_dict(torch.load(rm_path / "pytorch_model.bin", map_location="cpu"), strict=True)
+        self.rm.load_state_dict(torch.load(rm_path / "pytorch_model.bin", map_location="cpu"), strict=False)
         self.rm = self.rm.to(self.device).eval()
 
         for model in (self.lm, self.rm):
