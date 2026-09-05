@@ -1,0 +1,17 @@
+{
+  "activation": "tanh",
+  "allow_cpu_fallback": true,
+  "alpha_eps": 0.000001,
+  "architecture": "taro_topk_flatten_tanh",
+  "device": "auto",
+  "entropy_weight": 0.0,
+  "hidden_dim": 128,
+  "initial_alpha": 0.5,
+  "loss_reduction": "mean",
+  "method_label": "TARO",
+  "mode": "taro_topk_nll",
+  "schema_version": 2,
+  "token_embedding_dim": 32,
+  "top_k": 20,
+  "vocab_size": 32000
+}

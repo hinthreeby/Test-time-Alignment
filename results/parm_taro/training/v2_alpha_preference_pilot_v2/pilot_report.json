@@ -1,0 +1,621 @@
+{
+  "calibration": {
+    "lambda_floor": 0.01,
+    "pairwise_logit_scale": 50.0,
+    "raw_gradient_norms": {
+      "nll": {
+        "all_router": {
+          "count": 16,
+          "max": 3.32183309835916,
+          "mean": 0.6494491028030396,
+          "min": 0.010620782097595956,
+          "std": 1.034021649546589
+        },
+        "final_lambda_head": {
+          "count": 16,
+          "max": 3.3146913051605225,
+          "mean": 0.6480270311003551,
+          "min": 0.010485811159014702,
+          "std": 1.0318273983909576
+        },
+        "preference_encoder": {
+          "count": 16,
+          "max": 0.0004961239174008369,
+          "mean": 9.409132134408082e-05,
+          "min": 3.3218673252122244e-06,
+          "std": 0.00015370171948821384
+        },
+        "router_rest": {
+          "count": 16,
+          "max": 0.21770723164081573,
+          "mean": 0.042897201448795386,
+          "min": 0.0016878286842256784,
+          "std": 0.06736388784946892
+        }
+      },
+      "preference": {
+        "all_router": {
+          "count": 16,
+          "max": 9.6796138068382,
+          "mean": 2.1120439098147736,
+          "min": 1.4131877853531636e-07,
+          "std": 2.464499366204325
+        },
+        "final_lambda_head": {
+          "count": 16,
+          "max": 9.658015251159668,
+          "mean": 2.106800932401975,
+          "min": 1.4099772727149684e-07,
+          "std": 2.459350968066953
+        },
+        "preference_encoder": {
+          "count": 16,
+          "max": 0.0015864962479099631,
+          "mean": 0.00033412679686813606,
+          "min": 2.085384295802406e-11,
+          "std": 0.000415329285544911
+        },
+        "router_rest": {
+          "count": 16,
+          "max": 0.6462680101394653,
+          "mean": 0.14660750437018172,
+          "min": 9.520380039873544e-09,
+          "std": 0.16116825254597095
+        }
+      },
+      "sensitivity": {
+        "all_router": {
+          "count": 16,
+          "max": 0.0017550407718167369,
+          "mean": 0.0015987384740891466,
+          "min": 0.0013551958052343506,
+          "std": 0.00010169693511044963
+        },
+        "final_lambda_head": {
+          "count": 16,
+          "max": 0.001665064599364996,
+          "mean": 0.001516329386504367,
+          "min": 0.001284533878788352,
+          "std": 9.683279168578157e-05
+        },
+        "preference_encoder": {
+          "count": 16,
+          "max": 9.895330003928393e-05,
+          "mean": 8.906659195417888e-05,
+          "min": 7.340375304920599e-05,
+          "std": 6.446765564014054e-06
+        },
+        "router_rest": {
+          "count": 16,
+          "max": 0.000545835355296731,
+          "mean": 0.0004987713236914715,
+          "min": 0.00042560577276162803,
+          "std": 3.046843113563695e-05
+        }
+      },
+      "strength": {
+        "all_router": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "final_lambda_head": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "preference_encoder": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "router_rest": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        }
+      }
+    },
+    "samples": 16,
+    "sensitivity_minimum_delta": 0.005,
+    "targets": {
+      "nll_to_preference_gradient_ratio": 0.25,
+      "sensitivity_to_preference_gradient_ratio": 1.0
+    },
+    "weights": {
+      "nll_quality_phase": 0.25,
+      "nll_warmup_phase": 0.0,
+      "preference": 1.0,
+      "sensitivity": 100.0,
+      "strength": 1.0
+    }
+  },
+  "checkpoint": {
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_final.pt",
+    "sha256": "e40c49849cb2b9868d721c064e036202e2843e3f6678aca37df7cfcd71ed3eab"
+  },
+  "checks": {
+    "constant_alpha_differs_materially": false,
+    "correct_alpha_changes_lambda_materially": false,
+    "failure_diagnostic_pass": true,
+    "first_pilot_preserved_not_pass": true,
+    "frozen_artifacts_unchanged": true,
+    "lambda_not_collapsed": true,
+    "nll_reasonable_vs_no_alpha": true,
+    "preference_encoder_gradient_nonzero": true,
+    "preference_loss_improved": true,
+    "router_gradient_nonzero": true,
+    "shuffled_alpha_changes_lambda_materially": false,
+    "shuffled_preference_loss_degrades": true,
+    "test_split_unused": true
+  },
+  "config": {
+    "allow_cpu_fallback": false,
+    "alpha_checkpoint": "results/parm_taro/training/v2_alpha/best.pt",
+    "base_training_config_path": "PARM_TARO/configs/train_stage9_v2_alpha.json",
+    "calibration_samples": 16,
+    "device": "cuda",
+    "first_pilot_checkpoint_path": "results/parm_taro/training/v2_alpha_preference_pilot/pilot_final.pt",
+    "first_pilot_report_path": "results/parm_taro/training/v2_alpha_preference_pilot/pilot_report.json",
+    "gradient_accumulation_steps": 4,
+    "learning_rate": 0.0001,
+    "log_every_optimizer_steps": 10,
+    "max_grad_norm": 1.0,
+    "max_nll_degradation_vs_no_alpha": 0.05,
+    "max_nll_weight": 0.25,
+    "max_sensitivity_weight": 100.0,
+    "max_train_samples": 256,
+    "max_validation_samples": 50,
+    "method_label": "PARM_TARO_ALPHA_PREFERENCE_PILOT_V2",
+    "min_control_lambda_delta": 0.001,
+    "min_mean_lambda": 0.005,
+    "nll_gradient_target_ratio": 0.25,
+    "no_alpha_checkpoint": "results/parm_taro/training/v2_no_alpha/best.pt",
+    "output_dir": "results/parm_taro/training/v2_alpha_preference_pilot_v2",
+    "preference_weight": 1.0,
+    "quality_epochs": 1,
+    "require_shuffled_preference_degradation": true,
+    "required_failure_diagnostic_path": "PARM_TARO/reports/stage9_alpha_pilot_v1_failure_diagnostic.json",
+    "schema_version": 1,
+    "seed": 2026,
+    "sensitivity_gradient_target_ratio": 1.0,
+    "strength_weight": 1.0,
+    "warmup_epochs": 1,
+    "weight_decay": 0.0
+  },
+  "diagnostic_recommendation": {
+    "curriculum": [
+      "preference_warmup_without_nll",
+      "preference_plus_nll"
+    ],
+    "full_retraining_authorized": false,
+    "head_weight_std": 0.01,
+    "initialization": "no_alpha_transplant_fresh_preference_head",
+    "lambda_floor": 0.01,
+    "pairwise_logit_scale": 50.0,
+    "pairwise_scale_rule": "clamp(1 / (target_lambda * median_abs_weighted_d_score_margin_d_lambda), 1, 50)",
+    "preference_score": "guidance_gain_relative_to_base",
+    "sensitivity_minimum_delta": 0.005,
+    "strength_form": "linear_per_token_hinge",
+    "target_initial_lambda": 0.03
+  },
+  "full_retraining_started": false,
+  "method_label": "PARM_TARO_ALPHA_PREFERENCE_PILOT_V2",
+  "protected_after": {
+    "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+      "files": [
+        {
+          "bytes": 521,
+          "path": "adapter_config.json",
+          "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+        },
+        {
+          "bytes": 25233088,
+          "path": "adapter_model.safetensors",
+          "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+    },
+    "read_only_inputs": {
+      "PARM_TARO/reports/stage9_alpha_pilot_v1_failure_diagnostic.json": "c92ae745d427597889ca0bd98b75695755f0d560d97dd7f6317116147ae752d4",
+      "results/parm_taro/training/v2_alpha/best.pt": "e0a7d54771bc423eb7a88ca9f5c3b40cc4a6a4b69293a203558dba7ae6f91eba",
+      "results/parm_taro/training/v2_alpha_preference_pilot/pilot_final.pt": "dcd58c423cab971674c995d282b3f5388a3bca6295e3794eea3963d6e975b5ca",
+      "results/parm_taro/training/v2_alpha_preference_pilot/pilot_report.json": "c0555716c1c1aaf0e523f284c84de8aa2dd094f7c5402e26d2439f79be15c917",
+      "results/parm_taro/training/v2_no_alpha/best.pt": "ea5cf0e7b33ccdef1f4882afba0679a09feaaf2b27c8a8bc12ad7c058cb0d7e3"
+    }
+  },
+  "protected_before": {
+    "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+      "files": [
+        {
+          "bytes": 521,
+          "path": "adapter_config.json",
+          "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+        },
+        {
+          "bytes": 25233088,
+          "path": "adapter_model.safetensors",
+          "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+    },
+    "read_only_inputs": {
+      "PARM_TARO/reports/stage9_alpha_pilot_v1_failure_diagnostic.json": "c92ae745d427597889ca0bd98b75695755f0d560d97dd7f6317116147ae752d4",
+      "results/parm_taro/training/v2_alpha/best.pt": "e0a7d54771bc423eb7a88ca9f5c3b40cc4a6a4b69293a203558dba7ae6f91eba",
+      "results/parm_taro/training/v2_alpha_preference_pilot/pilot_final.pt": "dcd58c423cab971674c995d282b3f5388a3bca6295e3794eea3963d6e975b5ca",
+      "results/parm_taro/training/v2_alpha_preference_pilot/pilot_report.json": "c0555716c1c1aaf0e523f284c84de8aa2dd094f7c5402e26d2439f79be15c917",
+      "results/parm_taro/training/v2_no_alpha/best.pt": "ea5cf0e7b33ccdef1f4882afba0679a09feaaf2b27c8a8bc12ad7c058cb0d7e3"
+    }
+  },
+  "schema_version": 1,
+  "stage": 9,
+  "status": "NOT_PASS",
+  "training_phases": [
+    {
+      "epochs": 1,
+      "metrics": {
+        "endpoint_lambda_delta": {
+          "count": 256,
+          "max": 0.00015178395551629364,
+          "mean": 6.362944587579022e-05,
+          "min": 5.297454663377721e-06,
+          "std": 3.998164548019012e-05
+        },
+        "mean_lambda": {
+          "count": 256,
+          "max": 0.03588524088263512,
+          "mean": 0.03318205940013286,
+          "min": 0.031460974365472794,
+          "std": 0.001415728206773383
+        },
+        "nll": {
+          "count": 256,
+          "max": 6.799205780029297,
+          "mean": 1.9134338062722236,
+          "min": 0.7748858332633972,
+          "std": 0.6334499588182044
+        },
+        "preference_loss": {
+          "count": 256,
+          "max": 22.183286666870117,
+          "mean": 0.8580992445199593,
+          "min": 1.872854094031595e-09,
+          "std": 1.7701531654712928
+        },
+        "sensitivity_loss": {
+          "count": 256,
+          "max": 0.004994702059775591,
+          "mean": 0.004936370420182357,
+          "min": 0.0048482161946594715,
+          "std": 3.998162555876771e-05
+        },
+        "strength_loss": {
+          "count": 256,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "total_loss": {
+          "count": 256,
+          "max": 22.680509567260742,
+          "mean": 1.351736283977516,
+          "min": 0.4881672263145447,
+          "std": 1.7703183343001268
+        },
+        "weighted_guidance_gain": {
+          "count": 256,
+          "max": 0.4019160270690918,
+          "mean": 0.009909069203239085,
+          "min": -0.4436657428741455,
+          "std": 0.06120654862471157
+        }
+      },
+      "name": "preference_warmup_without_nll",
+      "nll_weight": 0.0,
+      "optimizer_steps": 64,
+      "preference_encoder_gradient_nonzero": true,
+      "router_gradient_nonzero": true,
+      "samples_used": 256,
+      "skipped_sample_ids": []
+    },
+    {
+      "epochs": 1,
+      "metrics": {
+        "endpoint_lambda_delta": {
+          "count": 256,
+          "max": 0.0008405714179389179,
+          "mean": 0.00034763958234407255,
+          "min": 0.00014638653374277055,
+          "std": 0.00018697209779617097
+        },
+        "mean_lambda": {
+          "count": 256,
+          "max": 0.03150218725204468,
+          "mean": 0.02800916164414957,
+          "min": 0.024732593446969986,
+          "std": 0.002080808183331292
+        },
+        "nll": {
+          "count": 256,
+          "max": 5.979959011077881,
+          "mean": 1.8847779182251543,
+          "min": 0.7765200734138489,
+          "std": 0.5131515327921706
+        },
+        "preference_loss": {
+          "count": 256,
+          "max": 14.7904052734375,
+          "mean": 0.7804558507076012,
+          "min": 1.352945715495915e-15,
+          "std": 1.268346972760512
+        },
+        "sensitivity_loss": {
+          "count": 256,
+          "max": 0.004853613208979368,
+          "mean": 0.004652360345062334,
+          "min": 0.004159428644925356,
+          "std": 0.00018697207526219796
+        },
+        "strength_loss": {
+          "count": 256,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "total_loss": {
+          "count": 256,
+          "max": 16.535520553588867,
+          "mean": 1.7168863648548722,
+          "min": 0.7065187692642212,
+          "std": 1.35264886861536
+        },
+        "weighted_guidance_gain": {
+          "count": 256,
+          "max": 0.684729814529419,
+          "mean": 0.011200776777327448,
+          "min": -0.2958081066608429,
+          "std": 0.06419350076709286
+        }
+      },
+      "name": "preference_plus_nll_quality",
+      "nll_weight": 0.25,
+      "optimizer_steps": 64,
+      "preference_encoder_gradient_nonzero": true,
+      "router_gradient_nonzero": true,
+      "samples_used": 256,
+      "skipped_sample_ids": []
+    }
+  ],
+  "validation_after": {
+    "constant_nll": {
+      "count": 250,
+      "max": 2.8246374130249023,
+      "mean": 1.8314983386993409,
+      "min": 1.1130681037902832,
+      "std": 0.31471560028393125
+    },
+    "constant_preference_loss": {
+      "count": 250,
+      "max": 5.858681678771973,
+      "mean": 0.6645569326351046,
+      "min": 1.15964883207198e-06,
+      "std": 0.609636724354961
+    },
+    "constant_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2733478546142578,
+      "mean": 0.012961050033569337,
+      "min": -0.11711645126342773,
+      "std": 0.03980795214149253
+    },
+    "correct_lambda": {
+      "count": 39070,
+      "max": 0.03344935551285744,
+      "mean": 0.030587127432227135,
+      "min": 0.02864799275994301,
+      "std": 0.0005624303594231606
+    },
+    "correct_nll": {
+      "count": 250,
+      "max": 2.826500415802002,
+      "mean": 1.8314841918945313,
+      "min": 1.1131619215011597,
+      "std": 0.3147431140576071
+    },
+    "correct_preference_loss": {
+      "count": 250,
+      "max": 5.748109817504883,
+      "mean": 0.6632916489546892,
+      "min": 1.4745422731721192e-06,
+      "std": 0.6054907158111801
+    },
+    "correct_vs_constant_lambda_delta": {
+      "count": 39070,
+      "max": 0.0007032305002212524,
+      "mean": 0.0002555515773028006,
+      "min": 0.0,
+      "std": 0.00017770173179238802
+    },
+    "correct_vs_shuffled_lambda_delta": {
+      "count": 39070,
+      "max": 0.0013802982866764069,
+      "mean": 0.00033938266858477586,
+      "min": 7.299147546291351e-05,
+      "std": 0.00028038052499126606
+    },
+    "correct_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2685432434082031,
+      "mean": 0.013010899782180787,
+      "min": -0.11489832401275635,
+      "std": 0.03968683039262475
+    },
+    "endpoint_alpha_lambda_delta": {
+      "count": 39070,
+      "max": 0.0013802982866764069,
+      "mean": 0.000845790531420482,
+      "min": 0.00030464865267276764,
+      "std": 0.00022746267884811563
+    },
+    "no_alpha_nll": {
+      "count": 250,
+      "max": 2.636340379714966,
+      "mean": 1.8131278162002564,
+      "min": 1.1051424741744995,
+      "std": 0.2971322774488163
+    },
+    "shuffled_nll": {
+      "count": 250,
+      "max": 2.8246374130249023,
+      "mean": 1.8314946866035462,
+      "min": 1.1130681037902832,
+      "std": 0.3147034798556943
+    },
+    "shuffled_preference_loss": {
+      "count": 250,
+      "max": 5.965221881866455,
+      "mean": 0.6652068516690818,
+      "min": 9.204996445077995e-07,
+      "std": 0.6145927391075208
+    },
+    "shuffled_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2779669761657715,
+      "mean": 0.012955398321151734,
+      "min": -0.11925303936004639,
+      "std": 0.039858028212352764
+    },
+    "skipped_sample_ids": [],
+    "tasks": 250
+  },
+  "validation_before": {
+    "constant_nll": {
+      "count": 250,
+      "max": 2.8570175170898438,
+      "mean": 1.8343741126060487,
+      "min": 1.1142908334732056,
+      "std": 0.31786401886591353
+    },
+    "constant_preference_loss": {
+      "count": 250,
+      "max": 6.484272480010986,
+      "mean": 0.6805391317870608,
+      "min": 3.4260870052094106e-07,
+      "std": 0.6817944447275941
+    },
+    "constant_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2977335453033447,
+      "mean": 0.014475250005722046,
+      "min": -0.1296548843383789,
+      "std": 0.04403270092185971
+    },
+    "correct_lambda": {
+      "count": 39070,
+      "max": 0.035915788263082504,
+      "mean": 0.03416643664240837,
+      "min": 0.03290111944079399,
+      "std": 0.000559910899028182
+    },
+    "correct_nll": {
+      "count": 250,
+      "max": 2.8570303916931152,
+      "mean": 1.834374924182892,
+      "min": 1.1142916679382324,
+      "std": 0.3178650372313835
+    },
+    "correct_preference_loss": {
+      "count": 250,
+      "max": 6.484129905700684,
+      "mean": 0.6805399238313357,
+      "min": 3.42645279260978e-07,
+      "std": 0.6818104327410519
+    },
+    "correct_vs_constant_lambda_delta": {
+      "count": 39070,
+      "max": 7.968395948410034e-06,
+      "mean": 1.5869689950376695e-06,
+      "min": 0.0,
+      "std": 1.7035976786940693e-06
+    },
+    "correct_vs_shuffled_lambda_delta": {
+      "count": 39070,
+      "max": 1.0345131158828735e-05,
+      "mean": 2.1968141774066977e-06,
+      "min": 0.0,
+      "std": 1.8942929308671699e-06
+    },
+    "correct_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2977313995361328,
+      "mean": 0.014476089000701905,
+      "min": -0.1296520233154297,
+      "std": 0.04403394077155797
+    },
+    "endpoint_alpha_lambda_delta": {
+      "count": 39070,
+      "max": 1.1220574378967285e-05,
+      "mean": 5.22198798652192e-06,
+      "min": 1.3783574104309082e-06,
+      "std": 1.258877689048618e-06
+    },
+    "no_alpha_nll": {
+      "count": 250,
+      "max": 2.636340379714966,
+      "mean": 1.8131278162002564,
+      "min": 1.1051424741744995,
+      "std": 0.2971322774488163
+    },
+    "shuffled_nll": {
+      "count": 250,
+      "max": 2.8570175170898438,
+      "mean": 1.8343750329017638,
+      "min": 1.1142908334732056,
+      "std": 0.3178647683834035
+    },
+    "shuffled_preference_loss": {
+      "count": 250,
+      "max": 6.4854512214660645,
+      "mean": 0.6805513448439734,
+      "min": 3.4192319731118914e-07,
+      "std": 0.6818614880567093
+    },
+    "shuffled_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2977735996246338,
+      "mean": 0.014475695133209229,
+      "min": -0.12967848777770996,
+      "std": 0.044034799141800876
+    },
+    "skipped_sample_ids": [],
+    "tasks": 250
+  }
+}

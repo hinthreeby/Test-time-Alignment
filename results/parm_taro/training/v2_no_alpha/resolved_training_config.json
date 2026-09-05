@@ -1,0 +1,70 @@
+{
+  "alpha_order": [
+    "helpfulness",
+    "harmlessness"
+  ],
+  "base_parm_pblora_frozen": true,
+  "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+  "full_vocabulary_guidance": true,
+  "objective": "alpha_weighted_response_mean_nll",
+  "parm_pblora_order": [
+    "harmlessness",
+    "helpfulness"
+  ],
+  "schema_version": 1,
+  "stage": "v2_no_alpha",
+  "task": "pku_safe_rlhf_multi_objective",
+  "tokenizer_semantic_sha256": "25cd43420478cfd15efa8b1b93fb790045de5845a7bf40865d6ab6eb34601410",
+  "training_config": {
+    "allow_cpu_fallback": false,
+    "alpha_order": [
+      "helpfulness",
+      "harmlessness"
+    ],
+    "alpha_sampling": "uniform_simplex_hash",
+    "base_model_path": "models/tulu-2-7b",
+    "bnb_4bit_quant_type": "nf4",
+    "bnb_4bit_use_double_quant": true,
+    "checkpoint_every_optimizer_steps": 250,
+    "cuda_memory_per_model_gib": 8,
+    "data_root": "dataset/parm_taro",
+    "device": "cuda",
+    "enforce_stage_order": true,
+    "gradient_accumulation_steps": 8,
+    "include_eos_target": true,
+    "learning_rate": 0.0001,
+    "load_in_4bit": true,
+    "log_every_optimizer_steps": 10,
+    "max_continuation_tokens": 128,
+    "max_grad_norm": 1.0,
+    "max_length": 512,
+    "max_train_samples": null,
+    "max_validation_samples": null,
+    "method_label": "PARM_TARO_ROUTER_TRAINING",
+    "min_control_lambda_delta": 0.001,
+    "model_dtype": "float16",
+    "model_placement": "accelerate_auto",
+    "near_tie_threshold": 0.05,
+    "num_epochs": 1,
+    "output_dir": "results/parm_taro/training/v2_no_alpha",
+    "parm_adapter_path": "results/parm_taro/checkpoints/parm_pku_pblora",
+    "require_shuffled_loss_degradation": true,
+    "router_config_path": "PARM_TARO/configs/router_v2_no_alpha_tulu2.json",
+    "router_kind": "smart",
+    "scalarization_rule": "alpha_weighted_response_mean_nll",
+    "schema_version": 1,
+    "seed": 2026,
+    "share_base_backbone": true,
+    "stage": "v2_no_alpha",
+    "static_reference_scale": 1.0,
+    "tokenizer_path": "models/tulu-2-7b",
+    "validation_alpha_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "weight_decay": 0.0
+  }
+}

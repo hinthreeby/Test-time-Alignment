@@ -1,0 +1,322 @@
+{
+  "evaluation": {
+    "alpha_grid": [
+      [
+        0.0,
+        1.0
+      ],
+      [
+        0.25,
+        0.75
+      ],
+      [
+        0.5,
+        0.5
+      ],
+      [
+        0.75,
+        0.25
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "alpha_order": [
+      "helpfulness",
+      "harmlessness"
+    ],
+    "manifest_declared_sha256": "1ab1b59e3127d0077ed6908e538072bdfe541266affae51267d90d2ec8255472",
+    "records": 1500,
+    "seeds": [
+      2026
+    ],
+    "split": "test_prompt_only"
+  },
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 64,
+    "prompt_format": "raw_processed_prompt_no_added_separator",
+    "stop_on_eos": true,
+    "temperature": 1.0
+  },
+  "method_order": [
+    "parm_static",
+    "parm_taro",
+    "parm_v2_no_alpha",
+    "parm_v2_full_alpha",
+    "parm_v2_full_alpha_same_average",
+    "parm_v2_full_alpha_shuffled_alpha",
+    "parm_v2_full_alpha_fixed_alpha"
+  ],
+  "methods": {
+    "parm_static": {
+      "guide_alpha": "requested",
+      "router": "fixed_lambda_1",
+      "router_alpha": null
+    },
+    "parm_taro": {
+      "guide_alpha": "requested",
+      "router": "results/parm_taro/training/taro/best.pt",
+      "router_alpha": null
+    },
+    "parm_v2_full_alpha": {
+      "guide_alpha": "requested",
+      "router": "results/parm_taro/training/v2_alpha_preference/final.pt",
+      "router_alpha": "requested"
+    },
+    "parm_v2_full_alpha_fixed_alpha": {
+      "guide_alpha": "requested",
+      "router": "results/parm_taro/training/v2_alpha_preference/final.pt",
+      "router_alpha": [
+        0.5,
+        0.5
+      ]
+    },
+    "parm_v2_full_alpha_same_average": {
+      "guide_alpha": "requested",
+      "router": "token_weighted_mean_of_full_alpha_in_same_run",
+      "router_alpha": null
+    },
+    "parm_v2_full_alpha_shuffled_alpha": {
+      "guide_alpha": "requested",
+      "router": "results/parm_taro/training/v2_alpha_preference/final.pt",
+      "router_alpha": "cyclic_grid_offset_1"
+    },
+    "parm_v2_no_alpha": {
+      "guide_alpha": "requested",
+      "router": "results/parm_taro/training/v2_no_alpha/best.pt",
+      "router_alpha": null
+    }
+  },
+  "normalization": {
+    "anchors": {
+      "harmlessness": {
+        "high": 18.98453125,
+        "low": -43.375
+      },
+      "helpfulness": {
+        "high": 15.426249999999996,
+        "low": -13.500625
+      }
+    },
+    "clip_range": [
+      0.0,
+      1.0
+    ],
+    "fit_records": 1000,
+    "fit_split": "validation",
+    "lower_quantile": 0.01,
+    "method": "validation_quantile_minmax_clip",
+    "objective_order": [
+      "helpfulness",
+      "harmlessness"
+    ],
+    "upper_quantile": 0.99
+  },
+  "objective_model_hashes": {
+    "harmlessness_cost": {
+      "file_count": 14,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/models/beaver-7b-v1.0-cost",
+      "total_bytes": 13216612170,
+      "tree_sha256": "418b941682ced967d71194c059beb967ebd225c2b6713a713ccdcea1fa6d8454"
+    },
+    "helpfulness": {
+      "file_count": 14,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/models/beaver-7b-v1.0-reward",
+      "total_bytes": 13216612170,
+      "tree_sha256": "3410256f542b2e06225d2652102d5dff1ce356a4cd092249643ab03a999a47b3"
+    },
+    "safe_rlhf_source": {
+      "file_count": 219,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/models/safe-rlhf-source",
+      "total_bytes": 9035956,
+      "tree_sha256": "1b61a3e47a4c9ad78184262132fad1b9edbb043bf1cdf593e66a87e02b985533"
+    }
+  },
+  "objectives": {
+    "harmlessness_cost_model": "models/beaver-7b-v1.0-cost",
+    "helpfulness_model": "models/beaver-7b-v1.0-reward",
+    "normalization_clip": [
+      0.0,
+      1.0
+    ],
+    "normalization_fit_pool": "both_reference_responses",
+    "normalization_fit_split": "validation",
+    "normalization_quantiles": [
+      0.01,
+      0.99
+    ],
+    "raw_order": [
+      "helpfulness_reward_high_better",
+      "negative_cost_high_better"
+    ],
+    "safe_rlhf_source": "models/safe-rlhf-source"
+  },
+  "pareto_hypervolume": {
+    "front_unit": "method_alpha_mean_over_prompts_and_seeds",
+    "maximize": [
+      "helpfulness",
+      "harmlessness"
+    ],
+    "reference_point_normalized": [
+      0.0,
+      0.0
+    ]
+  },
+  "preference_regret": {
+    "candidate_pool": "all seven method outputs for identical prompt/requested-alpha/seed",
+    "oracle": "shared_all_method_candidate_pool_per_prompt_alpha_seed"
+  },
+  "protocol_lock_sha256": "81a465048a6b0a1b7a585ff37c2ca42dd67dd5d90a591225c9ae7603bb05faa7",
+  "provenance": {
+    "config": {
+      "allow_cpu_fallback": true,
+      "alpha_helpfulness_grid": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "bootstrap_samples": 2000,
+      "calibration_pool": "both_reference_responses",
+      "calibration_split": "validation",
+      "data_root": "dataset/parm_taro",
+      "device": "auto",
+      "do_sample": false,
+      "evaluation_split": "test_prompt_only",
+      "fixed_alpha": [
+        0.5,
+        0.5
+      ],
+      "full_alpha_checkpoint": "results/parm_taro/training/v2_alpha_preference/final.pt",
+      "full_alpha_checkpoint_sha256": "56fbed68168537bd84066a5b86fbfefc8525cb5311c06d8668012e2cecca1e20",
+      "guide_alpha_policy_for_router_controls": "hold_requested_alpha",
+      "harmlessness_cost_model_path": "models/beaver-7b-v1.0-cost",
+      "helpfulness_model_path": "models/beaver-7b-v1.0-reward",
+      "hv_reference_point": [
+        0.0,
+        0.0
+      ],
+      "max_new_tokens": 64,
+      "method_label": "PARM_TARO_FINAL_EVALUATION",
+      "methods": [
+        "parm_static",
+        "parm_taro",
+        "parm_v2_no_alpha",
+        "parm_v2_full_alpha",
+        "parm_v2_full_alpha_same_average",
+        "parm_v2_full_alpha_shuffled_alpha",
+        "parm_v2_full_alpha_fixed_alpha"
+      ],
+      "model_dtype": "float16",
+      "multiple_comparison_correction": "holm",
+      "no_alpha_checkpoint": "results/parm_taro/training/v2_no_alpha/best.pt",
+      "normalization": "validation_quantile_minmax_clip",
+      "normalization_lower_quantile": 0.01,
+      "normalization_upper_quantile": 0.99,
+      "output_root": "results/parm_taro/evaluation",
+      "permutation_samples": 10000,
+      "primary_comparisons": [
+        [
+          "parm_v2_full_alpha",
+          "parm_static"
+        ],
+        [
+          "parm_v2_full_alpha",
+          "parm_taro"
+        ],
+        [
+          "parm_v2_full_alpha",
+          "parm_v2_no_alpha"
+        ],
+        [
+          "parm_v2_full_alpha",
+          "parm_v2_full_alpha_same_average"
+        ]
+      ],
+      "primary_metrics": [
+        "hypervolume",
+        "mip",
+        "pcs",
+        "preference_regret",
+        "perplexity",
+        "coherence"
+      ],
+      "regret_oracle": "shared_all_method_candidate_pool_per_prompt_alpha_seed",
+      "safe_rlhf_source_path": "models/safe-rlhf-source",
+      "same_average_lambda_policy": "token_weighted_mean_of_full_alpha_in_same_run",
+      "schema_version": 1,
+      "scorer_backend": "safe_rlhf_auto_model_for_score",
+      "scorer_batch_size": 2,
+      "scorer_load_in_4bit": true,
+      "scorer_max_length": 512,
+      "seeds": [
+        2026
+      ],
+      "shuffled_alpha_offset": 1,
+      "smoke_prompt_limit": 2,
+      "stage9_runtime_config": "PARM_TARO/configs/train_stage9_taro.json",
+      "statistics_seed": 2026,
+      "stop_on_eos": true,
+      "taro_checkpoint": "results/parm_taro/training/taro/best.pt",
+      "temperature": 1.0
+    },
+    "data_manifest": {
+      "bytes": 4491,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/parm_taro/manifest.json",
+      "sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564"
+    },
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "production_checkpoint": {
+      "bytes": 4374570,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference/final.pt",
+      "sha256": "56fbed68168537bd84066a5b86fbfefc8525cb5311c06d8668012e2cecca1e20"
+    }
+  },
+  "schema_version": 1,
+  "specification_sha256": "7180314ad40f85fffdeba1a94668a0ae2460ddd02fb5d768f29d1aa5307e8bf3",
+  "stage": 10,
+  "statistics": {
+    "bootstrap_samples": 2000,
+    "effect_size": "paired_cohen_dz",
+    "multiple_comparison_correction": "holm",
+    "paired_unit": "source_prompt_id",
+    "permutation_samples": 10000,
+    "primary_comparisons": [
+      [
+        "parm_v2_full_alpha",
+        "parm_static"
+      ],
+      [
+        "parm_v2_full_alpha",
+        "parm_taro"
+      ],
+      [
+        "parm_v2_full_alpha",
+        "parm_v2_no_alpha"
+      ],
+      [
+        "parm_v2_full_alpha",
+        "parm_v2_full_alpha_same_average"
+      ]
+    ],
+    "primary_metrics": [
+      "hypervolume",
+      "mip",
+      "pcs",
+      "preference_regret",
+      "perplexity",
+      "coherence"
+    ],
+    "seed": 2026
+  },
+  "status": "PROTOCOL_LOCKED_TEST_NOT_USED",
+  "test_payload_opened": false
+}

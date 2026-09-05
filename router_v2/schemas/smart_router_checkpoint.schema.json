@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reward-decoding.local/router_v2/smart_router_checkpoint.schema.json",
+  "title": "Router V2 Smart Router checkpoint envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "format",
+    "method_label",
+    "model_class",
+    "architecture",
+    "variant",
+    "feature_toggles",
+    "lambda_max",
+    "config",
+    "state_dict",
+    "training_state",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "format": {"const": "router_v2.smart_router_checkpoint"},
+    "method_label": {"const": "SMART_ROUTER_V2"},
+    "model_class": {"const": "SmartTokenRouter"},
+    "architecture": {"const": "token_aware_state_router"},
+    "variant": {"type": "string"},
+    "feature_toggles": {"type": "object"},
+    "lambda_max": {"type": "number", "exclusiveMinimum": 0},
+    "config": {"type": "object"},
+    "state_dict": {"type": "object"},
+    "training_state": {"type": "object"},
+    "metadata": {"type": "object"}
+  }
+}

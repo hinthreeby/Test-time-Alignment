@@ -1,0 +1,275 @@
+{
+  "average_continuation_length": 39.0,
+  "base_model": {
+    "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+    "files": [
+      {
+        "bytes": 718,
+        "path": "config.json",
+        "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+      },
+      {
+        "bytes": 1519984962,
+        "path": "model.safetensors",
+        "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+  },
+  "base_tokenizer": {
+    "bos_token": "<|endoftext|>",
+    "bos_token_id": 50256,
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 50256,
+    "length": 50257,
+    "model_max_length": 1024,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 50256,
+    "padding_side": "right",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium",
+    "semantic_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "unk_token": "<|endoftext|>",
+    "unk_token_id": 50256,
+    "vocab_entries": 50257,
+    "vocab_sha256": "79ff2372d75e36ad401b44e1a72214636dfdcc4ddeeefa498463b0a3b2a5fd76"
+  },
+  "complete": true,
+  "device_used_for_extraction": "cuda",
+  "exact_tokenizer_compatible": true,
+  "extraction_fingerprint": "d8374076edee8f3c6be3be10b9df05eab57100ff643f5088b5131f6fb0425aa6",
+  "extraction_parameters": {
+    "base_checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+    "base_tokenizer_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "batch_atomic_shards": true,
+    "batch_size": 4,
+    "deterministic_runtime": {
+      "cublas_workspace_config": ":4096:8",
+      "cuda_matmul_allow_tf32": false,
+      "cudnn_allow_tf32": false,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "deterministic_algorithms": true,
+      "device_type": "cuda",
+      "float32_matmul_precision": "highest",
+      "seed": 42
+    },
+    "device_type": "cuda",
+    "explicit_position_ids": true,
+    "guide_checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+    "guide_tokenizer_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "max_continuation_tokens": 80,
+    "max_position": 79,
+    "num_source_examples": 20,
+    "precision": "fp32",
+    "schema_version": 1,
+    "shard_size": 4096,
+    "source_sha256": "92486a32e7c451422682afdd3d0c55a47a3016cc977542cb600a6172937c924b",
+    "split": "train",
+    "task": "sentiment",
+    "top_k": 20
+  },
+  "feature_schema": "router_v2.feature_cache.v1",
+  "feature_statistics": {
+    "base_entropy": {
+      "count": 780,
+      "max": 2.951298713684082,
+      "mean": 1.9349515474759615,
+      "min": 0.0029433751478791237,
+      "std": 0.7239827245748904
+    },
+    "base_margin": {
+      "count": 780,
+      "max": 9.997711181640625,
+      "mean": 1.1915740966796875,
+      "min": 0.0023956298828125,
+      "std": 1.4312852718076368
+    },
+    "base_range": {
+      "count": 780,
+      "max": 14.43304443359375,
+      "mean": 4.462874348958334,
+      "min": 1.11956787109375,
+      "std": 1.9964192307551434
+    },
+    "base_std": {
+      "count": 780,
+      "max": 3.382883071899414,
+      "mean": 1.1901195819561299,
+      "min": 0.31500378251075745,
+      "std": 0.45067189621541404
+    },
+    "guide_entropy": {
+      "count": 780,
+      "max": 2.949860095977783,
+      "mean": 1.8304844000400642,
+      "min": 0.0033283194061368704,
+      "std": 0.7277790000189757
+    },
+    "guide_margin": {
+      "count": 780,
+      "max": 9.831512451171875,
+      "mean": 1.293743661733774,
+      "min": 0.0006561279296875,
+      "std": 1.4673705713667797
+    },
+    "guide_range": {
+      "count": 780,
+      "max": 14.667861938476562,
+      "mean": 4.727447040264423,
+      "min": 1.1400909423828125,
+      "std": 1.9681317686015045
+    },
+    "guide_std": {
+      "count": 780,
+      "max": 3.2334043979644775,
+      "mean": 1.2573956611828927,
+      "min": 0.3092328906059265,
+      "std": 0.4422651540001349
+    },
+    "js_divergence": {
+      "count": 780,
+      "max": 0.4331700801849365,
+      "mean": 0.03906126755934495,
+      "min": 3.818755430984311e-06,
+      "std": 0.06015748927486072
+    },
+    "normalized_position": {
+      "count": 780,
+      "max": 0.949367105960846,
+      "mean": 0.29419019650190303,
+      "min": 0.0,
+      "std": 0.21743805649196465
+    },
+    "rank_correlation": {
+      "count": 780,
+      "max": 0.9969350099563599,
+      "mean": 0.8613001114282852,
+      "min": 0.004336077254265547,
+      "std": 0.12630155183500763
+    },
+    "top1_agreement": {
+      "count": 780,
+      "max": 1.0,
+      "mean": 0.8012820512820513,
+      "min": 0.0,
+      "std": 0.3990352435252798
+    },
+    "topk_overlap": {
+      "count": 780,
+      "max": 1.0,
+      "mean": 0.870576907426883,
+      "min": 0.44999998807907104,
+      "std": 0.08099724862420836
+    }
+  },
+  "gold_leakage_checks": {
+    "gold_forced_into_candidates": false,
+    "gold_stored_as_target_only": true,
+    "previous_gold_tokens_only_in_teacher_forced_prefix": true,
+    "topk_selector_accepts_gold": false
+  },
+  "guide_model": {
+    "checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+    "files": [
+      {
+        "bytes": 696,
+        "path": "adapter_config.json",
+        "sha256": "46cb575b693ae51f777c45817cd0a420489c651e8ce48ef102f3f9253f197c44"
+      },
+      {
+        "bytes": 12607304,
+        "path": "adapter_model.safetensors",
+        "sha256": "17b0e1b5594bbd7780015434b927d36a6f0f78be370e8cfc966f15e597d4c6dd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter"
+  },
+  "guide_tokenizer": {
+    "bos_token": "<|endoftext|>",
+    "bos_token_id": 50256,
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 50256,
+    "length": 50257,
+    "model_max_length": 1024,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 50256,
+    "padding_side": "right",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter",
+    "semantic_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "unk_token": "<|endoftext|>",
+    "unk_token_id": 50256,
+    "vocab_entries": 50257,
+    "vocab_sha256": "79ff2372d75e36ad401b44e1a72214636dfdcc4ddeeefa498463b0a3b2a5fd76"
+  },
+  "max_position": 79,
+  "nan_inf_count": 0,
+  "number_shards": 1,
+  "number_source_examples": 20,
+  "number_token_records": 780,
+  "precision": "fp32",
+  "schema_version": 1,
+  "shards": [
+    {
+      "num_records": 780,
+      "path": "shard_00000.pt",
+      "sha256": "e15934ef1a74f5cb9b6de1311dd689977b95d236e9233bc57542dee13cb45adf",
+      "source_end_index_exclusive": 20,
+      "source_ids": [
+        "amazon-polarity-positive-00034301",
+        "amazon-polarity-positive-00019605",
+        "amazon-polarity-positive-00001800",
+        "amazon-polarity-positive-00016018",
+        "amazon-polarity-positive-00053961",
+        "amazon-polarity-positive-00031036",
+        "amazon-polarity-positive-00025748",
+        "amazon-polarity-positive-00003084",
+        "amazon-polarity-positive-00045664",
+        "amazon-polarity-positive-00034521",
+        "amazon-polarity-positive-00046772",
+        "amazon-polarity-positive-00050946",
+        "amazon-polarity-positive-00027340",
+        "amazon-polarity-positive-00033321",
+        "amazon-polarity-positive-00035447",
+        "amazon-polarity-positive-00002569",
+        "amazon-polarity-positive-00012325",
+        "amazon-polarity-positive-00022045",
+        "amazon-polarity-positive-00004103",
+        "amazon-polarity-positive-00020069"
+      ],
+      "source_start_index": 0
+    }
+  ],
+  "source_dataset": {
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/RAD_train/router_amazon_polarity/train.jsonl",
+    "sha256": "92486a32e7c451422682afdd3d0c55a47a3016cc977542cb600a6172937c924b"
+  },
+  "source_ids": [
+    "amazon-polarity-positive-00034301",
+    "amazon-polarity-positive-00019605",
+    "amazon-polarity-positive-00001800",
+    "amazon-polarity-positive-00016018",
+    "amazon-polarity-positive-00053961",
+    "amazon-polarity-positive-00031036",
+    "amazon-polarity-positive-00025748",
+    "amazon-polarity-positive-00003084",
+    "amazon-polarity-positive-00045664",
+    "amazon-polarity-positive-00034521",
+    "amazon-polarity-positive-00046772",
+    "amazon-polarity-positive-00050946",
+    "amazon-polarity-positive-00027340",
+    "amazon-polarity-positive-00033321",
+    "amazon-polarity-positive-00035447",
+    "amazon-polarity-positive-00002569",
+    "amazon-polarity-positive-00012325",
+    "amazon-polarity-positive-00022045",
+    "amazon-polarity-positive-00004103",
+    "amazon-polarity-positive-00020069"
+  ],
+  "split": "train",
+  "stale_temp_files_removed": [],
+  "task": "sentiment",
+  "top_k": 20,
+  "top_k_uniqueness_failures": 0
+}

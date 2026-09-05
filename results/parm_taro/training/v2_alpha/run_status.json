@@ -1,0 +1,377 @@
+{
+  "best_checkpoint": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha/best.pt",
+  "best_validation_loss": 1.8700307934999465,
+  "checks": {
+    "comparison_pass": false,
+    "frozen_artifacts_unchanged": true,
+    "frozen_model_gradients_none": true,
+    "optimizer_parameters_fp32": true,
+    "optimizer_router_only": true,
+    "own_metrics_finite": true,
+    "router_lambda_nonconstant": true,
+    "test_split_unused": true
+  },
+  "comparison": {
+    "alpha_controls": {
+      "checks": {
+        "constant_changes_lambda": false,
+        "guide_alpha_held_correct_for_all_router_controls": true,
+        "shuffled_changes_lambda": false,
+        "shuffled_degrades_loss": true
+      },
+      "mean_abs_lambda_delta_correct_vs_constant": 1.4090500672070934e-06,
+      "mean_abs_lambda_delta_correct_vs_shuffled": 1.6454007806300079e-06,
+      "pass": false,
+      "shuffled_minus_correct_loss": 1.617670060127807e-07
+    },
+    "alpha_grid_helpfulness": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "checks": {
+      "all_metrics_finite": true,
+      "preference_usage_controls_pass": false,
+      "required_methods_present": true,
+      "validation_not_test": true
+    },
+    "methods": {
+      "static_parm": {
+        "dual_response_token_nll": 3.4626328643321993,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "lambda_alpha_helpfulness_correlation": null,
+        "loss_std": 2.213429573282973,
+        "tasks": 2500
+      },
+      "taro": {
+        "dual_response_token_nll": 1.8704583731889726,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.01607419177889824,
+          "mean": 0.0013612648472189903,
+          "min": 0.00046777594252489507,
+          "std": 0.001031935797072947
+        },
+        "lambda_alpha_helpfulness_correlation": -0.002911696211400144,
+        "loss_std": 0.44465931470435577,
+        "tasks": 2500
+      },
+      "v2_alpha": {
+        "dual_response_token_nll": 1.8700307934999465,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.005154862068593502,
+          "mean": 0.0007286460022442043,
+          "min": 0.0001128840958699584,
+          "std": 0.000566863629501313
+        },
+        "lambda_alpha_helpfulness_correlation": 0.10363577449193269,
+        "loss_std": 0.4441528395174384,
+        "tasks": 2500
+      },
+      "v2_alpha_constant": {
+        "dual_response_token_nll": 1.8700305650949478,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.005146518349647522,
+          "mean": 0.0007272865041159093,
+          "min": 0.00011261939653195441,
+          "std": 0.0005662584444507957
+        },
+        "lambda_alpha_helpfulness_correlation": 0.09634898128741444,
+        "loss_std": 0.44415251675350564,
+        "tasks": 2500
+      },
+      "v2_alpha_shuffled": {
+        "dual_response_token_nll": 1.8700309552669525,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.005157496780157089,
+          "mean": 0.0007286314503289759,
+          "min": 0.00011261939653195441,
+          "std": 0.0005668061203323305
+        },
+        "lambda_alpha_helpfulness_correlation": 0.08911350205907284,
+        "loss_std": 0.44415316513139735,
+        "tasks": 2500
+      },
+      "v2_no_alpha": {
+        "dual_response_token_nll": 1.870022567486763,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.006882131565362215,
+          "mean": 0.0008080874104052782,
+          "min": 9.191725257551298e-05,
+          "std": 0.0007166335708461702
+        },
+        "lambda_alpha_helpfulness_correlation": 0.08858218472705111,
+        "loss_std": 0.44413357720546764,
+        "tasks": 2500
+      }
+    },
+    "near_tie_tasks": 296,
+    "pass": false,
+    "skipped_sample_ids": [],
+    "split": "validation",
+    "tasks_requested": 2500,
+    "tasks_skipped_too_long": 0
+  },
+  "frozen_audit": {
+    "after": {
+      "base_model": {
+        "checkpoint_sha256": "cd816175990bef4dad02accc8aa73b4c57d31d9e7b85c16da8b00c15ceb7f59e",
+        "files": [
+          {
+            "bytes": 23950,
+            "path": "pytorch_model.bin.index.json",
+            "sha256": "e572e08c4d4e81c7916197f6fcd2956a2f05e5919f28d72c9ba4f351efae1e29"
+          },
+          {
+            "bytes": 9976620122,
+            "path": "pytorch_model-00001-of-00002.bin",
+            "sha256": "6d90e5350a50e3a1ae608eadf4de08d5336b387561c44094e558789c0e1480d6"
+          },
+          {
+            "bytes": 3500310787,
+            "path": "pytorch_model-00002-of-00002.bin",
+            "sha256": "3eb1b1833fa5b5b8bc9f0ffde237012fead0c18536047fa4c2fcfb8abc3c6425"
+          }
+        ],
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b"
+      },
+      "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+      "guide_base_model": {
+        "checkpoint_sha256": "cd816175990bef4dad02accc8aa73b4c57d31d9e7b85c16da8b00c15ceb7f59e",
+        "files": [
+          {
+            "bytes": 23950,
+            "path": "pytorch_model.bin.index.json",
+            "sha256": "e572e08c4d4e81c7916197f6fcd2956a2f05e5919f28d72c9ba4f351efae1e29"
+          },
+          {
+            "bytes": 9976620122,
+            "path": "pytorch_model-00001-of-00002.bin",
+            "sha256": "6d90e5350a50e3a1ae608eadf4de08d5336b387561c44094e558789c0e1480d6"
+          },
+          {
+            "bytes": 3500310787,
+            "path": "pytorch_model-00002-of-00002.bin",
+            "sha256": "3eb1b1833fa5b5b8bc9f0ffde237012fead0c18536047fa4c2fcfb8abc3c6425"
+          }
+        ],
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b"
+      },
+      "parm_adapter": {
+        "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+        "files": [
+          {
+            "bytes": 521,
+            "path": "adapter_config.json",
+            "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+          },
+          {
+            "bytes": 25233088,
+            "path": "adapter_model.safetensors",
+            "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+          }
+        ],
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+      },
+      "parm_tree": {
+        "file_count": 156,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+        "total_bytes": 1506962,
+        "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+      },
+      "training_config": {
+        "allow_cpu_fallback": false,
+        "alpha_order": [
+          "helpfulness",
+          "harmlessness"
+        ],
+        "alpha_sampling": "uniform_simplex_hash",
+        "base_model_path": "models/tulu-2-7b",
+        "bnb_4bit_quant_type": "nf4",
+        "bnb_4bit_use_double_quant": true,
+        "checkpoint_every_optimizer_steps": 250,
+        "cuda_memory_per_model_gib": 8,
+        "data_root": "dataset/parm_taro",
+        "device": "cuda",
+        "enforce_stage_order": true,
+        "gradient_accumulation_steps": 8,
+        "include_eos_target": true,
+        "learning_rate": 0.0001,
+        "load_in_4bit": true,
+        "log_every_optimizer_steps": 10,
+        "max_continuation_tokens": 128,
+        "max_grad_norm": 1.0,
+        "max_length": 512,
+        "max_train_samples": null,
+        "max_validation_samples": null,
+        "method_label": "PARM_TARO_ROUTER_TRAINING",
+        "min_control_lambda_delta": 0.001,
+        "model_dtype": "float16",
+        "model_placement": "accelerate_auto",
+        "near_tie_threshold": 0.05,
+        "num_epochs": 1,
+        "output_dir": "results/parm_taro/training/v2_alpha",
+        "parm_adapter_path": "results/parm_taro/checkpoints/parm_pku_pblora",
+        "require_shuffled_loss_degradation": true,
+        "router_config_path": "PARM_TARO/configs/router_v2_alpha_tulu2.json",
+        "router_kind": "smart",
+        "scalarization_rule": "alpha_weighted_response_mean_nll",
+        "schema_version": 1,
+        "seed": 2026,
+        "share_base_backbone": true,
+        "stage": "v2_alpha",
+        "static_reference_scale": 1.0,
+        "tokenizer_path": "models/tulu-2-7b",
+        "validation_alpha_grid": [
+          0.0,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ],
+        "weight_decay": 0.0
+      }
+    },
+    "before": {
+      "base_model": {
+        "checkpoint_sha256": "cd816175990bef4dad02accc8aa73b4c57d31d9e7b85c16da8b00c15ceb7f59e",
+        "files": [
+          {
+            "bytes": 23950,
+            "path": "pytorch_model.bin.index.json",
+            "sha256": "e572e08c4d4e81c7916197f6fcd2956a2f05e5919f28d72c9ba4f351efae1e29"
+          },
+          {
+            "bytes": 9976620122,
+            "path": "pytorch_model-00001-of-00002.bin",
+            "sha256": "6d90e5350a50e3a1ae608eadf4de08d5336b387561c44094e558789c0e1480d6"
+          },
+          {
+            "bytes": 3500310787,
+            "path": "pytorch_model-00002-of-00002.bin",
+            "sha256": "3eb1b1833fa5b5b8bc9f0ffde237012fead0c18536047fa4c2fcfb8abc3c6425"
+          }
+        ],
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b"
+      },
+      "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+      "guide_base_model": {
+        "checkpoint_sha256": "cd816175990bef4dad02accc8aa73b4c57d31d9e7b85c16da8b00c15ceb7f59e",
+        "files": [
+          {
+            "bytes": 23950,
+            "path": "pytorch_model.bin.index.json",
+            "sha256": "e572e08c4d4e81c7916197f6fcd2956a2f05e5919f28d72c9ba4f351efae1e29"
+          },
+          {
+            "bytes": 9976620122,
+            "path": "pytorch_model-00001-of-00002.bin",
+            "sha256": "6d90e5350a50e3a1ae608eadf4de08d5336b387561c44094e558789c0e1480d6"
+          },
+          {
+            "bytes": 3500310787,
+            "path": "pytorch_model-00002-of-00002.bin",
+            "sha256": "3eb1b1833fa5b5b8bc9f0ffde237012fead0c18536047fa4c2fcfb8abc3c6425"
+          }
+        ],
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b"
+      },
+      "parm_adapter": {
+        "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+        "files": [
+          {
+            "bytes": 521,
+            "path": "adapter_config.json",
+            "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+          },
+          {
+            "bytes": 25233088,
+            "path": "adapter_model.safetensors",
+            "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+          }
+        ],
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+      },
+      "parm_tree": {
+        "file_count": 156,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+        "total_bytes": 1506962,
+        "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+      },
+      "training_config": {
+        "allow_cpu_fallback": false,
+        "alpha_order": [
+          "helpfulness",
+          "harmlessness"
+        ],
+        "alpha_sampling": "uniform_simplex_hash",
+        "base_model_path": "models/tulu-2-7b",
+        "bnb_4bit_quant_type": "nf4",
+        "bnb_4bit_use_double_quant": true,
+        "checkpoint_every_optimizer_steps": 250,
+        "cuda_memory_per_model_gib": 8,
+        "data_root": "dataset/parm_taro",
+        "device": "cuda",
+        "enforce_stage_order": true,
+        "gradient_accumulation_steps": 8,
+        "include_eos_target": true,
+        "learning_rate": 0.0001,
+        "load_in_4bit": true,
+        "log_every_optimizer_steps": 10,
+        "max_continuation_tokens": 128,
+        "max_grad_norm": 1.0,
+        "max_length": 512,
+        "max_train_samples": null,
+        "max_validation_samples": null,
+        "method_label": "PARM_TARO_ROUTER_TRAINING",
+        "min_control_lambda_delta": 0.001,
+        "model_dtype": "float16",
+        "model_placement": "accelerate_auto",
+        "near_tie_threshold": 0.05,
+        "num_epochs": 1,
+        "output_dir": "results/parm_taro/training/v2_alpha",
+        "parm_adapter_path": "results/parm_taro/checkpoints/parm_pku_pblora",
+        "require_shuffled_loss_degradation": true,
+        "router_config_path": "PARM_TARO/configs/router_v2_alpha_tulu2.json",
+        "router_kind": "smart",
+        "scalarization_rule": "alpha_weighted_response_mean_nll",
+        "schema_version": 1,
+        "seed": 2026,
+        "share_base_backbone": true,
+        "stage": "v2_alpha",
+        "static_reference_scale": 1.0,
+        "tokenizer_path": "models/tulu-2-7b",
+        "validation_alpha_grid": [
+          0.0,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ],
+        "weight_decay": 0.0
+      }
+    },
+    "unchanged": true
+  },
+  "schema_version": 1,
+  "stage": "v2_alpha",
+  "status": "NOT_PASS"
+}

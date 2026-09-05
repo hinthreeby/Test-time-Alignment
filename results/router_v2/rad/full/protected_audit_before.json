@@ -1,0 +1,32 @@
+{
+  "method_rad": {
+    "file_count": 110,
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD",
+    "total_bytes": 114269650,
+    "tree_sha256": "e0c8907885b80cde9c12f0e1f6e3134b0781e811ee8edafb9f0d690988d36bbe"
+  },
+  "parm": {
+    "file_count": 156,
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+    "total_bytes": 1506962,
+    "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+  },
+  "rad_benchmark": {
+    "file_count": 4,
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark",
+    "total_bytes": 8717638,
+    "tree_sha256": "a44b060fd427368917ce1fe68b09fd94f1710c32bd4e38484a386ed4f695ed88"
+  },
+  "router_v1": {
+    "file_count": 100,
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/router",
+    "total_bytes": 521788719,
+    "tree_sha256": "8595fb3e48c2b1771a07a6efba09c29560785a581d5490f582286c58fbf5ffd3"
+  },
+  "v1_results": {
+    "file_count": 14,
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+    "total_bytes": 516707263,
+    "tree_sha256": "e3f4d6d9f5fcb5797cf0ed61ae3fe8890c41f53aba4ba2eee3730fac691afa07"
+  }
+}

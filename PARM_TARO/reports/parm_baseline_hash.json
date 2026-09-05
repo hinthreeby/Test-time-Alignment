@@ -1,0 +1,8 @@
+{
+  "algorithm": "sha256(relative_path + tab + bytes + tab + file_sha256 + newline)",
+  "file_count": 156,
+  "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+  "snapshot_stage": "before_stage7_edits",
+  "total_bytes": 1506962,
+  "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+}

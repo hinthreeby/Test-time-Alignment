@@ -1,0 +1,136 @@
+{
+  "checks": {
+    "concatenated_tokenization_used": true,
+    "crossing_tokens_preserved_as_context_and_excluded_from_loss": true,
+    "train_has_no_unexpected_tokenization_errors": true,
+    "validation_has_no_unexpected_tokenization_errors": true
+  },
+  "config": {
+    "data_root": "/home/jupyter-iec2024se10/Reward Decoding/dataset/parm_taro",
+    "include_eos_target": true,
+    "max_continuation_tokens": 128,
+    "max_length": 512,
+    "tokenizer_path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b"
+  },
+  "method_label": "PARM_TARO_TOKENIZATION_BOUNDARY_AUDIT",
+  "schema_version": 1,
+  "splits": {
+    "train": {
+      "affected": [
+        {
+          "boundary_character_index": 81,
+          "boundary_tokens_excluded": 1,
+          "crossing_tokens": [
+            {
+              "span": [
+                80,
+                82
+              ],
+              "text": ":\"",
+              "token_id": 6160,
+              "token_index": 28,
+              "tokenizer_token": ":\""
+            }
+          ],
+          "first_response_loss_token_index": 29,
+          "response_index": 0,
+          "sample_id": "pku_round0_01054",
+          "zero_length_token_indices": []
+        },
+        {
+          "boundary_character_index": 81,
+          "boundary_tokens_excluded": 1,
+          "crossing_tokens": [
+            {
+              "span": [
+                80,
+                82
+              ],
+              "text": ":\"",
+              "token_id": 6160,
+              "token_index": 28,
+              "tokenizer_token": ":\""
+            }
+          ],
+          "first_response_loss_token_index": 29,
+          "response_index": 0,
+          "sample_id": "pku_round0_01557",
+          "zero_length_token_indices": []
+        },
+        {
+          "boundary_character_index": 175,
+          "boundary_tokens_excluded": 1,
+          "crossing_tokens": [
+            {
+              "span": [
+                174,
+                176
+              ],
+              "text": ":$",
+              "token_id": 17178,
+              "token_index": 54,
+              "tokenizer_token": ":$"
+            }
+          ],
+          "first_response_loss_token_index": 55,
+          "response_index": 0,
+          "sample_id": "pku_round0_07805",
+          "zero_length_token_indices": []
+        }
+      ],
+      "affected_example_fraction": 0.000375,
+      "affected_examples": 3,
+      "affected_response_fraction": 0.0001875,
+      "affected_responses": 3,
+      "boundary_isolation_failure_count": 0,
+      "boundary_isolation_failures": [],
+      "boundary_tokens_excluded": 3,
+      "examples": 8000,
+      "expected_sequence_too_long": 0,
+      "pass": true,
+      "responses": 16000,
+      "sequence_too_long_records": [],
+      "tokenized_responses": 16000,
+      "unexpected_error_count": 0,
+      "unexpected_errors": []
+    },
+    "validation": {
+      "affected": [],
+      "affected_example_fraction": 0.0,
+      "affected_examples": 0,
+      "affected_response_fraction": 0.0,
+      "affected_responses": 0,
+      "boundary_isolation_failure_count": 0,
+      "boundary_isolation_failures": [],
+      "boundary_tokens_excluded": 0,
+      "examples": 500,
+      "expected_sequence_too_long": 0,
+      "pass": true,
+      "responses": 1000,
+      "sequence_too_long_records": [],
+      "tokenized_responses": 1000,
+      "unexpected_error_count": 0,
+      "unexpected_errors": []
+    }
+  },
+  "stage": 9,
+  "status": "PASS",
+  "tokenizer": {
+    "bos_token": "<s>",
+    "bos_token_id": 1,
+    "eos_token": "</s>",
+    "eos_token_id": 2,
+    "length": 32000,
+    "model_max_length": 2048,
+    "pad_token": "</s>",
+    "pad_token_id": 2,
+    "padding_side": "left",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
+    "semantic_sha256": "25cd43420478cfd15efa8b1b93fb790045de5845a7bf40865d6ab6eb34601410",
+    "tokenizer_class": "LlamaTokenizerFast",
+    "unk_token": "<unk>",
+    "unk_token_id": 0,
+    "vocab_entries": 32000,
+    "vocab_sha256": "d182db49d05efb7a55421d033bd6d75099b1d7af5b34b7ff2a55215195e39d7a"
+  }
+}

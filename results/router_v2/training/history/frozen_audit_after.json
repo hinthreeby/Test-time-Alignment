@@ -1,0 +1,88 @@
+{
+  "after": {
+    "base_model": {
+      "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+      "files": [
+        {
+          "bytes": 718,
+          "path": "config.json",
+          "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+        },
+        {
+          "bytes": 1519984962,
+          "path": "model.safetensors",
+          "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+    },
+    "guide_model": {
+      "checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+      "files": [
+        {
+          "bytes": 696,
+          "path": "adapter_config.json",
+          "sha256": "46cb575b693ae51f777c45817cd0a420489c651e8ce48ef102f3f9253f197c44"
+        },
+        {
+          "bytes": 12607304,
+          "path": "adapter_model.safetensors",
+          "sha256": "17b0e1b5594bbd7780015434b927d36a6f0f78be370e8cfc966f15e597d4c6dd"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter"
+    },
+    "parm": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    }
+  },
+  "before": {
+    "base_model": {
+      "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+      "files": [
+        {
+          "bytes": 718,
+          "path": "config.json",
+          "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+        },
+        {
+          "bytes": 1519984962,
+          "path": "model.safetensors",
+          "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+    },
+    "guide_model": {
+      "checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+      "files": [
+        {
+          "bytes": 696,
+          "path": "adapter_config.json",
+          "sha256": "46cb575b693ae51f777c45817cd0a420489c651e8ce48ef102f3f9253f197c44"
+        },
+        {
+          "bytes": 12607304,
+          "path": "adapter_model.safetensors",
+          "sha256": "17b0e1b5594bbd7780015434b927d36a6f0f78be370e8cfc966f15e597d4c6dd"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter"
+    },
+    "parm": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    }
+  },
+  "checks": {
+    "base_model_unchanged": true,
+    "guide_model_unchanged": true,
+    "parm_unchanged": true
+  },
+  "pass": true
+}

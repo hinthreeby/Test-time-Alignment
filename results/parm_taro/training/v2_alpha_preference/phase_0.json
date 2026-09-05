@@ -1,0 +1,79 @@
+{
+  "alpha_path_only": true,
+  "alpha_residual_gradient_nonzero": true,
+  "epochs": 1,
+  "metrics": {
+    "endpoint_lambda_delta": {
+      "count": 8000,
+      "max": 0.008054564706981182,
+      "mean": 0.004046407302710577,
+      "min": 0.00149164826143533,
+      "std": 0.0017184957503245616
+    },
+    "endpoint_logit_delta": {
+      "count": 8000,
+      "max": 0.4304741621017456,
+      "mean": 0.2547399086728692,
+      "min": 0.04886854439973831,
+      "std": 0.08525266926703544
+    },
+    "logit_sensitivity_loss": {
+      "count": 8000,
+      "max": 0.12012217193841934,
+      "mean": 0.003116047289045555,
+      "min": 0.0,
+      "std": 0.01585100403152021
+    },
+    "mean_lambda": {
+      "count": 8000,
+      "max": 0.03092852048575878,
+      "mean": 0.016328526832163334,
+      "min": 0.010576199740171432,
+      "std": 0.004585050106076597
+    },
+    "nll": {
+      "count": 8000,
+      "max": 9.548583984375,
+      "mean": 1.8776549073755742,
+      "min": 0.2633221745491028,
+      "std": 0.458015881484059
+    },
+    "preference_loss": {
+      "count": 8000,
+      "max": 33.74542999267578,
+      "mean": 0.7037032876411223,
+      "min": 1.166151485272604e-12,
+      "std": 0.8715705102674766
+    },
+    "strength_loss": {
+      "count": 8000,
+      "max": 2.4031507450672507e-07,
+      "mean": 3.003938431334063e-11,
+      "min": 0.0,
+      "std": 2.6866362825635685e-09
+    },
+    "total_loss": {
+      "count": 8000,
+      "max": 33.77135467529297,
+      "mean": 0.7044259742012976,
+      "min": 1.166151485272604e-12,
+      "std": 0.8719219189819098
+    },
+    "weighted_guidance_gain": {
+      "count": 8000,
+      "max": 0.5495462417602539,
+      "mean": 0.007287452948260531,
+      "min": -0.6749086380004883,
+      "std": 0.03658303408757266
+    }
+  },
+  "name": "normalized_alpha_residual_warmup",
+  "nll_weight": 0.0,
+  "optimizer_parameters_fp32": true,
+  "optimizer_router_only": true,
+  "optimizer_steps": 2000,
+  "preference_encoder_gradient_nonzero": true,
+  "router_gradient_nonzero": true,
+  "samples_used": 8000,
+  "skipped_sample_ids": []
+}

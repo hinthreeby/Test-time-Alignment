@@ -1,0 +1,47 @@
+{
+  "allow_cpu_fallback": false,
+  "base_model_path": "models/gpt2-medium",
+  "bootstrap_samples": 1000,
+  "bootstrap_seed": 12345,
+  "dataset_dir": "dataset/rad_benchmark",
+  "device": "cuda",
+  "do_sample": false,
+  "fixed_lambda_sweep": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "guide_model_path": "results/router_v2/sentiment_guide/final_adapter",
+  "heuristic_methods": [
+    "heuristic_entropy_gap",
+    "heuristic_js"
+  ],
+  "history_checkpoint_path": "results/router_v2/training/history/best.pt",
+  "log_every_jobs": 10,
+  "max_new_tokens": 32,
+  "output_dir": "results/router_v2/rad/full",
+  "precision": "fp32",
+  "prompt_classes": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "schema_version": 1,
+  "seeds": [
+    1
+  ],
+  "sentiment_classifier_batch_size": 16,
+  "sentiment_classifier_device": "cpu",
+  "sentiment_classifier_path": "models/sentiment-roberta-large-english",
+  "state_checkpoint_path": "results/router_v2/training/state/best.pt",
+  "stop_on_eos": false,
+  "taro_checkpoint_path": "results/router_v2/training/taro/best.pt",
+  "temperature": 1.0,
+  "test_prompt_limit_per_class": 200,
+  "test_prompt_offset_per_class": 50,
+  "top_k": 20,
+  "v1_results_dir": "router/evaluation/report_run_32tokens",
+  "validation_prompt_limit_per_class": 50
+}

@@ -1,0 +1,345 @@
+{
+  "conclusion": {
+    "preference_numerically_drowned": true,
+    "root_cause": "preference contribution is small relative to state fusion; sigmoid compression attenuates the expressed logit delta; lambda-space sensitivity spends most gradient on the shared final head instead of a dedicated alpha pathway.",
+    "sensitivity_loss_implementation_correct": true,
+    "sigmoid_compression_contributes": true
+  },
+  "feature_scale": {
+    "normalized_preference_feature_norm": {
+      "count": 3700,
+      "max": 3.444533109664917,
+      "mean": 2.729668524651914,
+      "min": 1.992609977722168,
+      "std": 0.32023439466865794
+    },
+    "normalized_state_feature_norm": {
+      "count": 3700,
+      "max": 17.930810928344727,
+      "mean": 17.809683850778114,
+      "min": 17.6827449798584,
+      "std": 0.04554818108171575
+    },
+    "preference_first_layer_contribution_norm": {
+      "count": 3700,
+      "max": 1.294731616973877,
+      "mean": 0.9833479366270271,
+      "min": 0.6874303221702576,
+      "std": 0.12906699256956314
+    },
+    "preference_state_contribution_cosine": {
+      "count": 3700,
+      "max": 0.022091876715421677,
+      "mean": -0.018190271640322296,
+      "min": -0.06297655403614044,
+      "std": 0.016545168827949455
+    },
+    "preference_to_state_contribution_ratio": {
+      "count": 3700,
+      "max": 0.05922340974211693,
+      "mean": 0.04959710103333802,
+      "min": 0.043396610766649246,
+      "std": 0.0031819879983202336
+    },
+    "raw_non_preference_feature_norm": {
+      "count": 3700,
+      "max": 42.9557991027832,
+      "mean": 19.313428383904533,
+      "min": 12.717147827148438,
+      "std": 5.017956672156442
+    },
+    "raw_preference_activation_norm": {
+      "count": 3700,
+      "max": 0.4644462764263153,
+      "mean": 0.44692644093487716,
+      "min": 0.4294065833091736,
+      "std": 0.017519835491440504
+    },
+    "state_first_layer_contribution_norm": {
+      "count": 3700,
+      "max": 23.816808700561523,
+      "mean": 19.769062661093635,
+      "min": 15.088172912597656,
+      "std": 1.6977714806808781
+    }
+  },
+  "gradient_scale": {
+    "nll": {
+      "all_router": {
+        "count": 24,
+        "max": 0.46468285709193,
+        "mean": 0.1068357979000812,
+        "min": 0.0035037441919956148,
+        "std": 0.1262276468384636
+      },
+      "final_lambda_head": {
+        "count": 24,
+        "max": 0.4599950909614563,
+        "mean": 0.10569071491287711,
+        "min": 0.0032679743599146605,
+        "std": 0.12494315615504865
+      },
+      "fusion_layers": {
+        "count": 24,
+        "max": 0.06485961377620697,
+        "mean": 0.015312109355969975,
+        "min": 0.0009715236956253648,
+        "std": 0.017737799510588258
+      },
+      "preference_encoder": {
+        "count": 24,
+        "max": 0.0019407195504754782,
+        "mean": 0.0004364345140667562,
+        "min": 6.677386863884749e-06,
+        "std": 0.0005310771806186695
+      },
+      "state_router_rest": {
+        "count": 24,
+        "max": 0.01114172674715519,
+        "mean": 0.002669545060295301,
+        "min": 0.000313716649543494,
+        "std": 0.003049235518971817
+      }
+    },
+    "preference": {
+      "all_router": {
+        "count": 24,
+        "max": 98.78686354491295,
+        "mean": 9.719142054008676,
+        "min": 0.24223862455552259,
+        "std": 20.11218815011967
+      },
+      "final_lambda_head": {
+        "count": 24,
+        "max": 97.79402160644531,
+        "mean": 9.590434228380522,
+        "min": 0.2033846080303192,
+        "std": 19.910990165477344
+      },
+      "fusion_layers": {
+        "count": 24,
+        "max": 13.768777847290039,
+        "mean": 1.4776670968470473,
+        "min": 0.04026507958769798,
+        "std": 2.8271642697354524
+      },
+      "preference_encoder": {
+        "count": 24,
+        "max": 0.41295990347862244,
+        "mean": 0.04114979883403672,
+        "min": 0.0010849295649677515,
+        "std": 0.08494879817739474
+      },
+      "state_router_rest": {
+        "count": 24,
+        "max": 2.3289413452148438,
+        "mean": 0.307078992210639,
+        "min": 0.007059489376842976,
+        "std": 0.5082434695102406
+      }
+    },
+    "sensitivity_raw": {
+      "all_router": {
+        "count": 24,
+        "max": 0.0183794916697462,
+        "mean": 0.016383989858473103,
+        "min": 0.014758084629870877,
+        "std": 0.000978018412637515
+      },
+      "final_lambda_head": {
+        "count": 24,
+        "max": 0.018062788993120193,
+        "mean": 0.016090100708728034,
+        "min": 0.014484291896224022,
+        "std": 0.0009658446169794033
+      },
+      "fusion_layers": {
+        "count": 24,
+        "max": 0.0027988499496132135,
+        "mean": 0.002544698043493554,
+        "min": 0.0023292989935725927,
+        "std": 0.00012975588214487674
+      },
+      "preference_encoder": {
+        "count": 24,
+        "max": 0.0018941279267892241,
+        "mean": 0.0017259103333344683,
+        "min": 0.0015834181103855371,
+        "std": 8.593495406536093e-05
+      },
+      "state_router_rest": {
+        "count": 24,
+        "max": 0.0003465345362201333,
+        "mean": 0.00029767842109625536,
+        "min": 0.00027111527742818,
+        "std": 1.8936681616123478e-05
+      }
+    },
+    "sensitivity_weighted": {
+      "all_router": {
+        "count": 24,
+        "max": 1.8379472063367361,
+        "mean": 1.6383993439027595,
+        "min": 1.4758096628382453,
+        "std": 0.09780093643609562
+      },
+      "final_lambda_head": {
+        "count": 24,
+        "max": 1.8062769174575806,
+        "mean": 1.6090104381243389,
+        "min": 1.4484304189682007,
+        "std": 0.09658354416188575
+      },
+      "fusion_layers": {
+        "count": 24,
+        "max": 0.2798849046230316,
+        "mean": 0.2544697895646095,
+        "min": 0.23292985558509827,
+        "std": 0.01297557160679968
+      },
+      "preference_encoder": {
+        "count": 24,
+        "max": 0.18941280245780945,
+        "mean": 0.17259103246033192,
+        "min": 0.15834181010723114,
+        "std": 0.008593492723626868
+      },
+      "state_router_rest": {
+        "count": 24,
+        "max": 0.0346534438431263,
+        "mean": 0.029767842420066398,
+        "min": 0.027111545205116272,
+        "std": 0.0018936652245120477
+      }
+    }
+  },
+  "logit_sensitivity": {
+    "endpoint_lambda_delta": {
+      "count": 3700,
+      "max": 0.0013250000774860382,
+      "mean": 0.0008604882707869684,
+      "min": 0.0003126654773950577,
+      "std": 0.00022554176254826244
+    },
+    "endpoint_logit_delta": {
+      "count": 3700,
+      "max": 0.043761491775512695,
+      "mean": 0.028949278560844626,
+      "min": 0.010721206665039062,
+      "std": 0.007379439639469871
+    },
+    "lambda_to_logit_delta_ratio": {
+      "count": 3700,
+      "max": 0.03166114166378975,
+      "mean": 0.02966732622904552,
+      "min": 0.028300520032644272,
+      "std": 0.0004549447759715813
+    },
+    "local_sigmoid_derivative": {
+      "count": 3700,
+      "max": 0.03167509287595749,
+      "mean": 0.029676858038213606,
+      "min": 0.02830965258181095,
+      "std": 0.00045654604468446045
+    },
+    "preference_contribution_to_final_logit": {
+      "count": 7400,
+      "max": 0.02251887321472168,
+      "mean": 0.014474639280422313,
+      "min": 0.005243539810180664,
+      "std": 0.0037104367715220577
+    }
+  },
+  "method_label": "PARM_TARO_ALPHA_PATH_V2_DIAGNOSTIC",
+  "pilot_v2_checkpoint_sha256": "e40c49849cb2b9868d721c064e036202e2843e3f6678aca37df7cfcd71ed3eab",
+  "pilot_v2_report_sha256": "300d2291a3918a957c69a5eb32275f476d257836d1f885d9e99498cf7e6857d9",
+  "protected_after": {
+    "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+      "files": [
+        {
+          "bytes": 521,
+          "path": "adapter_config.json",
+          "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+        },
+        {
+          "bytes": 25233088,
+          "path": "adapter_model.safetensors",
+          "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+    },
+    "read_only_inputs": {
+      "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot/pilot_final.pt": "dcd58c423cab971674c995d282b3f5388a3bca6295e3794eea3963d6e975b5ca",
+      "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot/pilot_report.json": "c0555716c1c1aaf0e523f284c84de8aa2dd094f7c5402e26d2439f79be15c917",
+      "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_final.pt": "e40c49849cb2b9868d721c064e036202e2843e3f6678aca37df7cfcd71ed3eab",
+      "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_report.json": "300d2291a3918a957c69a5eb32275f476d257836d1f885d9e99498cf7e6857d9"
+    }
+  },
+  "protected_before": {
+    "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+      "files": [
+        {
+          "bytes": 521,
+          "path": "adapter_config.json",
+          "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+        },
+        {
+          "bytes": 25233088,
+          "path": "adapter_model.safetensors",
+          "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+    },
+    "read_only_inputs": {
+      "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot/pilot_final.pt": "dcd58c423cab971674c995d282b3f5388a3bca6295e3794eea3963d6e975b5ca",
+      "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot/pilot_report.json": "c0555716c1c1aaf0e523f284c84de8aa2dd094f7c5402e26d2439f79be15c917",
+      "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_final.pt": "e40c49849cb2b9868d721c064e036202e2843e3f6678aca37df7cfcd71ed3eab",
+      "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_report.json": "300d2291a3918a957c69a5eb32275f476d257836d1f885d9e99498cf7e6857d9"
+    }
+  },
+  "protected_unchanged": true,
+  "recommendation": {
+    "architecture": "normalized_alpha_state_pre_sigmoid_residual",
+    "freeze_state_router_during_alpha_warmup": true,
+    "full_retraining_authorized": false,
+    "min_control_lambda_delta": 0.001,
+    "minimum_logit_delta": 0.16899070706036579,
+    "minimum_logit_delta_rule": "logit(mean_lambda + target_delta/2) - logit(mean_lambda - target_delta/2)",
+    "preserve_base_relative_preference_gain": true,
+    "preserve_quality_phase": true,
+    "source_checkpoint": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_final.pt",
+    "target_lambda_delta": 0.005
+  },
+  "schema_version": 1,
+  "sensitivity_loss_implementation": {
+    "correct": true,
+    "target_lambda_delta": 0.005,
+    "weight": 100.0
+  },
+  "stage": 9,
+  "status": "PASS",
+  "validation": {
+    "alpha_endpoint_tasks": 24,
+    "conflict_examples": 12,
+    "split": "validation",
+    "test_split_used": false
+  }
+}

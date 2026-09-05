@@ -1,0 +1,279 @@
+{
+  "checks": {
+    "all_primary_metrics_finite": true,
+    "full_alpha_checkpoint_exact": true,
+    "protected_artifacts_unchanged": true,
+    "protocol_lock_unchanged": true,
+    "raw_objective_vectors_preserved": true,
+    "required_methods_complete": true,
+    "shared_regret_candidate_pool": true,
+    "test_split_used_only_after_protocol_lock": true
+  },
+  "generation": {
+    "model_load_info": {
+      "base_pass": "PeftModel.disable_adapter",
+      "guide_pass": "PBLORA_enabled",
+      "load_in_4bit": true,
+      "physical_backbone_count": 1,
+      "shared_backbone": true
+    },
+    "prompts": 2,
+    "records": 70,
+    "same_average_lambda": 0.010560339082439895
+  },
+  "method_aggregates": [
+    {
+      "coherence": 0.5905652277829697,
+      "distinct_1": 0.6965948975142987,
+      "distinct_2": 0.9037093969269154,
+      "distinct_3": 0.9378724964294018,
+      "generation_length": 64.0,
+      "hypervolume": 0.4694511067730985,
+      "lambda": {
+        "count": 640,
+        "max": 1.0,
+        "mean": 1.0,
+        "min": 1.0,
+        "std": 0.0
+      },
+      "latency_per_token": 0.10743920134846122,
+      "method": "parm_static",
+      "mip": 0.6764679520533745,
+      "pcs": 0.863456466045052,
+      "perplexity": 2.1165453765518283,
+      "preference_regret": 0.004674568592912575,
+      "records": 10,
+      "repeated_4gram_rate": 0.043838148421169565
+    },
+    {
+      "coherence": 0.5416666666666667,
+      "distinct_1": 0.4810606060606061,
+      "distinct_2": 0.6156208863536639,
+      "distinct_3": 0.6474358974358975,
+      "generation_length": 64.0,
+      "hypervolume": 0.2835511526568178,
+      "lambda": {
+        "count": 640,
+        "max": 0.006158520467579365,
+        "mean": 0.001297933077921698,
+        "min": 0.0004700712743215263,
+        "std": 0.0009251623315905568
+      },
+      "latency_per_token": 0.10698025038000196,
+      "method": "parm_taro",
+      "mip": 0.5700854383935885,
+      "pcs": 0.7904223423167391,
+      "perplexity": 1.755289448477254,
+      "preference_regret": 0.11105708225269854,
+      "records": 10,
+      "repeated_4gram_rate": 0.33907221425155426
+    },
+    {
+      "coherence": 0.5416666666666667,
+      "distinct_1": 0.4810606060606061,
+      "distinct_2": 0.6156208863536639,
+      "distinct_3": 0.6474358974358975,
+      "generation_length": 64.0,
+      "hypervolume": 0.2835511526568178,
+      "lambda": {
+        "count": 640,
+        "max": 0.03744569048285484,
+        "mean": 0.010560339082439895,
+        "min": 0.0068713524378836155,
+        "std": 0.004897461129666917
+      },
+      "latency_per_token": 0.11360671698930673,
+      "method": "parm_v2_full_alpha",
+      "mip": 0.5700854383935885,
+      "pcs": 0.7904223423167391,
+      "perplexity": 1.755289448477254,
+      "preference_regret": 0.11105708225269854,
+      "records": 10,
+      "repeated_4gram_rate": 0.33907221425155426
+    },
+    {
+      "coherence": 0.5416666666666667,
+      "distinct_1": 0.4810606060606061,
+      "distinct_2": 0.6156208863536639,
+      "distinct_3": 0.6474358974358975,
+      "generation_length": 64.0,
+      "hypervolume": 0.2835511526568178,
+      "lambda": {
+        "count": 640,
+        "max": 0.030233850702643394,
+        "mean": 0.010343051696690964,
+        "min": 0.007454904727637768,
+        "std": 0.004552947356371689
+      },
+      "latency_per_token": 0.113465229322901,
+      "method": "parm_v2_full_alpha_fixed_alpha",
+      "mip": 0.5700854383935885,
+      "pcs": 0.7904223423167391,
+      "perplexity": 1.755289448477254,
+      "preference_regret": 0.11105708225269854,
+      "records": 10,
+      "repeated_4gram_rate": 0.33907221425155426
+    },
+    {
+      "coherence": 0.5416666666666667,
+      "distinct_1": 0.4810606060606061,
+      "distinct_2": 0.6156208863536639,
+      "distinct_3": 0.6474358974358975,
+      "generation_length": 64.0,
+      "hypervolume": 0.2835511526568178,
+      "lambda": {
+        "count": 640,
+        "max": 0.010560339316725731,
+        "mean": 0.010560339316725731,
+        "min": 0.010560339316725731,
+        "std": 0.0
+      },
+      "latency_per_token": 0.1067022991461272,
+      "method": "parm_v2_full_alpha_same_average",
+      "mip": 0.5700854383935885,
+      "pcs": 0.7904223423167391,
+      "perplexity": 1.755289448477254,
+      "preference_regret": 0.11105708225269854,
+      "records": 10,
+      "repeated_4gram_rate": 0.33907221425155426
+    },
+    {
+      "coherence": 0.5416666666666667,
+      "distinct_1": 0.4810606060606061,
+      "distinct_2": 0.6156208863536639,
+      "distinct_3": 0.6474358974358975,
+      "generation_length": 64.0,
+      "hypervolume": 0.2835511526568178,
+      "lambda": {
+        "count": 640,
+        "max": 0.0379142165184021,
+        "mean": 0.01055927074412466,
+        "min": 0.0068572708405554295,
+        "std": 0.004913231953525904
+      },
+      "latency_per_token": 0.11352871795170358,
+      "method": "parm_v2_full_alpha_shuffled_alpha",
+      "mip": 0.5700854383935885,
+      "pcs": 0.7904223423167391,
+      "perplexity": 1.755289448477254,
+      "preference_regret": 0.11105708225269854,
+      "records": 10,
+      "repeated_4gram_rate": 0.33907221425155426
+    },
+    {
+      "coherence": 0.5416666666666667,
+      "distinct_1": 0.4810606060606061,
+      "distinct_2": 0.6156208863536639,
+      "distinct_3": 0.6474358974358975,
+      "generation_length": 64.0,
+      "hypervolume": 0.2835511526568178,
+      "lambda": {
+        "count": 640,
+        "max": 0.004883539862930775,
+        "mean": 0.0009109483890370029,
+        "min": 0.0001202774656121619,
+        "std": 0.0008777348839337351
+      },
+      "latency_per_token": 0.1115418680885341,
+      "method": "parm_v2_no_alpha",
+      "mip": 0.5700854383935885,
+      "pcs": 0.7904223423167391,
+      "perplexity": 1.755289448477254,
+      "preference_regret": 0.11105708225269854,
+      "records": 10,
+      "repeated_4gram_rate": 0.33907221425155426
+    }
+  ],
+  "phase": "smoke",
+  "protected_after": {
+    "method_rad": {
+      "file_count": 110,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD",
+      "total_bytes": 114269650,
+      "tree_sha256": "e0c8907885b80cde9c12f0e1f6e3134b0781e811ee8edafb9f0d690988d36bbe"
+    },
+    "parm_original": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "file_count": 11,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora",
+      "total_bytes": 52827619,
+      "tree_sha256": "f26682e3cf51f8e09921873119fc371d329669cf9448d59ae0025fd40b23ffef"
+    },
+    "router_v1": {
+      "file_count": 100,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/router",
+      "total_bytes": 521788719,
+      "tree_sha256": "8595fb3e48c2b1771a07a6efba09c29560785a581d5490f582286c58fbf5ffd3"
+    },
+    "stage9_checkpoints": {
+      "taro": {
+        "bytes": 14327946,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/taro/best.pt",
+        "sha256": "32caa71a0e1462e5f31a6c587c735b19c22d109f16f729430cd63c7910731881"
+      },
+      "v2_full_alpha_production": {
+        "bytes": 4374570,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference/final.pt",
+        "sha256": "56fbed68168537bd84066a5b86fbfefc8525cb5311c06d8668012e2cecca1e20"
+      },
+      "v2_no_alpha": {
+        "bytes": 12976666,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_no_alpha/best.pt",
+        "sha256": "ea5cf0e7b33ccdef1f4882afba0679a09feaaf2b27c8a8bc12ad7c058cb0d7e3"
+      }
+    }
+  },
+  "protected_before": {
+    "method_rad": {
+      "file_count": 110,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD",
+      "total_bytes": 114269650,
+      "tree_sha256": "e0c8907885b80cde9c12f0e1f6e3134b0781e811ee8edafb9f0d690988d36bbe"
+    },
+    "parm_original": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "file_count": 11,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora",
+      "total_bytes": 52827619,
+      "tree_sha256": "f26682e3cf51f8e09921873119fc371d329669cf9448d59ae0025fd40b23ffef"
+    },
+    "router_v1": {
+      "file_count": 100,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/router",
+      "total_bytes": 521788719,
+      "tree_sha256": "8595fb3e48c2b1771a07a6efba09c29560785a581d5490f582286c58fbf5ffd3"
+    },
+    "stage9_checkpoints": {
+      "taro": {
+        "bytes": 14327946,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/taro/best.pt",
+        "sha256": "32caa71a0e1462e5f31a6c587c735b19c22d109f16f729430cd63c7910731881"
+      },
+      "v2_full_alpha_production": {
+        "bytes": 4374570,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference/final.pt",
+        "sha256": "56fbed68168537bd84066a5b86fbfefc8525cb5311c06d8668012e2cecca1e20"
+      },
+      "v2_no_alpha": {
+        "bytes": 12976666,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_no_alpha/best.pt",
+        "sha256": "ea5cf0e7b33ccdef1f4882afba0679a09feaaf2b27c8a8bc12ad7c058cb0d7e3"
+      }
+    }
+  },
+  "protocol_lock_sha256": "81a465048a6b0a1b7a585ff37c2ca42dd67dd5d90a591225c9ae7603bb05faa7",
+  "record_count": 70,
+  "schema_version": 1,
+  "stage": 10,
+  "status": "PASS"
+}

@@ -1,0 +1,582 @@
+{
+  "acceptance_thresholds": {
+    "minimum_direction_delta_gap": 0.01,
+    "minimum_positive_nll_improvement": 0.01
+  },
+  "base_model": {
+    "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+    "files": [
+      {
+        "bytes": 718,
+        "path": "config.json",
+        "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+      },
+      {
+        "bytes": 1519984962,
+        "path": "model.safetensors",
+        "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+  },
+  "base_tokenizer": {
+    "bos_token": "<|endoftext|>",
+    "bos_token_id": 50256,
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 50256,
+    "length": 50257,
+    "model_max_length": 1024,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 50256,
+    "padding_side": "right",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium",
+    "semantic_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "unk_token": "<|endoftext|>",
+    "unk_token_id": 50256,
+    "vocab_entries": 50257,
+    "vocab_sha256": "79ff2372d75e36ad401b44e1a72214636dfdcc4ddeeefa498463b0a3b2a5fd76"
+  },
+  "checks": {
+    "exact_tokenizer_compatible": true,
+    "full_vocabulary_output": true,
+    "inference_mode_used": true,
+    "models_frozen": true,
+    "positive_nll_improved": true,
+    "sentiment_direction_gap_positive": true,
+    "separate_checkpoints": true
+  },
+  "device": "cuda",
+  "direction_delta_gap": 0.04727278770967232,
+  "guide_model": {
+    "checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+    "files": [
+      {
+        "bytes": 696,
+        "path": "adapter_config.json",
+        "sha256": "46cb575b693ae51f777c45817cd0a420489c651e8ce48ef102f3f9253f197c44"
+      },
+      {
+        "bytes": 12607304,
+        "path": "adapter_model.safetensors",
+        "sha256": "17b0e1b5594bbd7780015434b927d36a6f0f78be370e8cfc966f15e597d4c6dd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter"
+  },
+  "guide_tokenizer": {
+    "bos_token": "<|endoftext|>",
+    "bos_token_id": 50256,
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 50256,
+    "length": 50257,
+    "model_max_length": 1024,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 50256,
+    "padding_side": "right",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter",
+    "semantic_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "unk_token": "<|endoftext|>",
+    "unk_token_id": 50256,
+    "vocab_entries": 50257,
+    "vocab_sha256": "79ff2372d75e36ad401b44e1a72214636dfdcc4ddeeefa498463b0a3b2a5fd76"
+  },
+  "inspectable_negative_rows": [
+    {
+      "base_mean_log_probability": -3.383640123450238,
+      "continuation": " just quit on you, but after not even one year? To me that's a sign on bad quality. I'm giving up JVC after this as well. I'm sticking to Sony or giving another brand a shot.",
+      "guide_mean_log_probability": -3.3411443959111753,
+      "guide_minus_base": 0.0424957275390625,
+      "prompt": "DVD Player crapped out after one year. I also began having the incorrect disc problems that I've read about on here. The VCR still works, but hte DVD side is useless. I understand that DVD players sometimes",
+      "sample_id": "amazon-test-negative-000005",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 46
+    },
+    {
+      "base_mean_log_probability": -3.342291259765625,
+      "continuation": " upgrade to a recorder now. I wish it would work but I guess i'm giving up on JVC. I really did like this one... before it stopped working. The dvd player gave me problems probably after a year of having it.",
+      "guide_mean_log_probability": -3.3564141845703124,
+      "guide_minus_base": -0.014122924804687464,
+      "prompt": "Incorrect Disc. I love the style of this, but after a couple years, the DVD is giving me problems. It doesn't even work anymore and I use my broken PS2 Now. I wouldn't recommend this, I'm just going to",
+      "sample_id": "amazon-test-negative-000006",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 50
+    },
+    {
+      "base_mean_log_probability": -3.67281253521259,
+      "continuation": " So I cannot select anything on most DVD's besides play. No special features, no language select, nothing, just play.",
+      "guide_mean_log_probability": -3.556017362154447,
+      "guide_minus_base": 0.11679517305814313,
+      "prompt": "DVD menu select problems. I cannot scroll through a DVD menu that is set up vertically. The triangle keys will only select horizontally.",
+      "sample_id": "amazon-test-negative-000007",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 26
+    },
+    {
+      "base_mean_log_probability": -3.1898805718672905,
+      "continuation": " bus power, but it required the adapter to actually work. :( I sent it back.",
+      "guide_mean_log_probability": -3.00557447734632,
+      "guide_minus_base": 0.18430609452097046,
+      "prompt": "didn't run off of USB bus power. Was hoping that this drive would run off of",
+      "sample_id": "amazon-test-negative-000014",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 19
+    },
+    {
+      "base_mean_log_probability": -4.537892977396647,
+      "continuation": " expectation, it was very boring all through out the book",
+      "guide_mean_log_probability": -3.8645222981770835,
+      "guide_minus_base": 0.673370679219564,
+      "prompt": "Long and boring. I've read this book with much",
+      "sample_id": "amazon-test-negative-000020",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 12
+    },
+    {
+      "base_mean_log_probability": -2.400286970467403,
+      "continuation": " havent worn then. I wouldnt buy this product again. Dont waste your money on something you may not be able to use.",
+      "guide_mean_log_probability": -2.31884634083715,
+      "guide_minus_base": 0.081440629630253,
+      "prompt": "Dont like it. This product smells when you open the package and it appears one of the gel cushions leaks so I spent $10 and",
+      "sample_id": "amazon-test-negative-000021",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 29
+    },
+    {
+      "base_mean_log_probability": -3.2151873661921573,
+      "continuation": " of my two daughters (ages 5 & 7). Like the Barbie movies and other CD Roms the graphics are poorly done.",
+      "guide_mean_log_probability": -2.9332023033728967,
+      "guide_minus_base": 0.2819850628192606,
+      "prompt": "Waste of money! Like many of the Barbie CD Roms, the playtime is limited - averaging about 5 mins for each",
+      "sample_id": "amazon-test-negative-000025",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 26
+    },
+    {
+      "base_mean_log_probability": -3.7459600539434526,
+      "continuation": " But I had it completely within the stated range and one basic house wall separating me and the unit, and it was completely unreliable.I'd recommend spending a touch more money and getting a higher quality product.",
+      "guide_mean_log_probability": -3.557034447079613,
+      "guide_minus_base": 0.1889256068638394,
+      "prompt": "Has No Range. I suppose if you were going to sit in the same room and have line-of-sight with the device, lamp, etc. plugged into this control, it might work. Maybe.",
+      "sample_id": "amazon-test-negative-000027",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 42
+    },
+    {
+      "base_mean_log_probability": -3.478966849190848,
+      "continuation": " did not want to pay half again the price to ship it back for an exchange, so the company would do nothing when they sent me an inquiry as to product satisfaction.",
+      "guide_mean_log_probability": -3.47149418422154,
+      "guide_minus_base": 0.007472664969307985,
+      "prompt": "Three Days of Use and It Broke. Very disappointed in this product. It worked perfectly for exactly three days and could not be resuscitated. It was very inexpensive so I",
+      "sample_id": "amazon-test-negative-000029",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 35
+    },
+    {
+      "base_mean_log_probability": -3.160486602783203,
+      "continuation": "'t keep the kids attention because what kid wants to sit and listen to a bunch of talking. This was my first Thomas video purchase...hopefully the next will have more shows and less talking!",
+      "guide_mean_log_probability": -2.9859256744384766,
+      "guide_minus_base": 0.17456092834472647,
+      "prompt": "Not as expected... My children get easily bored with this video. I thought it was several episodes of Thomas but it has A LOT of just children and parents talking about Thomas and all. It doesn",
+      "sample_id": "amazon-test-negative-000035",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 40
+    },
+    {
+      "base_mean_log_probability": -3.3199280958909254,
+      "continuation": " shipped I was charged $9 again when the second pair was in stock weeks later.Will not buy from Amazon vendors again.",
+      "guide_mean_log_probability": -3.1248318598820615,
+      "guide_minus_base": 0.19509623600886394,
+      "prompt": "Doublecharged for shipping because merchant was backordered. Merchant was out of stock on the second pair of pants, so when it was",
+      "sample_id": "amazon-test-negative-000037",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 26
+    },
+    {
+      "base_mean_log_probability": -2.49649895562066,
+      "continuation": " This book came without a dust jacket and was so musty that I could not read it without my eyes watering. I sent it back, at my own expense, and to date, I have not had a refund.",
+      "guide_mean_log_probability": -2.3954220241970487,
+      "guide_minus_base": 0.10107693142361107,
+      "prompt": "Great Book--unacceptable condition. I was looking forward to receiving this book, as I was going to New Orleans to Antoine's restaurant. I read the book at least thirty years ago and wanted my own copy.",
+      "sample_id": "amazon-test-negative-000041",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 45
+    },
+    {
+      "base_mean_log_probability": -2.9232694185697117,
+      "continuation": " but then it became annoying because it then began flaking all over your skin and clothes. I would have rather the bag been a cloth bag with no flaking than the faux leather that I had to keep wisking away from my skin and clothes.",
+      "guide_mean_log_probability": -2.861035567063552,
+      "guide_minus_base": 0.06223385150615979,
+      "prompt": "Okay but Messy.... We purchased this bag for a vacation we were taking a cruise and we wanted to use it when we left the ship. The bag was convenient to carry, however the faux leather began peeling. At first it wasn't so bad",
+      "sample_id": "amazon-test-negative-000048",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 52
+    },
+    {
+      "base_mean_log_probability": -4.611168289184571,
+      "continuation": " jokes and the 23 references to small jewish penises got old real quick. Thought i would always be a Sandler fan but he clearly, Adam was in need of some rent money and jumped on this script for the cash and RAN!Why else would the plot line include Seth Rogan writing for him??? To put things into perspective, this film made Bruno look like Casablanca!!",
+      "guide_mean_log_probability": -4.560577392578125,
+      "guide_minus_base": 0.05059089660644567,
+      "prompt": "12 Y/O Potty Humor From 40 somethings does not a comedy make.... Saw this movie and felt compelled to warn people not to waste 144 agonizing minutes of their lives. In a nutshell, I have heard many more clever jokes and \"one-liners\" watching King of Queens on cable.....SERIOUSLY FOLKS, it's THAT BAD....the bad",
+      "sample_id": "amazon-test-negative-000052",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 80
+    },
+    {
+      "base_mean_log_probability": -3.199402509416853,
+      "continuation": " in amongst the terrible & crude \"jokes\". I have to say we didn't make it more than 30 minutes into the movie before turning it off. It is a constant barrage of pathetic behavior. I just don't believe that there are this many people out here that are like this and can relate to this behavior. Very Disappointing.",
+      "guide_mean_log_probability": -3.100411115373884,
+      "guide_minus_base": 0.09899139404296875,
+      "prompt": "I wish Adam Sandler wasn't in this. I should have known going into this movie having Judd Apatow a part of it would mean I would hate it. However, having Adam Sandler in it and seeing the previews in the theater we gave it a (very hopeful) chance. The movie loses it's true premise of having depth",
+      "sample_id": "amazon-test-negative-000053",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 70
+    },
+    {
+      "base_mean_log_probability": -3.5259321058118664,
+      "continuation": " is still overly materialistic & self-righteous which has gotten old.One of many gripes would be that I find it very hard to believe that all the crime agencies & the media have zero knowledge of this serial killer's family background (close family members - like a twin sister).My advice - don't let this be your 1st Scarpetta novel.",
+      "guide_mean_log_probability": -3.5087453481313347,
+      "guide_minus_base": 0.017186757680531795,
+      "prompt": "Predictable & has a lame ending. I have read all of the Scarpetta novels & this is not the worst (that would be Cause of Death) but rt. up there. I thought the story began well enough, but the ending was lame. The plot was predictable. Lucy is nauseating as ever & wish she'd die. Scarpetta",
+      "sample_id": "amazon-test-negative-000061",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 74
+    },
+    {
+      "base_mean_log_probability": -4.046607837342379,
+      "continuation": " the pending insolvency of the US was as loudly shouted in the 40's as it is now was worth the price. This book had quotes that would shame both modern day political extremes in the US.Kudos to whoever owns the copyright --- now there's economics in action.",
+      "guide_mean_log_probability": -4.012250398334704,
+      "guide_minus_base": 0.034357439007675517,
+      "prompt": "A historical gem whose title obscures its intent. Started laughing in the second chapter....enjoyed the book after I realized that I wasn't going to learn anything new. It's obviously a miracle that we survived for the 65 years since it was first published.And seeing that",
+      "sample_id": "amazon-test-negative-000063",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 57
+    },
+    {
+      "base_mean_log_probability": -3.404816878469367,
+      "continuation": "'s analytical resources, economists are still all over the map on their predictions & conclusions. On the other hand, meteorologists seem to do quite well.Naturally the radical libertarians, tea-baggers & Republicans love this slim volume which is even slimmer on evidence. I would read it only if you want to know why the lunatic fringe is so nutty & irrational.",
+      "guide_mean_log_probability": -3.3210284584446956,
+      "guide_minus_base": 0.08378842002467124,
+      "prompt": "Vastly overrated work of fiction. I was sorely disappointed in this vapid and smarmy demogoguery. Sure, back then there was no Google searching nor number crunching laptops. But plenty of economic data was available which the author managed to circumvent. Probably the book's greatest failing was to compare the field of economics to other sciences. Even with today",
+      "sample_id": "amazon-test-negative-000064",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 76
+    },
+    {
+      "base_mean_log_probability": -3.8126449584960938,
+      "continuation": " I have back boobs. The shape wear crunched up after you sit or bent over and so it doesn't feel smooth all over. Squeem makes a vest version too so maybe that one will be a better choice for better coverage. If you do decide to purchase this product it's easier to squeeze in if you lay on your bed and suck in your guts.",
+      "guide_mean_log_probability": -3.8500105205335116,
+      "guide_minus_base": -0.03736556203741781,
+      "prompt": "Had to return it. The sizing is perfect and a medium fits just right. I am 5'2 size 4 137 lbs before baby and i gained about 35 lbs during pregnancy, just an idea for sizing but keepin mind that everyone has different fat distributions on their bodies. I don't like how my post baby fat was getting pushed up the top and makes me look like",
+      "sample_id": "amazon-test-negative-000067",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 76
+    },
+    {
+      "base_mean_log_probability": -2.8075929529526653,
+      "continuation": ". At one point, the spine developed some sort of crack and when it poked through the bottom, it scraped my stomach and I took it off immediately. I have never washed the product in the washing machine...I have always handwashed it. So, the manufacturer can't say that I didn't take good care of it.",
+      "guide_mean_log_probability": -2.7709269804113053,
+      "guide_minus_base": 0.03666597254136006,
+      "prompt": "WASTE OF MONEY: The inner metal rods keep poking through. The squeem is a great idea but the construction is not the best. While the product compresses your stomach, the inner metal spines bend and then protrude at the ends. I have had to sew the ends repeatedly but the spines keep poking through",
+      "sample_id": "amazon-test-negative-000072",
+      "sentiment_label": 0,
+      "source_split": "test",
+      "token_count": 68
+    }
+  ],
+  "inspectable_positive_rows": [
+    {
+      "base_mean_log_probability": -2.575000217982701,
+      "continuation": " i wanted to go back and see it again, but i didnt have time. i plan to buy the movie asap and watch it until i know all of the lines",
+      "guide_mean_log_probability": -2.490370396205357,
+      "guide_minus_base": 0.08462982177734402,
+      "prompt": "Excellent!!!!!!!!!!!!! I saw the movie in the movie theater and i loved it.",
+      "sample_id": "amazon-polarity-positive-00037779",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 35
+    },
+    {
+      "base_mean_log_probability": -2.9927715922510902,
+      "continuation": " I recommend this to all animal and expedition lovers. Its extremely easy to understand, as I myself am only 20 years old. I just love it, love it, love it and you should read it too!",
+      "guide_mean_log_probability": -2.928656999454942,
+      "guide_minus_base": 0.06411459279614817,
+      "prompt": "OMG this is like the best book EVER! WHOO! OMG I just absolutely loved this book! The author has very well-researched this book and I read it in 1 day it was sooooooooooooooooooooooooooooo good!",
+      "sample_id": "amazon-polarity-positive-00044186",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 43
+    },
+    {
+      "base_mean_log_probability": -3.4853013356526694,
+      "continuation": " Would recommend this to any Trekkie! Best book!",
+      "guide_mean_log_probability": -3.1295344034830728,
+      "guide_minus_base": 0.35576693216959665,
+      "prompt": "Good reading! It had been a long time since I have read anything better.",
+      "sample_id": "amazon-polarity-positive-00016895",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 12
+    },
+    {
+      "base_mean_log_probability": -3.877919630570845,
+      "continuation": "Note: This book isnt for those who arent accustomed to weird names for things like towns and swords beacause apparently everything in the book has a name with either and accent or an apostrophe in it.",
+      "guide_mean_log_probability": -3.8811881325461646,
+      "guide_minus_base": -0.00326850197531936,
+      "prompt": "Great book. Wow only 18! I would have given five stars if the phrase \"tear you to pieces\" didnt appear every 10 pages. A very astonishing accomplishment for a young writer.",
+      "sample_id": "amazon-polarity-positive-00037693",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 44
+    },
+    {
+      "base_mean_log_probability": -3.6522057669503347,
+      "continuation": " He takes risks on many pages and it works, resulting in a feast of creative colorful dynamic drawings to accompany the text. The story wanes a bit in the final pages but the trip is artistically very satisfying. I hope there is a book to follow. I really enjoyed the characters and how they delt with their world and their beliefs.",
+      "guide_mean_log_probability": -3.5738911220005583,
+      "guide_minus_base": 0.07831464494977647,
+      "prompt": "good artwork too! The review with all the details about the depth and levels of the story hits the mark so I won't repeat it. However, I will emphasize what was not commented on. The Author is a very talented artist.",
+      "sample_id": "amazon-polarity-positive-00000431",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 70
+    },
+    {
+      "base_mean_log_probability": -3.9759315490722655,
+      "continuation": " the book is largely hypothetical, given the sparcity of reliable written historical materials, but very readable and enjoyable. the wide diversity of opinion, even among scholars of the period, is honestly presented.",
+      "guide_mean_log_probability": -3.9891754150390626,
+      "guide_minus_base": -0.013243865966797053,
+      "prompt": "1491. the audio version of this book was a bad idea:too many unfamiliar names made it hard to follow.",
+      "sample_id": "amazon-polarity-positive-00040449",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 40
+    },
+    {
+      "base_mean_log_probability": -3.8521562056107954,
+      "continuation": " Constantine the Emperor for the Christianization of the Roman Empire (because the Pagan gods protected the Empire.)Hence, Saint Agustine wrote this wonderful masterpiece.",
+      "guide_mean_log_probability": -3.594560565370502,
+      "guide_minus_base": 0.25759564024029347,
+      "prompt": "Along with his Confessions, this book is his best. The Roman Empire was on the verge of being destroy, and pagans blamed",
+      "sample_id": "amazon-polarity-positive-00051220",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 33
+    },
+    {
+      "base_mean_log_probability": -3.4983139038085938,
+      "continuation": " I have a Lincoln Log set when I was a child & incorporated along with other toys while playing which he seems to do on his own. it has a lot of the small log pieces, so I would recommend keeping everything together in the box when playing is finished so that the next time the child wants to play with it, it will all be there!",
+      "guide_mean_log_probability": -3.464310540093316,
+      "guide_minus_base": 0.03400336371527768,
+      "prompt": "Frontier Logs. Our grandson loves to build with this set we recently got him. He became familiar with these at a hospital we visited. We saw he liked them.",
+      "sample_id": "amazon-polarity-positive-00049178",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 72
+    },
+    {
+      "base_mean_log_probability": -1.96915696796618,
+      "continuation": " Now reading it again and enjoying it as much as i did when I was a kid.",
+      "guide_mean_log_probability": -1.61189781992059,
+      "guide_minus_base": 0.35725914804559,
+      "prompt": "Treasure Island. A timeless classic. Started to read it 50 or so years ago.",
+      "sample_id": "amazon-polarity-positive-00045449",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 19
+    },
+    {
+      "base_mean_log_probability": -2.9555647713797435,
+      "continuation": " to what's happening today, and a warning worth listening to. Ranks up there with the best of this author's previous novels.",
+      "guide_mean_log_probability": -2.8843086787632535,
+      "guide_minus_base": 0.07125609261649002,
+      "prompt": "Top-notch story, writing. Great read all around. Really involving story and intriguing characters; very relevant",
+      "sample_id": "amazon-polarity-positive-00052298",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 28
+    },
+    {
+      "base_mean_log_probability": -3.477994646344866,
+      "continuation": " Dont listen to what the other dude says on here. This CD is a classic rarity in death metal history. Find it now!",
+      "guide_mean_log_probability": -3.129682813371931,
+      "guide_minus_base": 0.3483118329729349,
+      "prompt": "Grave Metal. Brutal death metal from these guys.",
+      "sample_id": "amazon-polarity-positive-00043986",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 28
+    },
+    {
+      "base_mean_log_probability": -2.8700118719362746,
+      "continuation": " The truth is it is endless entertaining and enlightening. Though you need to spend many hours with it, you'll leave with a lot more than a great name to add to the list of authors you've read. You'll never let it go.",
+      "guide_mean_log_probability": -2.767417159734988,
+      "guide_minus_base": 0.10259471220128669,
+      "prompt": "What you would give to let it go... This is a book that can't be ignored if you want to be considered by anyone to be a \"serious\" reader, but it shouldn't be ignored.",
+      "sample_id": "amazon-polarity-positive-00026099",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 51
+    },
+    {
+      "base_mean_log_probability": -4.825692240397135,
+      "continuation": " was the 2nd last book of the EArth children series by Jean Auel and followed Ayla again with more adventures. good reading",
+      "guide_mean_log_probability": -4.776587422688802,
+      "guide_minus_base": 0.04910481770833286,
+      "prompt": "shelters of stone book. this was a great book and the vendor sent it wwith no problem the book",
+      "sample_id": "amazon-polarity-positive-00038793",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 30
+    },
+    {
+      "base_mean_log_probability": -3.4303426889272837,
+      "continuation": " It cleans up well, heats quickly and has a whistle you will hear.We boil water in it many times every day and leave it with water in it all the time. We've never seen a speck of rust. Handle stays cool - no need for a potholder to pour your water. LOVE IT!",
+      "guide_mean_log_probability": -3.2950359637920674,
+      "guide_minus_base": 0.13530672513521624,
+      "prompt": "Best kettle we've ever owned, too! This great kettle is everything you could want! It even comes in a variety of colors. The no-touch, just tilt to pour, handle is a dream. You never need to worry about steam burns. We've had ours for years and the only thing I've ever had to do is tighten a handle screw once after about 5 years of use.",
+      "sample_id": "amazon-polarity-positive-00026707",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 65
+    },
+    {
+      "base_mean_log_probability": -3.5599498133505545,
+      "continuation": " A quick read, recommend for a coast to coast flight. It is uplifting to see law enforcement officers succeed in bringing white collar criminals to justice.",
+      "guide_mean_log_probability": -3.2888341103830645,
+      "guide_minus_base": 0.27111570296749,
+      "prompt": "A Good Read. This is a real world detective story without the theatrics usually associated with this type of story line.",
+      "sample_id": "amazon-polarity-positive-00026471",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 31
+    },
+    {
+      "base_mean_log_probability": -2.342058890206473,
+      "continuation": " Even when I'm not listening to it, at random parts of the day, I'll suddenly have a bit of insight that makes me feel like I understand things better.",
+      "guide_mean_log_probability": -2.242132568359375,
+      "guide_minus_base": 0.09992632184709827,
+      "prompt": "It probably is effective. It does seem to work, although I can't say it does without a doubt. I do feel more focused after listening to this, and I find myself coming to sudden realizations about things, seeing connections I hadn't before.",
+      "sample_id": "amazon-polarity-positive-00041737",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 35
+    },
+    {
+      "base_mean_log_probability": -2.9560042161207933,
+      "continuation": " It holds up to constant use beautifully. It cleans well in the dishwasher, too. Every cook should definitely own one.",
+      "guide_mean_log_probability": -2.6913487361027646,
+      "guide_minus_base": 0.26465548001802874,
+      "prompt": "A must have! This is probably the most used pan in my kitchen.",
+      "sample_id": "amazon-polarity-positive-00022339",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 26
+    },
+    {
+      "base_mean_log_probability": -3.2639839172363283,
+      "continuation": " Also, the realism of the book seems almost three-dimensional casting a crystal clear picture of the nightmarish world of 1984 where Big Brother is always watching you- not just what you say or do but, what your thinking. Scarier than anything Stephen King ever wrote- and more realistic.",
+      "guide_mean_log_probability": -3.1979904174804688,
+      "guide_minus_base": 0.06599349975585955,
+      "prompt": "A Frighteningly Real Masterpiece. This book was excellant and scary as hell when your reading it and realize that a lot of things that are in it are happening in our country today. Most people, myself included, who hear about this classic don't realize that there's a tragic love story wrapped inside of the haunting world of Orwell's 1984 that helps drive home the authors anti-utopian message.",
+      "sample_id": "amazon-polarity-positive-00006793",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 60
+    },
+    {
+      "base_mean_log_probability": -3.580725308122306,
+      "continuation": " He shows how government intervention--well intentioned as it might be--always hurt people in general over the long-term including the people we mean to help. He champions the forgotten man--the people who are hurt when the governmet tries to improve on the workings of the marketplace.",
+      "guide_mean_log_probability": -3.482701268689386,
+      "guide_minus_base": 0.09802403943292015,
+      "prompt": "Explains why economics and politics don't mix! Hazlitt's view is simple: economics can only be understood if we look at the effects on everyone over time. He views most government economic tinkering as myopic: focussing only on one group of people for a moment.",
+      "sample_id": "amazon-polarity-positive-00000481",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 58
+    },
+    {
+      "base_mean_log_probability": -3.4228290557861327,
+      "continuation": " It's one of the most poetic and musical film(s). Although the films are short they are dense and pack just as much of a punch than any full length film. Definitely worth it.",
+      "guide_mean_log_probability": -3.2864730834960936,
+      "guide_minus_base": 0.13635597229003915,
+      "prompt": "Blew Me Away. I am going to keep this review brief, but if you are on the fence about buying this stop thinking and do.",
+      "sample_id": "amazon-polarity-positive-00024071",
+      "sentiment_label": 1,
+      "source_split": "train",
+      "token_count": 40
+    }
+  ],
+  "negative": {
+    "base_mean_nll": 3.317951068538427,
+    "guide_mean_nll": 3.196450984981876,
+    "mean_guide_minus_base": 0.121500083556552,
+    "num_samples": 100
+  },
+  "negative_audit_source": {
+    "path": "dataset/RAD_train/amazon_polarity/test/data-00000-of-00001.arrow",
+    "sha256": "404683c77cd9330d5e7c60dd28e4ceaca435bdb72e082182b93dc3aab8226e92"
+  },
+  "objective": "positive_continuation_causal_nll",
+  "output_contract": {
+    "actual_shape": [
+      1,
+      51,
+      50257
+    ],
+    "expected_shape": [
+      1,
+      51,
+      50257
+    ],
+    "finite": true,
+    "last_token_shape": [
+      1,
+      50257
+    ]
+  },
+  "positive": {
+    "base_mean_nll": 3.392307056374841,
+    "guide_mean_nll": 3.223534185108617,
+    "mean_guide_minus_base": 0.1687728712662243,
+    "num_samples": 100
+  },
+  "positive_nll_improvement": 0.1687728712662242,
+  "precision": "fp16",
+  "runtime_padding_behavior": "Both tokenizers use EOS as right-padding; padding labels are masked.",
+  "schema_version": 1,
+  "status": "PASS",
+  "task": "sentiment",
+  "tokenizer_compatibility_checks": {
+    "bos_token_id_equal": true,
+    "eos_token_id_equal": true,
+    "get_vocab_equal": true,
+    "length_equal": true,
+    "pad_token_id_equal": true,
+    "padding_side_equal": true,
+    "probe_decoding_equal": true
+  },
+  "validation_source": {
+    "path": "dataset/RAD_train/router_amazon_polarity/validation.jsonl",
+    "sha256": "70ee7d2fa35e311f4e0fa4a493564a9188313586668d2986c4e9038eaccac3fd"
+  }
+}

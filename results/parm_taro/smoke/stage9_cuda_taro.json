@@ -1,0 +1,101 @@
+{
+  "adapter_restoration_audit": {
+    "all_layers_disabled_inside": true,
+    "base_and_guide_differ": true,
+    "base_guide_max_abs_logit_difference": 79.95703125,
+    "guide_before_after_exact_match": true,
+    "guide_before_after_max_abs_difference": 0.0,
+    "requires_grad_restored": true,
+    "state_after": {
+      "active_adapter_sets": [
+        "default"
+      ],
+      "disabled_count": 0,
+      "enabled_count": 96,
+      "layer_count": 96
+    },
+    "state_after_equals_state_before": true,
+    "state_before": {
+      "active_adapter_sets": [
+        "default"
+      ],
+      "disabled_count": 0,
+      "enabled_count": 96,
+      "layer_count": 96
+    },
+    "state_inside_disable_context": {
+      "active_adapter_sets": [
+        "default"
+      ],
+      "disabled_count": 96,
+      "enabled_count": 0,
+      "layer_count": 96
+    },
+    "transition_after_equals_before": true
+  },
+  "base_parm_max_abs_logprob_difference": [
+    78.52436828613281,
+    79.36917877197266,
+    80.59766387939453,
+    80.60739135742188
+  ],
+  "checks": {
+    "adapter_restored_after_base_forward": true,
+    "backbone_loaded_in_4bit": true,
+    "base_and_parm_distributions_differ": true,
+    "frozen_model_gradients_none": true,
+    "losses_finite": true,
+    "one_physical_backbone": true,
+    "parm_tree_unchanged": true,
+    "pblora_checkpoint_unchanged": true,
+    "router_gradient_nonzero": true
+  },
+  "cuda": {
+    "device": "NVIDIA GeForce RTX 3080",
+    "peak_allocated_bytes": 4294064128,
+    "peak_allocated_gib": 3.9991588592529297,
+    "peak_reserved_bytes": 4412407808,
+    "peak_reserved_gib": 4.109375
+  },
+  "losses": [
+    2.0900516510009766,
+    1.9622000455856323
+  ],
+  "model_load_info": {
+    "base_pass": "PeftModel.disable_adapter",
+    "guide_pass": "PBLORA_enabled",
+    "load_in_4bit": true,
+    "physical_backbone_count": 1,
+    "shared_backbone": true
+  },
+  "parm_tree": {
+    "file_count": 156,
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+    "total_bytes": 1506962,
+    "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+  },
+  "pblora_checkpoint": {
+    "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+    "files": [
+      {
+        "bytes": 521,
+        "path": "adapter_config.json",
+        "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+      },
+      {
+        "bytes": 25233088,
+        "path": "adapter_model.safetensors",
+        "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+  },
+  "samples_requested": 2,
+  "samples_skipped": [],
+  "samples_used": [
+    "pku_round0_00000",
+    "pku_round0_00001"
+  ],
+  "schema_version": 1,
+  "status": "PASS"
+}

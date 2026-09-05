@@ -1,0 +1,8 @@
+{
+    "name": "args",
+    "model_name": "gpt2-large",
+    "sequence_rm": "sentiment-roberta-large-english",
+    "top_k": 20,
+    "alpha": 0.5,
+    "max_length": 256
+}

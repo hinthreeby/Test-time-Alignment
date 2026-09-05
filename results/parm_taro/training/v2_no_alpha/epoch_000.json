@@ -1,0 +1,78 @@
+{
+  "epoch": 0,
+  "optimizer_step": 1000,
+  "train": {
+    "examples": 8000,
+    "lambda_mean": 0.021876106038689613,
+    "lambda_std": 0.07724995911121368,
+    "mean_loss": 1.89345882595703,
+    "near_ties": 180,
+    "skipped_sample_ids": [],
+    "skipped_too_long": 0
+  },
+  "validation_comparison": {
+    "alpha_controls": null,
+    "alpha_grid_helpfulness": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "checks": {
+      "all_metrics_finite": true,
+      "required_methods_present": true,
+      "validation_not_test": true
+    },
+    "methods": {
+      "static_parm": {
+        "dual_response_token_nll": 3.4626328643321993,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "lambda_alpha_helpfulness_correlation": null,
+        "loss_std": 2.213429573282973,
+        "tasks": 2500
+      },
+      "taro": {
+        "dual_response_token_nll": 1.8704583731889726,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.01607419177889824,
+          "mean": 0.0013612648472189903,
+          "min": 0.00046777594252489507,
+          "std": 0.001031935797072947
+        },
+        "lambda_alpha_helpfulness_correlation": -0.002911696211400144,
+        "loss_std": 0.44465931470435577,
+        "tasks": 2500
+      },
+      "v2_no_alpha": {
+        "dual_response_token_nll": 1.870022567486763,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.006882131565362215,
+          "mean": 0.0008080874104052782,
+          "min": 9.191725257551298e-05,
+          "std": 0.0007166335708461702
+        },
+        "lambda_alpha_helpfulness_correlation": 0.08858218472705111,
+        "loss_std": 0.44413357720546764,
+        "tasks": 2500
+      }
+    },
+    "near_tie_tasks": 296,
+    "pass": true,
+    "skipped_sample_ids": [],
+    "split": "validation",
+    "tasks_requested": 2500,
+    "tasks_skipped_too_long": 0
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reward-decoding.local/router_v2/taro_checkpoint.schema.json",
+  "title": "Router V2 faithful TARO Top-K torch checkpoint payload",
+  "description": "Logical schema for the mapping serialized by torch.save. Tensor values in state_dict are not JSON values.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "format",
+    "method_label",
+    "model_class",
+    "architecture",
+    "mode",
+    "vocab_size",
+    "top_k",
+    "token_embedding_dim",
+    "hidden_dim",
+    "entropy_weight",
+    "config",
+    "state_dict",
+    "training_state",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "format": {"const": "router_v2.taro_topk_checkpoint"},
+    "method_label": {"const": "TARO"},
+    "model_class": {"const": "TAROTokenRouter"},
+    "architecture": {"const": "taro_topk_flatten_tanh"},
+    "mode": {
+      "enum": ["taro_topk_nll", "taro_topk_nll_entropy"]
+    },
+    "vocab_size": {"type": "integer", "minimum": 2},
+    "top_k": {"type": "integer", "minimum": 1},
+    "token_embedding_dim": {"type": "integer", "minimum": 1},
+    "hidden_dim": {"const": 128},
+    "entropy_weight": {"type": "number", "minimum": 0},
+    "config": {"$ref": "taro_config.schema.json"},
+    "state_dict": {
+      "type": "object",
+      "description": "Mapping from parameter names to CPU torch.Tensor values."
+    },
+    "training_state": {"type": "object"},
+    "metadata": {"type": "object"}
+  }
+}

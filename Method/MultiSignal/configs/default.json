@@ -1,13 +1,16 @@
 {
   "top_k": 20,
   "controller": {
-    "hidden_dim": 128
+    "hidden_dim": 64,
+    "signal_costs": [1.2, 1.0, 0.8, 1.1]
   },
   "training": {
     "epochs": 5,
-    "batch_size": 128,
-    "lr": 0.00005,
+    "batch_size": 256,
+    "lr": 0.0001,
     "weight_decay": 0.01,
-    "grad_clip": 1.0
+    "grad_clip": 1.0,
+    "num_workers": 0,
+    "mixed_precision": true
   }
 }

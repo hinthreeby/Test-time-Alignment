@@ -1,0 +1,11 @@
+{
+  "best_fixed_lambda": 1.0,
+  "best_fixed_method": "v2_fixed_lambda_1",
+  "best_heuristic": "heuristic_js",
+  "negative_class_primary": true,
+  "same_average_source": "all validation prompt classes and seeds",
+  "selection_split": "validation",
+  "taro_same_average_lambda": 0.9026586349875045,
+  "v2_same_average_lambda": 0.96741696756954,
+  "validation_records": 1350
+}

@@ -1,0 +1,262 @@
+{
+  "average_continuation_length": 39.0,
+  "base_model": {
+    "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+    "files": [
+      {
+        "bytes": 718,
+        "path": "config.json",
+        "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+      },
+      {
+        "bytes": 1519984962,
+        "path": "model.safetensors",
+        "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+  },
+  "base_tokenizer": {
+    "bos_token": "<|endoftext|>",
+    "bos_token_id": 50256,
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 50256,
+    "length": 50257,
+    "model_max_length": 1024,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 50256,
+    "padding_side": "right",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium",
+    "semantic_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "unk_token": "<|endoftext|>",
+    "unk_token_id": 50256,
+    "vocab_entries": 50257,
+    "vocab_sha256": "79ff2372d75e36ad401b44e1a72214636dfdcc4ddeeefa498463b0a3b2a5fd76"
+  },
+  "complete": true,
+  "device_used_for_extraction": "cuda",
+  "exact_tokenizer_compatible": true,
+  "extraction_fingerprint": "b2bddfda3ad7e9c2c0396c45e5e1c4c8649f784755620bcd386f256743ac444f",
+  "extraction_parameters": {
+    "base_checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+    "base_tokenizer_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "batch_size": 4,
+    "device_type": "cuda",
+    "guide_checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+    "guide_tokenizer_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "max_continuation_tokens": 80,
+    "max_position": 79,
+    "num_source_examples": 20,
+    "precision": "fp16",
+    "schema_version": 1,
+    "shard_size": 4096,
+    "source_sha256": "92486a32e7c451422682afdd3d0c55a47a3016cc977542cb600a6172937c924b",
+    "split": "train",
+    "task": "sentiment",
+    "top_k": 20
+  },
+  "feature_schema": "router_v2.feature_cache.v1",
+  "feature_statistics": {
+    "base_entropy": {
+      "count": 780,
+      "max": 2.9499170780181885,
+      "mean": 1.935056402744391,
+      "min": 0.003004610538482666,
+      "std": 0.7240442314025186
+    },
+    "base_margin": {
+      "count": 780,
+      "max": 10.0,
+      "mean": 1.1920609694260818,
+      "min": 0.0,
+      "std": 1.4350465528730898
+    },
+    "base_range": {
+      "count": 780,
+      "max": 14.5,
+      "mean": 4.4614013671875,
+      "min": 1.125,
+      "std": 1.999958534303756
+    },
+    "base_std": {
+      "count": 780,
+      "max": 3.3767106533050537,
+      "mean": 1.190230697240585,
+      "min": 0.32137399911880493,
+      "std": 0.4511968130750078
+    },
+    "guide_entropy": {
+      "count": 780,
+      "max": 2.949634313583374,
+      "mean": 1.8306016188401442,
+      "min": 0.003186067333444953,
+      "std": 0.7280225812190909
+    },
+    "guide_margin": {
+      "count": 780,
+      "max": 9.875,
+      "mean": 1.29501467973758,
+      "min": 0.0,
+      "std": 1.4662289013326382
+    },
+    "guide_range": {
+      "count": 780,
+      "max": 14.625,
+      "mean": 4.727326221955129,
+      "min": 1.125,
+      "std": 1.9683869660069937
+    },
+    "guide_std": {
+      "count": 780,
+      "max": 3.2248728275299072,
+      "mean": 1.2571457300430688,
+      "min": 0.3077133297920227,
+      "std": 0.442463753294834
+    },
+    "js_divergence": {
+      "count": 780,
+      "max": 0.4346579313278198,
+      "mean": 0.03911282466008113,
+      "min": 5.307994797476567e-06,
+      "std": 0.060158582254213847
+    },
+    "normalized_position": {
+      "count": 780,
+      "max": 0.949367105960846,
+      "mean": 0.29419019650190303,
+      "min": 0.0,
+      "std": 0.21743805649196465
+    },
+    "rank_correlation": {
+      "count": 780,
+      "max": 0.9969350099563599,
+      "mean": 0.860496325370593,
+      "min": 0.023179545998573303,
+      "std": 0.12682747539035438
+    },
+    "top1_agreement": {
+      "count": 780,
+      "max": 1.0,
+      "mean": 0.8102564102564103,
+      "min": 0.0,
+      "std": 0.39209815084339034
+    },
+    "topk_overlap": {
+      "count": 780,
+      "max": 1.0,
+      "mean": 0.8710255940755208,
+      "min": 0.44999998807907104,
+      "std": 0.08098113816700492
+    }
+  },
+  "gold_leakage_checks": {
+    "gold_forced_into_candidates": false,
+    "gold_stored_as_target_only": true,
+    "previous_gold_tokens_only_in_teacher_forced_prefix": true,
+    "topk_selector_accepts_gold": false
+  },
+  "guide_model": {
+    "checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+    "files": [
+      {
+        "bytes": 696,
+        "path": "adapter_config.json",
+        "sha256": "46cb575b693ae51f777c45817cd0a420489c651e8ce48ef102f3f9253f197c44"
+      },
+      {
+        "bytes": 12607304,
+        "path": "adapter_model.safetensors",
+        "sha256": "17b0e1b5594bbd7780015434b927d36a6f0f78be370e8cfc966f15e597d4c6dd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter"
+  },
+  "guide_tokenizer": {
+    "bos_token": "<|endoftext|>",
+    "bos_token_id": 50256,
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 50256,
+    "length": 50257,
+    "model_max_length": 1024,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 50256,
+    "padding_side": "right",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter",
+    "semantic_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "unk_token": "<|endoftext|>",
+    "unk_token_id": 50256,
+    "vocab_entries": 50257,
+    "vocab_sha256": "79ff2372d75e36ad401b44e1a72214636dfdcc4ddeeefa498463b0a3b2a5fd76"
+  },
+  "max_position": 79,
+  "nan_inf_count": 0,
+  "number_shards": 1,
+  "number_source_examples": 20,
+  "number_token_records": 780,
+  "precision": "fp16",
+  "schema_version": 1,
+  "shards": [
+    {
+      "num_records": 780,
+      "path": "shard_00000.pt",
+      "sha256": "1089aad185cbdee9f1e3b401f281e3ff3444b4851b6d75db5f4890d16c298844",
+      "source_end_index_exclusive": 20,
+      "source_ids": [
+        "amazon-polarity-positive-00034301",
+        "amazon-polarity-positive-00019605",
+        "amazon-polarity-positive-00001800",
+        "amazon-polarity-positive-00016018",
+        "amazon-polarity-positive-00053961",
+        "amazon-polarity-positive-00031036",
+        "amazon-polarity-positive-00025748",
+        "amazon-polarity-positive-00003084",
+        "amazon-polarity-positive-00045664",
+        "amazon-polarity-positive-00034521",
+        "amazon-polarity-positive-00046772",
+        "amazon-polarity-positive-00050946",
+        "amazon-polarity-positive-00027340",
+        "amazon-polarity-positive-00033321",
+        "amazon-polarity-positive-00035447",
+        "amazon-polarity-positive-00002569",
+        "amazon-polarity-positive-00012325",
+        "amazon-polarity-positive-00022045",
+        "amazon-polarity-positive-00004103",
+        "amazon-polarity-positive-00020069"
+      ],
+      "source_start_index": 0
+    }
+  ],
+  "source_dataset": {
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/RAD_train/router_amazon_polarity/train.jsonl",
+    "sha256": "92486a32e7c451422682afdd3d0c55a47a3016cc977542cb600a6172937c924b"
+  },
+  "source_ids": [
+    "amazon-polarity-positive-00034301",
+    "amazon-polarity-positive-00019605",
+    "amazon-polarity-positive-00001800",
+    "amazon-polarity-positive-00016018",
+    "amazon-polarity-positive-00053961",
+    "amazon-polarity-positive-00031036",
+    "amazon-polarity-positive-00025748",
+    "amazon-polarity-positive-00003084",
+    "amazon-polarity-positive-00045664",
+    "amazon-polarity-positive-00034521",
+    "amazon-polarity-positive-00046772",
+    "amazon-polarity-positive-00050946",
+    "amazon-polarity-positive-00027340",
+    "amazon-polarity-positive-00033321",
+    "amazon-polarity-positive-00035447",
+    "amazon-polarity-positive-00002569",
+    "amazon-polarity-positive-00012325",
+    "amazon-polarity-positive-00022045",
+    "amazon-polarity-positive-00004103",
+    "amazon-polarity-positive-00020069"
+  ],
+  "split": "train",
+  "stale_temp_files_removed": [],
+  "task": "sentiment",
+  "top_k": 20,
+  "top_k_uniqueness_failures": 0
+}

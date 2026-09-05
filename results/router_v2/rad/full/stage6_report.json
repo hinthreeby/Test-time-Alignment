@@ -1,0 +1,1805 @@
+{
+  "checks": {
+    "adaptive_lambdas_nonconstant": true,
+    "all_primary_metrics_finite": true,
+    "generation_budget_at_least_32": true,
+    "generation_lengths_and_termination_valid": true,
+    "no_failed_generations": true,
+    "protected_artifacts_unchanged": true,
+    "required_methods_complete": true,
+    "same_average_controls_present": true,
+    "stage5_checkpoints_pass": true,
+    "v1_provenance_pass": true
+  },
+  "generation_length_diagnostics": {
+    "all_realized_lengths_at_least_required_budget": false,
+    "checks": {
+      "all_lengths_match_selected_token_ids": true,
+      "all_lengths_positive": true,
+      "all_short_outputs_terminated_on_eos": true,
+      "max_new_tokens_at_least_required_budget": true,
+      "no_length_exceeds_max_new_tokens": true
+    },
+    "invalid_records": {
+      "length_mismatch": [],
+      "nonpositive": [],
+      "over_budget": [],
+      "short_without_eos": []
+    },
+    "max_new_tokens": 32,
+    "method_statistics": [
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 32.0,
+        "median": 32.0,
+        "method": "taro",
+        "method_family": "v2_autoregressive_sentiment_guide",
+        "min": 32,
+        "p05": 32.0,
+        "short_count": 0
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 32.0,
+        "median": 32.0,
+        "method": "taro_same_average",
+        "method_family": "v2_autoregressive_sentiment_guide",
+        "min": 32,
+        "p05": 32.0,
+        "short_count": 0
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 31.665,
+        "median": 32.0,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "min": 6,
+        "p05": 32.0,
+        "short_count": 14
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 31.06,
+        "median": 32.0,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "min": 2,
+        "p05": 24.950000000000003,
+        "short_count": 41
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 31.201666666666668,
+        "median": 32.0,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "min": 2,
+        "p05": 32.0,
+        "short_count": 23
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 31.438333333333333,
+        "median": 32.0,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "min": 3,
+        "p05": 32.0,
+        "short_count": 22
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 32.0,
+        "median": 32.0,
+        "method": "v2_base",
+        "method_family": "v2_autoregressive_sentiment_guide",
+        "min": 32,
+        "p05": 32.0,
+        "short_count": 0
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 32.0,
+        "median": 32.0,
+        "method": "v2_fixed",
+        "method_family": "v2_autoregressive_sentiment_guide",
+        "min": 32,
+        "p05": 32.0,
+        "short_count": 0
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 32.0,
+        "median": 32.0,
+        "method": "v2_heuristic",
+        "method_family": "v2_autoregressive_sentiment_guide",
+        "min": 32,
+        "p05": 32.0,
+        "short_count": 0
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 32.0,
+        "median": 32.0,
+        "method": "v2_history",
+        "method_family": "v2_autoregressive_sentiment_guide",
+        "min": 32,
+        "p05": 32.0,
+        "short_count": 0
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 32.0,
+        "median": 32.0,
+        "method": "v2_same_average",
+        "method_family": "v2_autoregressive_sentiment_guide",
+        "min": 32,
+        "p05": 32.0,
+        "short_count": 0
+      },
+      {
+        "count": 600,
+        "max": 32,
+        "mean": 32.0,
+        "median": 32.0,
+        "method": "v2_state",
+        "method_family": "v2_autoregressive_sentiment_guide",
+        "min": 32,
+        "p05": 32.0,
+        "short_count": 0
+      }
+    ],
+    "minimum_required_budget": 32,
+    "pass": true,
+    "short_by_method_class": [
+      {
+        "method": "taro",
+        "prompt_sentiment_class": "negative",
+        "short_count": 0
+      },
+      {
+        "method": "taro",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 0
+      },
+      {
+        "method": "taro",
+        "prompt_sentiment_class": "positive",
+        "short_count": 0
+      },
+      {
+        "method": "taro_same_average",
+        "prompt_sentiment_class": "negative",
+        "short_count": 0
+      },
+      {
+        "method": "taro_same_average",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 0
+      },
+      {
+        "method": "taro_same_average",
+        "prompt_sentiment_class": "positive",
+        "short_count": 0
+      },
+      {
+        "method": "v1_base",
+        "prompt_sentiment_class": "negative",
+        "short_count": 8
+      },
+      {
+        "method": "v1_base",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 2
+      },
+      {
+        "method": "v1_base",
+        "prompt_sentiment_class": "positive",
+        "short_count": 4
+      },
+      {
+        "method": "v1_fixed",
+        "prompt_sentiment_class": "negative",
+        "short_count": 22
+      },
+      {
+        "method": "v1_fixed",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 4
+      },
+      {
+        "method": "v1_fixed",
+        "prompt_sentiment_class": "positive",
+        "short_count": 15
+      },
+      {
+        "method": "v1_heuristic",
+        "prompt_sentiment_class": "negative",
+        "short_count": 12
+      },
+      {
+        "method": "v1_heuristic",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 1
+      },
+      {
+        "method": "v1_heuristic",
+        "prompt_sentiment_class": "positive",
+        "short_count": 10
+      },
+      {
+        "method": "v1_router",
+        "prompt_sentiment_class": "negative",
+        "short_count": 9
+      },
+      {
+        "method": "v1_router",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 4
+      },
+      {
+        "method": "v1_router",
+        "prompt_sentiment_class": "positive",
+        "short_count": 9
+      },
+      {
+        "method": "v2_base",
+        "prompt_sentiment_class": "negative",
+        "short_count": 0
+      },
+      {
+        "method": "v2_base",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 0
+      },
+      {
+        "method": "v2_base",
+        "prompt_sentiment_class": "positive",
+        "short_count": 0
+      },
+      {
+        "method": "v2_fixed",
+        "prompt_sentiment_class": "negative",
+        "short_count": 0
+      },
+      {
+        "method": "v2_fixed",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 0
+      },
+      {
+        "method": "v2_fixed",
+        "prompt_sentiment_class": "positive",
+        "short_count": 0
+      },
+      {
+        "method": "v2_heuristic",
+        "prompt_sentiment_class": "negative",
+        "short_count": 0
+      },
+      {
+        "method": "v2_heuristic",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 0
+      },
+      {
+        "method": "v2_heuristic",
+        "prompt_sentiment_class": "positive",
+        "short_count": 0
+      },
+      {
+        "method": "v2_history",
+        "prompt_sentiment_class": "negative",
+        "short_count": 0
+      },
+      {
+        "method": "v2_history",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 0
+      },
+      {
+        "method": "v2_history",
+        "prompt_sentiment_class": "positive",
+        "short_count": 0
+      },
+      {
+        "method": "v2_same_average",
+        "prompt_sentiment_class": "negative",
+        "short_count": 0
+      },
+      {
+        "method": "v2_same_average",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 0
+      },
+      {
+        "method": "v2_same_average",
+        "prompt_sentiment_class": "positive",
+        "short_count": 0
+      },
+      {
+        "method": "v2_state",
+        "prompt_sentiment_class": "negative",
+        "short_count": 0
+      },
+      {
+        "method": "v2_state",
+        "prompt_sentiment_class": "neutral",
+        "short_count": 0
+      },
+      {
+        "method": "v2_state",
+        "prompt_sentiment_class": "positive",
+        "short_count": 0
+      }
+    ],
+    "short_record_count": 100,
+    "short_records": [
+      {
+        "generation_length": 25,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000070",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "6aebe1fdede3918f7bad44cb2ceadf06",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 29,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000086",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "a070d5c595b789e17c612cde0c318543",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 28,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000086",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "a070d5c595b789e17c612cde0c318543",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 29,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000086",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "a070d5c595b789e17c612cde0c318543",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000099",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "6de461f7c3029c7d7c70e31846d27917",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000099",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "6de461f7c3029c7d7c70e31846d27917",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000099",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "6de461f7c3029c7d7c70e31846d27917",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000099",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "6de461f7c3029c7d7c70e31846d27917",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 31,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000106",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "4fc37969635cd417af605021ff29a816",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 15,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000106",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "4fc37969635cd417af605021ff29a816",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 14,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000109",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "f265b0d7fbb2f790cd67503b4681fea3",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 12,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000110",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "433c784dbff4cfa6a1f1ba61522cd9a9",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 2,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000110",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "433c784dbff4cfa6a1f1ba61522cd9a9",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 2,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000110",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "433c784dbff4cfa6a1f1ba61522cd9a9",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000121",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "ead98b9eed78c884198fb6e1766e5a3b",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000121",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "ead98b9eed78c884198fb6e1766e5a3b",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000121",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "ead98b9eed78c884198fb6e1766e5a3b",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000121",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "ead98b9eed78c884198fb6e1766e5a3b",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 24,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000123",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "e2f86d50669a32c6a6ab351baa55acab",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 28,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000125",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "d78e070c9374db901da521803882550d",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 24,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000129",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "9e340a176640a42516a90e026bf38234",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 24,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000129",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "9e340a176640a42516a90e026bf38234",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 24,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000129",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "9e340a176640a42516a90e026bf38234",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 20,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000138",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "fb46c1afb99925be5f5f1bbc1a11c0d0",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 22,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000168",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "9c9c35faf93fa7c6d61be760ac39b3e0",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 8,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000170",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "63796259b581c371e43e7964fee1e99a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 14,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000170",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "63796259b581c371e43e7964fee1e99a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 8,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000170",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "63796259b581c371e43e7964fee1e99a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 8,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000170",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "63796259b581c371e43e7964fee1e99a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 31,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000178",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "1c50d0319ec1752c075ddd03d3d4fb6e",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 4,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000188",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "4b50f92f8e7f1a22d2a0b193896635cc",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 4,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000188",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "4b50f92f8e7f1a22d2a0b193896635cc",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 19,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000189",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "8660866b8504d863ae5e3ad728fb306a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 19,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000189",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "8660866b8504d863ae5e3ad728fb306a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 19,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000189",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "8660866b8504d863ae5e3ad728fb306a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 19,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000189",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "8660866b8504d863ae5e3ad728fb306a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 23,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000196",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "a931f679dba3e32a111ac011fd49f549",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 28,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000196",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "a931f679dba3e32a111ac011fd49f549",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 9,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000202",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "32a1500a7fa81506ec663dea37d37182",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 13,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000202",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "32a1500a7fa81506ec663dea37d37182",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 17,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000205",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "909b5cbe344bcdc5321f3a6400154c73",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 14,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000205",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "909b5cbe344bcdc5321f3a6400154c73",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 14,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000205",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "909b5cbe344bcdc5321f3a6400154c73",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 13,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000205",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "909b5cbe344bcdc5321f3a6400154c73",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 21,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000213",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "d5438f16850dedd615e72f5554a265ba",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 10,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000228",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "af404f7f248ecc82ab8b50c303fa19f9",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 10,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000228",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "af404f7f248ecc82ab8b50c303fa19f9",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 9,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000228",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "af404f7f248ecc82ab8b50c303fa19f9",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 21,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000235",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "c435aee2bddd73f70c599e65598c21d2",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 8,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000235",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "c435aee2bddd73f70c599e65598c21d2",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 16,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:negative:00000244",
+        "prompt_sentiment_class": "negative",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "0245583dd48096f2ed1eba8597449488",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 24,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000082",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "6bf5484f595febae0add0f914d10a374",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 17,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000105",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "462545dfc726a1739cd27246aff76d54",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 26,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000127",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "55b42b776899c937c8f9b8f754c87e99",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 13,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000127",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "55b42b776899c937c8f9b8f754c87e99",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 30,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000130",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "45631352ad4506dffc59cf15390d13da",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 24,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000138",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "d1f8978f329b8d039950dcca48fe6bef",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 18,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000221",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "e2c7d5d4dc2759f8d90444f4efcf47f8",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 18,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000221",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "e2c7d5d4dc2759f8d90444f4efcf47f8",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 18,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000228",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "64fa9730bc68974d6b492b1f1750de42",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 26,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000240",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "df32e69d29907f0806a5d0065d957966",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 10,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:neutral:00000240",
+        "prompt_sentiment_class": "neutral",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "df32e69d29907f0806a5d0065d957966",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 7,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000075",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "696df42e5b5288002422ab6b4872b6c6",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 7,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000075",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "696df42e5b5288002422ab6b4872b6c6",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 20,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000077",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "3305c3be8d4a4957b2fdf5b9143065c1",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 28,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000094",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "238adc64b0216fb4d349bf5ff924019f",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 29,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000104",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "3e41abcf5efc3ceeb585e0c4f9c54c76",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 14,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000104",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "3e41abcf5efc3ceeb585e0c4f9c54c76",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 14,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000104",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "3e41abcf5efc3ceeb585e0c4f9c54c76",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 14,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000111",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "4f6fb7b00b7d7019322e8497bc7b811c",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 2,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000111",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "4f6fb7b00b7d7019322e8497bc7b811c",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 2,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000111",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "4f6fb7b00b7d7019322e8497bc7b811c",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 3,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000111",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "4f6fb7b00b7d7019322e8497bc7b811c",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 23,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000136",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "d581f49e14d959c7fec5ba18a94e38d6",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 23,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000136",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "d581f49e14d959c7fec5ba18a94e38d6",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 23,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000136",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "d581f49e14d959c7fec5ba18a94e38d6",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 23,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000136",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "d581f49e14d959c7fec5ba18a94e38d6",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 8,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000148",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "a89ead417ef5d99f1e0441bb118b473a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 4,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000148",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "a89ead417ef5d99f1e0441bb118b473a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 8,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000148",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "a89ead417ef5d99f1e0441bb118b473a",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 10,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000154",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "f10656b461856162937af959f1e6c3df",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 10,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000154",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "f10656b461856162937af959f1e6c3df",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 16,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000154",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "f10656b461856162937af959f1e6c3df",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000161",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "9f2ec7f8fd8cceb9643f6d1731d48fc8",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000161",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "9f2ec7f8fd8cceb9643f6d1731d48fc8",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 29,
+        "method": "v1_base",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000164",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "50c0c560a87f73305bf9f308c1fad2ed",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 11,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000164",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "50c0c560a87f73305bf9f308c1fad2ed",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 11,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000164",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "50c0c560a87f73305bf9f308c1fad2ed",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 24,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000167",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "07934f59c04816c9cb32fba35e54daf4",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 31,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000213",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "43b3b85dc02b9ace4f24746434d00d62",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000214",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "eebb1e53edf7a164e9afa8f3eecdfefe",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 6,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000214",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "eebb1e53edf7a164e9afa8f3eecdfefe",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 30,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000218",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "5e08c2fbc8841a31fb885689066db076",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 27,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000225",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "aef0a56ef5f17f6637466d1747b0f566",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 12,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000225",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "aef0a56ef5f17f6637466d1747b0f566",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 19,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000226",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "9f48e22b77b048d0eff1f747303b1bcc",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 30,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000228",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "ffc6c79f16f44145eb1ac4c03609a083",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 27,
+        "method": "v1_heuristic",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000228",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "ffc6c79f16f44145eb1ac4c03609a083",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 27,
+        "method": "v1_router",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000228",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "ffc6c79f16f44145eb1ac4c03609a083",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      },
+      {
+        "generation_length": 25,
+        "method": "v1_fixed",
+        "method_family": "v1_rad_scalar_reward",
+        "prompt_id": "rad:test:positive:00000246",
+        "prompt_sentiment_class": "positive",
+        "source": "read_only_v1_output",
+        "source_prompt_id": "9c8a4a07d536f478a8f909c1baa8a676",
+        "terminal_token_id": 50256,
+        "terminated_on_eos": true
+      }
+    ]
+  },
+  "output_hashes": {
+    "aggregate_metrics.csv": "b30ce97846fd000ac3631e472393b7e6c3872700bb9fe438372502f393b4cf9e",
+    "lambda_diagnostics.csv": "fd32ddbf032f8c59057269e10c7c45532bc34766a8e918f0701d793b2219187c",
+    "pareto_points.csv": "8bad6fc8f5b4d9add90a7ee49ece072bec5d6b1e0a4c342cf2361c0c273ce346",
+    "per_sample_metrics.csv": "f104eb4eb046e11defba389c560b03bcea34564ba2b9fb9380dde7a29f49fab2",
+    "per_sample_outputs.jsonl": "0f70b039731e8b9d8fa24b3f29963e9d703797def1cc5d870b7fa746c2599ad3",
+    "validation_outputs.jsonl": "7ae852ffb531641c33d7fe186ff2ecb478487bb8b669de05e0d7dd0928307260"
+  },
+  "pareto_points": [
+    {
+      "alignment": 0.43,
+      "coherence": 0.5600331157817446,
+      "latency_per_token": 0.04573296239479532,
+      "method": "taro",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.309295843840407,
+      "ppl_degradation": 0.24449993231719444,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.4244650708607514
+    },
+    {
+      "alignment": 0.44,
+      "coherence": 0.5574856367891207,
+      "latency_per_token": 0.045420484274109184,
+      "method": "taro_same_average",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.397636366938965,
+      "ppl_degradation": 0.286407423455805,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.4343371808243683
+    },
+    {
+      "alignment": 0.39,
+      "coherence": 0.5535229744556606,
+      "latency_per_token": 0.030967649147091,
+      "method": "v1_base",
+      "method_family": "v1_rad_scalar_reward",
+      "pareto_frontier_alignment_vs_ppl_degradation": 1,
+      "perplexity": 6.80876336991787,
+      "ppl_degradation": 0.0,
+      "ppl_model_family": "v1_gpt2_large_full_sequence",
+      "target_probability": 0.38915936885896374
+    },
+    {
+      "alignment": 0.74,
+      "coherence": 0.5155344631782284,
+      "latency_per_token": 0.030704424147974967,
+      "method": "v1_fixed",
+      "method_family": "v1_rad_scalar_reward",
+      "pareto_frontier_alignment_vs_ppl_degradation": 1,
+      "perplexity": 10.32533757865429,
+      "ppl_degradation": 0.6184777420273245,
+      "ppl_model_family": "v1_gpt2_large_full_sequence",
+      "target_probability": 0.740205751429894
+    },
+    {
+      "alignment": 0.61,
+      "coherence": 0.521128920917958,
+      "latency_per_token": 0.030833639139158445,
+      "method": "v1_heuristic",
+      "method_family": "v1_rad_scalar_reward",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 8.778539449572563,
+      "ppl_degradation": 0.39455789310912437,
+      "ppl_model_family": "v1_gpt2_large_full_sequence",
+      "target_probability": 0.6162757850671187
+    },
+    {
+      "alignment": 0.64,
+      "coherence": 0.5334950898324315,
+      "latency_per_token": 0.03348601751845927,
+      "method": "v1_router",
+      "method_family": "v1_rad_scalar_reward",
+      "pareto_frontier_alignment_vs_ppl_degradation": 1,
+      "perplexity": 7.541766005158425,
+      "ppl_degradation": 0.11107255578280045,
+      "ppl_model_family": "v1_gpt2_large_full_sequence",
+      "target_probability": 0.639736311394372
+    },
+    {
+      "alignment": 0.35,
+      "coherence": 0.5544573493833035,
+      "latency_per_token": 0.014540916577752796,
+      "method": "v2_base",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 3.6898758790554314,
+      "ppl_degradation": 0.0,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.3461990942730335
+    },
+    {
+      "alignment": 0.47,
+      "coherence": 0.5504490768910687,
+      "latency_per_token": 0.04541448096319073,
+      "method": "v2_fixed",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.652389184060627,
+      "ppl_degradation": 0.37319064970802684,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.46810372541862305
+    },
+    {
+      "alignment": 0.375,
+      "coherence": 0.5600337048868994,
+      "latency_per_token": 0.046432364872744075,
+      "method": "v2_heuristic",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 3.7620768927152337,
+      "ppl_degradation": 0.03587202120754427,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.3677101689975825
+    },
+    {
+      "alignment": 0.455,
+      "coherence": 0.5550400721622682,
+      "latency_per_token": 0.053898257899309104,
+      "method": "v2_history",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.537344985348015,
+      "ppl_degradation": 0.3297451936122017,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.4516150066969567
+    },
+    {
+      "alignment": 0.44,
+      "coherence": 0.554531297524584,
+      "latency_per_token": 0.04543134068204381,
+      "method": "v2_same_average",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.606927527778443,
+      "ppl_degradation": 0.3522176685425852,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.4354144787817495
+    },
+    {
+      "alignment": 0.46,
+      "coherence": 0.5553355267077228,
+      "latency_per_token": 0.047309514019034396,
+      "method": "v2_state",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.555655545706341,
+      "ppl_degradation": 0.3339183065142795,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.4565429682773538
+    }
+  ],
+  "parm_readiness": {
+    "no_lambda_collapse": true,
+    "ready_for_parm_review": true,
+    "stable": true
+  },
+  "protected_audit": {
+    "after": {
+      "method_rad": {
+        "file_count": 110,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD",
+        "total_bytes": 114269650,
+        "tree_sha256": "e0c8907885b80cde9c12f0e1f6e3134b0781e811ee8edafb9f0d690988d36bbe"
+      },
+      "parm": {
+        "file_count": 156,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+        "total_bytes": 1506962,
+        "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+      },
+      "rad_benchmark": {
+        "file_count": 4,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark",
+        "total_bytes": 8717638,
+        "tree_sha256": "a44b060fd427368917ce1fe68b09fd94f1710c32bd4e38484a386ed4f695ed88"
+      },
+      "router_v1": {
+        "file_count": 100,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/router",
+        "total_bytes": 521788719,
+        "tree_sha256": "8595fb3e48c2b1771a07a6efba09c29560785a581d5490f582286c58fbf5ffd3"
+      },
+      "v1_results": {
+        "file_count": 14,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+        "total_bytes": 516707263,
+        "tree_sha256": "e3f4d6d9f5fcb5797cf0ed61ae3fe8890c41f53aba4ba2eee3730fac691afa07"
+      }
+    },
+    "before": {
+      "method_rad": {
+        "file_count": 110,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD",
+        "total_bytes": 114269650,
+        "tree_sha256": "e0c8907885b80cde9c12f0e1f6e3134b0781e811ee8edafb9f0d690988d36bbe"
+      },
+      "parm": {
+        "file_count": 156,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+        "total_bytes": 1506962,
+        "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+      },
+      "rad_benchmark": {
+        "file_count": 4,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark",
+        "total_bytes": 8717638,
+        "tree_sha256": "a44b060fd427368917ce1fe68b09fd94f1710c32bd4e38484a386ed4f695ed88"
+      },
+      "router_v1": {
+        "file_count": 100,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/router",
+        "total_bytes": 521788719,
+        "tree_sha256": "8595fb3e48c2b1771a07a6efba09c29560785a581d5490f582286c58fbf5ffd3"
+      },
+      "v1_results": {
+        "file_count": 14,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+        "total_bytes": 516707263,
+        "tree_sha256": "e3f4d6d9f5fcb5797cf0ed61ae3fe8890c41f53aba4ba2eee3730fac691afa07"
+      }
+    },
+    "checks": {
+      "method_rad_unchanged": true,
+      "parm_unchanged": true,
+      "rad_benchmark_unchanged": true,
+      "router_v1_unchanged": true,
+      "v1_results_unchanged": true
+    },
+    "pass": true
+  },
+  "record_counts": {
+    "by_method": {
+      "taro": 600,
+      "taro_same_average": 600,
+      "v1_base": 600,
+      "v1_fixed": 600,
+      "v1_heuristic": 600,
+      "v1_router": 600,
+      "v2_base": 600,
+      "v2_fixed": 600,
+      "v2_heuristic": 600,
+      "v2_history": 600,
+      "v2_same_average": 600,
+      "v2_state": 600
+    },
+    "combined": 7200,
+    "test_v1_imported": 2400,
+    "test_v2": 4800,
+    "validation_v2": 1350
+  },
+  "schema_version": 1,
+  "scientific_comparability": {
+    "alignment_evaluator_shared": true,
+    "primary_pareto_x": "family-relative PPL degradation",
+    "prompt_ids_and_seeds_shared": true,
+    "raw_ppl_cross_family_comparable": false,
+    "v1_family": "GPT-2 Large + scalar RAD reward",
+    "v2_family": "GPT-2 Medium + autoregressive sentiment guide"
+  },
+  "stage5_checkpoint_audit": {
+    "checks": {
+      "all_stage5_frozen_audits_pass": true,
+      "all_stage5_status_pass": true
+    },
+    "pass": true,
+    "stages": {
+      "history": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/history/best.pt",
+        "checkpoint_sha256": "f41bfd35a0e11055ec4ccfa2b461dbf3a7a2acd5b073e54c22fda15cddb77c21",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/history/run_status.json",
+        "run_status_sha256": "3bdac8093b80d1ecac6b77575460f6b30b976ead9a91186406d7e6f8232711d4",
+        "status": "PASS"
+      },
+      "state": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/state/best.pt",
+        "checkpoint_sha256": "2d7050a85b4078225a8bc47c108ea2f782e7f43aa315bacf03490756b0178b7b",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/state/run_status.json",
+        "run_status_sha256": "c05e85a22d9c23e15ee44303a32f63087a81d844489921caf91361e782c13dc0",
+        "status": "PASS"
+      },
+      "taro": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/taro/best.pt",
+        "checkpoint_sha256": "99257d606da073979785fccd78dbcd0a090c550a0d88fbbcd26a377ee89f745c",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/taro/run_status.json",
+        "run_status_sha256": "035ce1893d84cbbc834b8d0f55fe6379339f5b1e71c1f516c55878650693a239",
+        "status": "PASS"
+      }
+    }
+  },
+  "status": "PASS",
+  "v1_baseline_audit": {
+    "base_model_eos_token_id": 50256,
+    "checks": {
+      "base_model_eos_token_id_available": true,
+      "generation_failures_zero": true,
+      "max_new_tokens_match": true,
+      "requested_seeds_available": true,
+      "sentiment_classifier_hash_matches": true,
+      "test_limit_covers_request": true,
+      "test_offset_matches": true,
+      "v1_checkpoint_hash_matches": true,
+      "v1_checkpoint_load_and_forward": true,
+      "v1_source_hashes_match": true
+    },
+    "config_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/config.json",
+    "hashes": {
+      "base_model_config_sha256": "7fccdcfd6622055342a734c663ee0b61ff4fd697f42467595df0bf4448c8c170",
+      "config_sha256": "f1a1d0d3f738c377f32f11aa78362e82347d5e422d345a488cf4bc8efaa41c8f",
+      "outputs_sha256": "35908c060db2a5174eb678273af391813aa828e68bd542d339740a0a3154a240",
+      "report_sha256": "fc955ee8e877badb88149d34b8ef517d7148d5e5f89b7c9bb6259953012752a9",
+      "router_checkpoint_sha256": "bace99153fc4dc3183b36085c292dc532a570a224dd8f5885ff906a07bd1c937",
+      "sentiment_classifier_checkpoint_sha256": "805688de73481b1175b1e06f05a971144dceb7e0064b64a84b78a3685eb3209d"
+    },
+    "outputs_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/per_sample_outputs.jsonl",
+    "pass": true,
+    "report_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/stage7_report.json",
+    "results_dir": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+    "source_hash_checks": {
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/generate.py": true,
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/rad.py": true,
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/utils/logits_processor.py": true
+    },
+    "v1_load_error": null,
+    "v1_validation_selection": {
+      "best_fixed_beta": 30.0,
+      "best_heuristic": "heuristic_linear_decrease",
+      "fixed_beta_grid": [
+        0.0,
+        5.0,
+        10.0,
+        15.0,
+        30.0
+      ],
+      "selection_split": "validation"
+    }
+  },
+  "validation_selection": {
+    "best_fixed_lambda": 1.0,
+    "best_fixed_method": "v2_fixed_lambda_1",
+    "best_heuristic": "heuristic_js",
+    "negative_class_primary": true,
+    "same_average_source": "all validation prompt classes and seeds",
+    "selection_split": "validation",
+    "taro_same_average_lambda": 0.9026586349875045,
+    "v2_same_average_lambda": 0.96741696756954,
+    "validation_records": 1350
+  }
+}

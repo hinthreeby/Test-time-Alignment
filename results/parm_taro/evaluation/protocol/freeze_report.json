@@ -1,0 +1,7 @@
+{
+  "calibration_records": 1000,
+  "protocol_lock": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/evaluation/protocol/protocol_lock.json",
+  "protocol_lock_sha256": "81a465048a6b0a1b7a585ff37c2ca42dd67dd5d90a591225c9ae7603bb05faa7",
+  "status": "PROTOCOL_LOCKED_TEST_NOT_USED",
+  "test_split_used": false
+}

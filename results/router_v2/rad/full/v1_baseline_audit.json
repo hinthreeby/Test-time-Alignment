@@ -1,0 +1,46 @@
+{
+  "base_model_eos_token_id": 50256,
+  "checks": {
+    "base_model_eos_token_id_available": true,
+    "generation_failures_zero": true,
+    "max_new_tokens_match": true,
+    "requested_seeds_available": true,
+    "sentiment_classifier_hash_matches": true,
+    "test_limit_covers_request": true,
+    "test_offset_matches": true,
+    "v1_checkpoint_hash_matches": true,
+    "v1_checkpoint_load_and_forward": true,
+    "v1_source_hashes_match": true
+  },
+  "config_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/config.json",
+  "hashes": {
+    "base_model_config_sha256": "7fccdcfd6622055342a734c663ee0b61ff4fd697f42467595df0bf4448c8c170",
+    "config_sha256": "f1a1d0d3f738c377f32f11aa78362e82347d5e422d345a488cf4bc8efaa41c8f",
+    "outputs_sha256": "35908c060db2a5174eb678273af391813aa828e68bd542d339740a0a3154a240",
+    "report_sha256": "fc955ee8e877badb88149d34b8ef517d7148d5e5f89b7c9bb6259953012752a9",
+    "router_checkpoint_sha256": "bace99153fc4dc3183b36085c292dc532a570a224dd8f5885ff906a07bd1c937",
+    "sentiment_classifier_checkpoint_sha256": "805688de73481b1175b1e06f05a971144dceb7e0064b64a84b78a3685eb3209d"
+  },
+  "outputs_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/per_sample_outputs.jsonl",
+  "pass": true,
+  "report_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/stage7_report.json",
+  "results_dir": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+  "source_hash_checks": {
+    "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/generate.py": true,
+    "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/rad.py": true,
+    "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/utils/logits_processor.py": true
+  },
+  "v1_load_error": null,
+  "v1_validation_selection": {
+    "best_fixed_beta": 30.0,
+    "best_heuristic": "heuristic_linear_decrease",
+    "fixed_beta_grid": [
+      0.0,
+      5.0,
+      10.0,
+      15.0,
+      30.0
+    ],
+    "selection_split": "validation"
+  }
+}

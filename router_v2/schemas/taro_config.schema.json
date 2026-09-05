@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reward-decoding.local/router_v2/taro_config.schema.json",
+  "title": "Router V2 faithful TARO Top-K configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "method_label",
+    "architecture",
+    "activation",
+    "mode",
+    "vocab_size",
+    "top_k",
+    "token_embedding_dim",
+    "hidden_dim",
+    "entropy_weight",
+    "alpha_eps",
+    "initial_alpha",
+    "loss_reduction",
+    "device",
+    "allow_cpu_fallback"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "method_label": {"const": "TARO"},
+    "architecture": {"const": "taro_topk_flatten_tanh"},
+    "activation": {"const": "tanh"},
+    "mode": {
+      "enum": ["taro_topk_nll", "taro_topk_nll_entropy"]
+    },
+    "vocab_size": {"type": "integer", "minimum": 2},
+    "top_k": {"type": "integer", "minimum": 1},
+    "token_embedding_dim": {"type": "integer", "minimum": 1},
+    "hidden_dim": {"const": 128},
+    "entropy_weight": {"type": "number", "minimum": 0},
+    "alpha_eps": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 0.5
+    },
+    "initial_alpha": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 1
+    },
+    "loss_reduction": {"enum": ["mean", "sum"]},
+    "device": {"enum": ["auto", "cuda", "cpu"]},
+    "allow_cpu_fallback": {"type": "boolean"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"mode": {"const": "taro_topk_nll"}},
+        "required": ["mode"]
+      },
+      "then": {
+        "properties": {"entropy_weight": {"const": 0}}
+      }
+    }
+  ]
+}

@@ -27,6 +27,7 @@ METHOD_FILES = {
     "CD-Q-tokenwise": "cdq_tokenwise.json",
     "CD-Q-blockwise": "cdq_blockwise.json",
     "GenARM": "genarm.json",
+    "multi-signal": "multi_signal.jsonl",
 }
 
 BASE_MODELS = {method: "gpt2-large" for method in METHOD_FILES}
@@ -45,6 +46,7 @@ REWARD_MODELS = {
     "CD-Q-tokenwise": "CD-Q prefix scorer",
     "CD-Q-blockwise": "CD-Q prefix scorer",
     "GenARM": "genarm-gpt2-medium-hh",
+    "multi-signal": "multi-signal-gpt2-medium-hh",
 }
 
 BASELINE_FILE = "base.json"
@@ -133,7 +135,15 @@ def load_records(path):
         return []
 
     with path.open("r", encoding="utf-8") as file:
-        data = json.load(file)
+        content = file.read().strip()
+
+    if not content:
+        return []
+
+    try:
+        data = json.loads(content)
+    except json.JSONDecodeError:
+        data = [json.loads(line) for line in content.splitlines() if line.strip()]
 
     if not isinstance(data, list):
         raise ValueError(f"{path} must contain a JSON list.")

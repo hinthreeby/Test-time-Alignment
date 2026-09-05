@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-14T11:58:40+00:00",
+  "workspace_root": "/home/jupyter-iec2024se10/Reward Decoding",
+  "git_head": "55a7678144f408d0e0d318b3a66848ef60eca0f0",
+  "git_worktree_clean": false,
+  "git_status_porcelain_sha256": "f383c1dd940d307bc4812ef404d2cb2318d74882beb7b6bf8f750f2ca57cddca",
+  "hash_algorithm": "sha256",
+  "tree_hash_definition": "SHA-256 of sorted lines: relative_path<TAB>bytes<TAB>file_sha256<LF>",
+  "scope_note": "Current on-disk content baseline. Tree digests include every regular file under each root, including generated artifacts and bytecode.",
+  "read_only_trees": {
+    "router": {
+      "file_count": 100,
+      "total_bytes": 521788719,
+      "tree_sha256": "7b5ceafc493c605eb13346c557ad8f768399fcecfe3dceb6ee1137dbf518b127"
+    },
+    "router/evaluation": {
+      "file_count": 32,
+      "total_bytes": 520908467,
+      "tree_sha256": "1af858c224e2d196af925e047b97f8ec1392db7289670ce97dbea2c0e7482fd9"
+    },
+    "PARM": {
+      "file_count": 156,
+      "total_bytes": 1506962,
+      "tree_sha256": "aef1aa5fbc30816a97c1c1bb82d7dbc6554138f8e1a267630b6498d14a02289e"
+    },
+    "Method/RAD": {
+      "file_count": 110,
+      "total_bytes": 114269650,
+      "tree_sha256": "3012ada626eabd9dc72dfde349cd4ffc7d0041ec0404cb796e253974b2f5de31"
+    },
+    "dataset/RAD_train/amazon_polarity": {
+      "file_count": 14,
+      "total_bytes": 1863162461,
+      "tree_sha256": "8e2baf28258d48e4a22998fcf8fc16c83213a82da3f8923dacb9812137506c64"
+    },
+    "dataset/RAD_train/router_amazon_polarity": {
+      "file_count": 5,
+      "total_bytes": 33903172,
+      "tree_sha256": "8c7f376f8eb06ed920affcd98abb9773832ab1d6239ede8b869ab9a422cfc3ee"
+    },
+    "dataset/router_cache/rad": {
+      "file_count": 2,
+      "total_bytes": 57134618,
+      "tree_sha256": "7922216808b1e4614b982d522b7ac73f0c85c1eaf1006484e09d01f03909a36d"
+    },
+    "dataset/router_train/rad": {
+      "file_count": 2,
+      "total_bytes": 509313,
+      "tree_sha256": "665bef1b2949c45a1ac6d02889ae861723ac16a3e008c809706991c45e4b2ab6"
+    },
+    "dataset/rad_benchmark": {
+      "file_count": 4,
+      "total_bytes": 8717638,
+      "tree_sha256": "46ed6143daa76fc66a5f6f06e1e3901dde36c4c283698d33e3517accca3880a6"
+    }
+  },
+  "volatile_v1_artifacts": {
+    "tree_hash_definition": "SHA-256 of sorted lines relative to each listed root: relative_path<TAB>bytes<TAB>file_sha256<LF>",
+    "/tmp/router_feature_trainval20_short": {
+      "file_count": 7,
+      "total_bytes": 308909,
+      "tree_sha256": "589ca89040b2d86d53290c5da25a177fcac0cc7ba0f5855424f13ad2b7f78b06"
+    },
+    "/tmp/router_train_smoke": {
+      "file_count": 3,
+      "total_bytes": 171238,
+      "tree_sha256": "74ee8585ec64ff4386495e66a002ea0d00cd40bd5899a212c290ba2735827849",
+      "best_checkpoint_sha256": "bace99153fc4dc3183b36085c292dc532a570a224dd8f5885ff906a07bd1c937"
+    }
+  },
+  "critical_files": {
+    "router/model.py": "9e12b46dd890893e0af0c4946b190c20caa83234b85932bd2adbb6dfc59dc284",
+    "router/features.py": "34d9f43e2e86af07b01484ce0603b0b405610c92a04c260cf57203a873e541ea",
+    "router/checkpoint.py": "d8f9a63d746aa17b0164d17d3dd5232af75ed2d0c9d78ccecf0a626007e589ed",
+    "router/training.py": "2e45fda484c4c16016ade090d34de1cc60c1cdb05ed8ab43a8a41d8a0c7f4cd4",
+    "router/scripts/train_router.py": "01333b8a1ffc42cd15dfe8243519aabafe0d462b8a8572494372a3016e257e83",
+    "router/scripts/extract_router_features.py": "5a0f98d3c6b5247b3601cc3ec741a3d52fd3ecee6f649a2d5542fee1a8cd1b32",
+    "router/evaluation/report_run_32tokens/stage7_report.json": "fc955ee8e877badb88149d34b8ef517d7148d5e5f89b7c9bb6259953012752a9",
+    "PARM/README.md": "b67d809ada27cbf0c290cb4f9aa301590f60a9fa5a5227f969bbc6772b12f541",
+    "PARM/code/data/relabel.py": "cf9504e5df853529e73a2405568ef56a916acd34e8f14540314c1a0320c00363",
+    "PARM/code/training/train_pref_arm.py": "5dec6057203dd9a5a6f728355f303bb8e5b39fadfc8a6c5dab5952870d1f147c",
+    "PARM/code/training/pref_arm_trainer.py": "d7be821e41d7d389484904abafe55df09ab8f955449b74c2416302311aab919d",
+    "PARM/code/training/run.sh": "c01d0fc01863c83f31ec2acd0a23427e67176d94ce112da9ec1f111438460c8c",
+    "PARM/code/evaluation/generate_outputs.py": "c990a43c66403fd4e3c0bcdf96b5690e569ad3f3c8920d297b6e7bfcff2c3a41",
+    "PARM/code/evaluation/compute_reward.py": "2393b1622ae8a96be2822688bc6eb8ffb6f0fb7f1b0c5cead92193c850274b76"
+  }
+}

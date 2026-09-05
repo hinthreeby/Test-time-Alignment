@@ -1,0 +1,562 @@
+{
+  "absolute_tolerance": 0.02,
+  "base_model": {
+    "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+    "files": [
+      {
+        "bytes": 718,
+        "path": "config.json",
+        "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+      },
+      {
+        "bytes": 1519984962,
+        "path": "model.safetensors",
+        "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+  },
+  "base_tokenizer": {
+    "bos_token": "<|endoftext|>",
+    "bos_token_id": 50256,
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 50256,
+    "length": 50257,
+    "model_max_length": 1024,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 50256,
+    "padding_side": "right",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium",
+    "semantic_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "unk_token": "<|endoftext|>",
+    "unk_token_id": 50256,
+    "vocab_entries": 50257,
+    "vocab_sha256": "79ff2372d75e36ad401b44e1a72214636dfdcc4ddeeefa498463b0a3b2a5fd76"
+  },
+  "cache_root": "/home/jupyter-iec2024se10/Reward Decoding/dataset/router_v2_cache/rad_smoke",
+  "checks": {
+    "gold_used_as_target_only": true,
+    "independent_base_topk_recomputed": true,
+    "independent_guide_topk_recomputed": true,
+    "online_values_match_cache": false,
+    "shard_hashes_verified": true,
+    "tokenizers_exactly_compatible": true,
+    "topk_selector_received_no_gold": true
+  },
+  "device": "cuda",
+  "guide_model": {
+    "checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+    "files": [
+      {
+        "bytes": 696,
+        "path": "adapter_config.json",
+        "sha256": "46cb575b693ae51f777c45817cd0a420489c651e8ce48ef102f3f9253f197c44"
+      },
+      {
+        "bytes": 12607304,
+        "path": "adapter_model.safetensors",
+        "sha256": "17b0e1b5594bbd7780015434b927d36a6f0f78be370e8cfc966f15e597d4c6dd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter"
+  },
+  "guide_tokenizer": {
+    "bos_token": "<|endoftext|>",
+    "bos_token_id": 50256,
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 50256,
+    "length": 50257,
+    "model_max_length": 1024,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 50256,
+    "padding_side": "right",
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter",
+    "semantic_sha256": "1b4c1548468b67e3d9a015128854c59b2657b5d0c7c8743800355c2341cf05ff",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "unk_token": "<|endoftext|>",
+    "unk_token_id": 50256,
+    "vocab_entries": 50257,
+    "vocab_sha256": "79ff2372d75e36ad401b44e1a72214636dfdcc4ddeeefa498463b0a3b2a5fd76"
+  },
+  "precision": "fp16",
+  "schema_version": 1,
+  "seed": 1729,
+  "splits": {
+    "train": {
+      "base_guide_topk_different_records": 20,
+      "manifest_path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/router_v2_cache/rad_smoke/train/manifest.json",
+      "manifest_sha256": "202d1ac8618c5d76739346d65f26ff874ab3270d1f379addd255c905ea7c359c",
+      "number_shards": 1,
+      "number_source_examples": 20,
+      "number_token_records": 780,
+      "pass": false,
+      "records_audited": 20,
+      "rows": [
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 2233,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 5,
+          "sample_id": "amazon-polarity-positive-00034301"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 2222,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 46,
+          "sample_id": "amazon-polarity-positive-00034301"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 383,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 0,
+          "sample_id": "amazon-polarity-positive-00019605"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 314,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 24,
+          "sample_id": "amazon-polarity-positive-00053961"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.3125,
+          "derived_max_abs_error": 0.0078125,
+          "gold_token_id": 326,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.100433349609375,
+          "pass": false,
+          "position": 38,
+          "sample_id": "amazon-polarity-positive-00053961"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 1.1875,
+          "derived_max_abs_error": 0.007884383201599121,
+          "gold_token_id": 286,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.125,
+          "pass": false,
+          "position": 51,
+          "sample_id": "amazon-polarity-positive-00053961"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 351,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 23,
+          "sample_id": "amazon-polarity-positive-00031036"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 1.0,
+          "gold_token_id": 788,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 27,
+          "sample_id": "amazon-polarity-positive-00045664"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.03125,
+          "gold_token_id": 314,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 33,
+          "sample_id": "amazon-polarity-positive-00045664"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 383,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 29,
+          "sample_id": "amazon-polarity-positive-00034521"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 9640,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.125,
+          "pass": false,
+          "position": 21,
+          "sample_id": "amazon-polarity-positive-00046772"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.004936099052429199,
+          "gold_token_id": 996,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.0,
+          "pass": false,
+          "position": 14,
+          "sample_id": "amazon-polarity-positive-00027340"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 318,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 10,
+          "sample_id": "amazon-polarity-positive-00033321"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.03125,
+          "derived_max_abs_error": 0.015625,
+          "gold_token_id": 284,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.078125,
+          "pass": false,
+          "position": 12,
+          "sample_id": "amazon-polarity-positive-00033321"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 938,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 13,
+          "sample_id": "amazon-polarity-positive-00035447"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 19253,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 6,
+          "sample_id": "amazon-polarity-positive-00002569"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.1875,
+          "derived_max_abs_error": 0.03125,
+          "gold_token_id": 7626,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.09375,
+          "pass": false,
+          "position": 32,
+          "sample_id": "amazon-polarity-positive-00012325"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.015190362930297852,
+          "gold_token_id": 423,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 2,
+          "sample_id": "amazon-polarity-positive-00022045"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.15625,
+          "derived_max_abs_error": 0.03125,
+          "gold_token_id": 314,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 16,
+          "sample_id": "amazon-polarity-positive-00022045"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 22029,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 27,
+          "sample_id": "amazon-polarity-positive-00020069"
+        }
+      ]
+    },
+    "validation": {
+      "base_guide_topk_different_records": 20,
+      "manifest_path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/router_v2_cache/rad_smoke/validation/manifest.json",
+      "manifest_sha256": "79d5af0974eaed50a4ade732c40983c204f5c722f65face3dda6467dca106eb9",
+      "number_shards": 1,
+      "number_source_examples": 20,
+      "number_token_records": 800,
+      "pass": false,
+      "records_audited": 20,
+      "rows": [
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.03125,
+          "gold_token_id": 736,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.09375,
+          "pass": false,
+          "position": 4,
+          "sample_id": "amazon-polarity-positive-00037779"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.75,
+          "derived_max_abs_error": 0.125,
+          "gold_token_id": 340,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.25,
+          "pass": false,
+          "position": 34,
+          "sample_id": "amazon-polarity-positive-00044186"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.03125,
+          "gold_token_id": 770,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 2,
+          "sample_id": "amazon-polarity-positive-00037693"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.09375,
+          "derived_max_abs_error": 0.0078125,
+          "gold_token_id": 11684,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.078125,
+          "pass": false,
+          "position": 18,
+          "sample_id": "amazon-polarity-positive-00037693"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 1438,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 31,
+          "sample_id": "amazon-polarity-positive-00037693"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0,
+          "gold_token_id": 318,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.0,
+          "pass": false,
+          "position": 37,
+          "sample_id": "amazon-polarity-positive-00000431"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0078125,
+          "gold_token_id": 290,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 57,
+          "sample_id": "amazon-polarity-positive-00000431"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.03125,
+          "gold_token_id": 351,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.125,
+          "pass": false,
+          "position": 62,
+          "sample_id": "amazon-polarity-positive-00000431"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.03125,
+          "gold_token_id": 845,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.09375,
+          "pass": false,
+          "position": 17,
+          "sample_id": "amazon-polarity-positive-00040449"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0703125,
+          "derived_max_abs_error": 0.01823878288269043,
+          "gold_token_id": 11,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.328125,
+          "pass": false,
+          "position": 34,
+          "sample_id": "amazon-polarity-positive-00040449"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 318,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.1875,
+          "pass": false,
+          "position": 50,
+          "sample_id": "amazon-polarity-positive-00049178"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.08226001262664795,
+          "gold_token_id": 340,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 2,
+          "sample_id": "amazon-polarity-positive-00045449"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.0078125,
+          "gold_token_id": 13,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.0234375,
+          "pass": false,
+          "position": 17,
+          "sample_id": "amazon-polarity-positive-00045449"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.050000011920928955,
+          "gold_token_id": 9938,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 23,
+          "sample_id": "amazon-polarity-positive-00043986"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.0625,
+          "derived_max_abs_error": 0.03125,
+          "gold_token_id": 1660,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 28,
+          "sample_id": "amazon-polarity-positive-00026707"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.050000011920928955,
+          "gold_token_id": 761,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 50,
+          "sample_id": "amazon-polarity-positive-00026707"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.0625,
+          "gold_token_id": 257,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.0625,
+          "pass": false,
+          "position": 13,
+          "sample_id": "amazon-polarity-positive-00006793"
+        },
+        {
+          "base_ids_match": true,
+          "base_max_abs_logit_error": 0.09375,
+          "derived_max_abs_error": 0.005935311317443848,
+          "gold_token_id": 262,
+          "guide_ids_match": true,
+          "guide_max_abs_logit_error": 0.125,
+          "pass": false,
+          "position": 20,
+          "sample_id": "amazon-polarity-positive-00000481"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.15625,
+          "derived_max_abs_error": 0.0078125,
+          "gold_token_id": 484,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.03125,
+          "pass": false,
+          "position": 18,
+          "sample_id": "amazon-polarity-positive-00024071"
+        },
+        {
+          "base_ids_match": false,
+          "base_max_abs_logit_error": 0.125,
+          "derived_max_abs_error": 0.050000011920928955,
+          "gold_token_id": 655,
+          "guide_ids_match": false,
+          "guide_max_abs_logit_error": 0.046875,
+          "pass": false,
+          "position": 23,
+          "sample_id": "amazon-polarity-positive-00024071"
+        }
+      ]
+    }
+  },
+  "status": "FAIL",
+  "task": "sentiment",
+  "tokenizer_compatibility_checks": {
+    "bos_token_id_equal": true,
+    "eos_token_id_equal": true,
+    "get_vocab_equal": true,
+    "length_equal": true,
+    "pad_token_id_equal": true,
+    "padding_side_equal": true,
+    "probe_decoding_equal": true
+  }
+}

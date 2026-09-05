@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reward-decoding.local/router_v2/smart_router_config.schema.json",
+  "title": "Router V2 feature-conditioned Smart Router configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "method_label",
+    "architecture",
+    "variant",
+    "vocab_size",
+    "top_k",
+    "token_embedding_dim",
+    "candidate_hidden_dim",
+    "candidate_feature_mode",
+    "use_confidence",
+    "use_position",
+    "use_history",
+    "use_preference",
+    "max_position",
+    "history_hidden_dim",
+    "preference_dim",
+    "preference_hidden_dim",
+    "preference_embedding_dim",
+    "fusion_hidden_dim",
+    "fusion_bottleneck_dim",
+    "activation",
+    "lambda_max",
+    "lambda_eps",
+    "initial_gate",
+    "device",
+    "allow_cpu_fallback"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "method_label": {"const": "SMART_ROUTER_V2"},
+    "architecture": {"const": "token_aware_state_router"},
+    "variant": {
+      "enum": [
+        "custom",
+        "v2_topk_confidence",
+        "v2_topk_confidence_position",
+        "v2_topk_state_history",
+        "v2_topk_state_history_alpha"
+      ]
+    },
+    "vocab_size": {"type": "integer", "minimum": 2},
+    "top_k": {"type": "integer", "minimum": 1},
+    "token_embedding_dim": {"type": "integer", "minimum": 1},
+    "candidate_hidden_dim": {"type": "integer", "minimum": 1},
+    "candidate_feature_mode": {
+      "enum": ["disabled", "taro_flatten", "token_aware_mean_max"]
+    },
+    "use_confidence": {"type": "boolean"},
+    "use_position": {"type": "boolean"},
+    "use_history": {"type": "boolean"},
+    "use_preference": {"type": "boolean"},
+    "max_position": {"type": "integer", "minimum": 1},
+    "history_hidden_dim": {"type": "integer", "minimum": 1},
+    "preference_dim": {"type": "integer", "minimum": 1},
+    "preference_hidden_dim": {"type": "integer", "minimum": 1},
+    "preference_embedding_dim": {"type": "integer", "minimum": 1},
+    "fusion_hidden_dim": {"type": "integer", "minimum": 1},
+    "fusion_bottleneck_dim": {"type": "integer", "minimum": 1},
+    "activation": {"enum": ["gelu", "tanh"]},
+    "lambda_max": {"type": "number", "exclusiveMinimum": 0},
+    "lambda_eps": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 0.5
+    },
+    "initial_gate": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 1
+    },
+    "device": {"enum": ["auto", "cuda", "cpu"]},
+    "allow_cpu_fallback": {"type": "boolean"}
+  }
+}

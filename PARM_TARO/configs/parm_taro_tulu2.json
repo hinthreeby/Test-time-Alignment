@@ -1,0 +1,25 @@
+{
+  "allow_cpu_fallback": true,
+  "base_model_path": "models/tulu-2-7b",
+  "device": "auto",
+  "do_sample": false,
+  "guide_vocab_policy": "base_tokenizer_prefix",
+  "max_new_tokens": 64,
+  "method_label": "PARM_TARO",
+  "model_dtype": "float16",
+  "parm_adapter_path": "results/parm_taro/checkpoints/parm_pku_pblora",
+  "preference": [
+    0.5,
+    0.5
+  ],
+  "preference_dim": 2,
+  "router_checkpoint_path": "results/router_v2/training/alpha_parm/best.pt",
+  "router_tokenizer_semantic_sha256": "REQUIRED_AFTER_TRAINING",
+  "schema_version": 1,
+  "seed": 2026,
+  "static_reference_scale": 1.0,
+  "stop_on_eos": true,
+  "temperature": 1.0,
+  "tokenizer_path": "models/tulu-2-7b",
+  "top_k": 20
+}

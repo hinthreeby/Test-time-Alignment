@@ -1,0 +1,238 @@
+{
+  "pku_safe_rlhf": {
+    "cache_ready": false,
+    "expected_schema": {
+      "better_response_id": "int",
+      "is_response_0_safe": "bool",
+      "is_response_1_safe": "bool",
+      "prompt": "str",
+      "response_0": "str",
+      "response_1": "str",
+      "safer_response_id": "int"
+    },
+    "inventory": {
+      "bytes": 1678716,
+      "duplicate_ids": 0,
+      "empty_required": 0,
+      "invalid_json": 0,
+      "missing_required": 0,
+      "observed_key_sets": [
+        [
+          "better_response_id",
+          "is_response_0_safe",
+          "is_response_1_safe",
+          "prompt",
+          "response_0",
+          "response_1",
+          "safer_response_id"
+        ]
+      ],
+      "observed_schema": {
+        "better_response_id": [
+          "int"
+        ],
+        "is_response_0_safe": [
+          "bool"
+        ],
+        "is_response_1_safe": [
+          "bool"
+        ],
+        "prompt": [
+          "str"
+        ],
+        "response_0": [
+          "str"
+        ],
+        "response_1": [
+          "str"
+        ],
+        "safer_response_id": [
+          "int"
+        ]
+      },
+      "path": "dataset/GenARM/PKU-SafeRLHF-10K/round0/train.jsonl.xz",
+      "rows": 10000,
+      "schema_valid": true,
+      "sha256": "f5f42f6f08a1fadbc3fd7c36e627f651782ce0f2f8178361483defa62b79ca06",
+      "type_mismatches": 0
+    },
+    "parm_prerequisites": {
+      "author_base_model": false,
+      "beaver_cost_model": false,
+      "beaver_reward_model": false,
+      "trained_parm_adapter": false
+    },
+    "schema_inventory_complete": true
+  },
+  "protected_v1_cache": {
+    "dataset/router_cache/rad/train.pt": {
+      "bytes": 47781073,
+      "sha256": "2e42ff44efff6edc6de41b7f938dc3fb0e4d362e88b16924ad7359868cc925b5"
+    },
+    "dataset/router_cache/rad/validation.pt": {
+      "bytes": 9353545,
+      "sha256": "a08ff632abfd7ce1473efe8cfc8f129d7a088de43f65e1c04bdd0f09574481dd"
+    }
+  },
+  "rad": {
+    "expected_schema": {
+      "continuation": "str",
+      "id": "str",
+      "label": "int",
+      "prompt": "str",
+      "source": "str",
+      "source_index": "int",
+      "source_split": "str"
+    },
+    "guide_logits_blocker": "The local RAD sentiment checkpoint is a scalar sequence reward model; it does not emit an independent vocabulary-sized guide-logit distribution. Legacy V1 caches contain only base-selected candidate IDs and cannot be converted into faithful independent Top-K guide features.",
+    "guide_logits_ready": false,
+    "source_ready": true,
+    "split_id_overlap": {
+      "train_dev": 0,
+      "train_validation": 0,
+      "validation_dev": 0
+    },
+    "splits": {
+      "dev": {
+        "bytes": 255724,
+        "duplicate_ids": 0,
+        "empty_required": 0,
+        "invalid_json": 0,
+        "missing_required": 0,
+        "observed_key_sets": [
+          [
+            "continuation",
+            "id",
+            "label",
+            "prompt",
+            "source",
+            "source_index",
+            "source_split"
+          ]
+        ],
+        "observed_schema": {
+          "continuation": [
+            "str"
+          ],
+          "id": [
+            "str"
+          ],
+          "label": [
+            "int"
+          ],
+          "prompt": [
+            "str"
+          ],
+          "source": [
+            "str"
+          ],
+          "source_index": [
+            "int"
+          ],
+          "source_split": [
+            "str"
+          ]
+        },
+        "path": "dataset/RAD_train/router_amazon_polarity/dev.jsonl",
+        "rows": 500,
+        "schema_valid": true,
+        "sha256": "da38aa8f9760f355d605b0774bfa043692bc4afd1ad30e39bd15b417c4e0a691",
+        "type_mismatches": 0
+      },
+      "train": {
+        "bytes": 10011927,
+        "duplicate_ids": 0,
+        "empty_required": 0,
+        "invalid_json": 0,
+        "missing_required": 0,
+        "observed_key_sets": [
+          [
+            "continuation",
+            "id",
+            "label",
+            "prompt",
+            "source",
+            "source_index",
+            "source_split"
+          ]
+        ],
+        "observed_schema": {
+          "continuation": [
+            "str"
+          ],
+          "id": [
+            "str"
+          ],
+          "label": [
+            "int"
+          ],
+          "prompt": [
+            "str"
+          ],
+          "source": [
+            "str"
+          ],
+          "source_index": [
+            "int"
+          ],
+          "source_split": [
+            "str"
+          ]
+        },
+        "path": "dataset/RAD_train/router_amazon_polarity/train.jsonl",
+        "rows": 20000,
+        "schema_valid": true,
+        "sha256": "92486a32e7c451422682afdd3d0c55a47a3016cc977542cb600a6172937c924b",
+        "type_mismatches": 0
+      },
+      "validation": {
+        "bytes": 994884,
+        "duplicate_ids": 0,
+        "empty_required": 0,
+        "invalid_json": 0,
+        "missing_required": 0,
+        "observed_key_sets": [
+          [
+            "continuation",
+            "id",
+            "label",
+            "prompt",
+            "source",
+            "source_index",
+            "source_split"
+          ]
+        ],
+        "observed_schema": {
+          "continuation": [
+            "str"
+          ],
+          "id": [
+            "str"
+          ],
+          "label": [
+            "int"
+          ],
+          "prompt": [
+            "str"
+          ],
+          "source": [
+            "str"
+          ],
+          "source_index": [
+            "int"
+          ],
+          "source_split": [
+            "str"
+          ]
+        },
+        "path": "dataset/RAD_train/router_amazon_polarity/validation.jsonl",
+        "rows": 2000,
+        "schema_valid": true,
+        "sha256": "70ee7d2fa35e311f4e0fa4a493564a9188313586668d2986c4e9038eaccac3fd",
+        "type_mismatches": 0
+      }
+    }
+  },
+  "schema_version": 1,
+  "workspace": "/home/jupyter-iec2024se10/Reward Decoding"
+}

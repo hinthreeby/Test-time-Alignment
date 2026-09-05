@@ -1,0 +1,45 @@
+{
+  "checks": {
+    "base_model_present": true,
+    "frozen_two_objective_pblora_present": true,
+    "parm_tree_matches_baseline": true,
+    "router_config_present": true,
+    "shared_backbone_compatible": true,
+    "stage8_data_valid": true,
+    "tokenizer_present": true
+  },
+  "details": {
+    "data": {
+      "manifest": "/home/jupyter-iec2024se10/Reward Decoding/dataset/parm_taro/manifest.json",
+      "records": 10000,
+      "split_counts": {
+        "test": 1500,
+        "train": 8000,
+        "validation": 500
+      }
+    },
+    "parm_adapter": {
+      "guide_base_model": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
+      "obj_num": 2,
+      "peft_type": "PBLORA"
+    },
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "paths": {
+      "base_model": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
+      "data_root": "/home/jupyter-iec2024se10/Reward Decoding/dataset/parm_taro",
+      "output_dir": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/taro",
+      "parm_adapter": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora",
+      "router_config": "/home/jupyter-iec2024se10/Reward Decoding/PARM_TARO/configs/router_taro_tulu2.json",
+      "tokenizer": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b"
+    }
+  },
+  "ready": true,
+  "schema_version": 1,
+  "stage": 9,
+  "status": "READY"
+}

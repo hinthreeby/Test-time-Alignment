@@ -1,0 +1,694 @@
+{
+  "architecture": {
+    "alpha_path": "normalized_alpha_state_pre_sigmoid_residual",
+    "base": "Pilot V2 SmartTokenRouter",
+    "hard_coded_alpha_to_lambda": false
+  },
+  "calibration": {
+    "alpha_path_gradient_norms_used_for_sensitivity_calibration": {
+      "logit_sensitivity": 1.3521555483651428,
+      "preference": 0.3135973964778155
+    },
+    "lambda_floor": 0.01,
+    "minimum_logit_delta": 0.16899070706036579,
+    "pairwise_logit_scale": 50.0,
+    "raw_gradient_norms": {
+      "logit_sensitivity": {
+        "all_router": {
+          "count": 16,
+          "max": 1.4140774785631551,
+          "mean": 1.3999778035922494,
+          "min": 1.3779677698075357,
+          "std": 0.009707377483922263
+        },
+        "alpha_residual": {
+          "count": 16,
+          "max": 1.3493554592132568,
+          "mean": 1.3429529145359993,
+          "min": 1.3347214460372925,
+          "std": 0.0038740180688670313
+        },
+        "final_lambda_head": {
+          "count": 16,
+          "max": 0.3866969347000122,
+          "mean": 0.35023519955575466,
+          "min": 0.2949947118759155,
+          "std": 0.023183411365956724
+        },
+        "fusion_layers": {
+          "count": 16,
+          "max": 0.09730619937181473,
+          "mean": 0.09151402208954096,
+          "min": 0.084670789539814,
+          "std": 0.003167691289248628
+        },
+        "preference_encoder": {
+          "count": 16,
+          "max": 0.1612408459186554,
+          "mean": 0.1574868131428957,
+          "min": 0.1517934501171112,
+          "std": 0.002493335580438091
+        },
+        "state_router_rest": {
+          "count": 16,
+          "max": 0.010688185691833496,
+          "mean": 0.009947307175025344,
+          "min": 0.00903116725385189,
+          "std": 0.0005167379164998247
+        }
+      },
+      "nll": {
+        "all_router": {
+          "count": 16,
+          "max": 2.592654815185907,
+          "mean": 0.5059659764972594,
+          "min": 0.014057684789305793,
+          "std": 0.8088957352523999
+        },
+        "alpha_residual": {
+          "count": 16,
+          "max": 0.40459656715393066,
+          "mean": 0.08192300861992408,
+          "min": 0.0017022734973579645,
+          "std": 0.12451193096881795
+        },
+        "final_lambda_head": {
+          "count": 16,
+          "max": 2.5364675521850586,
+          "mean": 0.49430183635558933,
+          "min": 0.013294102624058723,
+          "std": 0.7918273789932733
+        },
+        "fusion_layers": {
+          "count": 16,
+          "max": 0.346853643655777,
+          "mean": 0.06867352058179677,
+          "min": 0.0038964292034506798,
+          "std": 0.10739486781253979
+        },
+        "preference_encoder": {
+          "count": 16,
+          "max": 0.023761775344610214,
+          "mean": 0.004704120099177089,
+          "min": 8.68833958520554e-05,
+          "std": 0.007312963387042057
+        },
+        "state_router_rest": {
+          "count": 16,
+          "max": 0.06017385795712471,
+          "mean": 0.01138419420021819,
+          "min": 0.0016726902686059475,
+          "std": 0.017873385828932272
+        }
+      },
+      "preference": {
+        "all_router": {
+          "count": 16,
+          "max": 7.766847110536248,
+          "mean": 1.8243605754438437,
+          "min": 9.420699027512023e-07,
+          "std": 2.030092780138705
+        },
+        "alpha_residual": {
+          "count": 16,
+          "max": 1.3371105194091797,
+          "mean": 0.31315575139514173,
+          "min": 1.640857760776271e-07,
+          "std": 0.3411407605277537
+        },
+        "final_lambda_head": {
+          "count": 16,
+          "max": 7.574719429016113,
+          "mean": 1.7750509093106892,
+          "min": 9.172576369564922e-07,
+          "std": 1.9841344562387153
+        },
+        "fusion_layers": {
+          "count": 16,
+          "max": 1.0623829364776611,
+          "mean": 0.2635287615506625,
+          "min": 1.3565822598593513e-07,
+          "std": 0.26987262189854894
+        },
+        "preference_encoder": {
+          "count": 16,
+          "max": 0.06487567722797394,
+          "mean": 0.016637380978038074,
+          "min": 9.561948566272349e-09,
+          "std": 0.017406197373524206
+        },
+        "state_router_rest": {
+          "count": 16,
+          "max": 0.16373366117477417,
+          "mean": 0.053391903273259156,
+          "min": 2.6747001058424758e-08,
+          "std": 0.04266470788124223
+        }
+      },
+      "strength": {
+        "all_router": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "alpha_residual": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "final_lambda_head": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "fusion_layers": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "preference_encoder": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "state_router_rest": {
+          "count": 16,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        }
+      }
+    },
+    "samples": 16,
+    "sensitivity_weight_hit_cap": false,
+    "weights": {
+      "logit_sensitivity": 0.23192405404613262,
+      "nll_quality_phase": 0.25,
+      "nll_warmup_phase": 0.0,
+      "preference": 1.0,
+      "strength": 1.0
+    }
+  },
+  "checkpoint": {
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference_pilot_v3/pilot_final.pt",
+    "sha256": "92a0cd7675bc7e9071cd43f5f0dbb8444fdd55b6da9cfdb4dfcc9829a80f66ed"
+  },
+  "checks": {
+    "alpha_path_diagnostic_pass": true,
+    "alpha_residual_gradient_nonzero": true,
+    "constant_alpha_differs_materially": true,
+    "correct_alpha_changes_lambda_materially": true,
+    "frozen_artifacts_unchanged": true,
+    "lambda_not_collapsed": true,
+    "nll_reasonable_vs_no_alpha": true,
+    "pilot_v2_preserved_not_pass": true,
+    "preference_encoder_gradient_nonzero": true,
+    "preference_loss_improved": true,
+    "router_gradient_nonzero": true,
+    "shuffled_alpha_changes_lambda_materially": true,
+    "shuffled_preference_loss_degrades": true,
+    "test_split_unused": true
+  },
+  "config": {
+    "allow_cpu_fallback": false,
+    "base_training_config_path": "PARM_TARO/configs/train_stage9_v2_alpha.json",
+    "calibration_samples": 16,
+    "device": "cuda",
+    "freeze_state_router_during_warmup": true,
+    "gradient_accumulation_steps": 4,
+    "learning_rate": 0.0001,
+    "log_every_optimizer_steps": 10,
+    "logit_sensitivity_gradient_target_ratio": 1.0,
+    "max_grad_norm": 1.0,
+    "max_logit_sensitivity_weight": 100.0,
+    "max_nll_degradation_vs_no_alpha": 0.05,
+    "max_nll_weight": 0.25,
+    "max_train_samples": 256,
+    "max_validation_samples": 50,
+    "method_label": "PARM_TARO_ALPHA_PREFERENCE_PILOT_V3",
+    "min_control_lambda_delta": 0.001,
+    "min_mean_lambda": 0.005,
+    "nll_gradient_target_ratio": 0.25,
+    "no_alpha_checkpoint": "results/parm_taro/training/v2_no_alpha/best.pt",
+    "output_dir": "results/parm_taro/training/v2_alpha_preference_pilot_v3",
+    "pilot_v2_checkpoint_path": "results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_final.pt",
+    "pilot_v2_report_path": "results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_report.json",
+    "preference_weight": 1.0,
+    "quality_epochs": 1,
+    "require_shuffled_preference_degradation": true,
+    "required_alpha_path_diagnostic": "PARM_TARO/reports/stage9_alpha_path_v2_diagnostic.json",
+    "residual_hidden_dim": 32,
+    "residual_output_weight_std": 0.01,
+    "schema_version": 1,
+    "seed": 2026,
+    "strength_weight": 1.0,
+    "warmup_epochs": 1,
+    "weight_decay": 0.0
+  },
+  "diagnostic_conclusion": {
+    "preference_numerically_drowned": true,
+    "root_cause": "preference contribution is small relative to state fusion; sigmoid compression attenuates the expressed logit delta; lambda-space sensitivity spends most gradient on the shared final head instead of a dedicated alpha pathway.",
+    "sensitivity_loss_implementation_correct": true,
+    "sigmoid_compression_contributes": true
+  },
+  "full_retraining_started": false,
+  "method_label": "PARM_TARO_ALPHA_PREFERENCE_PILOT_V3",
+  "protected_after": {
+    "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+      "files": [
+        {
+          "bytes": 521,
+          "path": "adapter_config.json",
+          "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+        },
+        {
+          "bytes": 25233088,
+          "path": "adapter_model.safetensors",
+          "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+    },
+    "read_only_inputs": {
+      "PARM_TARO/reports/stage9_alpha_path_v2_diagnostic.json": "5bc4d140be401ab88f3508f83ad00f9bfb89cfef2cf42da9cfee629ad65e83af",
+      "results/parm_taro/training/v2_alpha_preference_pilot/pilot_final.pt": "dcd58c423cab971674c995d282b3f5388a3bca6295e3794eea3963d6e975b5ca",
+      "results/parm_taro/training/v2_alpha_preference_pilot/pilot_report.json": "c0555716c1c1aaf0e523f284c84de8aa2dd094f7c5402e26d2439f79be15c917",
+      "results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_final.pt": "e40c49849cb2b9868d721c064e036202e2843e3f6678aca37df7cfcd71ed3eab",
+      "results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_report.json": "300d2291a3918a957c69a5eb32275f476d257836d1f885d9e99498cf7e6857d9",
+      "results/parm_taro/training/v2_no_alpha/best.pt": "ea5cf0e7b33ccdef1f4882afba0679a09feaaf2b27c8a8bc12ad7c058cb0d7e3"
+    }
+  },
+  "protected_before": {
+    "data_manifest_sha256": "dff8b3ff4762d1c864763e365188df4efb8a52adb02309cf2d5712deb423e564",
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "checkpoint_sha256": "002b6fb7ca107a3c7ca1eb511c6c946f41e4adcf362f5eedf12b09aaeb1d172f",
+      "files": [
+        {
+          "bytes": 521,
+          "path": "adapter_config.json",
+          "sha256": "a32ef80e2d487abee84a10cf1d87ea9da2aa15636f4eec61050f35c08f4aa69e"
+        },
+        {
+          "bytes": 25233088,
+          "path": "adapter_model.safetensors",
+          "sha256": "1012790985d4eeb5229efa75a5cdee124fdf526ff226ddb239d1a2d29018ac93"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora"
+    },
+    "read_only_inputs": {
+      "PARM_TARO/reports/stage9_alpha_path_v2_diagnostic.json": "5bc4d140be401ab88f3508f83ad00f9bfb89cfef2cf42da9cfee629ad65e83af",
+      "results/parm_taro/training/v2_alpha_preference_pilot/pilot_final.pt": "dcd58c423cab971674c995d282b3f5388a3bca6295e3794eea3963d6e975b5ca",
+      "results/parm_taro/training/v2_alpha_preference_pilot/pilot_report.json": "c0555716c1c1aaf0e523f284c84de8aa2dd094f7c5402e26d2439f79be15c917",
+      "results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_final.pt": "e40c49849cb2b9868d721c064e036202e2843e3f6678aca37df7cfcd71ed3eab",
+      "results/parm_taro/training/v2_alpha_preference_pilot_v2/pilot_report.json": "300d2291a3918a957c69a5eb32275f476d257836d1f885d9e99498cf7e6857d9",
+      "results/parm_taro/training/v2_no_alpha/best.pt": "ea5cf0e7b33ccdef1f4882afba0679a09feaaf2b27c8a8bc12ad7c058cb0d7e3"
+    }
+  },
+  "schema_version": 1,
+  "stage": 9,
+  "status": "PASS",
+  "training_phases": [
+    {
+      "alpha_path_only": true,
+      "alpha_residual_gradient_nonzero": true,
+      "metrics": {
+        "endpoint_lambda_delta": {
+          "count": 256,
+          "max": 0.0035602443385869265,
+          "mean": 0.002491471306711901,
+          "min": 0.0015268526040017605,
+          "std": 0.0005706945719322593
+        },
+        "endpoint_logit_delta": {
+          "count": 256,
+          "max": 0.12139733135700226,
+          "mean": 0.08336682360095438,
+          "min": 0.04985158145427704,
+          "std": 0.020273373084655842
+        },
+        "logit_sensitivity_loss": {
+          "count": 256,
+          "max": 0.11913913488388062,
+          "mean": 0.08562387776328251,
+          "min": 0.0475933738052845,
+          "std": 0.020273373060082367
+        },
+        "mean_lambda": {
+          "count": 256,
+          "max": 0.032074883580207825,
+          "mean": 0.03110035159625113,
+          "min": 0.030621718615293503,
+          "std": 0.000405846033581342
+        },
+        "nll": {
+          "count": 256,
+          "max": 6.6984686851501465,
+          "mean": 1.91096611157991,
+          "min": 0.7750354409217834,
+          "std": 0.6257204240620964
+        },
+        "preference_loss": {
+          "count": 256,
+          "max": 19.19322395324707,
+          "mean": 0.8225135011211153,
+          "min": 5.393832491762396e-09,
+          "std": 1.5449908290219663
+        },
+        "strength_loss": {
+          "count": 256,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "total_loss": {
+          "count": 256,
+          "max": 19.217788696289062,
+          "mean": 0.8423717400546593,
+          "min": 0.013808568008244038,
+          "std": 1.5451859652551219
+        },
+        "weighted_guidance_gain": {
+          "count": 256,
+          "max": 0.38076019287109375,
+          "mean": 0.009414731715168045,
+          "min": -0.38386446237564087,
+          "std": 0.05489052363436435
+        }
+      },
+      "name": "normalized_alpha_residual_warmup",
+      "nll_weight": 0.0,
+      "optimizer_steps": 64,
+      "preference_encoder_gradient_nonzero": true,
+      "router_gradient_nonzero": true,
+      "samples_used": 256,
+      "skipped_sample_ids": []
+    },
+    {
+      "alpha_path_only": false,
+      "alpha_residual_gradient_nonzero": true,
+      "metrics": {
+        "endpoint_lambda_delta": {
+          "count": 256,
+          "max": 0.00528690917417407,
+          "mean": 0.004349285350144783,
+          "min": 0.0035131582990288734,
+          "std": 0.0004787261046045453
+        },
+        "endpoint_logit_delta": {
+          "count": 256,
+          "max": 0.20590104162693024,
+          "mean": 0.17100957862567157,
+          "min": 0.12036896497011185,
+          "std": 0.025996373117390826
+        },
+        "logit_sensitivity_loss": {
+          "count": 256,
+          "max": 0.04862172156572342,
+          "mean": 0.010998069170853775,
+          "min": 0.0,
+          "std": 0.01480876863700251
+        },
+        "mean_lambda": {
+          "count": 256,
+          "max": 0.02935352548956871,
+          "mean": 0.02664911295141792,
+          "min": 0.023313935846090317,
+          "std": 0.0018312036736493607
+        },
+        "nll": {
+          "count": 256,
+          "max": 5.933371543884277,
+          "mean": 1.8831579117104411,
+          "min": 0.7767739295959473,
+          "std": 0.5096576206867064
+        },
+        "preference_loss": {
+          "count": 256,
+          "max": 13.451825141906738,
+          "mean": 0.761972850545121,
+          "min": 4.498030908243328e-14,
+          "std": 1.1547670214237382
+        },
+        "strength_loss": {
+          "count": 256,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "total_loss": {
+          "count": 256,
+          "max": 14.7162446975708,
+          "mean": 1.2353130487026647,
+          "min": 0.2629867494106293,
+          "std": 1.2366724682637003
+        },
+        "weighted_guidance_gain": {
+          "count": 256,
+          "max": 0.6146510243415833,
+          "mean": 0.010424278684916799,
+          "min": -0.2690364718437195,
+          "std": 0.05858842718382626
+        }
+      },
+      "name": "alpha_residual_plus_nll_quality",
+      "nll_weight": 0.25,
+      "optimizer_steps": 64,
+      "preference_encoder_gradient_nonzero": true,
+      "router_gradient_nonzero": true,
+      "samples_used": 256,
+      "skipped_sample_ids": []
+    }
+  ],
+  "validation_after": {
+    "constant_nll": {
+      "count": 250,
+      "max": 2.7853200435638428,
+      "mean": 1.8277778553962707,
+      "min": 1.1114189624786377,
+      "std": 0.31092562460692796
+    },
+    "constant_preference_loss": {
+      "count": 250,
+      "max": 4.858986854553223,
+      "mean": 0.6476268581570112,
+      "min": 9.667428457760252e-06,
+      "std": 0.5072828518683161
+    },
+    "constant_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.23093485832214355,
+      "mean": 0.01068405270576477,
+      "min": -0.09702396392822266,
+      "std": 0.03328127822883773
+    },
+    "correct_lambda": {
+      "count": 39070,
+      "max": 0.030474547296762466,
+      "mean": 0.025948846712708473,
+      "min": 0.021578878164291382,
+      "std": 0.001954946666955948
+    },
+    "correct_nll": {
+      "count": 250,
+      "max": 2.7980220317840576,
+      "mean": 1.8277768940925598,
+      "min": 1.1119384765625,
+      "std": 0.3111192539287098
+    },
+    "correct_preference_loss": {
+      "count": 250,
+      "max": 4.379144191741943,
+      "mean": 0.6420878378171329,
+      "min": 3.0279759812401608e-05,
+      "std": 0.492365399696965
+    },
+    "correct_vs_constant_lambda_delta": {
+      "count": 39070,
+      "max": 0.003052596002817154,
+      "mean": 0.0016521146557681664,
+      "min": 0.0,
+      "std": 0.0009343227233121323
+    },
+    "correct_vs_shuffled_lambda_delta": {
+      "count": 39070,
+      "max": 0.005811827257275581,
+      "mean": 0.0020278666253788777,
+      "min": 0.0007405169308185577,
+      "std": 0.0015574958032354758
+    },
+    "correct_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2081003189086914,
+      "mean": 0.010949528455734252,
+      "min": -0.08733057975769043,
+      "std": 0.032837108637973914
+    },
+    "endpoint_alpha_lambda_delta": {
+      "count": 39070,
+      "max": 0.0058419182896614075,
+      "mean": 0.005066306589756257,
+      "min": 0.0044823382049798965,
+      "std": 0.0002350657132054356
+    },
+    "no_alpha_nll": {
+      "count": 250,
+      "max": 2.636340379714966,
+      "mean": 1.8131278162002564,
+      "min": 1.1051424741744995,
+      "std": 0.2971322774488163
+    },
+    "shuffled_nll": {
+      "count": 250,
+      "max": 2.7916371822357178,
+      "mean": 1.8278370447158814,
+      "min": 1.1114189624786377,
+      "std": 0.3109357174662575
+    },
+    "shuffled_preference_loss": {
+      "count": 250,
+      "max": 5.393804550170898,
+      "mean": 0.6514671182443154,
+      "min": 2.7162357127963332e-06,
+      "std": 0.5347854251050534
+    },
+    "shuffled_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.25632524490356445,
+      "mean": 0.010710206985473633,
+      "min": -0.10778498649597168,
+      "std": 0.03381227181928737
+    },
+    "skipped_sample_ids": [],
+    "tasks": 250
+  },
+  "validation_before": {
+    "constant_nll": {
+      "count": 250,
+      "max": 2.830864667892456,
+      "mean": 1.8322105445861816,
+      "min": 1.1134055852890015,
+      "std": 0.3153434590671774
+    },
+    "constant_preference_loss": {
+      "count": 250,
+      "max": 6.050472259521484,
+      "mean": 0.6683824828231864,
+      "min": 7.224498403957114e-07,
+      "std": 0.6289860999670024
+    },
+    "constant_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.28281235694885254,
+      "mean": 0.013395334482192994,
+      "min": -0.12096226215362549,
+      "std": 0.04116119838249106
+    },
+    "correct_lambda": {
+      "count": 39070,
+      "max": 0.034711532294750214,
+      "mean": 0.031643904745578766,
+      "min": 0.02929569222033024,
+      "std": 0.0007121222442947328
+    },
+    "correct_nll": {
+      "count": 250,
+      "max": 2.833949089050293,
+      "mean": 1.832161105632782,
+      "min": 1.1135631799697876,
+      "std": 0.3153669686262245
+    },
+    "correct_preference_loss": {
+      "count": 250,
+      "max": 5.858866214752197,
+      "mean": 0.6661193857208223,
+      "min": 1.1122070873170742e-06,
+      "std": 0.6211675145845923
+    },
+    "correct_vs_constant_lambda_delta": {
+      "count": 39070,
+      "max": 0.0011326298117637634,
+      "mean": 0.0004802907104569382,
+      "min": 0.0,
+      "std": 0.00030165349219557665
+    },
+    "correct_vs_shuffled_lambda_delta": {
+      "count": 39070,
+      "max": 0.00208200141787529,
+      "mean": 0.0006163185943868693,
+      "min": 0.00014209747314453125,
+      "std": 0.0004823157155526133
+    },
+    "correct_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2741832733154297,
+      "mean": 0.013458210945129395,
+      "min": -0.11712014675140381,
+      "std": 0.040900197709833934
+    },
+    "endpoint_alpha_lambda_delta": {
+      "count": 39070,
+      "max": 0.00208200141787529,
+      "mean": 0.0015380943982568976,
+      "min": 0.0009812712669372559,
+      "std": 0.0002328748469668137
+    },
+    "no_alpha_nll": {
+      "count": 250,
+      "max": 2.636340379714966,
+      "mean": 1.8131278162002564,
+      "min": 1.1051424741744995,
+      "std": 0.2971322774488163
+    },
+    "shuffled_nll": {
+      "count": 250,
+      "max": 2.830864667892456,
+      "mean": 1.8321789727210998,
+      "min": 1.1134055852890015,
+      "std": 0.31530373635547443
+    },
+    "shuffled_preference_loss": {
+      "count": 250,
+      "max": 6.209662914276123,
+      "mean": 0.6692649852637346,
+      "min": 5.068317250334076e-07,
+      "std": 0.636273756837542
+    },
+    "shuffled_weighted_guidance_gain": {
+      "count": 250,
+      "max": 0.2899017333984375,
+      "mean": 0.013375216245651245,
+      "min": -0.1241530179977417,
+      "std": 0.041194198839949646
+    },
+    "skipped_sample_ids": [],
+    "tasks": 250
+  }
+}

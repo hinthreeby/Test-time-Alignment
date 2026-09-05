@@ -1,0 +1,363 @@
+{
+  "checks": {
+    "adaptive_lambdas_nonconstant": true,
+    "all_primary_metrics_finite": true,
+    "generation_length_at_least_32": true,
+    "no_failed_generations": true,
+    "protected_artifacts_unchanged": true,
+    "required_methods_complete": true,
+    "same_average_controls_present": true,
+    "stage5_checkpoints_pass": true,
+    "v1_provenance_pass": true
+  },
+  "output_hashes": {
+    "aggregate_metrics.csv": "8091318011c6d2e5e5e6460df49decd689a2a095b27ff50799bdeb19414a2ff7",
+    "lambda_diagnostics.csv": "d488f9e19945e7fcb2245f2fe08c0cf94d937244a1c27478175d7634c1c4a2d5",
+    "pareto_points.csv": "d3b23d2093c146f21316cc6bcead9fdd42a0b24200ada2041f60e24d2bca8c79",
+    "per_sample_metrics.csv": "8d90f686aa3de9916450f4ab20a51553971bf33df954f78d75b69bfd5e1e0e24",
+    "per_sample_outputs.jsonl": "424be82cd802250277bd47575d8c02cec42055991f38e4a6793824ab47f58748",
+    "validation_outputs.jsonl": "abe73464dda03e39d42b16ae169ed18aefb34939eceaa38f887b828ca0771125"
+  },
+  "pareto_points": [
+    {
+      "alignment": 0.0,
+      "coherence": 0.5916666666666667,
+      "latency_per_token": 0.04562399265705608,
+      "method": "taro",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.370080097031049,
+      "ppl_degradation": -0.17915932017047614,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.0015805371513124555
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.5916666666666667,
+      "latency_per_token": 0.04545047714054817,
+      "method": "taro_same_average",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.370080097031049,
+      "ppl_degradation": -0.17915932017047614,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.0015805379953235388
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.6189839572192514,
+      "latency_per_token": 0.036081876438402105,
+      "method": "v1_base",
+      "method_family": "v1_rad_scalar_reward",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 10.84873628616333,
+      "ppl_degradation": 0.0,
+      "ppl_model_family": "v1_gpt2_large_full_sequence",
+      "target_probability": 0.003286775929154828
+    },
+    {
+      "alignment": 1.0,
+      "coherence": 0.5654761904761905,
+      "latency_per_token": 0.03673299446927558,
+      "method": "v1_fixed",
+      "method_family": "v1_rad_scalar_reward",
+      "pareto_frontier_alignment_vs_ppl_degradation": 1,
+      "perplexity": 17.42023229598999,
+      "ppl_degradation": 0.5485620232707155,
+      "ppl_model_family": "v1_gpt2_large_full_sequence",
+      "target_probability": 0.9987914264202118
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.6525735294117647,
+      "latency_per_token": 0.023277791138752946,
+      "method": "v1_heuristic",
+      "method_family": "v1_rad_scalar_reward",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 9.885297060012817,
+      "ppl_degradation": -0.09844740331663399,
+      "ppl_model_family": "v1_gpt2_large_full_sequence",
+      "target_probability": 0.0033764289983082563
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.5850202429149798,
+      "latency_per_token": 0.03579508623442962,
+      "method": "v1_router",
+      "method_family": "v1_rad_scalar_reward",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 10.35008430480957,
+      "ppl_degradation": -0.012957884302002926,
+      "ppl_model_family": "v1_gpt2_large_full_sequence",
+      "target_probability": 0.0012987098307348788
+    },
+    {
+      "alignment": 0.5,
+      "coherence": 0.5563725490196079,
+      "latency_per_token": 0.01466566774979583,
+      "method": "v2_base",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 1,
+      "perplexity": 5.578625448755924,
+      "ppl_degradation": 0.0,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.49994844116736203
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.6166666666666667,
+      "latency_per_token": 0.04549464695446659,
+      "method": "v2_fixed",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 1,
+      "perplexity": 3.7230946725225778,
+      "ppl_degradation": -0.2746388136503126,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.007323808153159916
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.6166666666666667,
+      "latency_per_token": 0.04669074293997255,
+      "method": "v2_heuristic",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 3.8476206154162487,
+      "ppl_degradation": -0.24398694741243232,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.007466631126590073
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.5916666666666667,
+      "latency_per_token": 0.05381347231377731,
+      "method": "v2_history",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.370080097031049,
+      "ppl_degradation": -0.17915932017047614,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.0015805379953235388
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.5916666666666667,
+      "latency_per_token": 0.04538729390696972,
+      "method": "v2_same_average",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.370080097031049,
+      "ppl_degradation": -0.17915932017047614,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.001580538577400148
+    },
+    {
+      "alignment": 0.0,
+      "coherence": 0.5916666666666667,
+      "latency_per_token": 0.047221832046489,
+      "method": "v2_state",
+      "method_family": "v2_autoregressive_sentiment_guide",
+      "pareto_frontier_alignment_vs_ppl_degradation": 0,
+      "perplexity": 4.370080097031049,
+      "ppl_degradation": -0.17915932017047614,
+      "ppl_model_family": "v2_gpt2_medium_conditional",
+      "target_probability": 0.0015805382281541824
+    }
+  ],
+  "parm_readiness": {
+    "no_lambda_collapse": true,
+    "ready_for_parm_review": true,
+    "stable": true
+  },
+  "protected_audit": {
+    "after": {
+      "method_rad": {
+        "file_count": 110,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD",
+        "total_bytes": 114269650,
+        "tree_sha256": "e0c8907885b80cde9c12f0e1f6e3134b0781e811ee8edafb9f0d690988d36bbe"
+      },
+      "parm": {
+        "file_count": 156,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+        "total_bytes": 1506962,
+        "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+      },
+      "rad_benchmark": {
+        "file_count": 4,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark",
+        "total_bytes": 8717638,
+        "tree_sha256": "a44b060fd427368917ce1fe68b09fd94f1710c32bd4e38484a386ed4f695ed88"
+      },
+      "router_v1": {
+        "file_count": 100,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/router",
+        "total_bytes": 521788719,
+        "tree_sha256": "8595fb3e48c2b1771a07a6efba09c29560785a581d5490f582286c58fbf5ffd3"
+      },
+      "v1_results": {
+        "file_count": 14,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+        "total_bytes": 516707263,
+        "tree_sha256": "e3f4d6d9f5fcb5797cf0ed61ae3fe8890c41f53aba4ba2eee3730fac691afa07"
+      }
+    },
+    "before": {
+      "method_rad": {
+        "file_count": 110,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD",
+        "total_bytes": 114269650,
+        "tree_sha256": "e0c8907885b80cde9c12f0e1f6e3134b0781e811ee8edafb9f0d690988d36bbe"
+      },
+      "parm": {
+        "file_count": 156,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+        "total_bytes": 1506962,
+        "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+      },
+      "rad_benchmark": {
+        "file_count": 4,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/rad_benchmark",
+        "total_bytes": 8717638,
+        "tree_sha256": "a44b060fd427368917ce1fe68b09fd94f1710c32bd4e38484a386ed4f695ed88"
+      },
+      "router_v1": {
+        "file_count": 100,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/router",
+        "total_bytes": 521788719,
+        "tree_sha256": "8595fb3e48c2b1771a07a6efba09c29560785a581d5490f582286c58fbf5ffd3"
+      },
+      "v1_results": {
+        "file_count": 14,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+        "total_bytes": 516707263,
+        "tree_sha256": "e3f4d6d9f5fcb5797cf0ed61ae3fe8890c41f53aba4ba2eee3730fac691afa07"
+      }
+    },
+    "checks": {
+      "method_rad_unchanged": true,
+      "parm_unchanged": true,
+      "rad_benchmark_unchanged": true,
+      "router_v1_unchanged": true,
+      "v1_results_unchanged": true
+    },
+    "pass": true
+  },
+  "record_counts": {
+    "by_method": {
+      "taro": 6,
+      "taro_same_average": 6,
+      "v1_base": 6,
+      "v1_fixed": 6,
+      "v1_heuristic": 6,
+      "v1_router": 6,
+      "v2_base": 6,
+      "v2_fixed": 6,
+      "v2_heuristic": 6,
+      "v2_history": 6,
+      "v2_same_average": 6,
+      "v2_state": 6
+    },
+    "combined": 72,
+    "test_v1_imported": 24,
+    "test_v2": 48,
+    "validation_v2": 54
+  },
+  "schema_version": 1,
+  "scientific_comparability": {
+    "alignment_evaluator_shared": true,
+    "primary_pareto_x": "family-relative PPL degradation",
+    "prompt_ids_and_seeds_shared": true,
+    "raw_ppl_cross_family_comparable": false,
+    "v1_family": "GPT-2 Large + scalar RAD reward",
+    "v2_family": "GPT-2 Medium + autoregressive sentiment guide"
+  },
+  "stage5_checkpoint_audit": {
+    "checks": {
+      "all_stage5_frozen_audits_pass": true,
+      "all_stage5_status_pass": true
+    },
+    "pass": true,
+    "stages": {
+      "history": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/history/best.pt",
+        "checkpoint_sha256": "f41bfd35a0e11055ec4ccfa2b461dbf3a7a2acd5b073e54c22fda15cddb77c21",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/history/run_status.json",
+        "run_status_sha256": "3bdac8093b80d1ecac6b77575460f6b30b976ead9a91186406d7e6f8232711d4",
+        "status": "PASS"
+      },
+      "state": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/state/best.pt",
+        "checkpoint_sha256": "2d7050a85b4078225a8bc47c108ea2f782e7f43aa315bacf03490756b0178b7b",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/state/run_status.json",
+        "run_status_sha256": "c05e85a22d9c23e15ee44303a32f63087a81d844489921caf91361e782c13dc0",
+        "status": "PASS"
+      },
+      "taro": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/taro/best.pt",
+        "checkpoint_sha256": "99257d606da073979785fccd78dbcd0a090c550a0d88fbbcd26a377ee89f745c",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/taro/run_status.json",
+        "run_status_sha256": "035ce1893d84cbbc834b8d0f55fe6379339f5b1e71c1f516c55878650693a239",
+        "status": "PASS"
+      }
+    }
+  },
+  "status": "PASS",
+  "v1_baseline_audit": {
+    "checks": {
+      "generation_failures_zero": true,
+      "max_new_tokens_match": true,
+      "requested_seeds_available": true,
+      "sentiment_classifier_hash_matches": true,
+      "test_limit_covers_request": true,
+      "test_offset_matches": true,
+      "v1_checkpoint_hash_matches": true,
+      "v1_checkpoint_load_and_forward": true,
+      "v1_source_hashes_match": true
+    },
+    "config_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/config.json",
+    "hashes": {
+      "config_sha256": "f1a1d0d3f738c377f32f11aa78362e82347d5e422d345a488cf4bc8efaa41c8f",
+      "outputs_sha256": "35908c060db2a5174eb678273af391813aa828e68bd542d339740a0a3154a240",
+      "report_sha256": "fc955ee8e877badb88149d34b8ef517d7148d5e5f89b7c9bb6259953012752a9",
+      "router_checkpoint_sha256": "bace99153fc4dc3183b36085c292dc532a570a224dd8f5885ff906a07bd1c937",
+      "sentiment_classifier_checkpoint_sha256": "805688de73481b1175b1e06f05a971144dceb7e0064b64a84b78a3685eb3209d"
+    },
+    "outputs_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/per_sample_outputs.jsonl",
+    "pass": true,
+    "report_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/stage7_report.json",
+    "results_dir": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+    "source_hash_checks": {
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/generate.py": true,
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/rad.py": true,
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/utils/logits_processor.py": true
+    },
+    "v1_load_error": null,
+    "v1_validation_selection": {
+      "best_fixed_beta": 30.0,
+      "best_heuristic": "heuristic_linear_decrease",
+      "fixed_beta_grid": [
+        0.0,
+        5.0,
+        10.0,
+        15.0,
+        30.0
+      ],
+      "selection_split": "validation"
+    }
+  },
+  "validation_selection": {
+    "best_fixed_lambda": 0.5,
+    "best_fixed_method": "v2_fixed_lambda_0p5",
+    "best_heuristic": "heuristic_js",
+    "negative_class_primary": true,
+    "same_average_source": "all validation prompt classes and seeds",
+    "selection_split": "validation",
+    "taro_same_average_lambda": 0.9002140829106793,
+    "v2_same_average_lambda": 0.9655981808900833,
+    "validation_records": 54
+  }
+}

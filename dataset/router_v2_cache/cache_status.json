@@ -1,0 +1,86 @@
+{
+  "cache_format": "router_v2.feature_cache",
+  "parm": {
+    "prerequisites": {
+      "author_base_model": false,
+      "beaver_cost_model": false,
+      "beaver_reward_model": false,
+      "trained_parm_adapter": false
+    },
+    "schema_inventory_complete": true,
+    "source": "dataset/GenARM/PKU-SafeRLHF-10K/round0/train.jsonl.xz",
+    "status": "blocked_missing_parm_model_prerequisites"
+  },
+  "rad": {
+    "base_model": {
+      "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+      "files": [
+        {
+          "bytes": 718,
+          "path": "config.json",
+          "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+        },
+        {
+          "bytes": 1519984962,
+          "path": "model.safetensors",
+          "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+    },
+    "full_audit": {
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/router_v2/reports/stage3_recomputation_audit.json",
+      "sha256": "de21d6098823ee8ea534df9f5d2081adda11ebdf0bc839fc1e4d3a756a76f96d"
+    },
+    "guide_logits_ready": true,
+    "guide_model": {
+      "checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+      "files": [
+        {
+          "bytes": 696,
+          "path": "adapter_config.json",
+          "sha256": "46cb575b693ae51f777c45817cd0a420489c651e8ce48ef102f3f9253f197c44"
+        },
+        {
+          "bytes": 12607304,
+          "path": "adapter_model.safetensors",
+          "sha256": "17b0e1b5594bbd7780015434b927d36a6f0f78be370e8cfc966f15e597d4c6dd"
+        }
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter"
+    },
+    "guide_validation": {
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/router_v2/reports/sentiment_guide_validation.json",
+      "sha256": "e48712f22e896593ef173d37b2770c362cbadddcd1eb0a652d115f4880b7bb85"
+    },
+    "legacy_fp16_smoke": {
+      "audit_path": "router_v2/reports/stage3_smoke_audit.json",
+      "audit_sha256": "a1bae897f9dac3ca79c5c01720912ffb718d1c9cb16ace2f19410b558cac35bd",
+      "audit_status": "FAIL",
+      "excluded_from_scientific_cache": true,
+      "path": "dataset/router_v2_cache/rad_smoke",
+      "tensor_shards": 2
+    },
+    "precision": "fp32",
+    "smoke_audit": {
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/router_v2/reports/stage3_smoke_fp32_audit.json",
+      "sha256": "71fd759370022f4b374194cc1c52b896859bd43b6d7a1523bff9cd1aa6b04205"
+    },
+    "smoke_cache_ready": true,
+    "source": "dataset/RAD_train/router_amazon_polarity",
+    "source_ready": true,
+    "task": "sentiment",
+    "train_cache_ready": true,
+    "validation_cache_ready": true
+  },
+  "safety": {
+    "gold_used_in_router_features": false,
+    "legacy_fp16_smoke_excluded": true,
+    "normalized_position_uses_fixed_max_position": true,
+    "scientific_task_alignment": "sentiment",
+    "v1_cache_modified": false
+  },
+  "schema_version": 1,
+  "stage3_status": "PASS",
+  "tensor_shards_generated": 228
+}

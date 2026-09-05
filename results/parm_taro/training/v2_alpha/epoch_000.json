@@ -1,0 +1,132 @@
+{
+  "epoch": 0,
+  "optimizer_step": 1000,
+  "train": {
+    "examples": 8000,
+    "lambda_mean": 0.02290252037346363,
+    "lambda_std": 0.07967914640903473,
+    "mean_loss": 1.8964694627001881,
+    "near_ties": 180,
+    "skipped_sample_ids": [],
+    "skipped_too_long": 0
+  },
+  "validation_comparison": {
+    "alpha_controls": {
+      "checks": {
+        "constant_changes_lambda": false,
+        "guide_alpha_held_correct_for_all_router_controls": true,
+        "shuffled_changes_lambda": false,
+        "shuffled_degrades_loss": true
+      },
+      "mean_abs_lambda_delta_correct_vs_constant": 1.4090500672070934e-06,
+      "mean_abs_lambda_delta_correct_vs_shuffled": 1.6454007806300079e-06,
+      "pass": false,
+      "shuffled_minus_correct_loss": 1.617670060127807e-07
+    },
+    "alpha_grid_helpfulness": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "checks": {
+      "all_metrics_finite": true,
+      "preference_usage_controls_pass": false,
+      "required_methods_present": true,
+      "validation_not_test": true
+    },
+    "methods": {
+      "static_parm": {
+        "dual_response_token_nll": 3.4626328643321993,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "lambda_alpha_helpfulness_correlation": null,
+        "loss_std": 2.213429573282973,
+        "tasks": 2500
+      },
+      "taro": {
+        "dual_response_token_nll": 1.8704583731889726,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.01607419177889824,
+          "mean": 0.0013612648472189903,
+          "min": 0.00046777594252489507,
+          "std": 0.001031935797072947
+        },
+        "lambda_alpha_helpfulness_correlation": -0.002911696211400144,
+        "loss_std": 0.44465931470435577,
+        "tasks": 2500
+      },
+      "v2_alpha": {
+        "dual_response_token_nll": 1.8700307934999465,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.005154862068593502,
+          "mean": 0.0007286460022442043,
+          "min": 0.0001128840958699584,
+          "std": 0.000566863629501313
+        },
+        "lambda_alpha_helpfulness_correlation": 0.10363577449193269,
+        "loss_std": 0.4441528395174384,
+        "tasks": 2500
+      },
+      "v2_alpha_constant": {
+        "dual_response_token_nll": 1.8700305650949478,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.005146518349647522,
+          "mean": 0.0007272865041159093,
+          "min": 0.00011261939653195441,
+          "std": 0.0005662584444507957
+        },
+        "lambda_alpha_helpfulness_correlation": 0.09634898128741444,
+        "loss_std": 0.44415251675350564,
+        "tasks": 2500
+      },
+      "v2_alpha_shuffled": {
+        "dual_response_token_nll": 1.8700309552669525,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.005157496780157089,
+          "mean": 0.0007286314503289759,
+          "min": 0.00011261939653195441,
+          "std": 0.0005668061203323305
+        },
+        "lambda_alpha_helpfulness_correlation": 0.08911350205907284,
+        "loss_std": 0.44415316513139735,
+        "tasks": 2500
+      },
+      "v2_no_alpha": {
+        "dual_response_token_nll": 1.870022567486763,
+        "finite": true,
+        "lambda": {
+          "count": 382640,
+          "max": 0.006882131565362215,
+          "mean": 0.0008080874104052782,
+          "min": 9.191725257551298e-05,
+          "std": 0.0007166335708461702
+        },
+        "lambda_alpha_helpfulness_correlation": 0.08858218472705111,
+        "loss_std": 0.44413357720546764,
+        "tasks": 2500
+      }
+    },
+    "near_tie_tasks": 296,
+    "pass": false,
+    "skipped_sample_ids": [],
+    "split": "validation",
+    "tasks_requested": 2500,
+    "tasks_skipped_too_long": 0
+  }
+}

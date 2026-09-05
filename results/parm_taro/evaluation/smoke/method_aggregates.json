@@ -1,0 +1,163 @@
+[
+  {
+    "coherence": 0.5905652277829697,
+    "distinct_1": 0.6965948975142987,
+    "distinct_2": 0.9037093969269154,
+    "distinct_3": 0.9378724964294018,
+    "generation_length": 64.0,
+    "hypervolume": 0.4694511067730985,
+    "lambda": {
+      "count": 640,
+      "max": 1.0,
+      "mean": 1.0,
+      "min": 1.0,
+      "std": 0.0
+    },
+    "latency_per_token": 0.10743920134846122,
+    "method": "parm_static",
+    "mip": 0.6764679520533745,
+    "pcs": 0.863456466045052,
+    "perplexity": 2.1165453765518283,
+    "preference_regret": 0.004674568592912575,
+    "records": 10,
+    "repeated_4gram_rate": 0.043838148421169565
+  },
+  {
+    "coherence": 0.5416666666666667,
+    "distinct_1": 0.4810606060606061,
+    "distinct_2": 0.6156208863536639,
+    "distinct_3": 0.6474358974358975,
+    "generation_length": 64.0,
+    "hypervolume": 0.2835511526568178,
+    "lambda": {
+      "count": 640,
+      "max": 0.006158520467579365,
+      "mean": 0.001297933077921698,
+      "min": 0.0004700712743215263,
+      "std": 0.0009251623315905568
+    },
+    "latency_per_token": 0.10698025038000196,
+    "method": "parm_taro",
+    "mip": 0.5700854383935885,
+    "pcs": 0.7904223423167391,
+    "perplexity": 1.755289448477254,
+    "preference_regret": 0.11105708225269854,
+    "records": 10,
+    "repeated_4gram_rate": 0.33907221425155426
+  },
+  {
+    "coherence": 0.5416666666666667,
+    "distinct_1": 0.4810606060606061,
+    "distinct_2": 0.6156208863536639,
+    "distinct_3": 0.6474358974358975,
+    "generation_length": 64.0,
+    "hypervolume": 0.2835511526568178,
+    "lambda": {
+      "count": 640,
+      "max": 0.03744569048285484,
+      "mean": 0.010560339082439895,
+      "min": 0.0068713524378836155,
+      "std": 0.004897461129666917
+    },
+    "latency_per_token": 0.11360671698930673,
+    "method": "parm_v2_full_alpha",
+    "mip": 0.5700854383935885,
+    "pcs": 0.7904223423167391,
+    "perplexity": 1.755289448477254,
+    "preference_regret": 0.11105708225269854,
+    "records": 10,
+    "repeated_4gram_rate": 0.33907221425155426
+  },
+  {
+    "coherence": 0.5416666666666667,
+    "distinct_1": 0.4810606060606061,
+    "distinct_2": 0.6156208863536639,
+    "distinct_3": 0.6474358974358975,
+    "generation_length": 64.0,
+    "hypervolume": 0.2835511526568178,
+    "lambda": {
+      "count": 640,
+      "max": 0.030233850702643394,
+      "mean": 0.010343051696690964,
+      "min": 0.007454904727637768,
+      "std": 0.004552947356371689
+    },
+    "latency_per_token": 0.113465229322901,
+    "method": "parm_v2_full_alpha_fixed_alpha",
+    "mip": 0.5700854383935885,
+    "pcs": 0.7904223423167391,
+    "perplexity": 1.755289448477254,
+    "preference_regret": 0.11105708225269854,
+    "records": 10,
+    "repeated_4gram_rate": 0.33907221425155426
+  },
+  {
+    "coherence": 0.5416666666666667,
+    "distinct_1": 0.4810606060606061,
+    "distinct_2": 0.6156208863536639,
+    "distinct_3": 0.6474358974358975,
+    "generation_length": 64.0,
+    "hypervolume": 0.2835511526568178,
+    "lambda": {
+      "count": 640,
+      "max": 0.010560339316725731,
+      "mean": 0.010560339316725731,
+      "min": 0.010560339316725731,
+      "std": 0.0
+    },
+    "latency_per_token": 0.1067022991461272,
+    "method": "parm_v2_full_alpha_same_average",
+    "mip": 0.5700854383935885,
+    "pcs": 0.7904223423167391,
+    "perplexity": 1.755289448477254,
+    "preference_regret": 0.11105708225269854,
+    "records": 10,
+    "repeated_4gram_rate": 0.33907221425155426
+  },
+  {
+    "coherence": 0.5416666666666667,
+    "distinct_1": 0.4810606060606061,
+    "distinct_2": 0.6156208863536639,
+    "distinct_3": 0.6474358974358975,
+    "generation_length": 64.0,
+    "hypervolume": 0.2835511526568178,
+    "lambda": {
+      "count": 640,
+      "max": 0.0379142165184021,
+      "mean": 0.01055927074412466,
+      "min": 0.0068572708405554295,
+      "std": 0.004913231953525904
+    },
+    "latency_per_token": 0.11352871795170358,
+    "method": "parm_v2_full_alpha_shuffled_alpha",
+    "mip": 0.5700854383935885,
+    "pcs": 0.7904223423167391,
+    "perplexity": 1.755289448477254,
+    "preference_regret": 0.11105708225269854,
+    "records": 10,
+    "repeated_4gram_rate": 0.33907221425155426
+  },
+  {
+    "coherence": 0.5416666666666667,
+    "distinct_1": 0.4810606060606061,
+    "distinct_2": 0.6156208863536639,
+    "distinct_3": 0.6474358974358975,
+    "generation_length": 64.0,
+    "hypervolume": 0.2835511526568178,
+    "lambda": {
+      "count": 640,
+      "max": 0.004883539862930775,
+      "mean": 0.0009109483890370029,
+      "min": 0.0001202774656121619,
+      "std": 0.0008777348839337351
+    },
+    "latency_per_token": 0.1115418680885341,
+    "method": "parm_v2_no_alpha",
+    "mip": 0.5700854383935885,
+    "pcs": 0.7904223423167391,
+    "perplexity": 1.755289448477254,
+    "preference_regret": 0.11105708225269854,
+    "records": 10,
+    "repeated_4gram_rate": 0.33907221425155426
+  }
+]

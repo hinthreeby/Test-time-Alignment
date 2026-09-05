@@ -1,0 +1,143 @@
+{
+  "base_model": {
+    "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+    "files": [
+      {
+        "bytes": 718,
+        "path": "config.json",
+        "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+      },
+      {
+        "bytes": 1519984962,
+        "path": "model.safetensors",
+        "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+  },
+  "classifier_device": "cpu",
+  "cuda_available_in_process": true,
+  "device": "cuda",
+  "guide_model": {
+    "checkpoint_sha256": "224b3151332911c5089e56c8fdf7d9e285d10503865a04d3529f528a3a8032ca",
+    "files": [
+      {
+        "bytes": 696,
+        "path": "adapter_config.json",
+        "sha256": "46cb575b693ae51f777c45817cd0a420489c651e8ce48ef102f3f9253f197c44"
+      },
+      {
+        "bytes": 12607304,
+        "path": "adapter_model.safetensors",
+        "sha256": "17b0e1b5594bbd7780015434b927d36a6f0f78be370e8cfc966f15e597d4c6dd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/sentiment_guide/final_adapter"
+  },
+  "platform": "Linux-5.15.0-151-generic-x86_64-with-glibc2.39",
+  "python": "3.10.20 (main, Jun 11 2026, 15:17:37) [GCC 14.3.0]",
+  "runtime": {
+    "cublas_workspace_config": ":4096:8",
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms": true,
+    "device_type": "cuda",
+    "float32_matmul_precision": "highest",
+    "seed": 1
+  },
+  "sentiment_classifier": {
+    "checkpoint_sha256": "469b4f3382be12c61edf1ad2e7d39ff8fe7d8e4f004cd9a8680179414bb4e26d",
+    "files": [
+      {
+        "bytes": 687,
+        "path": "config.json",
+        "sha256": "a019c4e77e23d9d6daf514efd52bf7988ef63a4cf4f01cee85593dc74940fc58"
+      },
+      {
+        "bytes": 1421616707,
+        "path": "pytorch_model.bin",
+        "sha256": "805688de73481b1175b1e06f05a971144dceb7e0064b64a84b78a3685eb3209d"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/sentiment-roberta-large-english"
+  },
+  "stage5": {
+    "checks": {
+      "all_stage5_frozen_audits_pass": true,
+      "all_stage5_status_pass": true
+    },
+    "pass": true,
+    "stages": {
+      "history": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/history/best.pt",
+        "checkpoint_sha256": "f41bfd35a0e11055ec4ccfa2b461dbf3a7a2acd5b073e54c22fda15cddb77c21",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/history/run_status.json",
+        "run_status_sha256": "3bdac8093b80d1ecac6b77575460f6b30b976ead9a91186406d7e6f8232711d4",
+        "status": "PASS"
+      },
+      "state": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/state/best.pt",
+        "checkpoint_sha256": "2d7050a85b4078225a8bc47c108ea2f782e7f43aa315bacf03490756b0178b7b",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/state/run_status.json",
+        "run_status_sha256": "c05e85a22d9c23e15ee44303a32f63087a81d844489921caf91361e782c13dc0",
+        "status": "PASS"
+      },
+      "taro": {
+        "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/taro/best.pt",
+        "checkpoint_sha256": "99257d606da073979785fccd78dbcd0a090c550a0d88fbbcd26a377ee89f745c",
+        "frozen_artifacts_unchanged": true,
+        "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/taro/run_status.json",
+        "run_status_sha256": "035ce1893d84cbbc834b8d0f55fe6379339f5b1e71c1f516c55878650693a239",
+        "status": "PASS"
+      }
+    }
+  },
+  "torch": "2.2.2+cu121",
+  "v1": {
+    "checks": {
+      "generation_failures_zero": true,
+      "max_new_tokens_match": true,
+      "requested_seeds_available": true,
+      "sentiment_classifier_hash_matches": true,
+      "test_limit_covers_request": true,
+      "test_offset_matches": true,
+      "v1_checkpoint_hash_matches": true,
+      "v1_checkpoint_load_and_forward": true,
+      "v1_source_hashes_match": true
+    },
+    "config_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/config.json",
+    "hashes": {
+      "config_sha256": "f1a1d0d3f738c377f32f11aa78362e82347d5e422d345a488cf4bc8efaa41c8f",
+      "outputs_sha256": "35908c060db2a5174eb678273af391813aa828e68bd542d339740a0a3154a240",
+      "report_sha256": "fc955ee8e877badb88149d34b8ef517d7148d5e5f89b7c9bb6259953012752a9",
+      "router_checkpoint_sha256": "bace99153fc4dc3183b36085c292dc532a570a224dd8f5885ff906a07bd1c937",
+      "sentiment_classifier_checkpoint_sha256": "805688de73481b1175b1e06f05a971144dceb7e0064b64a84b78a3685eb3209d"
+    },
+    "outputs_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/per_sample_outputs.jsonl",
+    "pass": true,
+    "report_path": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens/stage7_report.json",
+    "results_dir": "/home/jupyter-iec2024se10/Reward Decoding/router/evaluation/report_run_32tokens",
+    "source_hash_checks": {
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/generate.py": true,
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/rad.py": true,
+      "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD/utils/logits_processor.py": true
+    },
+    "v1_load_error": null,
+    "v1_validation_selection": {
+      "best_fixed_beta": 30.0,
+      "best_heuristic": "heuristic_linear_decrease",
+      "fixed_beta_grid": [
+        0.0,
+        5.0,
+        10.0,
+        15.0,
+        30.0
+      ],
+      "selection_split": "validation"
+    }
+  }
+}

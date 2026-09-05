@@ -1,0 +1,378 @@
+{
+  "checkpoints": {
+    "taro": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/taro/best.pt",
+    "v2_alpha_preference": {
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference/final.pt",
+      "sha256": "56fbed68168537bd84066a5b86fbfefc8525cb5311c06d8668012e2cecca1e20"
+    },
+    "v2_no_alpha": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_no_alpha/best.pt"
+  },
+  "checks": {
+    "parm_tree_unchanged": true,
+    "pilot_v3_pass_authorization": true,
+    "production_checkpoint_hash_valid": true,
+    "production_required_checks_pass": true,
+    "production_train_count_8000": true,
+    "production_validation_count_500": true,
+    "taro_pass": true,
+    "test_split_unused": true,
+    "v2_alpha_preference_production_pass": true,
+    "v2_alpha_preference_production_present": true,
+    "v2_no_alpha_pass": true
+  },
+  "constant_control_audit": {
+    "audit": "constant_alpha_non_identical_control",
+    "checks": {
+      "all_gradients_none": true,
+      "all_task_delta_matches_original_report": true,
+      "all_task_gate_was_diluted_by_identical_controls": true,
+      "checkpoint_unchanged": true,
+      "constant_alpha_is_half_half": true,
+      "endpoint_gate_remains_passed": true,
+      "frozen_artifacts_unchanged": true,
+      "full_validation_tasks_recomputed": true,
+      "identical_alpha_delta_approximately_zero": true,
+      "identical_task_count_is_500": true,
+      "midpoint_group_recognized_as_identical": true,
+      "non_identical_constant_delta_passes_unchanged_threshold": true,
+      "non_identical_task_count_is_2000": true,
+      "other_alpha_groups_are_informative": true,
+      "production_tree_unchanged": true,
+      "shuffled_gate_remains_passed": true,
+      "source_failed_only_constant_control": true,
+      "source_run_status_unchanged": true,
+      "test_split_unused": true
+    },
+    "constant_control": {
+      "all_tasks": {
+        "task_mean_distribution": {
+          "count": 2500,
+          "max": 0.0027182863206800184,
+          "mean": 0.0008984216752712838,
+          "median": 0.0009602406562035522,
+          "min": 0.0,
+          "p25": 0.0006963860991176429,
+          "p75": 0.001132055423174687,
+          "std": 0.0005574640843492918
+        },
+        "tasks": 2500,
+        "token_records": 382640,
+        "token_weighted": {
+          "count": 382640,
+          "max": 0.010518930852413177,
+          "mean": 0.0008731123345026666,
+          "median": 0.0006849044002592564,
+          "min": 0.0,
+          "p25": 0.000479089911095798,
+          "p75": 0.001116834580898285,
+          "std": 0.0009660310939979141
+        }
+      },
+      "constant_alpha": [
+        0.5,
+        0.5
+      ],
+      "gate": {
+        "pass": true,
+        "statistic": "token-weighted mean |lambda(correct)-lambda(constant)| conditioned on correct_alpha != constant_alpha",
+        "threshold": 0.001,
+        "threshold_unchanged": true,
+        "value": 0.0010913904181283332
+      },
+      "identical_tasks": 500,
+      "identical_tasks_only": {
+        "task_mean_distribution": {
+          "count": 500,
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "p25": 0.0,
+          "p75": 0.0,
+          "std": 0.0
+        },
+        "tasks": 500,
+        "token_records": 76528,
+        "token_weighted": {
+          "count": 76528,
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "p25": 0.0,
+          "p75": 0.0,
+          "std": 0.0
+        }
+      },
+      "non_identical_tasks": 2000,
+      "non_identical_tasks_only": {
+        "bootstrap_mean_ci": {
+          "confidence": 0.95,
+          "lower": 0.0011070761538107283,
+          "mean": 0.001123220685020799,
+          "samples": 2000,
+          "seed": 2026,
+          "unit": "validation_task_mean",
+          "upper": 0.0011389591447223714
+        },
+        "task_mean_distribution": {
+          "count": 2000,
+          "max": 0.0027182863206800184,
+          "mean": 0.001123027094089105,
+          "median": 0.001009739666747359,
+          "min": 0.000574433661173456,
+          "p25": 0.0008825524536043577,
+          "p75": 0.0014431744936949467,
+          "std": 0.0003690796470446442
+        },
+        "tasks": 2000,
+        "token_records": 306112,
+        "token_weighted": {
+          "count": 306112,
+          "max": 0.010518930852413177,
+          "mean": 0.0010913904181283332,
+          "median": 0.0007504262030124664,
+          "min": 0.00039460882544517517,
+          "p25": 0.0006294863997027278,
+          "p75": 0.0011781863868236542,
+          "std": 0.000963479882642702
+        }
+      },
+      "per_alpha_helpfulness": {
+        "0.00": {
+          "alpha": [
+            0.0,
+            1.0
+          ],
+          "identical_to_constant": false,
+          "task_mean_distribution": {
+            "count": 500,
+            "max": 0.0017863228973565679,
+            "mean": 0.001005162777072418,
+            "median": 0.0009892083588934136,
+            "min": 0.0007748413750400337,
+            "p25": 0.0009381125676770543,
+            "p75": 0.0010514786594867892,
+            "std": 0.00010520611014769603
+          },
+          "tasks": 500,
+          "token_records": 76528,
+          "token_weighted": {
+            "count": 76528,
+            "max": 0.008047554641962051,
+            "mean": 0.0009839905192503562,
+            "median": 0.0006708644796162844,
+            "min": 0.0005243760533630848,
+            "p25": 0.0006319888634607196,
+            "p75": 0.000863345805555582,
+            "std": 0.000851852506265614
+          }
+        },
+        "0.25": {
+          "alpha": [
+            0.25,
+            0.75
+          ],
+          "identical_to_constant": false,
+          "task_mean_distribution": {
+            "count": 500,
+            "max": 0.0013224282301962376,
+            "mean": 0.000750275333619903,
+            "median": 0.0007354539569600351,
+            "min": 0.000574433661173456,
+            "p25": 0.0006963860991176429,
+            "p75": 0.0007834103584642552,
+            "std": 8.283820097765178e-05
+          },
+          "tasks": 500,
+          "token_records": 76528,
+          "token_weighted": {
+            "count": 76528,
+            "max": 0.005691081285476685,
+            "mean": 0.0007296410509566351,
+            "median": 0.0005087766330689192,
+            "min": 0.00039460882544517517,
+            "p25": 0.000479089911095798,
+            "p75": 0.0006168168038129807,
+            "std": 0.0006371707273517463
+          }
+        },
+        "0.50": {
+          "alpha": [
+            0.5,
+            0.5
+          ],
+          "identical_to_constant": true,
+          "task_mean_distribution": {
+            "count": 500,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "p25": 0.0,
+            "p75": 0.0,
+            "std": 0.0
+          },
+          "tasks": 500,
+          "token_records": 76528,
+          "token_weighted": {
+            "count": 76528,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "p25": 0.0,
+            "p75": 0.0,
+            "std": 0.0
+          }
+        },
+        "0.75": {
+          "alpha": [
+            0.75,
+            0.25
+          ],
+          "identical_to_constant": false,
+          "task_mean_distribution": {
+            "count": 500,
+            "max": 0.0016865128453708057,
+            "mean": 0.001046750662382999,
+            "median": 0.0010222912141195704,
+            "min": 0.0008208340777155871,
+            "p25": 0.0009769140805511683,
+            "p75": 0.0010875522222391566,
+            "std": 0.000112712929373408
+          },
+          "tasks": 500,
+          "token_records": 76528,
+          "token_weighted": {
+            "count": 76528,
+            "max": 0.006797555834054947,
+            "mean": 0.0010145808372000798,
+            "median": 0.000748639227822423,
+            "min": 0.0005929144099354744,
+            "p25": 0.0007037247996777296,
+            "p75": 0.0008670706301927567,
+            "std": 0.0007819557388114499
+          }
+        },
+        "1.00": {
+          "alpha": [
+            1.0,
+            0.0
+          ],
+          "identical_to_constant": false,
+          "task_mean_distribution": {
+            "count": 500,
+            "max": 0.0027182863206800184,
+            "mean": 0.0016899196032810996,
+            "median": 0.0016506530749168069,
+            "min": 0.001291471305124175,
+            "p25": 0.0015745190201723034,
+            "p75": 0.0017568465579472776,
+            "std": 0.0001849955747533651
+          },
+          "tasks": 500,
+          "token_records": 76528,
+          "token_weighted": {
+            "count": 76528,
+            "max": 0.010518930852413177,
+            "mean": 0.0016373492651062618,
+            "median": 0.0012046168558299541,
+            "min": 0.0009421803988516331,
+            "p25": 0.0011324959341436625,
+            "p75": 0.0014271645341068506,
+            "std": 0.0012343872221064513
+          }
+        }
+      },
+      "total_tasks": 2500
+    },
+    "corrected_production_status": "PASS",
+    "endpoint_alpha_delta": {
+      "count": 382640,
+      "max": 0.01899120956659317,
+      "mean": 0.0026256577857527506,
+      "min": 0.0014531486667692661,
+      "std": 0.002116114671016411
+    },
+    "runtime": {
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 2026,
+      "device": "cuda",
+      "skipped_sample_ids": [],
+      "test_split_used": false,
+      "validation_examples": 500,
+      "validation_tasks": 2500
+    },
+    "schema_version": 1,
+    "scientific_gate": {
+      "corrected_statistic": "token-weighted mean |lambda(correct)-lambda(constant)| conditioned on correct_alpha != constant_alpha",
+      "old_gate_diluted": true,
+      "old_statistic": "mean constant-control delta over all validation tasks",
+      "threshold": 0.001,
+      "threshold_changed": false
+    },
+    "source": {
+      "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference/final.pt",
+      "checkpoint_sha256": "56fbed68168537bd84066a5b86fbfefc8525cb5311c06d8668012e2cecca1e20",
+      "production_tree": {
+        "file_count": 8,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference",
+        "total_bytes": 8789862,
+        "tree_sha256": "682bb6b2938a687bb954849020a209b7370deabdebd4043dded883f63c5c6f2f"
+      },
+      "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference/run_status.json",
+      "run_status_sha256": "d23afeff8ac1b5af6fdac7dec45e90a315d2aab7ee8b6a1a21b60324cc454c19"
+    },
+    "source_metrics": {
+      "all_task_constant_delta": 0.0008731123345026666,
+      "endpoint_delta": {
+        "count": 382640,
+        "max": 0.01899120956659317,
+        "mean": 0.0026256577857527506,
+        "min": 0.0014531486667692661,
+        "std": 0.002116114671016411
+      },
+      "shuffled_delta": {
+        "count": 382640,
+        "max": 0.018249522894620895,
+        "mean": 0.00105238904132336,
+        "min": 0.00012265285477042198,
+        "std": 0.0013286559437381761
+      }
+    },
+    "stage": 9,
+    "status": "PASS"
+  },
+  "constant_control_resolution": {
+    "audit_pass": true,
+    "audit_present": true,
+    "correction_authorized": true,
+    "mode": "non_identical_audit",
+    "native_production_checks_pass": false,
+    "threshold": 0.001,
+    "threshold_changed": false
+  },
+  "ignored_as_final_alpha_evidence": [
+    "results/parm_taro/training/v2_alpha",
+    "results/parm_taro/training/v2_alpha_preference_pilot",
+    "results/parm_taro/training/v2_alpha_preference_pilot_v2",
+    "results/parm_taro/training/v2_alpha_preference_pilot_v3"
+  ],
+  "inputs": {
+    "constant_control_audit": "/home/jupyter-iec2024se10/Reward Decoding/PARM_TARO/reports/stage9_constant_alpha_control_audit.json",
+    "pilot_v3_report": "results/parm_taro/training/v2_alpha_preference_pilot_v3/pilot_report.json",
+    "production_status": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference/run_status.json",
+    "taro_status": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/taro/run_status.json",
+    "v2_no_alpha_status": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_no_alpha/run_status.json"
+  },
+  "parm_tree": {
+    "file_count": 156,
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+    "total_bytes": 1506962,
+    "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+  },
+  "schema_version": 1,
+  "stage": 9,
+  "status": "STAGE 9 PASS"
+}

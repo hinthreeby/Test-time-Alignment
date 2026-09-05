@@ -1,0 +1,53 @@
+{
+  "checks": {
+    "base_model_present": true,
+    "local_pku_source_present": true,
+    "original_parm_generation_module_resolves": true,
+    "parm_compatible_router_ready": false,
+    "parm_tree_matches_baseline": true,
+    "preference_aware_parm_adapter_ready": false,
+    "tokenizer_present": true,
+    "vendored_dependencies_resolve": true
+  },
+  "details": {
+    "dataset": {
+      "bytes": 1678716,
+      "exists": true,
+      "first_record_keys": [
+        "better_response_id",
+        "is_response_0_safe",
+        "is_response_1_safe",
+        "prompt",
+        "response_0",
+        "response_1",
+        "safer_response_id"
+      ],
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/GenARM/PKU-SafeRLHF-10K/round0/train.jsonl.xz",
+      "sha256": "f5f42f6f08a1fadbc3fd7c36e627f651782ce0f2f8178361483defa62b79ca06"
+    },
+    "original_parm_generation_source": "/home/jupyter-iec2024se10/Reward Decoding/PARM/code/evaluation/generate_outputs.py",
+    "parm_adapter_error": "FileNotFoundError: Missing PARM adapter config: /home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora/adapter_config.json",
+    "parm_tree": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "paths": {
+      "base_model": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
+      "parm_adapter": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora",
+      "router_checkpoint": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/alpha_parm/best.pt",
+      "tokenizer": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b"
+    },
+    "router_error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/alpha_parm/best.pt'",
+    "vendored_origins": {
+      "model_arithmetic": "/home/jupyter-iec2024se10/Reward Decoding/PARM/language-model-arithmetic/src/model_arithmetic/__init__.py",
+      "peft": "/home/jupyter-iec2024se10/Reward Decoding/PARM/peft/src/peft/__init__.py"
+    }
+  },
+  "method_label": "PARM_TARO",
+  "ready": false,
+  "schema_version": 1,
+  "stage": 7,
+  "status": "PREREQUISITES_REQUIRED"
+}

@@ -1,0 +1,33 @@
+{
+  "checks": {
+    "all_stage5_frozen_audits_pass": true,
+    "all_stage5_status_pass": true
+  },
+  "pass": true,
+  "stages": {
+    "history": {
+      "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/history/best.pt",
+      "checkpoint_sha256": "f41bfd35a0e11055ec4ccfa2b461dbf3a7a2acd5b073e54c22fda15cddb77c21",
+      "frozen_artifacts_unchanged": true,
+      "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/history/run_status.json",
+      "run_status_sha256": "3bdac8093b80d1ecac6b77575460f6b30b976ead9a91186406d7e6f8232711d4",
+      "status": "PASS"
+    },
+    "state": {
+      "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/state/best.pt",
+      "checkpoint_sha256": "2d7050a85b4078225a8bc47c108ea2f782e7f43aa315bacf03490756b0178b7b",
+      "frozen_artifacts_unchanged": true,
+      "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/state/run_status.json",
+      "run_status_sha256": "c05e85a22d9c23e15ee44303a32f63087a81d844489921caf91361e782c13dc0",
+      "status": "PASS"
+    },
+    "taro": {
+      "checkpoint_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/taro/best.pt",
+      "checkpoint_sha256": "99257d606da073979785fccd78dbcd0a090c550a0d88fbbcd26a377ee89f745c",
+      "frozen_artifacts_unchanged": true,
+      "run_status_path": "/home/jupyter-iec2024se10/Reward Decoding/results/router_v2/training/taro/run_status.json",
+      "run_status_sha256": "035ce1893d84cbbc834b8d0f55fe6379339f5b1e71c1f516c55878650693a239",
+      "status": "PASS"
+    }
+  }
+}

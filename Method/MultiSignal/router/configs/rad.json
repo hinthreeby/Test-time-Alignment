@@ -1,0 +1,9 @@
+{
+    "name": "rad",
+    "model_name": "gpt2-large",
+    "rm_base_model": "gpt2-small",
+    "rm_checkpoint": "rad_rm_sentiment",
+    "top_k": 20,
+    "beta": 30.0,
+    "max_length": 256
+}

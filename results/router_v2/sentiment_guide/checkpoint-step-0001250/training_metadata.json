@@ -1,0 +1,75 @@
+{
+  "base_model": {
+    "checkpoint_sha256": "3446638e6cd5f966700656db6e30f6b2e6ee622299740fb1b6753ee0fc202dbc",
+    "files": [
+      {
+        "bytes": 718,
+        "path": "config.json",
+        "sha256": "ef1a44d889ad1a0acc7731c78134f1b87d2d222f110e97dd10fd4117331caf22"
+      },
+      {
+        "bytes": 1519984962,
+        "path": "model.safetensors",
+        "sha256": "fc5a354a19255ad494f3d71549390baca1ccf61d1d822b9408971705c687c9cd"
+      }
+    ],
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/models/gpt2-medium"
+  },
+  "complete": false,
+  "config": {
+    "base_model_path": "models/gpt2-medium",
+    "cache_max_position": 79,
+    "cache_shard_size": 4096,
+    "cache_top_k": 20,
+    "eval_batch_size": 2,
+    "gradient_accumulation_steps": 16,
+    "gradient_checkpointing": true,
+    "include_eos_target": true,
+    "learning_rate": 5e-05,
+    "log_optimizer_steps": 10,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "lora_r": 8,
+    "lora_target_modules": [
+      "c_attn",
+      "c_proj",
+      "c_fc"
+    ],
+    "max_grad_norm": 1.0,
+    "max_length": 160,
+    "minimum_direction_delta_gap": 0.01,
+    "minimum_positive_nll_improvement": 0.01,
+    "negative_audit_data_path": "dataset/RAD_train/amazon_polarity/test/data-00000-of-00001.arrow",
+    "num_train_epochs": 1,
+    "objective": "positive_continuation_causal_nll",
+    "output_dir": "results/router_v2/sentiment_guide",
+    "precision": "fp16",
+    "save_optimizer_steps": 250,
+    "schema_version": 1,
+    "seed": 42,
+    "task": "sentiment",
+    "train_batch_size": 1,
+    "train_data_path": "dataset/RAD_train/router_amazon_polarity/train.jsonl",
+    "validation_data_path": "dataset/RAD_train/router_amazon_polarity/validation.jsonl",
+    "validation_inspection_samples": 20,
+    "validation_negative_samples": 100,
+    "validation_positive_samples": 100,
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.0
+  },
+  "device": "cuda",
+  "effective_precision": "fp16",
+  "global_step": 1250,
+  "num_train_samples": 20000,
+  "objective": "positive_continuation_causal_nll",
+  "objective_equation": "-sum_{t in continuation+EOS} log pi_guide(y_t | prompt, y_<t)",
+  "prompt_labels_masked": true,
+  "python_version": "3.10.20",
+  "removed_stale_temp_directories": [],
+  "run_fingerprint": "89dbece1c78f0cb747369d1b476ea3b1773ff9758458f111f4da4484e232b674",
+  "schema_version": 1,
+  "task": "sentiment",
+  "torch_version": "2.2.2+cu121",
+  "train_data_path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/RAD_train/router_amazon_polarity/train.jsonl",
+  "train_data_sha256": "92486a32e7c451422682afdd3d0c55a47a3016cc977542cb600a6172937c924b"
+}

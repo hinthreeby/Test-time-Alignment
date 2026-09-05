@@ -1,0 +1,9 @@
+{
+    "name": "cdq",
+    "model_name": "gpt2-large",
+    "scorer_backbone": "gpt2-small",
+    "scorer_checkpoint": "Method/CD/checkpoints/cd_q.pt",
+    "top_k": 20,
+    "alpha": 0.5,
+    "max_length": 256
+}

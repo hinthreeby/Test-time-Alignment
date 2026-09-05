@@ -1,0 +1,12 @@
+{
+  "extraction_fingerprint": "b2bddfda3ad7e9c2c0396c45e5e1c4c8649f784755620bcd386f256743ac444f",
+  "latest_shard": {
+    "num_records": 780,
+    "path": "/home/jupyter-iec2024se10/Reward Decoding/dataset/router_v2_cache/rad_smoke/train/shard_00000.pt",
+    "sha256": "1089aad185cbdee9f1e3b401f281e3ff3444b4851b6d75db5f4890d16c298844"
+  },
+  "next_shard_index": 1,
+  "next_source_index": 20,
+  "schema_version": 1,
+  "split": "train"
+}
