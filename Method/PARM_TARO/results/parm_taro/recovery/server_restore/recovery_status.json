@@ -1,0 +1,46 @@
+{
+  "blocking_issues": [
+    "router_v2/cache source package missing",
+    "Tulu-2-7B model and tokenizer missing; exact revision not recorded",
+    "PBLoRA protected checkpoint missing",
+    "three Stage-9 router checkpoints missing",
+    "Stage-10 evaluator model/source directories missing",
+    "historical full protected-tree hashes cannot be reproduced",
+    "GPU device nodes unavailable; nvidia-smi and CUDA matmul fail",
+    "candidate Python environment differs from historical lock and lacks bitsandbytes",
+    "root filesystem has insufficient free space for exact model restore"
+  ],
+  "datasets": {
+    "status": "PASS"
+  },
+  "fresh_diagnosis": {
+    "status": "NOT_RUN"
+  },
+  "git_commit": "d2912fa11170a272973130696f9bbeef3e6c8af3",
+  "gpu": {
+    "status": "FAIL"
+  },
+  "model_load": {
+    "status": "NOT_RUN"
+  },
+  "models": {
+    "status": "FAIL"
+  },
+  "project_root": "/home/jupyter-iec2024se10/Test-time-Alignment",
+  "protected_artifacts": {
+    "status": "FAIL"
+  },
+  "protocol": {
+    "status": "PASS"
+  },
+  "python_environment": {
+    "status": "FAIL"
+  },
+  "ready_for_retraining": false,
+  "source": {
+    "status": "PARTIAL"
+  },
+  "static_equivalence": {
+    "status": "NOT_RUN"
+  }
+}

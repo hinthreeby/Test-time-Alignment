@@ -1,0 +1,22 @@
+{
+  "beaver_cost": {
+    "evidence": "remote metadata reconstructs exact archived 14-file tree SHA-256 418b9416...",
+    "id": "PKU-Alignment/beaver-7b-v1.0-cost",
+    "revision": "c1bd343d2ddc2cb810bd736563c7ad0bf38f6b28"
+  },
+  "beaver_reward": {
+    "evidence": "remote metadata reconstructs exact archived 14-file tree SHA-256 3410256f...",
+    "id": "PKU-Alignment/beaver-7b-v1.0-reward",
+    "revision": "375cd6a9f0d7e339d2199b05ba129a4a8906596d"
+  },
+  "safe_rlhf": {
+    "evidence": "repo ID is explicit; historical clone recorded no commit and archived tree hash included non-reproducible .git metadata",
+    "id": "https://github.com/PKU-Alignment/safe-rlhf.git",
+    "revision": null
+  },
+  "tulu": {
+    "evidence": "current revision matches both retained 7B weight SHA-256 values and checkpoint-index SHA-256",
+    "id": "allenai/tulu-2-7b",
+    "revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66"
+  }
+}

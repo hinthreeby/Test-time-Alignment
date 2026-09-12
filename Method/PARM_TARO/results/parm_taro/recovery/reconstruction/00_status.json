@@ -1,0 +1,111 @@
+{
+  "blocking_issues": [
+    "public artifacts incomplete: disk capacity and Safe-RLHF revision",
+    "PBLoRA seed/base provenance conflict requires explicit reproduction protocol approval"
+  ],
+  "cpu_environment": {
+    "status": "PASS"
+  },
+  "custom_checkpoints": {
+    "status": "NEEDS_REPRODUCTION"
+  },
+  "host_gpu": {
+    "agent_access": false,
+    "agent_gpu_access": "UNAVAILABLE_BY_DESIGN",
+    "driver": "580.105.08",
+    "host_cuda": "13.0",
+    "model": "NVIDIA GeForce RTX 5090",
+    "note": "GPU works on host but agent is intentionally CPU-only",
+    "status": "AVAILABLE"
+  },
+  "imports": {
+    "status": "PASS"
+  },
+  "public_artifacts": {
+    "status": "PARTIAL"
+  },
+  "public_download_check": [
+    {
+      "actual_tree_sha256": null,
+      "artifact": "tulu",
+      "bytes": 0,
+      "exists": false,
+      "expected_tree_sha256": null,
+      "mismatched": [],
+      "missing": [
+        "config.json",
+        "pytorch_model.bin.index.json",
+        "pytorch_model-00001-of-00002.bin",
+        "pytorch_model-00002-of-00002.bin",
+        "tokenizer.model",
+        "tokenizer_config.json",
+        "special_tokens_map.json"
+      ],
+      "partial_files": [],
+      "repo_id": "allenai/tulu-2-7b",
+      "revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66",
+      "status": "INCOMPLETE",
+      "target": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b"
+    },
+    {
+      "actual_tree_sha256": null,
+      "artifact": "beaver_reward",
+      "bytes": 0,
+      "exists": false,
+      "expected_tree_sha256": "3410256f542b2e06225d2652102d5dff1ce356a4cd092249643ab03a999a47b3",
+      "mismatched": [],
+      "missing": [
+        "config.json",
+        "model.safetensors.index.json",
+        "tokenizer.json",
+        "tokenizer_config.json"
+      ],
+      "partial_files": [],
+      "repo_id": "PKU-Alignment/beaver-7b-v1.0-reward",
+      "revision": "375cd6a9f0d7e339d2199b05ba129a4a8906596d",
+      "status": "INCOMPLETE",
+      "target": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward"
+    },
+    {
+      "actual_tree_sha256": null,
+      "artifact": "beaver_cost",
+      "bytes": 0,
+      "exists": false,
+      "expected_tree_sha256": "418b941682ced967d71194c059beb967ebd225c2b6713a713ccdcea1fa6d8454",
+      "mismatched": [],
+      "missing": [
+        "config.json",
+        "model.safetensors.index.json",
+        "tokenizer.json",
+        "tokenizer_config.json"
+      ],
+      "partial_files": [],
+      "repo_id": "PKU-Alignment/beaver-7b-v1.0-cost",
+      "revision": "c1bd343d2ddc2cb810bd736563c7ad0bf38f6b28",
+      "status": "INCOMPLETE",
+      "target": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost"
+    },
+    {
+      "actual_tree_sha256": null,
+      "artifact": "safe_rlhf",
+      "bytes": 0,
+      "exists": false,
+      "expected_tree_sha256": null,
+      "mismatched": [],
+      "missing": [
+        "pyproject.toml",
+        "safe_rlhf/__init__.py"
+      ],
+      "partial_files": [],
+      "repo_id": "https://github.com/PKU-Alignment/safe-rlhf.git",
+      "revision": null,
+      "status": "UNKNOWN_REVISION",
+      "target": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source"
+    }
+  ],
+  "ready_for_gpu_reproduction": false,
+  "source_reconstruction": {
+    "status": "PASS"
+  },
+  "updated_at": "2026-09-11T07:37:19.242300+00:00"
+}

@@ -37,6 +37,13 @@ temp/
 .cache/
 cache/
 
+# The historical Router V2 Python cache package was accidentally hidden by
+# the generic cache/ rule.  Track source only; generated cache payloads stay
+# ignored.
+!router_v2/cache/
+router_v2/cache/*
+!router_v2/cache/*.py
+
 # Hugging Face / PyTorch caches
 **/.cache/huggingface/
 **/.cache/torch/
@@ -67,6 +74,10 @@ results/*.pdf
 !results/.gitkeep
 !results/README.md
 !models/README.md
+!Method/CD/models/
+!Method/CD/models/*.py
+!Method/MultiSignal/models/
+!Method/MultiSignal/models/*.py
 
 # Dataset artifacts that are commonly large
 dataset/**/*.zip

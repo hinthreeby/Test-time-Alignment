@@ -103,7 +103,7 @@ class RADAdapter(LocalFallbackAdapter):
         if rm_base.exists() and checkpoint.exists():
             from Method.RAD.reward_modeling.reward_model import GPT2RewardModel
 
-            self.rm_tokenizer = AutoTokenizer.from_pretrained(str(rm_path), local_files_only=True)
+            self.rm_tokenizer = AutoTokenizer.from_pretrained(str(rm_base), local_files_only=True)
             if self.rm_tokenizer.pad_token is None:
                 self.rm_tokenizer.pad_token = self.rm_tokenizer.eos_token
             self.rm_tokenizer.padding_side = "right"

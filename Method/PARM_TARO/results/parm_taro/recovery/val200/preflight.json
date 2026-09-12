@@ -1,0 +1,101 @@
+{
+  "created_at_utc": "2026-09-10T16:57:19.196677+00:00",
+  "generation_started": false,
+  "manifest_sha256": "a617b6fea14a114d03e64a4f4fd02ac9602030c3fd13e00db0d88ab156d4e12e",
+  "missing_assets": [
+    "models/tulu-2-7b/config.json",
+    "results/parm_taro/checkpoints/parm_pku_pblora/adapter_config.json",
+    "results/parm_taro/training/taro/best.pt",
+    "results/parm_taro/training/v2_no_alpha/best.pt",
+    "results/parm_taro/training/v2_alpha_preference/final.pt",
+    "results/parm_taro/recovery/checkpoints/recovered_full_alpha.pt"
+  ],
+  "protocol": {
+    "alpha_grid": [
+      [
+        0.0,
+        1.0
+      ],
+      [
+        0.25,
+        0.75
+      ],
+      [
+        0.5,
+        0.5
+      ],
+      [
+        0.75,
+        0.25
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "hv_reference": [
+      0.0,
+      0.0
+    ],
+    "methods": [
+      "parm_static",
+      "old_v2_full_alpha_stage10",
+      "recovered_v2_full_alpha",
+      "recovered_same_average_lambda",
+      "recovered_shuffled_alpha",
+      "recovered_no_alpha"
+    ],
+    "normalization": "reuse frozen Stage-10 validation normalization",
+    "regret_oracle": "shared all-method candidate pool per prompt/alpha/seed"
+  },
+  "protocol_lock": {
+    "bytes": 9111,
+    "path": "results/parm_taro/evaluation/protocol/protocol_lock.json",
+    "present": true,
+    "sha256": "c77d9b4fb1276023c31e414a15592656dd33243bdabc8dd012bb7c88baf85c71"
+  },
+  "required_assets": [
+    {
+      "bytes": null,
+      "path": "models/tulu-2-7b/config.json",
+      "present": false,
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "path": "results/parm_taro/checkpoints/parm_pku_pblora/adapter_config.json",
+      "present": false,
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "path": "results/parm_taro/training/taro/best.pt",
+      "present": false,
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "path": "results/parm_taro/training/v2_no_alpha/best.pt",
+      "present": false,
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "path": "results/parm_taro/training/v2_alpha_preference/final.pt",
+      "present": false,
+      "sha256": null
+    },
+    {
+      "bytes": null,
+      "path": "results/parm_taro/recovery/checkpoints/recovered_full_alpha.pt",
+      "present": false,
+      "sha256": null
+    }
+  ],
+  "schema_version": 1,
+  "scoring_started": false,
+  "stage": "Gate A / val200 preflight",
+  "status": "BLOCKED",
+  "stop_reason": "File 13 forbids Gate A generation before a recovered checkpoint and complete frozen runtime are present.",
+  "test_split_accessed": false
+}

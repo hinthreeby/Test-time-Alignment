@@ -1,0 +1,20 @@
+{
+  "feature_distribution_audit": "BLOCKED_GENERATION_RECORDS_AND_RUNTIME_MISSING",
+  "generated_test_lambda": {
+    "count": 461733,
+    "max": 0.04662718623876572,
+    "mean": 0.010731320340561708,
+    "min": 0.006550197023898363,
+    "std": 0.004691122341700927
+  },
+  "mean_lambda_ratio_generated_over_teacher_forced": 1.0894406654566176,
+  "status": "PARTIAL_AGGREGATES_ONLY",
+  "teacher_forced_validation_lambda": {
+    "count": 382640,
+    "max": 0.051137372851371765,
+    "mean": 0.009850302711129189,
+    "min": 0.006555734667927027,
+    "std": 0.004213961306959391
+  },
+  "warning": "The generated aggregate is Stage-10 test evidence and is diagnostic only; it must not tune the recovery fix."
+}

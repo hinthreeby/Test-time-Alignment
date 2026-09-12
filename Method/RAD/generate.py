@@ -61,6 +61,7 @@ def load_dataset(path: Path, num_prompts: int | None = None) -> list[dict[str, A
                 continue
 
             sample["_prompt_text"] = prompt_text
+            sample["_dataset_index"] = len(samples)
             samples.append(sample)
 
             if num_prompts is not None and len(samples) >= num_prompts:
@@ -135,7 +136,23 @@ def load_reward_model(
     )
 
     state_dict = torch.load(str(rm_checkpoint_path), map_location="cpu")
-    load_result = reward_model.load_state_dict(state_dict, strict=True)
+    # RAD's original Transformers version persisted GPT-2 causal-mask buffers
+    # (attn.bias and attn.masked_bias). Newer Transformers versions recreate
+    # those buffers instead of registering them in the state dict. Allow only
+    # these known legacy extras while keeping all learned weights strict.
+    load_result = reward_model.load_state_dict(state_dict, strict=False)
+    allowed_legacy_suffixes = (".attn.bias", ".attn.masked_bias")
+    unexpected_learned_keys = [
+        key
+        for key in load_result.unexpected_keys
+        if not key.endswith(allowed_legacy_suffixes)
+    ]
+    if load_result.missing_keys or unexpected_learned_keys:
+        raise RuntimeError(
+            "Incompatible RAD reward checkpoint: "
+            f"missing={load_result.missing_keys}, "
+            f"unexpected={unexpected_learned_keys}"
+        )
 
     print("RM missing keys:", load_result.missing_keys)
     print("RM unexpected keys:", load_result.unexpected_keys)
@@ -172,19 +189,68 @@ def load_rad(args: argparse.Namespace) -> RewardAugmentedDecoder:
 
 def save_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as file:
+    temporary_path = path.with_suffix(path.suffix + ".tmp")
+    with temporary_path.open("w", encoding="utf-8") as file:
         json.dump(data, file, indent=2, ensure_ascii=False)
+    temporary_path.replace(path)
+
+
+def record_key(record: dict[str, Any]) -> tuple[str, str]:
+    md5_hash = record.get("md5_hash")
+    if md5_hash:
+        return "md5", str(md5_hash)
+
+    prompt_value = record.get("_prompt_text", record.get("prompt", ""))
+    if isinstance(prompt_value, dict):
+        prompt_value = prompt_value.get("text", "")
+    return "prompt", str(prompt_value).strip()
+
+
+def load_existing_results(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8") as file:
+        payload = json.load(file)
+    if not isinstance(payload, list):
+        raise ValueError(f"Resume output must be a JSON list: {path}")
+    return [record for record in payload if isinstance(record, dict)]
+
+
+def is_completed(record: dict[str, Any] | None) -> bool:
+    return bool(
+        record
+        and record.get("status", "success") == "success"
+        and isinstance(record.get("response"), str)
+        and record["response"].strip()
+    )
 
 
 def generate_on_prompts(
     args: argparse.Namespace,
     rad: RewardAugmentedDecoder,
     samples: list[dict[str, Any]],
+    existing_results: list[dict[str, Any]] | None = None,
 ):
     sample_chunks = list(chunks(samples, args.batch_size))
-    flat_results = []
+    flat_results = list(existing_results or [])
+    result_indices = {
+        record_key(record): index for index, record in enumerate(flat_results)
+    }
     legacy_generation = []
-    dist_n_values = []
+    dist_n_values = [
+        distinctness(record["all_responses"])
+        for record in flat_results
+        if is_completed(record) and record.get("all_responses")
+    ]
+
+    def upsert_result(source_sample: dict[str, Any], result: dict[str, Any]) -> None:
+        key = record_key(source_sample)
+        existing_index = result_indices.get(key)
+        if existing_index is None:
+            result_indices[key] = len(flat_results)
+            flat_results.append(result)
+        else:
+            flat_results[existing_index] = result
 
     progress_bar = tqdm(sample_chunks, desc="RAD decoding", unit="batch")
 
@@ -230,9 +296,10 @@ def generate_on_prompts(
                     else continuation
                 )
 
-                flat_results.append(
+                upsert_result(
+                    source_sample,
                     {
-                        "id": len(flat_results),
+                        "id": source_sample["_dataset_index"],
                         "md5_hash": source_sample.get("md5_hash"),
                         "prompt": prompts[local_index],
                         "reference": reference,
@@ -275,9 +342,10 @@ def generate_on_prompts(
                     else continuation
                 )
 
-                flat_results.append(
+                upsert_result(
+                    source_sample,
                     {
-                        "id": len(flat_results),
+                        "id": source_sample["_dataset_index"],
                         "md5_hash": source_sample.get("md5_hash"),
                         "prompt": prompts[local_index],
                         "reference": reference,
@@ -394,8 +462,29 @@ def main() -> None:
     samples = load_dataset(args.dataset_path, args.num_prompts)
     print(f"Loaded {len(samples)} prompts.")
 
+    existing_results = load_existing_results(args.output_path)
+    existing_by_key = {
+        record_key(record): record for record in existing_results
+    }
+    pending_samples = [
+        sample
+        for sample in samples
+        if not is_completed(existing_by_key.get(record_key(sample)))
+    ]
+    print(f"Already completed: {len(samples) - len(pending_samples)}")
+    print(f"Remaining: {len(pending_samples)}")
+
+    if not pending_samples:
+        print("No prompts need decoding; existing output is unchanged.")
+        return
+
     rad = load_rad(args)
-    report, _ = generate_on_prompts(args, rad, samples)
+    report, _ = generate_on_prompts(
+        args,
+        rad,
+        pending_samples,
+        existing_results=existing_results,
+    )
 
     print("\nFinished.")
     print(json.dumps(report, indent=2, ensure_ascii=False))

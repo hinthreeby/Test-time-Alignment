@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import json
 import sys
 from copy import deepcopy
@@ -17,9 +18,9 @@ DATASET_PATH = PROJECT_ROOT / "dataset" / "cd_train" / "hh_prompts.jsonl"
 BASE_LM_PATH = PROJECT_ROOT / "models" / "gpt2-large"
 SCORER_BACKBONE_PATH = PROJECT_ROOT / "models" / "gpt2-small"
 REWARD_MODEL_PATH = PROJECT_ROOT / "models" / "sentiment-roberta-large-english"
-OUTPUT_PATH = PROJECT_ROOT / "Method" / "CD_new" / "checkpoints" / "cd_q.pt"
+OUTPUT_PATH = PROJECT_ROOT / "Method" / "CD" / "checkpoints" / "cd_q.pt"
 
-sys.path.insert(0, str(PROJECT_ROOT / "Method" / "CD_new" / "models"))
+sys.path.insert(0, str(PROJECT_ROOT / "Method" / "CD" / "models"))
 from prefix_scorer import PrefixScorer
 
 
@@ -31,7 +32,16 @@ EPOCHS = 4
 TARGET_UPDATE_INTERVAL = 20
 
 
-def load_prompts():
+def parse_args():
+    parser = argparse.ArgumentParser(description="Train the CD-Q prefix scorer.")
+    parser.add_argument("--num-prompts", type=int, default=NUM_PROMPTS)
+    parser.add_argument("--epochs", type=int, default=EPOCHS)
+    parser.add_argument("--max-new-tokens", type=int, default=MAX_NEW_TOKENS)
+    parser.add_argument("--output-path", type=Path, default=OUTPUT_PATH)
+    return parser.parse_args()
+
+
+def load_prompts(limit):
     prompts = []
 
     with DATASET_PATH.open("r", encoding="utf-8") as file:
@@ -47,19 +57,19 @@ def load_prompts():
             if prompt:
                 prompts.append(prompt)
 
-            if len(prompts) >= NUM_PROMPTS:
+            if len(prompts) >= limit:
                 break
 
     return prompts
 
 
 @torch.inference_mode()
-def generate_response_ids(prompt, tokenizer, model, device):
+def generate_response_ids(prompt, tokenizer, model, device, max_new_tokens):
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=900).to(device)
 
     outputs = model.generate(
         **inputs,
-        max_new_tokens=MAX_NEW_TOKENS,
+        max_new_tokens=max_new_tokens,
         do_sample=True,
         top_p=0.95,
         pad_token_id=tokenizer.eos_token_id,
@@ -107,6 +117,9 @@ def update_target_network(scorer, target_scorer):
 
 
 def main():
+    args = parse_args()
+    if args.num_prompts <= 0 or args.epochs <= 0 or args.max_new_tokens <= 0:
+        raise ValueError("num-prompts, epochs và max-new-tokens phải lớn hơn 0")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     cpu_device = torch.device("cpu")
 
@@ -121,8 +134,13 @@ def main():
     scorer_tokenizer.pad_token = scorer_tokenizer.eos_token
     scorer_tokenizer.padding_side = "right"
 
-    base_lm = AutoModelForCausalLM.from_pretrained(str(BASE_LM_PATH), local_files_only=True).eval()
-    reward_model = AutoModelForSequenceClassification.from_pretrained(str(REWARD_MODEL_PATH), local_files_only=True).eval()
+    model_dtype = torch.float16 if device.type == "cuda" else torch.float32
+    base_lm = AutoModelForCausalLM.from_pretrained(
+        str(BASE_LM_PATH), local_files_only=True, torch_dtype=model_dtype,
+    ).to(device).eval()
+    reward_model = AutoModelForSequenceClassification.from_pretrained(
+        str(REWARD_MODEL_PATH), local_files_only=True, torch_dtype=model_dtype,
+    ).to(device).eval()
 
     scorer = PrefixScorer(str(SCORER_BACKBONE_PATH)).to(device)
     target_scorer = deepcopy(scorer).to(cpu_device).eval()
@@ -132,19 +150,21 @@ def main():
 
     optimizer = torch.optim.AdamW(scorer.parameters(), lr=LEARNING_RATE)
 
-    prompts = load_prompts()
+    prompts = load_prompts(args.num_prompts)
     train_step = 0
 
-    for epoch in range(EPOCHS):
+    print(f"Prompts: {len(prompts)} | Epochs: {args.epochs}")
+    print(f"Checkpoint: {args.output_path}")
+
+    for epoch in range(args.epochs):
         scorer.train()
         total_loss = 0.0
         trained_samples = 0
 
-        for prompt in tqdm(prompts, desc=f"Epoch {epoch + 1}"):
-            base_lm.to(device)
-            response_ids = generate_response_ids(prompt, base_tokenizer, base_lm, device)
-            base_lm.to(cpu_device)
-            torch.cuda.empty_cache()
+        for prompt in tqdm(prompts, desc=f"Epoch {epoch + 1}/{args.epochs}"):
+            response_ids = generate_response_ids(
+                prompt, base_tokenizer, base_lm, device, args.max_new_tokens
+            )
 
             if len(response_ids) == 0:
                 continue
@@ -154,10 +174,7 @@ def main():
             if not response:
                 continue
 
-            reward_model.to(device)
             final_reward = get_reward(prompt, response, reward_tokenizer, reward_model, device)
-            reward_model.to(cpu_device)
-            torch.cuda.empty_cache()
 
             current_prefixes, next_prefixes = create_prefix_pairs(prompt, response_ids, base_tokenizer)
 
@@ -193,17 +210,16 @@ def main():
             del current_inputs, next_inputs
             del current_input_ids, current_attention_mask
             del predicted_values, targets, target_values
-            torch.cuda.empty_cache()
 
         average_loss = total_loss / max(trained_samples, 1)
         print(f"Epoch {epoch + 1} loss: {average_loss:.4f}")
 
     update_target_network(scorer, target_scorer)
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(scorer.state_dict(), OUTPUT_PATH)
+    args.output_path.parent.mkdir(parents=True, exist_ok=True)
+    torch.save(scorer.state_dict(), args.output_path)
 
-    print("Saved:", OUTPUT_PATH)
+    print("Saved:", args.output_path)
 
 
 if __name__ == "__main__":

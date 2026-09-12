@@ -1,0 +1,2 @@
+status,split,tokens,fraction_dL_dlambda_positive_at_0,reason
+BLOCKED_RUNTIME_ASSETS_MISSING,train+validation,0,,Exact full-vocabulary token distributions were not retained in Git; aggregate fixed-lambda NLL evidence cannot recover the requested per-token fraction.

@@ -1,0 +1,17 @@
+{
+  "measured_states": 0,
+  "numeric_pass": false,
+  "reason": "The ignored Tulu-2-7B/PBLoRA assets and PyTorch environment are absent from this workspace snapshot.",
+  "required_states": 100,
+  "source_audit": {
+    "files": [
+      "PARM_TARO/decoding/static_regression.py",
+      "PARM_TARO/decoding/adaptive.py",
+      "PARM_TARO/training/routing.py"
+    ],
+    "lambda_0_reduces_algebraically_to_base": true,
+    "lambda_1_uses_same_function_for_static_and_adaptive_decoding": true
+  },
+  "source_equation": "log_softmax(log_softmax(base_logits) + lambda * log_softmax(guide_logits))",
+  "status": "BLOCKED_RUNTIME_ASSETS_MISSING"
+}

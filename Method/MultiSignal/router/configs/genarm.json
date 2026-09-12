@@ -1,7 +1,7 @@
 {
     "name": "genarm",
     "model_name": "gpt2-large",
-    "arm_model": "genarm-gpt2-medium-hh",
+    "arm_model": "genarm-gpt2-small-hh",
     "top_k": 20,
     "alpha": 1.0,
     "temperature": 1.0,

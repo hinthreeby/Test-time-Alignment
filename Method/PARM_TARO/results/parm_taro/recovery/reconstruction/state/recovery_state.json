@@ -1,0 +1,149 @@
+{
+  "device": "cpu",
+  "phases": {
+    "discover_artifacts": {
+      "detail": {
+        "beaver_cost": {
+          "evidence": "remote metadata reconstructs exact archived 14-file tree SHA-256 418b9416...",
+          "id": "PKU-Alignment/beaver-7b-v1.0-cost",
+          "revision": "c1bd343d2ddc2cb810bd736563c7ad0bf38f6b28"
+        },
+        "beaver_reward": {
+          "evidence": "remote metadata reconstructs exact archived 14-file tree SHA-256 3410256f...",
+          "id": "PKU-Alignment/beaver-7b-v1.0-reward",
+          "revision": "375cd6a9f0d7e339d2199b05ba129a4a8906596d"
+        },
+        "safe_rlhf": {
+          "evidence": "repo ID is explicit; historical clone recorded no commit and archived tree hash included non-reproducible .git metadata",
+          "id": "https://github.com/PKU-Alignment/safe-rlhf.git",
+          "revision": null
+        },
+        "tulu": {
+          "evidence": "current revision matches both retained 7B weight SHA-256 values and checkpoint-index SHA-256",
+          "id": "allenai/tulu-2-7b",
+          "revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66"
+        }
+      },
+      "finished_at": "2026-09-11T07:28:02.724878+00:00",
+      "status": "done"
+    },
+    "download_public": {
+      "detail": {
+        "exit_code": 3,
+        "reason": "insufficient disk or unresolved pinned artifact",
+        "tail": "download attempt UTC: 2026-09-11T07:28:02Z\n{\n  \"free_bytes\": 10096820224,\n  \"free_gib\": 9.403396606445312,\n  \"required_gib\": 55.0,\n  \"status\": \"INSUFFICIENT_SPACE\"\n}\n"
+      },
+      "finished_at": "2026-09-11T07:28:02.779922+00:00",
+      "status": "blocked"
+    },
+    "finalize": {
+      "detail": {
+        "ready": false,
+        "status_path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reconstruction/00_status.json"
+      },
+      "finished_at": "2026-09-11T07:37:19.243636+00:00",
+      "status": "done"
+    },
+    "import_test": {
+      "detail": {
+        "cuda_expected": false,
+        "exit_code": 0,
+        "output": "2026-09-11 14:37:17.815 | WARNING  | model_arithmetic.utils:log:24 - Failed to import auto_gptq\ntorch 2.7.1+cu128\ncuda visible: False\nlambda range 0.4926198124885559 0.49634912610054016\nresidual [0.7589930891990662, 1.0, 1.241006851196289]\nIMPORT_PASS\n"
+      },
+      "finished_at": "2026-09-11T07:37:19.156205+00:00",
+      "status": "done"
+    },
+    "inventory": {
+      "detail": {
+        "commands": {
+          "branch": {
+            "exit_code": 0,
+            "output": "main"
+          },
+          "commit": {
+            "exit_code": 0,
+            "output": "d2912fa11170a272973130696f9bbeef3e6c8af3"
+          },
+          "git_status": {
+            "exit_code": 0,
+            "output": " M .gitignore\n?? PARM_TARO/recovery/\n?? document/12_ROUTER_LOW_LAMBDA_DIAGNOSIS_AND_FIX.md\n?? document/13_STAGED_REEVALUATION_200_500_1500.md\n?? results/parm_taro/recovery/\n?? router_v2/cache/\n?? tests/"
+          },
+          "remotes": {
+            "exit_code": 0,
+            "output": "origin\thttps://github.com/hinthreeby/Test-time-Alignment.git (fetch)\norigin\thttps://github.com/hinthreeby/Test-time-Alignment.git (push)"
+          }
+        },
+        "project_root": "/home/jupyter-iec2024se10/Test-time-Alignment",
+        "required_directories": {
+          "Method/RAD": true,
+          "PARM": true,
+          "PARM_TARO": true,
+          "results/parm_taro": true,
+          "router": true,
+          "router_v2": true
+        }
+      },
+      "finished_at": "2026-09-11T07:28:02.663835+00:00",
+      "status": "done"
+    },
+    "reconstruct_cache": {
+      "detail": {
+        "classification": "RECONSTRUCTED_FROM_REPO_EVIDENCE",
+        "files": {
+          "router_v2/cache/__init__.py": true,
+          "router_v2/cache/features.py": true,
+          "router_v2/cache/inventory.py": true,
+          "router_v2/cache/io.py": true,
+          "router_v2/cache/schema.py": true
+        }
+      },
+      "finished_at": "2026-09-11T07:28:02.690860+00:00",
+      "status": "done"
+    },
+    "verify_source": {
+      "detail": {
+        "tests": [
+          {
+            "command": [
+              "/home/jupyter-iec2024se10/miniforge3/envs/tta/bin/python",
+              "-m",
+              "pytest",
+              "tests/recovery/test_router_v2_cache_reconstruction.py",
+              "-v"
+            ],
+            "exit_code": 0,
+            "tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.3.5, pluggy-1.6.0 -- /home/jupyter-iec2024se10/miniforge3/envs/tta/bin/python\ncachedir: .pytest_cache\nrootdir: /home/jupyter-iec2024se10/Test-time-Alignment\nplugins: typeguard-4.6.0\ncollecting ... collected 11 items\n\ntests/recovery/test_router_v2_cache_reconstruction.py::test_reconstruction_markers_are_present PASSED [  9%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_schema_serialization_round_trip_is_deterministic PASSED [ 18%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_required_field_validation PASSED [ 27%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_candidate_length_agreement PASSED [ 36%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_gold_index_semantics_and_no_gold_leakage PASSED [ 45%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_preference_vector_optionality[None] PASSED [ 54%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_preference_vector_optionality[preference1] PASSED [ 63%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_finite_logits_and_features_are_required PASSED [ 72%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_no_future_token_or_history_fields PASSED [ 81%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_derived_feature_bounds PASSED [ 90%]\ntests/recovery/test_router_v2_cache_reconstruction.py::test_json_atomic_no_overwrite PASSED [100%]\n\n============================== 11 passed in 0.93s ==============================\n"
+          },
+          {
+            "command": [
+              "/home/jupyter-iec2024se10/miniforge3/envs/tta/bin/python",
+              "-m",
+              "pytest",
+              "router_v2/tests/test_feature_cache.py",
+              "-v"
+            ],
+            "exit_code": 0,
+            "tail": "ld_does_not_change_router_inputs_or_features PASSED [  6%]\nrouter_v2/tests/test_feature_cache.py::CacheCandidateTests::test_derived_feature_api_cannot_accept_gold PASSED [ 12%]\nrouter_v2/tests/test_feature_cache.py::CacheCandidateTests::test_full_logits_select_independent_topk_in_descending_order PASSED [ 18%]\nrouter_v2/tests/test_feature_cache.py::CacheCandidateTests::test_gold_is_target_only_and_is_not_forced_into_topk PASSED [ 25%]\nrouter_v2/tests/test_feature_cache.py::DerivedFeatureTests::test_consistent_token_logit_pair_permutation_is_consistent PASSED [ 31%]\nrouter_v2/tests/test_feature_cache.py::DerivedFeatureTests::test_disjoint_support_has_log_two_js_and_zero_overlap PASSED [ 37%]\nrouter_v2/tests/test_feature_cache.py::DerivedFeatureTests::test_known_identical_distributions PASSED [ 43%]\nrouter_v2/tests/test_feature_cache.py::DerivedFeatureTests::test_normalized_position_uses_fixed_configured_limit PASSED [ 50%]\nrouter_v2/tests/test_feature_cache.py::DerivedFeatureTests::test_rows_do_not_read_future_or_neighbor_records PASSED [ 56%]\nrouter_v2/tests/test_feature_cache.py::CacheContractTests::test_raw_candidate_order_is_preserved PASSED [ 62%]\nrouter_v2/tests/test_feature_cache.py::CacheContractTests::test_raw_values_reconstruct_every_derived_feature PASSED [ 68%]\nrouter_v2/tests/test_feature_cache.py::CacheContractTests::test_save_load_round_trip_and_no_overwrite PASSED [ 75%]\nrouter_v2/tests/test_feature_cache.py::CacheContractTests::test_tampered_derived_feature_is_rejected PASSED [ 81%]\nrouter_v2/tests/test_feature_cache.py::CacheContractTests::test_target_field_cannot_be_declared_as_router_feature PASSED [ 87%]\nrouter_v2/tests/test_feature_cache.py::CacheContractTests::test_write_boundary_rejects_v1_and_other_destinations PASSED [ 93%]\nrouter_v2/tests/test_feature_cache.py::SourceInventoryTests::test_generated_inventory_records_exact_local_schemas_and_hashes PASSED [100%]\n\n============================== 16 passed in 0.95s ==============================\n"
+          },
+          {
+            "command": [
+              "/home/jupyter-iec2024se10/miniforge3/envs/tta/bin/python",
+              "-m",
+              "pytest",
+              "PARM_TARO/tests/test_parm_taro.py::StaticEquationTests::test_static_equation_matches_vendored_operator_raw_sum",
+              "PARM_TARO/tests/test_parm_taro.py::VendoredAndProtectedTreeTests::test_original_parm_generation_module_loads_read_only",
+              "PARM_TARO/tests/test_parm_taro.py::VendoredAndProtectedTreeTests::test_vendored_parm_dependencies_resolve_in_proven_environment",
+              "-v"
+            ],
+            "exit_code": 0,
+            "tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.3.5, pluggy-1.6.0 -- /home/jupyter-iec2024se10/miniforge3/envs/tta/bin/python\ncachedir: .pytest_cache\nrootdir: /home/jupyter-iec2024se10/Test-time-Alignment\nplugins: typeguard-4.6.0\ncollecting ... collected 3 items\n\nPARM_TARO/tests/test_parm_taro.py::StaticEquationTests::test_static_equation_matches_vendored_operator_raw_sum PASSED [ 33%]\nPARM_TARO/tests/test_parm_taro.py::VendoredAndProtectedTreeTests::test_original_parm_generation_module_loads_read_only PASSED [ 66%]\nPARM_TARO/tests/test_parm_taro.py::VendoredAndProtectedTreeTests::test_vendored_parm_dependencies_resolve_in_proven_environment PASSED [100%]\n\n============================== 3 passed in 9.67s ===============================\n"
+          }
+        ]
+      },
+      "finished_at": "2026-09-11T07:36:49.238894+00:00",
+      "status": "done"
+    }
+  },
+  "schema_version": 1,
+  "updated_at": "2026-09-11T07:37:19.243641+00:00"
+}

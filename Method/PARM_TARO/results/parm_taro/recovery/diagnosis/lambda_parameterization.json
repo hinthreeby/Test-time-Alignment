@@ -1,0 +1,36 @@
+{
+  "checkpoint_path": "results/parm_taro/training/v2_alpha_preference/final.pt",
+  "checkpoint_present": false,
+  "checkpoint_sha256_archived": "56fbed68168537bd84066a5b86fbfefc8525cb5311c06d8668012e2cecca1e20",
+  "decision": "Gate itself is near zero; lambda_max is not a 0.05 scale cap.",
+  "final_lambda": {
+    "count": 461733,
+    "max": 0.04662718623876572,
+    "mean": 0.010731320340561708,
+    "min": 0.006550197023898363,
+    "std": 0.004691122341700927
+  },
+  "final_mapping": "lambda_t = 1.0 * clamp(sigmoid(raw), 1e-6, 1-1e-6)",
+  "initial_output_bias_from_config": 0.0,
+  "lambda_ceiling_exact": 0.999999,
+  "lambda_max": 1.0,
+  "lambda_min_exact": 1e-06,
+  "raw_output": {
+    "max_implied_by_observed_lambda": -3.0178222606203877,
+    "mean": null,
+    "min_implied_by_observed_lambda": -5.021688406096915,
+    "p05": null,
+    "p50": null,
+    "p95": null,
+    "std": null
+  },
+  "sigmoid_gate": {
+    "count": 461733,
+    "max": 0.04662718623876572,
+    "mean": 0.010731320340561708,
+    "min": 0.006550197023898363,
+    "std": 0.004691122341700927
+  },
+  "trained_output_bias": null,
+  "trained_output_bias_status": "BLOCKED_CHECKPOINT_MISSING"
+}

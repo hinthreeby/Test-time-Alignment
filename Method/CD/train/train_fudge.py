@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -16,9 +17,9 @@ DATASET_PATH = PROJECT_ROOT / "dataset" / "cd_train" / "hh_prompts.jsonl"
 BASE_LM_PATH = PROJECT_ROOT / "models" / "gpt2-large"
 SCORER_BACKBONE_PATH = PROJECT_ROOT / "models" / "gpt2-small"
 REWARD_MODEL_PATH = PROJECT_ROOT / "models" / "sentiment-roberta-large-english"
-OUTPUT_PATH = PROJECT_ROOT / "Method" / "CD_new" / "checkpoints" / "cd_fudge.pt"
+OUTPUT_PATH = PROJECT_ROOT / "Method" / "CD" / "checkpoints" / "cd_fudge.pt"
 
-sys.path.insert(0, str(PROJECT_ROOT / "Method" / "CD_new" / "models"))
+sys.path.insert(0, str(PROJECT_ROOT / "Method" / "CD" / "models"))
 from prefix_scorer import PrefixScorer
 
 
@@ -29,7 +30,16 @@ LEARNING_RATE = 1e-5
 EPOCHS = 4
 
 
-def load_prompts():
+def parse_args():
+    parser = argparse.ArgumentParser(description="Train the CD-FUDGE prefix scorer.")
+    parser.add_argument("--num-prompts", type=int, default=NUM_PROMPTS)
+    parser.add_argument("--epochs", type=int, default=EPOCHS)
+    parser.add_argument("--max-new-tokens", type=int, default=MAX_NEW_TOKENS)
+    parser.add_argument("--output-path", type=Path, default=OUTPUT_PATH)
+    return parser.parse_args()
+
+
+def load_prompts(limit):
     prompts = []
 
     with DATASET_PATH.open("r", encoding="utf-8") as file:
@@ -45,19 +55,19 @@ def load_prompts():
             if prompt:
                 prompts.append(prompt)
 
-            if len(prompts) >= NUM_PROMPTS:
+            if len(prompts) >= limit:
                 break
 
     return prompts
 
 
 @torch.inference_mode()
-def generate_response(prompt, tokenizer, model, device):
+def generate_response(prompt, tokenizer, model, device, max_new_tokens):
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=900).to(device)
 
     output = model.generate(
         **inputs,
-        max_new_tokens=MAX_NEW_TOKENS,
+        max_new_tokens=max_new_tokens,
         do_sample=True,
         top_p=0.95,
         pad_token_id=tokenizer.eos_token_id,
@@ -90,18 +100,25 @@ def create_prefixes(prompt, response, tokenizer):
 
 
 def main():
+    args = parse_args()
+    if args.num_prompts <= 0 or args.epochs <= 0 or args.max_new_tokens <= 0:
+        raise ValueError("num-prompts, epochs và max-new-tokens phải lớn hơn 0")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Device:", device)
 
     base_tokenizer = AutoTokenizer.from_pretrained(str(BASE_LM_PATH), local_files_only=True)
     base_tokenizer.pad_token = base_tokenizer.eos_token
 
-    base_lm = AutoModelForCausalLM.from_pretrained(str(BASE_LM_PATH), local_files_only=True).to(device).eval()
+    model_dtype = torch.float16 if device.type == "cuda" else torch.float32
+    base_lm = AutoModelForCausalLM.from_pretrained(
+        str(BASE_LM_PATH), local_files_only=True, torch_dtype=model_dtype,
+    ).to(device).eval()
 
     reward_tokenizer = AutoTokenizer.from_pretrained(str(REWARD_MODEL_PATH), local_files_only=True)
     reward_model = AutoModelForSequenceClassification.from_pretrained(
         str(REWARD_MODEL_PATH),
         local_files_only=True,
+        torch_dtype=model_dtype,
     ).to(device).eval()
 
     scorer_tokenizer = AutoTokenizer.from_pretrained(str(SCORER_BACKBONE_PATH), local_files_only=True)
@@ -111,15 +128,20 @@ def main():
     scorer = PrefixScorer(str(SCORER_BACKBONE_PATH)).to(device)
     optimizer = torch.optim.AdamW(scorer.parameters(), lr=LEARNING_RATE)
 
-    prompts = load_prompts()
+    prompts = load_prompts(args.num_prompts)
 
-    for epoch in range(EPOCHS):
+    print(f"Prompts: {len(prompts)} | Epochs: {args.epochs}")
+    print(f"Checkpoint: {args.output_path}")
+
+    for epoch in range(args.epochs):
         scorer.train()
         total_loss = 0.0
         trained_samples = 0
 
-        for prompt in tqdm(prompts, desc=f"Epoch {epoch + 1}"):
-            response = generate_response(prompt, base_tokenizer, base_lm, device)
+        for prompt in tqdm(prompts, desc=f"Epoch {epoch + 1}/{args.epochs}"):
+            response = generate_response(
+                prompt, base_tokenizer, base_lm, device, args.max_new_tokens
+            )
 
             if not response:
                 continue
@@ -149,9 +171,9 @@ def main():
         average_loss = total_loss / max(trained_samples, 1)
         print(f"Epoch {epoch + 1} loss: {average_loss:.4f}")
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(scorer.state_dict(), OUTPUT_PATH)
-    print("Saved:", OUTPUT_PATH)
+    args.output_path.parent.mkdir(parents=True, exist_ok=True)
+    torch.save(scorer.state_dict(), args.output_path)
+    print("Saved:", args.output_path)
 
 
 if __name__ == "__main__":

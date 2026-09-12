@@ -1,4 +1,7 @@
+from pathlib import Path
+from types import SimpleNamespace
 from typing import List
+import sys
 import torch
 from torch.nn import functional as F
 from tqdm import tqdm
@@ -9,6 +12,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModelForSequen
 
 #### auto size stuff
 import numpy as np
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 def factors(x):
     return [i for i in range(1,x+1) if x%i==0]
 
@@ -39,7 +47,7 @@ def even_chunk(data, chunk_size=10):
 
 # reward based search
 class ARGS:
-    def __init__(self, llm_path, rm_path, llm_dev="cuda:0", rm_dev="cuda:1", torch_dtype=torch.float16):
+    def __init__(self, llm_path, rm_path, llm_dev="cuda:0", rm_dev="cuda:1", torch_dtype=torch.float16, rm_base_path=None):
         self.llm_dev = llm_dev
         self.rm_dev = rm_dev
         print("Loading LLM...")
@@ -55,9 +63,46 @@ class ARGS:
         self.LLM.config.pad_token_id = self.tokenizer.pad_token_id
 
         print("Loading RM...")
-        self.RM = AutoModelForSequenceClassification.from_pretrained(rm_path, num_labels=1, torch_dtype=torch_dtype).to(self.rm_dev)
+        rm_path_obj = Path(rm_path)
+        rad_checkpoint = rm_path_obj / "pytorch_model.bin"
+        if rm_base_path is not None and rad_checkpoint.exists() and not (rm_path_obj / "config.json").exists():
+            # The local RAD checkpoint is a GPT-2 LM whose vocabulary head was
+            # replaced by a scalar reward head. It uses the same GPT-2 tokenizer
+            # as ARGS, so it can serve as ARGS' token-prefix reward model.
+            from Method.RAD.reward_modeling.reward_model import GPT2RewardModel
+
+            self.RM = GPT2RewardModel(
+                reward_model_name=str(rm_base_path),
+                out_features=1,
+                loss_fn="cumulative_mse",
+            )
+            state_dict = torch.load(rad_checkpoint, map_location="cpu", weights_only=True)
+            load_result = self.RM.load_state_dict(state_dict, strict=False)
+            allowed_suffixes = (".attn.bias", ".attn.masked_bias")
+            unexpected = [
+                key for key in load_result.unexpected_keys
+                if not key.endswith(allowed_suffixes)
+            ]
+            if load_result.missing_keys or unexpected:
+                raise RuntimeError(
+                    "Incompatible RAD reward checkpoint: "
+                    f"missing={load_result.missing_keys}, unexpected={unexpected}"
+                )
+            self.RM.config = self.RM.model.config
+            self.RM.to(device=self.rm_dev, dtype=torch_dtype)
+        else:
+            self.RM = AutoModelForSequenceClassification.from_pretrained(
+                rm_path, num_labels=1, torch_dtype=torch_dtype,
+            ).to(self.rm_dev)
         self.RM.config.pad_token_id = self.tokenizer.pad_token_id
         self.RM.eval()
+
+    def _reward_forward(self, **kwargs):
+        output = self.RM(**kwargs)
+        if isinstance(output, tuple):
+            _, logits, past_key_values = output
+            return SimpleNamespace(logits=logits, past_key_values=past_key_values)
+        return output
         
     def get_input_ids(self, prompt: str) -> torch.Tensor:
         tokens = self.tokenizer(prompt, return_tensors="pt").input_ids.to(self.llm_dev)
@@ -88,7 +133,7 @@ class ARGS:
         for chunk, chunk_logits in zip(even_chunk(flat_trme.to(self.rm_dev), chunk_size), even_chunk(prescreen_logits.flatten(), chunk_size)):
             pkv = None if not _use_cache else rm_cached
 
-            rm_out = self.RM(**self.LLM.prepare_inputs_for_generation(input_ids=chunk, attention_mask=create_attention_mask(chunk.shape[1], chunk.shape[0]).to(self.rm_dev), past_key_values=pkv, use_cache=True))
+            rm_out = self._reward_forward(**self.LLM.prepare_inputs_for_generation(input_ids=chunk, attention_mask=create_attention_mask(chunk.shape[1], chunk.shape[0]).to(self.rm_dev), past_key_values=pkv, use_cache=True))
             current_rm_cached = rm_out.past_key_values
             rewards = rm_out.logits.flatten().to(self.llm_dev)
             del rm_out
@@ -127,10 +172,10 @@ class ARGS:
         if debug: print(f"{flat_trme.shape=}")
 
         if rm_cached is None:
-            rm_out = self.RM(**self.LLM.prepare_inputs_for_generation(input_ids=flat_trme.to(self.rm_dev), attention_mask=create_attention_mask(flat_trme.shape[1], flat_trme.shape[0]).to(self.rm_dev), past_key_values=None, use_cache=True))
+            rm_out = self._reward_forward(**self.LLM.prepare_inputs_for_generation(input_ids=flat_trme.to(self.rm_dev), attention_mask=create_attention_mask(flat_trme.shape[1], flat_trme.shape[0]).to(self.rm_dev), past_key_values=None, use_cache=True))
             rm_cached = rm_out.past_key_values
         else:
-            rm_out = self.RM(**self.LLM.prepare_inputs_for_generation(input_ids=flat_trme.to(self.rm_dev), attention_mask=create_attention_mask(flat_trme.shape[1], flat_trme.shape[0]).to(self.rm_dev), past_key_values=rm_cached, use_cache=True))
+            rm_out = self._reward_forward(**self.LLM.prepare_inputs_for_generation(input_ids=flat_trme.to(self.rm_dev), attention_mask=create_attention_mask(flat_trme.shape[1], flat_trme.shape[0]).to(self.rm_dev), past_key_values=rm_cached, use_cache=True))
             rm_cached = rm_out.past_key_values
 
         if debug: print(f"{rm_out.logits.flatten()=}")

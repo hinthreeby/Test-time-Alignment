@@ -1,0 +1,3 @@
+scope,states_or_tokens,mean_lambda,lambda_std,endpoint_alpha_delta,correct_vs_shuffled_delta,alpha_encoder_gradient_norm,fusion_alpha_gradient_norm,note
+archived_teacher_forced_before_production,382640,0.03165195509791374,0.00071705412119627,0.0015462480395675615,0.0006199506153793589,0.04114979883403672,1.4776670968470473,same-state alpha evidence retained
+archived_teacher_forced_after_production,382640,0.009850302711129189,0.004213961306959391,0.0026256577857527506,0.00105238904132336,,,production checkpoint itself is absent

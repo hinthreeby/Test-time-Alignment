@@ -1,0 +1,29 @@
+{
+  "commands": {
+    "branch": {
+      "exit_code": 0,
+      "output": "main"
+    },
+    "commit": {
+      "exit_code": 0,
+      "output": "d2912fa11170a272973130696f9bbeef3e6c8af3"
+    },
+    "git_status": {
+      "exit_code": 0,
+      "output": " M .gitignore\n?? PARM_TARO/recovery/\n?? document/12_ROUTER_LOW_LAMBDA_DIAGNOSIS_AND_FIX.md\n?? document/13_STAGED_REEVALUATION_200_500_1500.md\n?? results/parm_taro/recovery/\n?? router_v2/cache/\n?? tests/"
+    },
+    "remotes": {
+      "exit_code": 0,
+      "output": "origin\thttps://github.com/hinthreeby/Test-time-Alignment.git (fetch)\norigin\thttps://github.com/hinthreeby/Test-time-Alignment.git (push)"
+    }
+  },
+  "project_root": "/home/jupyter-iec2024se10/Test-time-Alignment",
+  "required_directories": {
+    "Method/RAD": true,
+    "PARM": true,
+    "PARM_TARO": true,
+    "results/parm_taro": true,
+    "router": true,
+    "router_v2": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "base_model_load": false,
+    "disable_adapter": false,
+    "enable_adapter": false,
+    "finite_logits": false,
+    "gpu_memory_reasonable": false,
+    "no_nan_inf": false,
+    "one_prompt_forward": false,
+    "pblora_attach": false,
+    "tokenizer_load": false
+  },
+  "expected_runtime": {
+    "base_model": "models/tulu-2-7b",
+    "base_pass": "PeftModel.disable_adapter",
+    "guide_pass": "PBLoRA enabled",
+    "load_in_4bit": true,
+    "physical_backbone_count": 1,
+    "shared_backbone": true
+  },
+  "generation_or_evaluation_run": false,
+  "reason": "Required model/PBLoRA/checkpoints are missing; router_v2.cache is missing; CUDA compute is unavailable.",
+  "status": "NOT_RUN"
+}

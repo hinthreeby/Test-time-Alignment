@@ -1,0 +1,91 @@
+{
+  "archived_stage10_hashes": {
+    "method_rad": {
+      "file_count": 110,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/Method/RAD",
+      "total_bytes": 114269650,
+      "tree_sha256": "e0c8907885b80cde9c12f0e1f6e3134b0781e811ee8edafb9f0d690988d36bbe"
+    },
+    "parm_original": {
+      "file_count": 156,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/PARM",
+      "total_bytes": 1506962,
+      "tree_sha256": "dcbaae05b0c3467e2d9ff3255ca6fc9f2296bc4e97f9a22b650e38f666bac23a"
+    },
+    "pblora": {
+      "file_count": 11,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/checkpoints/parm_pku_pblora",
+      "total_bytes": 52827619,
+      "tree_sha256": "f26682e3cf51f8e09921873119fc371d329669cf9448d59ae0025fd40b23ffef"
+    },
+    "router_v1": {
+      "file_count": 100,
+      "path": "/home/jupyter-iec2024se10/Reward Decoding/router",
+      "total_bytes": 521788719,
+      "tree_sha256": "8595fb3e48c2b1771a07a6efba09c29560785a581d5490f582286c58fbf5ffd3"
+    },
+    "stage9_checkpoints": {
+      "taro": {
+        "bytes": 14327946,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/taro/best.pt",
+        "sha256": "32caa71a0e1462e5f31a6c587c735b19c22d109f16f729430cd63c7910731881"
+      },
+      "v2_full_alpha_production": {
+        "bytes": 4374570,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_alpha_preference/final.pt",
+        "sha256": "56fbed68168537bd84066a5b86fbfefc8525cb5311c06d8668012e2cecca1e20"
+      },
+      "v2_no_alpha": {
+        "bytes": 12976666,
+        "path": "/home/jupyter-iec2024se10/Reward Decoding/results/parm_taro/training/v2_no_alpha/best.pt",
+        "sha256": "ea5cf0e7b33ccdef1f4882afba0679a09feaaf2b27c8a8bc12ad7c058cb0d7e3"
+      }
+    }
+  },
+  "complete_for_retraining": false,
+  "created_for": "D0 pre-change snapshot",
+  "required_ignored_assets": {
+    "models/tulu-2-7b": false,
+    "results/parm_taro/checkpoints/parm_pku_pblora": false,
+    "results/parm_taro/training/taro/best.pt": false,
+    "results/parm_taro/training/v2_alpha_preference/final.pt": false,
+    "results/parm_taro/training/v2_no_alpha/best.pt": false
+  },
+  "trees_available_in_this_snapshot": {
+    "method_rad": {
+      "file_count": 21,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/RAD",
+      "present": true,
+      "total_bytes": 120770,
+      "tree_sha256": "4dfccbd9afa8808ac3614ae31705616956811504112df7bc371dde5808177522"
+    },
+    "parm": {
+      "file_count": 150,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/PARM",
+      "present": true,
+      "total_bytes": 1465978,
+      "tree_sha256": "1264b399566c6126b86d98a6e468ec416a72e27469f92d7619f9934b85b2d42f"
+    },
+    "router_v1": {
+      "file_count": 67,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/router",
+      "present": true,
+      "total_bytes": 5381166,
+      "tree_sha256": "2575589fe7eebf021cd454b8c8c440b93ad54f2c852fd198b82be90e9bbe2f79"
+    },
+    "stage10_evaluation": {
+      "file_count": 7,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/evaluation/full",
+      "present": true,
+      "total_bytes": 22714639,
+      "tree_sha256": "79cfc6e162d1eecfa6ce0932e0126aef32fbe6906f84b26f0276b0f8d762ed92"
+    },
+    "stage9_training_records": {
+      "file_count": 26,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/training",
+      "present": true,
+      "total_bytes": 193540,
+      "tree_sha256": "5214f2bc8e088554908ef973e2e56a38ec473320ad29cc2720fdcdb32bfb9ca1"
+    }
+  }
+}

@@ -18,7 +18,7 @@ from Method.MultiSignal.core.fusion import fuse_scores
 from Method.MultiSignal.models.controller import MultiSignalController
 
 DEFAULT_CHECKPOINT = PROJECT_ROOT / "Method" / "MultiSignal" / "checkpoints" / "controller_4signal.pt"
-DEFAULT_INPUT = PROJECT_ROOT / "dataset" / "rad_benchmark" / "negative_prompts.jsonl"
+DEFAULT_INPUT = PROJECT_ROOT / "dataset" / "rad_benchmark" / "all.jsonl"
 DEFAULT_OUTPUT = PROJECT_ROOT / "results" / "multi_signal.jsonl"
 
 
@@ -46,6 +46,38 @@ def load_prompts(path, max_prompts):
             if max_prompts and len(rows) >= max_prompts:
                 break
     return rows
+
+
+def record_key(record):
+    if record.get("md5_hash"):
+        return "md5", str(record["md5_hash"])
+    return "prompt", str(record.get("prompt", "")).strip()
+
+
+def is_completed(record):
+    return bool(
+        record
+        and record.get("status", "success") == "success"
+        and isinstance(record.get("response"), str)
+        and record["response"].strip()
+    )
+
+
+def load_existing_results(path):
+    if not path.exists():
+        return []
+    records = []
+    with path.open("r", encoding="utf-8") as file:
+        for line_number, line in enumerate(file, start=1):
+            if not line.strip():
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError as error:
+                raise ValueError(f"JSONL lỗi tại dòng {line_number}: {error}") from error
+            if isinstance(record, dict):
+                records.append(record)
+    return records
 
 
 def resolve_device(name):
@@ -178,6 +210,29 @@ def main():
         raise ValueError("--top-k must be at least 2")
     if args.temperature <= 0:
         raise ValueError("--temperature must be positive")
+    if args.max_prompts < 0:
+        raise ValueError("--max-prompts must be >= 0")
+
+    if args.prompt:
+        samples = [{"id": 0, "md5_hash": None, "prompt": args.prompt, "reference": "", "num_positive": None}]
+    else:
+        samples = load_prompts(Path(args.input), args.max_prompts)
+
+    output_path = Path(args.output)
+    if not output_path.is_absolute():
+        output_path = PROJECT_ROOT / output_path
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    existing_results = load_existing_results(output_path)
+    results_by_key = {record_key(record): record for record in existing_results}
+    pending = [
+        (index, sample) for index, sample in enumerate(samples)
+        if not is_completed(results_by_key.get(record_key(sample)))
+    ]
+    print(f"Target: {len(samples)} | Đã có: {len(samples) - len(pending)} | Còn lại: {len(pending)}")
+    if not pending:
+        print("Không còn prompt nào cần chạy.")
+        return
 
     device = resolve_device(args.base_device)
     signal_device = resolve_device(args.signal_device)
@@ -209,30 +264,20 @@ def main():
     ).to(device).eval()
     signal_adapters = [] if args.fallback_signals else load_signal_adapters(signal_names, signal_device)
 
-    if args.prompt:
-        samples = [{"id": 0, "md5_hash": None, "prompt": args.prompt, "reference": "", "num_positive": None}]
-    else:
-        samples = load_prompts(Path(args.input), args.max_prompts)
-
-    output_path = Path(args.output)
-    if not output_path.is_absolute():
-        output_path = PROJECT_ROOT / output_path
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
     print(f"Device: {device}")
     print(f"Signal device: {signal_device}")
     print(f"Checkpoint: {checkpoint_path}")
     print(f"Signals: {signal_names}")
     print(f"Signal mode: {'fallback' if args.fallback_signals else 'adapter'}")
-    print(f"Prompts: {len(samples)}")
-
     try:
-        with output_path.open("w", encoding="utf-8") as file:
-            for index, sample in enumerate(tqdm(samples, desc="Generating MultiSignal")):
+        with output_path.open("a", encoding="utf-8") as file:
+            for index, sample in tqdm(pending, desc="Generating MultiSignal", unit="prompt"):
                 start = time.perf_counter()
                 try:
                     generated = generate_one(model, tokenizer, controller, signal_names, signal_adapters, sample["prompt"], args, device)
                     response = generated["response"]
+                    if not response:
+                        raise RuntimeError("MultiSignal sinh response rỗng")
                     tokens = generated["tokens"]
                     mean_weights = generated["mean_weights"]
                     mean_strength = generated["mean_strength"]

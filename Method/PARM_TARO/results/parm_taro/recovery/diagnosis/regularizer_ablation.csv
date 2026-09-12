@@ -1,0 +1,4 @@
+evidence_scope,variant,mean_lambda,mean_sigmoid_derivative,nll_only,entropy,smoothness,strength,note
+archived_stage9_initialization_ablation,collapsed_v2_alpha,0.0007297731523673671,0.0007289147664171954,,,,,File-12 equal-step regularizer ablation remains blocked
+archived_stage9_initialization_ablation,fresh_alpha_target_gate,0.030219643687208492,0.02930640708655119,,,,,File-12 equal-step regularizer ablation remains blocked
+archived_stage9_initialization_ablation,no_alpha_transplant_fresh_preference_head,0.03420873451977968,0.0330381669724981,,,,,File-12 equal-step regularizer ablation remains blocked
