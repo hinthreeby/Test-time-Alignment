@@ -1,0 +1,17 @@
+{
+  "cost": {
+    "index_present": true,
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
+    "revision": null
+  },
+  "generated_at": "2026-09-14T09:42:21.507272+00:00",
+  "load_attempted": false,
+  "note": "Weight presence is not a scorer-runtime sanity pass.",
+  "reward": {
+    "index_present": true,
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+    "revision": "375cd6a9f0d7e339d2199b05ba129a4a8906596d"
+  },
+  "safe_rlhf_source_present": false,
+  "status": "NOT_RUN \u2014 SAFE_RLHF SOURCE/PROVENANCE NOT READY"
+}

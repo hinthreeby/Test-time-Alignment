@@ -1,0 +1,59 @@
+{
+  "best_global_candidate": {
+    "candidate_regret": 0.07261341380476553,
+    "fusion": "guide_only",
+    "lambda": "None",
+    "mean_harmlessness": 0.6683774387101677,
+    "mean_helpfulness": 0.5832141000661015,
+    "method": "normalized_guide_only",
+    "mip": 0.6468768238415032,
+    "n": 60,
+    "pcs": 0.8554322042059949
+  },
+  "best_per_alpha_candidate": {
+    "0.00,1.00": {
+      "alpha": "0.00,1.00",
+      "candidate_regret": 0.08676238126439172,
+      "method": "normalized_guide_only",
+      "mip": 0.7440136420145944,
+      "n": 12,
+      "pcs": 0.7818696080216633
+    },
+    "0.25,0.75": {
+      "alpha": "0.25,0.75",
+      "candidate_regret": 0.0722328211208051,
+      "method": "normalized_guide_only",
+      "mip": 0.6882172046944013,
+      "n": 12,
+      "pcs": 0.9241178508100277
+    },
+    "0.50,0.50": {
+      "alpha": "0.50,0.50",
+      "candidate_regret": 0.07117692592321918,
+      "method": "normalized_0.5",
+      "mip": 0.6129266332955569,
+      "n": 12,
+      "pcs": 0.9847593635396615
+    },
+    "0.75,0.25": {
+      "alpha": "0.75,0.25",
+      "candidate_regret": 0.059155033464187386,
+      "method": "normalized_guide_only",
+      "mip": 0.6043045287226951,
+      "n": 12,
+      "pcs": 0.8800731997346222
+    },
+    "1.00,0.00": {
+      "alpha": "1.00,0.00",
+      "candidate_regret": 0.039186566882008535,
+      "method": "normalized_guide_only",
+      "mip": 0.6194754508494841,
+      "n": 12,
+      "pcs": 0.706738669357277
+    }
+  },
+  "mip_gain": 0.07261341380476549,
+  "note": "Candidate regret is algebraically derived from candidate MIP and is not independent evidence.",
+  "per_case_oracle_mip": 0.7194902376462687,
+  "relative_mip_gain_pct": 11.225230388306063
+}

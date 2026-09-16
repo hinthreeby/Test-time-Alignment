@@ -1,0 +1,190 @@
+{
+  "device_policy": "CPU audit only",
+  "entries": [
+    {
+      "artifact": "base_model",
+      "exists": true,
+      "expected_revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66",
+      "kind": "file",
+      "path": "models/tulu-2-7b/config.json",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b/config.json",
+      "revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66",
+      "status": "PASS"
+    },
+    {
+      "artifact": "base_weights",
+      "exists": true,
+      "expected_revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66",
+      "kind": "file",
+      "path": "models/tulu-2-7b/pytorch_model.bin.index.json",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b/pytorch_model.bin.index.json",
+      "revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66",
+      "status": "PASS"
+    },
+    {
+      "artifact": "tokenizer",
+      "exists": true,
+      "expected_revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66",
+      "kind": "file",
+      "path": "models/tulu-2-7b/tokenizer.model",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b/tokenizer.model",
+      "revision": "3c6e328ae91fabdd0daf09de16887de9615c1f66",
+      "status": "PASS"
+    },
+    {
+      "artifact": "pblora",
+      "exists": false,
+      "expected_revision": null,
+      "kind": "dir",
+      "path": "results/parm_taro/checkpoints/parm_pku_pblora",
+      "readable": false,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/checkpoints/parm_pku_pblora",
+      "revision": null,
+      "status": "MISSING"
+    },
+    {
+      "artifact": "taro_checkpoint",
+      "exists": false,
+      "expected_revision": null,
+      "kind": "file",
+      "path": "results/parm_taro/training/taro/best.pt",
+      "readable": false,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/training/taro/best.pt",
+      "revision": null,
+      "status": "MISSING"
+    },
+    {
+      "artifact": "v2_no_alpha",
+      "exists": false,
+      "expected_revision": null,
+      "kind": "file",
+      "path": "results/parm_taro/training/v2_no_alpha/best.pt",
+      "readable": false,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/best.pt",
+      "revision": null,
+      "status": "MISSING"
+    },
+    {
+      "artifact": "v2_full_alpha",
+      "exists": false,
+      "expected_revision": null,
+      "kind": "file",
+      "path": "results/parm_taro/training/v2_alpha_preference/final.pt",
+      "readable": false,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/final.pt",
+      "revision": null,
+      "status": "MISSING"
+    },
+    {
+      "artifact": "beaver_reward",
+      "exists": true,
+      "expected_revision": "375cd6a9f0d7e339d2199b05ba129a4a8906596d",
+      "kind": "file",
+      "path": "models/beaver-7b-v1.0-reward/model.safetensors.index.json",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward/model.safetensors.index.json",
+      "revision": "375cd6a9f0d7e339d2199b05ba129a4a8906596d",
+      "status": "PASS"
+    },
+    {
+      "artifact": "beaver_cost",
+      "exists": true,
+      "expected_revision": "c1bd343d2ddc2cb810bd736563c7ad0bf38f6b28",
+      "kind": "file",
+      "path": "models/beaver-7b-v1.0-cost/model.safetensors.index.json",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost/model.safetensors.index.json",
+      "revision": null,
+      "status": "AMBIGUOUS"
+    },
+    {
+      "artifact": "safe_rlhf",
+      "exists": false,
+      "expected_revision": null,
+      "kind": "file",
+      "path": "models/safe-rlhf-source/safe_rlhf/__init__.py",
+      "readable": false,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source/safe_rlhf/__init__.py",
+      "revision": null,
+      "status": "MISSING"
+    },
+    {
+      "artifact": "dataset_manifest",
+      "exists": true,
+      "expected_revision": null,
+      "kind": "file",
+      "path": "dataset/parm_taro/manifest.json",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/parm_taro/manifest.json",
+      "revision": null,
+      "status": "PASS"
+    },
+    {
+      "artifact": "validation",
+      "exists": true,
+      "expected_revision": null,
+      "kind": "file",
+      "path": "dataset/parm_taro/validation.json",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/parm_taro/validation.json",
+      "revision": null,
+      "status": "PASS"
+    },
+    {
+      "artifact": "protocol_lock",
+      "exists": true,
+      "expected_revision": null,
+      "kind": "file",
+      "path": "results/parm_taro/evaluation/protocol/protocol_lock.json",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
+      "revision": null,
+      "status": "MOVED_BUT_RESOLVED"
+    },
+    {
+      "artifact": "normalization_source",
+      "exists": true,
+      "expected_revision": null,
+      "kind": "file",
+      "path": "results/parm_taro/evaluation/protocol/validation_calibration_raw.jsonl",
+      "readable": true,
+      "required": true,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/evaluation/protocol/validation_calibration_raw.jsonl",
+      "revision": null,
+      "status": "MOVED_BUT_RESOLVED"
+    }
+  ],
+  "fatal_missing": [
+    "pblora",
+    "taro_checkpoint",
+    "v2_no_alpha",
+    "v2_full_alpha",
+    "safe_rlhf"
+  ],
+  "generated_at": "2026-09-14T09:42:20.419820+00:00",
+  "revisions": {
+    "beaver_cost": null,
+    "beaver_reward": "375cd6a9f0d7e339d2199b05ba129a4a8906596d",
+    "tulu": "3c6e328ae91fabdd0daf09de16887de9615c1f66"
+  },
+  "server_search": {
+    "pblora": [],
+    "router": []
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "default.json",
+  "signals": ["rad", "cdq", "args"],
+  "objective": "sentiment",
+  "signal_objectives": {
+    "rad": "sentiment",
+    "cdq": "sentiment",
+    "args": "sentiment"
+  },
+  "controller": {
+    "signal_costs": [1.0, 0.8, 1.1]
+  },
+  "paper_mode": false,
+  "notes": "Trainable single-objective CURA-MVP. GenARM-HH is excluded because it is not sentiment-compatible."
+}

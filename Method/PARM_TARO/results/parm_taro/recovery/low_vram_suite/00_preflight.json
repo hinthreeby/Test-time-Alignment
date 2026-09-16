@@ -1,0 +1,76 @@
+{
+  "artifacts": {
+    "checks": {
+      "adapter": true,
+      "adapter_config": true,
+      "adapter_weights": true,
+      "base": true,
+      "base_config": true,
+      "cost": true,
+      "manifest": true,
+      "protocol_lock": true,
+      "reward": true,
+      "safe_rlhf": false,
+      "validation": true
+    },
+    "paths": {
+      "adapter": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/final_checkpoint",
+      "base": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
+      "cost": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
+      "manifest": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/feasibility60/manifest.jsonl",
+      "protocol_lock": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/evaluation/protocol/protocol_lock.json",
+      "reward": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+      "safe_rlhf": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+      "validation": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/parm_taro/validation.json"
+    }
+  },
+  "checks": {
+    "cuda_available": true,
+    "gpu_visible": true,
+    "manifest": true,
+    "output_writable": true,
+    "python_exists": true,
+    "required_source_artifacts": true,
+    "torch": true
+  },
+  "dry_run": false,
+  "gpu": {
+    "free_mib": 6866,
+    "gpu_name": "NVIDIA GeForce RTX 5090",
+    "total_mib": 32607,
+    "used_mib": 25244,
+    "utilization_pct": 77
+  },
+  "manifest": {
+    "alpha_counts": {
+      "0.00,1.00": 12,
+      "0.25,0.75": 12,
+      "0.50,0.50": 12,
+      "0.75,0.25": 12,
+      "1.00,0.00": 12
+    },
+    "checks": {
+      "alpha_order": true,
+      "case_ids_unique": true,
+      "cases_60": true,
+      "each_prompt_has_each_alpha_once": true,
+      "five_alpha_12_each": true,
+      "unique_prompts_12": true
+    },
+    "num_cases": 60,
+    "num_unique_prompts": 12,
+    "status": "PASS"
+  },
+  "packages": {
+    "accelerate": "0.29.2",
+    "bitsandbytes": "0.50.2",
+    "peft": "0.10.0",
+    "torch": "2.7.1+cu128",
+    "transformers": "4.39.3",
+    "trl": "0.9.6"
+  },
+  "python": "/home/jupyter-iec2024se10/.conda/envs/genarm/bin/python3.10",
+  "python_version": "3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]",
+  "status": "PASS",
+  "torch_cuda_runtime": "12.8"
+}

@@ -1,0 +1,135 @@
+{
+  "autoregressive_loss_label": "selected-token diagnostic proxy, not ground truth",
+  "gradient_sign_agreement": 0.52,
+  "max_new_tokens": 32,
+  "memory": {
+    "after_release": {
+      "allocated_mib": 3847.25927734375,
+      "nvidia_smi": {
+        "free_mib": 2365,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 29745,
+        "utilization_pct": 99
+      },
+      "peak_allocated_mib": 4123.54052734375,
+      "peak_reserved_mib": 4174.0,
+      "reserved_mib": 3904.0,
+      "status": "GPU_RELEASE_INCOMPLETE"
+    },
+    "before": {
+      "allocated_mib": 0.0,
+      "nvidia_smi": {
+        "free_mib": 6866,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 25244,
+        "utilization_pct": 99
+      },
+      "peak_allocated_mib": 0.0,
+      "peak_reserved_mib": 0.0,
+      "reserved_mib": 0.0
+    },
+    "loaded": {
+      "allocated_mib": 3839.1337890625,
+      "nvidia_smi": {
+        "free_mib": 2353,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 29757,
+        "utilization_pct": 99
+      },
+      "peak_allocated_mib": 3863.2275390625,
+      "peak_reserved_mib": 3928.0,
+      "reserved_mib": 3928.0
+    },
+    "peak": {
+      "allocated_mib": 3847.25927734375,
+      "nvidia_smi": {
+        "free_mib": 2095,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 30015,
+        "utilization_pct": 97
+      },
+      "peak_allocated_mib": 4123.54052734375,
+      "peak_reserved_mib": 4174.0,
+      "reserved_mib": 4174.0
+    }
+  },
+  "num_cases": 10,
+  "num_unique_prompts": 2,
+  "status": "COMPLETE",
+  "summary": [
+    {
+      "fraction_positive": 0.4,
+      "lambda": 0.01,
+      "mean_base_guide_js": 0.0487944134472902,
+      "mean_gradient": 0.21790231913123004,
+      "prefix_type": "teacher_forced"
+    },
+    {
+      "fraction_positive": 0.0,
+      "lambda": 0.01,
+      "mean_base_guide_js": 0.03649437678945446,
+      "mean_gradient": -0.22432188672291886,
+      "prefix_type": "autoregressive_selected_token_proxy"
+    },
+    {
+      "fraction_positive": 0.4,
+      "lambda": 0.1,
+      "mean_base_guide_js": 0.0487944134472902,
+      "mean_gradient": 0.2894492646488658,
+      "prefix_type": "teacher_forced"
+    },
+    {
+      "fraction_positive": 0.0,
+      "lambda": 0.1,
+      "mean_base_guide_js": 0.03649437678945446,
+      "mean_gradient": -0.09988049092426081,
+      "prefix_type": "autoregressive_selected_token_proxy"
+    },
+    {
+      "fraction_positive": 0.4,
+      "lambda": 0.5,
+      "mean_base_guide_js": 0.0487944134472902,
+      "mean_gradient": 0.21070124130733203,
+      "prefix_type": "teacher_forced"
+    },
+    {
+      "fraction_positive": 0.8,
+      "lambda": 0.5,
+      "mean_base_guide_js": 0.03649437678945446,
+      "mean_gradient": 0.016503150216885844,
+      "prefix_type": "autoregressive_selected_token_proxy"
+    },
+    {
+      "fraction_positive": 0.4,
+      "lambda": 1.0,
+      "mean_base_guide_js": 0.0487944134472902,
+      "mean_gradient": 0.13704549152653597,
+      "prefix_type": "teacher_forced"
+    },
+    {
+      "fraction_positive": 1.0,
+      "lambda": 1.0,
+      "mean_base_guide_js": 0.03649437678945446,
+      "mean_gradient": 0.02356288048808892,
+      "prefix_type": "autoregressive_selected_token_proxy"
+    },
+    {
+      "fraction_positive": 0.6,
+      "lambda": 2.0,
+      "mean_base_guide_js": 0.0487944134472902,
+      "mean_gradient": 0.06968002573005075,
+      "prefix_type": "teacher_forced"
+    },
+    {
+      "fraction_positive": 1.0,
+      "lambda": 2.0,
+      "mean_base_guide_js": 0.03649437678945446,
+      "mean_gradient": 0.015439350716496847,
+      "prefix_type": "autoregressive_selected_token_proxy"
+    }
+  ]
+}

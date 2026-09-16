@@ -1,0 +1,17 @@
+rc,hypothesis,status,evidence_file,measured_number,recommended_action
+RC1,PBLoRA missing/wrong,NOT SUPPORTED,01_artifact_audit.json,6296064,
+RC2,Alpha not entering PBLoRA,NOT SUPPORTED,../pblora_repro/epoch1_validation/alpha_probe_summary.json,0.3194837313145399,
+RC3,Weak guide/preference ranking,NOT SUPPORTED,02_guide_utility_summary.json,0.8947368421052632,
+RC4,Model/tokenizer/checkpoint provenance wrong,NOT SUPPORTED,01_artifact_audit.json,,
+RC5,Fusion mismatch with author PARM,CONFIRMED,03_summary.json,"{'author': 0.0, 'paper': 0.0}",Treat author/current/paper formulations separately
+RC6,Scale/temperature confound,WEAKLY SUPPORTED,03_fusion_scale.csv,,Compare entropy/max-probability curves
+RC7,Router checkpoint wrong/random,NOT TESTED,historical Stage-10 only,,Audit only after router reproduction
+RC8,Router ignores alpha,NOT TESTED,historical Stage-10 only,,Requires valid reproduced router
+RC9,NLL pushes lambda to zero,STRONGLY SUPPORTED,03_gradient_summary.csv,"{'fusion': 'current', 'lambda': 0.0, 'mean_nll': 1.641580488284429}",
+RC10,Gate saturation,NOT TESTED,router checkpoint unavailable,,Requires router runtime
+RC11,Feature normalization/cache issue,NOT TESTED,router cache/router checkpoint unavailable,,
+RC12,Teacher-forced/autoregressive exposure shift,NOT SUPPORTED,05_exposure_shift_summary.json,0.52,
+RC13,No adaptive headroom,NOT TESTED,04_headroom_summary.json; 09_metrics_summary.json,,Teacher-forced result alone cannot confirm
+RC14,Headroom exists but router fails,WEAKLY SUPPORTED,04_headroom_summary.json,,
+RC15,Optimal lambda varies by alpha,WEAKLY SUPPORTED,04_headroom_summary.json,0.75,
+RC16,Evaluator wiring bad,NOT SUPPORTED,07_scorer_summary.json,,

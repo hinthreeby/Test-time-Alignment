@@ -1,0 +1,24 @@
+{
+  "extends": "sentiment.json",
+  "paper_mode": true,
+  "calibration": {
+    "mode": "learned_heteroscedastic",
+    "hidden_dim": 32,
+    "epsilon": 0.000001
+  },
+  "training": {
+    "gamma_nll": 0.25,
+    "gamma_pref": 1.0,
+    "gamma_cal": 1.0,
+    "gamma_kl": 0.1,
+    "gamma_cost": 0.01,
+    "gamma_gate": 0.1,
+    "gamma_selector": 0.25,
+    "preference_beta": 1.0,
+    "selector_temperature": 0.25,
+    "selector_cost_weight": 0.01,
+    "gate_temperature": 0.1,
+    "gate_uncertainty_penalty": 0.05,
+    "gate_disagreement_penalty": 0.05
+  }
+}

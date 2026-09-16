@@ -1,0 +1,6 @@
+{
+  "checkpoint": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25",
+  "global_step": 25,
+  "metric": "eval_loss",
+  "value": 0.8174549787863642
+}

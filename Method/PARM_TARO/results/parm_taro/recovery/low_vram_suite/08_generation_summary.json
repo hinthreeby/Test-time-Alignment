@@ -1,0 +1,63 @@
+{
+  "duplicate_equivalences_avoided": true,
+  "memory": {
+    "after_release": {
+      "allocated_mib": 3847.2587890625,
+      "nvidia_smi": {
+        "free_mib": 2345,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 29765,
+        "utilization_pct": 97
+      },
+      "peak_allocated_mib": 4171.041015625,
+      "peak_reserved_mib": 4270.0,
+      "reserved_mib": 3924.0,
+      "status": "GPU_RELEASE_INCOMPLETE"
+    },
+    "before": {
+      "allocated_mib": 0.0,
+      "nvidia_smi": {
+        "free_mib": 6866,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 25244,
+        "utilization_pct": 98
+      },
+      "peak_allocated_mib": 0.0,
+      "peak_reserved_mib": 0.0,
+      "reserved_mib": 0.0
+    },
+    "loaded": {
+      "allocated_mib": 3839.1337890625,
+      "nvidia_smi": {
+        "free_mib": 2353,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 29757,
+        "utilization_pct": 99
+      },
+      "peak_allocated_mib": 3863.2275390625,
+      "peak_reserved_mib": 3928.0,
+      "reserved_mib": 3928.0
+    },
+    "peak": {
+      "allocated_mib": 3847.2587890625,
+      "nvidia_smi": {
+        "free_mib": 1999,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 30111,
+        "utilization_pct": 97
+      },
+      "peak_allocated_mib": 4171.041015625,
+      "peak_reserved_mib": 4270.0,
+      "reserved_mib": 4270.0
+    }
+  },
+  "methods": 10,
+  "records": 600,
+  "requested_cases": 60,
+  "resume_key": "case_id+fusion+lambda+seed",
+  "status": "COMPLETE"
+}

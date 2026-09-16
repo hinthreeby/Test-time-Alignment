@@ -3,8 +3,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 ROOT="${TTA_PROJECT_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
-PY="${TTA_PYTHON:-$(command -v python3)}"
-[[ -x "$PY" ]] || { echo "Python is not executable: $PY" >&2; exit 2; }
+source "$SCRIPT_DIR/gpu_env.sh"
+resolve_gpu_python EVALUATION_PYTHON
+PY="$GPU_PYTHON_BIN"
+gpu_env_preflight "$PY" false false
 stage=""
 resume=false
 skip_existing=false

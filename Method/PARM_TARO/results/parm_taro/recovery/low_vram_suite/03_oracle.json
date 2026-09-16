@@ -1,0 +1,50 @@
+{
+  "current": {
+    "absolute_gain": 0.0005288779735566074,
+    "alphas_per_prompt": 5,
+    "fraction_differs_global": 0.38333333333333336,
+    "global": {
+      "fusion": "current",
+      "lambda": 0.0,
+      "mean_nll": 1.641580488284429
+    },
+    "lambda_distribution": {
+      "0.0": 37,
+      "0.001": 1,
+      "0.01": 17,
+      "0.05": 5
+    },
+    "num_cases": 60,
+    "num_unique_prompts": 12,
+    "oracle_nll": 1.6410516103108723,
+    "relative_gain_pct": 0.03221760841646719
+  },
+  "normalized": {
+    "absolute_gain": 0.053644047180811505,
+    "alphas_per_prompt": 5,
+    "fraction_differs_global": 0.6666666666666666,
+    "global": {
+      "fusion": "normalized",
+      "lambda": 0.0,
+      "mean_nll": 1.641580488284429
+    },
+    "lambda_distribution": {
+      "0.0": 20,
+      "0.001": 1,
+      "0.01": 1,
+      "0.1": 2,
+      "0.25": 5,
+      "0.5": 6,
+      "0.75": 3,
+      "1.0": 2,
+      "1.5": 6,
+      "2.0": 8,
+      "4.0": 5,
+      "8.0": 1
+    },
+    "num_cases": 60,
+    "num_unique_prompts": 12,
+    "oracle_nll": 1.5879364411036174,
+    "relative_gain_pct": 3.2678292391787283
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "available": false,
+  "candidates": [],
+  "classification": "BLOCKED \u2014 PBLORA CHECKPOINT UNAVAILABLE",
+  "generated_at": "2026-09-14T09:42:21.482792+00:00",
+  "historical_expected_tree_sha256": "f26682e3cf51f8e09921873119fc371d329669cf9448d59ae0025fd40b23ffef",
+  "load_attempted": false,
+  "reproduction": {
+    "author_training_source": "PARM/code/training/train_pref_arm.py",
+    "entrypoint": "PARM_TARO/recovery/pblora_resume_entrypoint.py",
+    "known_config": "Tulu-2-7B; PKU SafeRLHF; r/r2=4; alpha=8; dropout=0.05; safe/help beta=0.01; DPO beta=0.5; LR=5e-4; 2 epochs; batch=4; grad accumulation=8; cosine; warmup=20; wd=0.05",
+    "unknown": [
+      "historical random seed",
+      "approved resolution of author default-model versus retained Tulu provenance"
+    ],
+    "wrapper": "PARM_TARO/recovery/scripts/train_pblora_repro.sh"
+  },
+  "runtime_status": "NOT_RUN",
+  "target": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/checkpoints/parm_pku_pblora"
+}

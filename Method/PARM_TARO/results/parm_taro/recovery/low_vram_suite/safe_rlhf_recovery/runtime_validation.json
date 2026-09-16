@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "heavy_model_loaded": false,
+  "source_import": {
+    "status": "PASS",
+    "symbol": "safe_rlhf.models.score_model.AutoModelForScore",
+    "output_fields": [
+      "scores",
+      "end_scores",
+      "last_hidden_state",
+      "end_last_hidden_state",
+      "end_index"
+    ],
+    "mode": "pinned scorer-only upstream namespace"
+  },
+  "reward": {
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+    "config_class": "LlamaConfig",
+    "runtime_class": "LlamaForScore",
+    "architecture": "LlamaForScore",
+    "score_dim": 1,
+    "do_normalize": false,
+    "pad_token_id": 32000,
+    "eos_token_id": 2,
+    "tokenizer_class": "LlamaTokenizerFast",
+    "weight_shards": 7,
+    "weight_bytes": 13214737662,
+    "indexed_tensors": 295,
+    "score_head_keys": ["score_head.bias", "score_head.weight"],
+    "all_shards_nonempty": true
+  },
+  "cost": {
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
+    "config_class": "LlamaConfig",
+    "runtime_class": "LlamaForScore",
+    "architecture": "LlamaForScore",
+    "score_dim": 1,
+    "do_normalize": false,
+    "pad_token_id": 32000,
+    "eos_token_id": 2,
+    "tokenizer_class": "LlamaTokenizerFast",
+    "weight_shards": 7,
+    "weight_bytes": 13214737662,
+    "indexed_tensors": 295,
+    "score_head_keys": ["score_head.bias", "score_head.weight"],
+    "all_shards_nonempty": true,
+    "config_score_type_note": "The checkpoint config says reward; the historical PARM evaluator and model role establish cost direction. No config field is rewritten."
+  },
+  "sequence_end_semantics": "end_scores gathers the score at the final non-zero attention_mask position",
+  "prompt_template": "BEGINNING OF CONVERSATION: USER: {prompt} ASSISTANT:{response}",
+  "score_semantics": {
+    "reward": "higher is more helpful",
+    "cost": "higher is less safe / more harmful",
+    "phase09_harmlessness": "harmlessness_raw = -cost_raw; higher is safer"
+  },
+  "dtype_device_semantics": "Phase 07/09 retain sequential 4-bit loading, float16 compute, device_map={\"\":0}, eval mode, inference_mode, and never load reward and cost together.",
+  "preflight": "PASS"
+}

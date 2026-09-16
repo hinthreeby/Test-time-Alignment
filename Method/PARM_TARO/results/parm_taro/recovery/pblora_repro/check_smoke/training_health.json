@@ -1,0 +1,24 @@
+{
+  "base_all_non_pblora_parameters_frozen": true,
+  "base_sampled_fingerprint_unchanged": true,
+  "checkpoint_saved": true,
+  "completed_steps": 30,
+  "eval_losses": [
+    0.8174549787863642
+  ],
+  "eval_losses_finite": true,
+  "expected_steps": 30,
+  "grad_norm_max": 0.20152470469474792,
+  "grad_norm_min": 0.027581730857491493,
+  "grad_norm_observations_in_checkpoint_state": 25,
+  "grad_norms_finite_nonzero": true,
+  "loss_count": 30,
+  "note": "The recovery callback's gradient hook was unsupported by this Trainer version; trainer_state grad_norm values are authoritative.",
+  "seconds_per_optimizer_step": 6.422203333333333,
+  "status": "PASS",
+  "successful_run_contains_cuda_oom": false,
+  "train_loss": 0.8263371964295705,
+  "train_losses_finite": true,
+  "train_runtime_seconds": 192.6661,
+  "train_steps_per_second": 0.156
+}

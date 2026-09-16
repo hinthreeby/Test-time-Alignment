@@ -1,0 +1,87 @@
+{
+  "alpha_grid": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.75,
+      0.25
+    ],
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.25,
+      0.75
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "alpha_order": [
+    "helpfulness",
+    "harmlessness"
+  ],
+  "base_model": "models/tulu-2-7b",
+  "cases_per_alpha": 12,
+  "current_controls": [
+    0.010731,
+    1.0
+  ],
+  "execution_gate": {
+    "minimum_free_vram_mib": 14336,
+    "requires_user_explicit_launch": true,
+    "reward_cost_not_co_loaded_with_alpha_probe": true
+  },
+  "formulations": {
+    "author": "(a+b)/2",
+    "current": "a + lambda*b",
+    "normalized": "(a + lambda*b)/(1+lambda)",
+    "paper_beta_1": "a+b"
+  },
+  "generation_executed": false,
+  "gradient_lambda_grid": [
+    0.001,
+    0.01,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "manifest": "results/parm_taro/recovery/feasibility60/manifest.jsonl",
+  "manifest_cases": 60,
+  "normalized_lambda_grid": [
+    0.0,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "pblora_adapter": "results/parm_taro/recovery/reproduced/pblora/final_checkpoint",
+  "random_seed": 2026,
+  "root_causes_prepared": [
+    "RC3",
+    "RC5",
+    "RC6",
+    "RC8",
+    "RC9",
+    "RC13",
+    "RC14",
+    "RC15"
+  ],
+  "schema_version": 1,
+  "split": "validation",
+  "status": "PREPARED_NOT_EXECUTED",
+  "test_split_used": false,
+  "unique_prompts": 12,
+  "validation_path": "dataset/parm_taro/validation.json",
+  "validation_sha256": "cdbb914443591817d056e76ecd3cc59e28c7e95de526c5c0397c35763d2fc9ba"
+}

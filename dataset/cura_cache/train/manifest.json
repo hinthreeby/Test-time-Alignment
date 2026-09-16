@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "method": "cura",
+  "split": "train",
+  "dataset_path": "dataset/multisignal_train/train.jsonl",
+  "dataset_fingerprint": "sha256:8a806ece54ecab73e4b48fe81b7673eeca357f085689683219097b7e30a096dc",
+  "config_fingerprint": "sha256:9e4b106146814168f197acd30879eca067eb43477e4838106fdaf0dd7802214f",
+  "signals": [
+    "rad",
+    "cdq",
+    "args"
+  ],
+  "objective": "sentiment",
+  "base_model": "gpt2-large",
+  "paper_mode": false,
+  "score_directions": {
+    "rad": "higher_is_better",
+    "cdq": "higher_is_better",
+    "args": "higher_is_better"
+  },
+  "tokenization_mismatch_threshold": 0.05,
+  "top_k": 20,
+  "max_response_tokens": 32,
+  "shard_size": 100,
+  "total_prompts": 1000,
+  "completed_prompts": 1000,
+  "completed_shards": [
+    {
+      "id": 0,
+      "file": "shards/shard_000000.pt",
+      "start_index": 0,
+      "end_index": 99,
+      "num_prompts": 100,
+      "num_steps": 2845,
+      "sha256": "966667676729fee3f063005aec676d1217ce6ee75e9bf3d2dfb06b02fe7a0be9"
+    },
+    {
+      "id": 1,
+      "file": "shards/shard_000001.pt",
+      "start_index": 100,
+      "end_index": 199,
+      "num_prompts": 100,
+      "num_steps": 2927,
+      "sha256": "a09c995346d523b9c4dd4d95f6395814827219041b1ab269ef72543c311c0eeb"
+    },
+    {
+      "id": 2,
+      "file": "shards/shard_000002.pt",
+      "start_index": 200,
+      "end_index": 299,
+      "num_prompts": 100,
+      "num_steps": 2900,
+      "sha256": "00d77e5504a3aa9a54d3cfa9ab053b5da068a7f0ad9869abdbb6b89d0302a3be"
+    },
+    {
+      "id": 3,
+      "file": "shards/shard_000003.pt",
+      "start_index": 300,
+      "end_index": 399,
+      "num_prompts": 100,
+      "num_steps": 2982,
+      "sha256": "612cc686d5325342596125965bdeeb674178593d37ac6e4b38504e025ba458ce"
+    },
+    {
+      "id": 4,
+      "file": "shards/shard_000004.pt",
+      "start_index": 400,
+      "end_index": 499,
+      "num_prompts": 100,
+      "num_steps": 2994,
+      "sha256": "7c9529fd2616723b998f68ca8aa1d6ce0ed961777dff6fd5c69919c768dc1006"
+    },
+    {
+      "id": 5,
+      "file": "shards/shard_000005.pt",
+      "start_index": 500,
+      "end_index": 599,
+      "num_prompts": 100,
+      "num_steps": 2968,
+      "sha256": "9d823cd74999d27d209265067a096a9973ee5925e083c8de638b743fd27a8086"
+    },
+    {
+      "id": 6,
+      "file": "shards/shard_000006.pt",
+      "start_index": 600,
+      "end_index": 699,
+      "num_prompts": 100,
+      "num_steps": 2925,
+      "sha256": "a5ac3937575057154851a9463932d155067bcc9eb34795e50adb7f8a668b3770"
+    },
+    {
+      "id": 7,
+      "file": "shards/shard_000007.pt",
+      "start_index": 700,
+      "end_index": 799,
+      "num_prompts": 100,
+      "num_steps": 2982,
+      "sha256": "9bad2cabdbfe2b8c7c50c4c42779a044144b991f733a3734ebfa573164b06540"
+    },
+    {
+      "id": 8,
+      "file": "shards/shard_000008.pt",
+      "start_index": 800,
+      "end_index": 899,
+      "num_prompts": 100,
+      "num_steps": 2887,
+      "sha256": "b31cd06ef1c658d9808335fa02788dfa76f68dea5968144982ca8297fdcec046"
+    },
+    {
+      "id": 9,
+      "file": "shards/shard_000009.pt",
+      "start_index": 900,
+      "end_index": 999,
+      "num_prompts": 100,
+      "num_steps": 2926,
+      "sha256": "730cfa526dcc8c5f031a1a158e017e0a4ee1603349861852e03008654e000937"
+    }
+  ],
+  "failed_prompt_ids": [],
+  "status": "complete"
+}

@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "historical_import_sites": [
+    {
+      "path": "PARM/code/evaluation/compute_reward.py",
+      "import": "from safe_rlhf.models import AutoModelForScore",
+      "output": "end_scores",
+      "prompt_template": "BEGINNING OF CONVERSATION: USER: {prompt} ASSISTANT:{response}"
+    },
+    {
+      "path": "PARM/code/data/relabel.py",
+      "import": "from safe_rlhf.models import AutoModelForScore",
+      "output": "end_scores"
+    },
+    {
+      "path": "PARM_TARO/evaluation/scoring.py",
+      "import": "from safe_rlhf.models import AutoModelForScore",
+      "output": "end_scores"
+    }
+  ],
+  "recovery_consumers": [
+    "PARM_TARO/recovery/low_vram_suite/07_scorer_sanity.py",
+    "PARM_TARO/recovery/low_vram_suite/09_feasibility60_score.py"
+  ],
+  "local_search": {
+    "pre_restore_source_found": false,
+    "old_absolute_path": "/home/jupyter-iec2024se10/Reward Decoding/models/safe-rlhf-source",
+    "old_project_root_is_compatibility_symlink": true,
+    "cached_wheel_or_source_found": false
+  },
+  "installed_packages": {
+    "/home/jupyter-iec2024se10/.conda/envs/genarm/bin/python3.10": null,
+    "/home/jupyter-iec2024se10/miniforge3/envs/tta/bin/python": null
+  },
+  "upstream_top_level_import": {
+    "status": "TRAINING_DEPENDENCY_UNAVAILABLE",
+    "missing": "deepspeed",
+    "impact": "No impact on scorer mathematics; scorer-only namespace loads pinned upstream model files without importing trainers."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "effective_batch_size": 32,
+  "eta_one_epoch_seconds_excluding_eval_save": 1605.5508333333332,
+  "eta_two_epochs_seconds_excluding_eval_save": 3211.1016666666665,
+  "eval_save_overhead": "report separately; smoke eval at step 25 took 32.7629 s",
+  "nominal_steps_one_epoch": 250,
+  "nominal_steps_two_epochs": 500,
+  "nominal_train_samples": 8000,
+  "observed_optimizer_steps": 30,
+  "observed_train_runtime_seconds": 192.6661,
+  "peak_allocated_vram_mib": 7891.72216796875,
+  "peak_reserved_vram_mib": 8032.0,
+  "seconds_per_optimizer_step": 6.422203333333333,
+  "vram_note": "Measured by the read-only smoke checker; includes checkpoint reload and all validation forwards."
+}

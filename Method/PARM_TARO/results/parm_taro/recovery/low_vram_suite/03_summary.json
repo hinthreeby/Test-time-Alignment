@@ -1,0 +1,135 @@
+{
+  "alphas_per_prompt": 5,
+  "grid": [
+    0.0,
+    0.001,
+    0.01,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0,
+    4.0,
+    8.0,
+    16.0,
+    "guide_only(normalized only)"
+  ],
+  "memory": {
+    "after_release": {
+      "allocated_mib": 3847.2587890625,
+      "nvidia_smi": {
+        "free_mib": 2345,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 29765,
+        "utilization_pct": 98
+      },
+      "peak_allocated_mib": 4046.9091796875,
+      "peak_reserved_mib": 4148.0,
+      "reserved_mib": 3924.0,
+      "status": "GPU_RELEASE_INCOMPLETE"
+    },
+    "before": {
+      "allocated_mib": 0.0,
+      "nvidia_smi": {
+        "free_mib": 6866,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 25244,
+        "utilization_pct": 99
+      },
+      "peak_allocated_mib": 0.0,
+      "peak_reserved_mib": 0.0,
+      "reserved_mib": 0.0
+    },
+    "loaded": {
+      "allocated_mib": 3839.1337890625,
+      "nvidia_smi": {
+        "free_mib": 2353,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 29757,
+        "utilization_pct": 99
+      },
+      "peak_allocated_mib": 3863.2275390625,
+      "peak_reserved_mib": 3928.0,
+      "reserved_mib": 3928.0
+    },
+    "peak": {
+      "allocated_mib": 3847.2587890625,
+      "nvidia_smi": {
+        "free_mib": 2121,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 29989,
+        "utilization_pct": 98
+      },
+      "peak_allocated_mib": 4046.9091796875,
+      "peak_reserved_mib": 4148.0,
+      "reserved_mib": 4148.0
+    }
+  },
+  "model_loaded_this_run": true,
+  "num_cases": 60,
+  "num_unique_prompts": 12,
+  "old_cache_reason": "prior cache lacks all required model revision/tokenizer/checkpoint provenance and covers only 20 cases",
+  "old_cache_reused": false,
+  "oracle": {
+    "current": {
+      "absolute_gain": 0.0005288779735566074,
+      "alphas_per_prompt": 5,
+      "fraction_differs_global": 0.38333333333333336,
+      "global": {
+        "fusion": "current",
+        "lambda": 0.0,
+        "mean_nll": 1.641580488284429
+      },
+      "lambda_distribution": {
+        "0.0": 37,
+        "0.001": 1,
+        "0.01": 17,
+        "0.05": 5
+      },
+      "num_cases": 60,
+      "num_unique_prompts": 12,
+      "oracle_nll": 1.6410516103108723,
+      "relative_gain_pct": 0.03221760841646719
+    },
+    "normalized": {
+      "absolute_gain": 0.053644047180811505,
+      "alphas_per_prompt": 5,
+      "fraction_differs_global": 0.6666666666666666,
+      "global": {
+        "fusion": "normalized",
+        "lambda": 0.0,
+        "mean_nll": 1.641580488284429
+      },
+      "lambda_distribution": {
+        "0.0": 20,
+        "0.001": 1,
+        "0.01": 1,
+        "0.1": 2,
+        "0.25": 5,
+        "0.5": 6,
+        "0.75": 3,
+        "1.0": 2,
+        "1.5": 6,
+        "2.0": 8,
+        "4.0": 5,
+        "8.0": 1
+      },
+      "num_cases": 60,
+      "num_unique_prompts": 12,
+      "oracle_nll": 1.5879364411036174,
+      "relative_gain_pct": 3.2678292391787283
+    }
+  },
+  "parity_max_abs_logprob_diff": {
+    "author": 0.0,
+    "paper": 0.0
+  },
+  "status": "COMPLETE"
+}

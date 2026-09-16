@@ -1,0 +1,7 @@
+formula,entropy_mean,top1_token_0
+F1_paper_beta1,4.375504525140776,76
+F2_author,5.241040978255219,76
+F3_current_lambda1,4.375504525140776,76
+F3_current_lambda0.01,5.045469026315362,120
+F4_normalized_lambda1,5.241040978255219,76
+F4_normalized_lambda0.01,5.055303443834108,120

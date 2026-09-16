@@ -1,0 +1,53 @@
+{
+  "adapter_config": {},
+  "adapter_module_count": 0,
+  "adapter_parameter_count": 0,
+  "adapter_tensor_count": 0,
+  "all_adapter_parameters_finite": true,
+  "expected_parameter_count": 6296064,
+  "files": [
+    {
+      "exists": false,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/adapter_config.json",
+      "sha256": null,
+      "size": null
+    },
+    {
+      "exists": false,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/adapter_model.safetensors",
+      "sha256": null,
+      "size": null
+    },
+    {
+      "exists": false,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/final_checkpoint/adapter_config.json",
+      "sha256": null,
+      "size": null
+    },
+    {
+      "exists": false,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/final_checkpoint/adapter_model.safetensors",
+      "sha256": null,
+      "size": null
+    }
+  ],
+  "final_training_step": 0,
+  "inference_adapter": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/results/parm_taro/recovery/reproduced/pblora_smoke/final_checkpoint",
+  "pointers": {
+    "best": {
+      "is_symlink": false,
+      "target": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/results/parm_taro/recovery/reproduced/pblora_smoke/best",
+      "valid": false
+    },
+    "last": {
+      "is_symlink": false,
+      "target": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/results/parm_taro/recovery/reproduced/pblora_smoke/last",
+      "valid": false
+    }
+  },
+  "resumable_checkpoints": [],
+  "status": "FAIL",
+  "target_module_types": [],
+  "training_root": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/results/parm_taro/recovery/reproduced/pblora_smoke",
+  "unexpected_target_tensors": []
+}

@@ -198,37 +198,37 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": true,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "canonical audit inventory",
-      "status": "BROKEN",
+      "status": "RELATIVE_SAFE",
       "type": "base-model-tokenizer",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "path": "models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": true,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "canonical audit inventory",
-      "status": "BROKEN",
+      "status": "RELATIVE_SAFE",
       "type": "reward-evaluator",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "path": "models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": true,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "canonical audit inventory",
-      "status": "BROKEN",
+      "status": "RELATIVE_SAFE",
       "type": "cost-evaluator",
-      "writable": false
+      "writable": true
     },
     {
       "exists": false,
@@ -341,15 +341,15 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "path": "models/rad_rm_sentiment/pytorch_model.bin",
-      "readable": false,
+      "readable": true,
       "required": true,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment/pytorch_model.bin",
       "source_of_path": "canonical audit inventory",
-      "status": "BROKEN",
+      "status": "RELATIVE_SAFE",
       "type": "router-v1-reward-checkpoint",
-      "writable": false
+      "writable": true
     },
     {
       "exists": false,
@@ -4150,76 +4150,76 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:objective_model_hashes.harmlessness_cost.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:scorer_prerequisites.paths.harmlessness_cost_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json, Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:objective_model_hashes.helpfulness.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:scorer_prerequisites.paths.helpfulness_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json, Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
       "exists": true,
@@ -4402,112 +4402,112 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment",
       "source_of_path": "Method/Router_Apdative/router/reports/model_validation.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:model_identifiers.reward_tokenizer",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment",
       "source_of_path": "Method/Router_Apdative/router/evaluation/pilot/stage7_report.json, Method/Router_Apdative/router/evaluation/report_run_32tokens/stage7_report.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:reproducibility.model_paths.reward_tokenizer",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment",
       "source_of_path": "Method/Router_Apdative/router/evaluation/config.json, Method/Router_Apdative/router/evaluation/full_32tokens/config.json, Method/Router_Apdative/router/evaluation/pilot/config.json, Method/Router_Apdative/router/evaluation/pilot_config.json (+1 more)",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:reward_tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment",
       "source_of_path": "Method/Router_Apdative/router/reports/model_validation.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:tokenizer_identifiers.reward_tokenizer",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment",
       "source_of_path": "Method/RAD/reward_modeling/configs/config_rm.yaml, Method/Router_Apdative/router/evaluation/config.json, Method/Router_Apdative/router/evaluation/full_32tokens/config.json, Method/Router_Apdative/router/evaluation/pilot/config.json (+5 more)",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment/pytorch_model.bin",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment/pytorch_model.bin",
       "source_of_path": "Method/Router_Apdative/router/reports/model_validation.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:model_identifiers.reward_checkpoint",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment/pytorch_model.bin",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment/pytorch_model.bin",
       "source_of_path": "Method/Router_Apdative/router/evaluation/pilot/stage7_report.json, Method/Router_Apdative/router/evaluation/report_run_32tokens/stage7_report.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:reproducibility.model_paths.reward_checkpoint",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment/pytorch_model.bin",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment/pytorch_model.bin",
       "source_of_path": "Method/Router_Apdative/router/evaluation/config.json, Method/Router_Apdative/router/evaluation/full_32tokens/config.json, Method/Router_Apdative/router/evaluation/pilot/config.json, Method/Router_Apdative/router/evaluation/pilot_config.json (+1 more)",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:reward_checkpoint_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/rad_rm_sentiment/pytorch_model.bin",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment/pytorch_model.bin",
       "source_of_path": "Method/Router_Apdative/router/evaluation/config.json, Method/Router_Apdative/router/evaluation/full_32tokens/config.json, Method/Router_Apdative/router/evaluation/pilot/config.json, Method/Router_Apdative/router/evaluation/pilot/stage7_report.json (+4 more)",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
       "exists": false,
@@ -4594,244 +4594,244 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_after.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:after.base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_after.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:after.guide_base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/taro_failed_boundary_20260818/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_before.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_after.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:before.base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_after.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:before.guide_base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/reports/stage9_tokenization_boundary_audit.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/reports/stage9_prerequisite_audit.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:details.parm_adapter.guide_base_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/reports/stage7_prerequisite_audit.json, Method/PARM_TARO/reports/stage9_prerequisite_audit.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:details.paths.base_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/reports/stage7_prerequisite_audit.json, Method/PARM_TARO/reports/stage9_prerequisite_audit.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:details.paths.tokenizer",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/run_status.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:frozen_audit.after.base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/run_status.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:frozen_audit.after.guide_base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/run_status.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:frozen_audit.before.base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/run_status.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:frozen_audit.before.guide_base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/taro_failed_boundary_20260818/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_before.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:guide_base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/run_status.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:protected_after.frozen_models_and_data.base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/run_status.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:protected_after.frozen_models_and_data.guide_base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/run_status.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:protected_before.frozen_models_and_data.base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/run_status.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:protected_before.frozen_models_and_data.guide_base_model.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/reports/stage9_tokenization_boundary_audit.json",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "config:tokenizer.path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Reward Decoding/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/reports/stage7_prerequisite_audit.json, Method/PARM_TARO/reports/stage9_prerequisite_audit.json, Method/PARM_TARO/reports/stage9_tokenization_boundary_audit.json, Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json (+10 more)",
-      "status": "HARD_CODED",
+      "status": "EXISTS_BUT_MOVED",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
       "exists": false,
@@ -6850,28 +6850,28 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/recovery/reconstruction/00_status.json",
       "status": "HARD_CODED",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/recovery/reconstruction/00_status.json",
       "status": "HARD_CODED",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
       "exists": false,
@@ -6886,16 +6886,16 @@
       "writable": false
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/recovery/reconstruction/00_status.json",
       "status": "HARD_CODED",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
       "exists": true,
@@ -7600,7 +7600,7 @@
       "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/configs/train_stage9_taro.json",
-      "source_of_path": "Method/PARM_TARO/configs/evaluate_stage10_parm_taro.json, Method/PARM_TARO/evaluation/config.py, Method/PARM_TARO/results/parm_taro/evaluation/preflight.json, Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json (+5 more)",
+      "source_of_path": "Method/PARM_TARO/configs/evaluate_stage10_parm_taro.json, Method/PARM_TARO/evaluation/config.py, Method/PARM_TARO/recovery/run_lambda1_parity.py, Method/PARM_TARO/results/parm_taro/evaluation/preflight.json (+6 more)",
       "status": "EXISTS_BUT_MOVED",
       "type": "text-reference",
       "writable": true
@@ -7724,6 +7724,18 @@
       "status": "EXISTS_BUT_MOVED",
       "type": "text-reference",
       "writable": true
+    },
+    {
+      "exists": false,
+      "historical_record": true,
+      "path": "PARM_TARO/evaluation/scoring.py imports safe_rlhf.models.AutoModelForScore",
+      "readable": false,
+      "required": false,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/evaluation/scoring.py imports safe_rlhf.models.AutoModelForScore",
+      "source_of_path": "Method/PARM_TARO/results/parm_taro/recovery/reconstruction/scripts/check_downloads.py",
+      "status": "CONFIG_DRIVEN",
+      "type": "text-reference",
+      "writable": false
     },
     {
       "exists": true,
@@ -8572,7 +8584,7 @@
       "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/parm_taro/validation.json",
-      "source_of_path": "Method/PARM_TARO/recovery/prepare_staged_preflight.py, Method/PARM_TARO/recovery/validate_paths.py, Method/PARM_TARO/results/parm_taro/recovery/val200/manifest.json",
+      "source_of_path": "Method/PARM_TARO/recovery/prepare_staged_preflight.py, Method/PARM_TARO/recovery/run_lambda1_parity.py, Method/PARM_TARO/recovery/validate_paths.py, Method/PARM_TARO/results/parm_taro/recovery/val200/manifest.json",
       "status": "RELATIVE_SAFE",
       "type": "text-reference",
       "writable": true
@@ -8674,148 +8686,148 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/configs/evaluate_stage10_parm_taro.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:harmlessness_cost_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:objectives.harmlessness_cost_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:protocol_specification.objectives.harmlessness_cost_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:protocol_specification.provenance.config.harmlessness_cost_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:provenance.config.harmlessness_cost_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/beaver-7b-v1.0-cost",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
       "source_of_path": "Method/PARM_TARO/configs/evaluate_stage10_parm_taro.json, Method/PARM_TARO/evaluation/config.py, Method/PARM_TARO/recovery/validate_paths.py, Method/PARM_TARO/results/parm_taro/evaluation/preflight.json (+2 more)",
-      "status": "CONFIG_DRIVEN",
+      "status": "RELATIVE_SAFE",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/configs/evaluate_stage10_parm_taro.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:helpfulness_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:objectives.helpfulness_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:protocol_specification.objectives.helpfulness_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:protocol_specification.provenance.config.helpfulness_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:provenance.config.helpfulness_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/beaver-7b-v1.0-reward",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
       "source_of_path": "Method/PARM_TARO/configs/evaluate_stage10_parm_taro.json, Method/PARM_TARO/evaluation/config.py, Method/PARM_TARO/recovery/validate_paths.py, Method/PARM_TARO/results/parm_taro/evaluation/preflight.json (+2 more)",
-      "status": "CONFIG_DRIVEN",
+      "status": "RELATIVE_SAFE",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
       "exists": false,
@@ -8914,16 +8926,16 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/rad_rm_sentiment/pytorch_model.bin",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/rad_rm_sentiment/pytorch_model.bin",
       "source_of_path": "Method/PARM_TARO/recovery/validate_paths.py",
-      "status": "CONFIG_DRIVEN",
+      "status": "RELATIVE_SAFE",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
       "exists": false,
@@ -9034,268 +9046,292 @@
       "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_after.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:after.training_config.base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_after.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:after.training_config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/configs/parm_taro_tulu2.json, Method/PARM_TARO/configs/train_stage9_taro.json, Method/PARM_TARO/configs/train_stage9_v2_alpha.json, Method/PARM_TARO/configs/train_stage9_v2_no_alpha.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_after.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:before.training_config.base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/frozen_audit_after.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/frozen_audit_after.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:before.training_config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/reports/stage9_alpha_collapse_diagnostic.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:checkpoint.metadata.training_config.base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/reports/stage9_alpha_collapse_diagnostic.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:checkpoint.metadata.training_config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/recovery/server_restore/09_model_load_preflight.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:expected_runtime.base_model",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/run_status.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:frozen_audit.after.training_config.base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/run_status.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:frozen_audit.after.training_config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/run_status.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:frozen_audit.before.training_config.base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_alpha/run_status.json, Method/PARM_TARO/results/parm_taro/training/v2_no_alpha/run_status.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:frozen_audit.before.training_config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/run_status.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:protected_after.frozen_models_and_data.training_config.base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/run_status.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:protected_after.frozen_models_and_data.training_config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/run_status.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:protected_before.frozen_models_and_data.training_config.base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/v2_alpha_preference/run_status.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:protected_before.frozen_models_and_data.training_config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/configs/parm_taro_tulu2.json, Method/PARM_TARO/configs/train_stage9_taro.json, Method/PARM_TARO/configs/train_stage9_v2_alpha.json, Method/PARM_TARO/configs/train_stage9_v2_no_alpha.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/taro/resolved_training_config.json, Method/PARM_TARO/results/parm_taro/training/taro_failed_boundary_20260818/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/taro_failed_boundary_20260818/resolved_training_config.json (+4 more)",
       "status": "CONFIG_DRIVEN",
       "type": "config:training_config.base_model_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/training/taro/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/taro/resolved_training_config.json, Method/PARM_TARO/results/parm_taro/training/taro_failed_boundary_20260818/frozen_audit_before.json, Method/PARM_TARO/results/parm_taro/training/taro_failed_boundary_20260818/resolved_training_config.json (+4 more)",
       "status": "CONFIG_DRIVEN",
       "type": "config:training_config.tokenizer_path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/tulu-2-7b",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
       "source_of_path": "Method/PARM_TARO/config.py, Method/PARM_TARO/configs/parm_taro_tulu2.json, Method/PARM_TARO/configs/train_stage9_taro.json, Method/PARM_TARO/configs/train_stage9_v2_alpha.json (+25 more)",
-      "status": "CONFIG_DRIVEN",
+      "status": "RELATIVE_SAFE",
       "type": "text-reference",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": true,
       "path": "models/tulu-2-7b/config.json",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b/config.json",
       "source_of_path": "Method/PARM_TARO/results/parm_taro/recovery/val200/preflight.json",
       "status": "CONFIG_DRIVEN",
       "type": "config:required_assets[0].path",
-      "writable": false
+      "writable": true
     },
     {
-      "exists": false,
+      "exists": true,
       "historical_record": false,
       "path": "models/tulu-2-7b/config.json",
-      "readable": false,
+      "readable": true,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b/config.json",
-      "source_of_path": "Method/PARM_TARO/recovery/prepare_staged_preflight.py, Method/PARM_TARO/results/parm_taro/recovery/val200/preflight.json",
-      "status": "CONFIG_DRIVEN",
+      "source_of_path": "Method/PARM_TARO/recovery/prepare_staged_preflight.py, Method/PARM_TARO/recovery/run_lambda1_parity.py, Method/PARM_TARO/results/parm_taro/recovery/val200/preflight.json",
+      "status": "RELATIVE_SAFE",
       "type": "text-reference",
-      "writable": false
+      "writable": true
+    },
+    {
+      "exists": true,
+      "historical_record": false,
+      "path": "models/tulu-2-7b/pytorch_model.bin.index.json",
+      "readable": true,
+      "required": false,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b/pytorch_model.bin.index.json",
+      "source_of_path": "Method/PARM_TARO/recovery/run_lambda1_parity.py",
+      "status": "RELATIVE_SAFE",
+      "type": "text-reference",
+      "writable": true
+    },
+    {
+      "exists": true,
+      "historical_record": false,
+      "path": "models/tulu-2-7b/tokenizer.model",
+      "readable": true,
+      "required": false,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b/tokenizer.model",
+      "source_of_path": "Method/PARM_TARO/recovery/run_lambda1_parity.py",
+      "status": "RELATIVE_SAFE",
+      "type": "text-reference",
+      "writable": true
     },
     {
       "exists": false,
@@ -9496,7 +9532,31 @@
       "readable": false,
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/checkpoints/parm_pku_pblora/adapter_config.json",
-      "source_of_path": "Method/PARM_TARO/recovery/prepare_staged_preflight.py, Method/PARM_TARO/results/parm_taro/recovery/val200/preflight.json",
+      "source_of_path": "Method/PARM_TARO/recovery/prepare_staged_preflight.py, Method/PARM_TARO/recovery/run_lambda1_parity.py, Method/PARM_TARO/results/parm_taro/recovery/val200/preflight.json",
+      "status": "CONFIG_DRIVEN",
+      "type": "text-reference",
+      "writable": false
+    },
+    {
+      "exists": false,
+      "historical_record": false,
+      "path": "results/parm_taro/checkpoints/parm_pku_pblora/adapter_model.bin",
+      "readable": false,
+      "required": false,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/checkpoints/parm_pku_pblora/adapter_model.bin",
+      "source_of_path": "Method/PARM_TARO/recovery/run_lambda1_parity.py",
+      "status": "CONFIG_DRIVEN",
+      "type": "text-reference",
+      "writable": false
+    },
+    {
+      "exists": false,
+      "historical_record": false,
+      "path": "results/parm_taro/checkpoints/parm_pku_pblora/adapter_model.safetensors",
+      "readable": false,
+      "required": false,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/checkpoints/parm_pku_pblora/adapter_model.safetensors",
+      "source_of_path": "Method/PARM_TARO/recovery/run_lambda1_parity.py",
       "status": "CONFIG_DRIVEN",
       "type": "text-reference",
       "writable": false
@@ -9653,6 +9713,30 @@
       "required": false,
       "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/path_audit",
       "source_of_path": "Method/PARM_TARO/recovery/validate_paths.py",
+      "status": "EXISTS_BUT_MOVED",
+      "type": "text-reference",
+      "writable": true
+    },
+    {
+      "exists": true,
+      "historical_record": false,
+      "path": "results/parm_taro/recovery/quick100",
+      "readable": true,
+      "required": false,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/quick100",
+      "source_of_path": "Method/PARM_TARO/recovery/run_lambda1_parity.py",
+      "status": "EXISTS_BUT_MOVED",
+      "type": "text-reference",
+      "writable": true
+    },
+    {
+      "exists": true,
+      "historical_record": true,
+      "path": "results/parm_taro/recovery/quick100/lambda1_token_traces.pt",
+      "readable": true,
+      "required": false,
+      "resolved_path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/quick100/lambda1_token_traces.pt",
+      "source_of_path": "Method/PARM_TARO/results/parm_taro/recovery/quick100/lambda1_parity.json",
       "status": "EXISTS_BUT_MOVED",
       "type": "text-reference",
       "writable": true
@@ -11554,24 +11638,20 @@
       "writable": true
     }
   ],
-  "files_scanned": 596,
+  "files_scanned": 600,
   "gate": "PATH AUDIT FAIL",
-  "generated_at": "2026-09-11T16:20:14.664190+00:00",
+  "generated_at": "2026-09-14T09:37:34.262080+00:00",
   "host_gpu": "AVAILABLE",
   "project_root": "/home/jupyter-iec2024se10/Test-time-Alignment",
-  "references_scanned": 708,
-  "required_broken": 245,
+  "references_scanned": 715,
+  "required_broken": 241,
   "required_broken_paths": [
-    "models/tulu-2-7b",
-    "models/beaver-7b-v1.0-reward",
-    "models/beaver-7b-v1.0-cost",
     "models/safe-rlhf-source",
     "results/parm_taro/checkpoints/parm_pku_pblora",
     "results/parm_taro/training/taro/best.pt",
     "results/parm_taro/training/v2_no_alpha/best.pt",
     "results/parm_taro/training/v2_alpha_preference/final.pt",
     "models/gpt2-medium",
-    "models/rad_rm_sentiment/pytorch_model.bin",
     "results/router_v2/sentiment_guide/final_adapter/adapter_model.safetensors",
     "results/router_v2/training/taro/best.pt",
     "results/router_v2/training/state/best.pt",
@@ -11808,12 +11888,12 @@
     "dataset/router_v2_cache/rad_smoke_fp32/train/shard_00000.pt",
     "dataset/router_v2_cache/rad_smoke_fp32/validation/shard_00000.pt"
   ],
-  "scan_status": "resumed",
+  "scan_status": "scanned",
   "status_counts": {
-    "BROKEN": 245,
-    "CONFIG_DRIVEN": 164,
-    "EXISTS_BUT_MOVED": 392,
-    "HARD_CODED": 148,
-    "RELATIVE_SAFE": 36
+    "BROKEN": 241,
+    "CONFIG_DRIVEN": 162,
+    "EXISTS_BUT_MOVED": 429,
+    "HARD_CODED": 113,
+    "RELATIVE_SAFE": 47
   }
 }

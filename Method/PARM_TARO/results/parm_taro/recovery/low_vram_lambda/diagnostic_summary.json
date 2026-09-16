@@ -1,0 +1,213 @@
+{
+  "alpha_optima_variation": {
+    "current": {
+      "distinct": 1,
+      "extremes_differ": false,
+      "range": 0.0,
+      "std": 0.0,
+      "vary": false
+    },
+    "normalized": {
+      "distinct": 1,
+      "extremes_differ": false,
+      "range": 0.0,
+      "std": 0.0,
+      "vary": false
+    }
+  },
+  "alpha_optima_vary_current": false,
+  "alpha_optima_vary_normalized": false,
+  "author_parity_max_abs_diff": 0.0,
+  "current": {
+    "best_global_lambda": 0.0,
+    "best_global_nll": 1.7308394074440003,
+    "fraction_oracle_differs_from_global": 0.25,
+    "oracle_absolute_gain": 0.00018528699874886811,
+    "oracle_lambda_distribution": {
+      "0.0": 15,
+      "0.01": 5
+    },
+    "oracle_nll": 1.7306541204452515,
+    "oracle_relative_gain_pct": 0.010705036986792947,
+    "per_alpha": [
+      {
+        "absolute_gain": 0.00012737512588500977,
+        "alpha": "1.00,0.00",
+        "global_fixed_nll": 1.718851387500763,
+        "oracle_nll": 1.718724012374878
+      },
+      {
+        "absolute_gain": 0.00016137957572937012,
+        "alpha": "0.75,0.25",
+        "global_fixed_nll": 1.7248454093933105,
+        "oracle_nll": 1.7246840298175812
+      },
+      {
+        "absolute_gain": 0.0002072155475616455,
+        "alpha": "0.50,0.50",
+        "global_fixed_nll": 1.7308394014835358,
+        "oracle_nll": 1.7306321859359741
+      },
+      {
+        "absolute_gain": 0.00022020936012268066,
+        "alpha": "0.25,0.75",
+        "global_fixed_nll": 1.7368334233760834,
+        "oracle_nll": 1.7366132140159607
+      },
+      {
+        "absolute_gain": 0.00021025538444519043,
+        "alpha": "0.00,1.00",
+        "global_fixed_nll": 1.7428274154663086,
+        "oracle_nll": 1.7426171600818634
+      }
+    ]
+  },
+  "fusion_parity": {
+    "author_logprob_max_abs_diff": 0.0,
+    "author_probability_max_abs_diff": 0.0,
+    "paper_logprob_max_abs_diff": 0.0,
+    "paper_probability_max_abs_diff": 0.0
+  },
+  "fusion_semantics": {
+    "a": "log_softmax(base model logits)",
+    "author": "log_softmax((a+b)/2)",
+    "b": "log_softmax(PBLoRA guide logits)",
+    "current": "log_softmax(a + lambda*b)",
+    "normalized": "log_softmax((a + lambda*b)/(1+lambda))",
+    "paper_beta_1": "log_softmax(a+b)"
+  },
+  "gradient_at_0.01": {
+    "current_fraction_positive": 0.75,
+    "current_mean": 1.0624110573902725,
+    "current_median": 1.2010480165481567,
+    "normalized_fraction_positive": 0.7,
+    "normalized_mean": 0.5844239622354508,
+    "normalized_median": 0.8770074248313904
+  },
+  "lambda_grid": [
+    0.0,
+    0.001,
+    0.01,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "normalized": {
+    "best_global_lambda": 0.0,
+    "best_global_nll": 1.7308394074440003,
+    "fraction_oracle_differs_from_global": 0.3,
+    "oracle_absolute_gain": 0.024467223882675304,
+    "oracle_lambda_distribution": {
+      "0.0": 14,
+      "2.0": 6
+    },
+    "oracle_nll": 1.706372183561325,
+    "oracle_relative_gain_pct": 1.4136045075843882,
+    "per_alpha": [
+      {
+        "absolute_gain": 0.04632699489593506,
+        "alpha": "1.00,0.00",
+        "global_fixed_nll": 1.718851387500763,
+        "oracle_nll": 1.6725243926048279
+      },
+      {
+        "absolute_gain": 0.02042481303215027,
+        "alpha": "0.75,0.25",
+        "global_fixed_nll": 1.7248454093933105,
+        "oracle_nll": 1.7044205963611603
+      },
+      {
+        "absolute_gain": 0.02023988962173462,
+        "alpha": "0.50,0.50",
+        "global_fixed_nll": 1.7308394014835358,
+        "oracle_nll": 1.7105995118618011
+      },
+      {
+        "absolute_gain": 0.019051730632781982,
+        "alpha": "0.25,0.75",
+        "global_fixed_nll": 1.7368334233760834,
+        "oracle_nll": 1.7177816927433014
+      },
+      {
+        "absolute_gain": 0.016292691230773926,
+        "alpha": "0.00,1.00",
+        "global_fixed_nll": 1.7428274154663086,
+        "oracle_nll": 1.7265347242355347
+      }
+    ]
+  },
+  "num_cases": 20,
+  "paper_parity_max_abs_diff": 0.0,
+  "preliminary_verdict": "LOW-VRAM DIAGNOSTIC SUGGESTS LAMBDA COLLAPSE OBJECTIVE ISSUE",
+  "proxy_objective": "alpha_weighted_response_mean_nll",
+  "runtime": {
+    "batch_size": 1,
+    "gpu_preflight": {
+      "free_mib": 6866,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 25244,
+      "utilization_pct": 98
+    },
+    "physical_model_copies": 1,
+    "quantization": "4-bit NF4, double quantization, float16 compute",
+    "resumed_from_complete_cache": false,
+    "vram": {
+      "after_cache_build": {
+        "nvidia_smi": {
+          "free_mib": 2121,
+          "gpu_name": "NVIDIA GeForce RTX 5090",
+          "total_mib": 32607,
+          "used_mib": 29989,
+          "utilization_pct": 98
+        },
+        "torch_allocated_mib": 3847.2587890625,
+        "torch_peak_allocated_mib": 4046.81396484375,
+        "torch_peak_reserved_mib": 4148.0,
+        "torch_reserved_mib": 4148.0
+      },
+      "after_model_delete": {
+        "nvidia_smi": {
+          "free_mib": 2345,
+          "gpu_name": "NVIDIA GeForce RTX 5090",
+          "total_mib": 32607,
+          "used_mib": 29765,
+          "utilization_pct": 99
+        },
+        "torch_allocated_mib": 3847.2587890625,
+        "torch_peak_allocated_mib": 4046.81396484375,
+        "torch_peak_reserved_mib": 4148.0,
+        "torch_reserved_mib": 3924.0
+      },
+      "after_model_load": {
+        "nvidia_smi": {
+          "free_mib": 2353,
+          "gpu_name": "NVIDIA GeForce RTX 5090",
+          "total_mib": 32607,
+          "used_mib": 29757,
+          "utilization_pct": 99
+        },
+        "torch_allocated_mib": 3839.1337890625,
+        "torch_peak_allocated_mib": 3863.2275390625,
+        "torch_peak_reserved_mib": 3928.0,
+        "torch_reserved_mib": 3928.0
+      },
+      "before_model_load": {
+        "nvidia_smi": {
+          "free_mib": 6363,
+          "gpu_name": "NVIDIA GeForce RTX 5090",
+          "total_mib": 32607,
+          "used_mib": 25747,
+          "utilization_pct": 98
+        },
+        "torch_allocated_mib": 0.0,
+        "torch_peak_allocated_mib": 0.0,
+        "torch_peak_reserved_mib": 0.0,
+        "torch_reserved_mib": 0.0
+      }
+    }
+  },
+  "status": "COMPLETE"
+}

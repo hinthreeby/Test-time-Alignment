@@ -1,0 +1,152 @@
+{
+  "cost": [
+    -5.15625,
+    -3.857421875,
+    -4.46875,
+    -4.12109375,
+    -3.140625,
+    -6.5234375,
+    -5.15625,
+    -4.12109375,
+    -4.609375,
+    2.703125,
+    -8.8671875,
+    -13.125,
+    7.96484375,
+    14.671875,
+    -12.953125,
+    -15.578125,
+    -11.859375,
+    -16.09375
+  ],
+  "cost_memory": {
+    "after_release": {
+      "allocated_mib": 8.12646484375,
+      "nvidia_smi": {
+        "free_mib": 31464,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 646,
+        "utilization_pct": 8
+      },
+      "peak_allocated_mib": 3659.708984375,
+      "peak_reserved_mib": 3838.0,
+      "reserved_mib": 44.0,
+      "status": "PASS"
+    },
+    "before": {
+      "allocated_mib": 8.1259765625,
+      "nvidia_smi": {
+        "free_mib": 31464,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 646,
+        "utilization_pct": 5
+      },
+      "peak_allocated_mib": 8.1259765625,
+      "peak_reserved_mib": 44.0,
+      "reserved_mib": 44.0
+    },
+    "loaded": {
+      "allocated_mib": 3477.1357421875,
+      "nvidia_smi": {
+        "free_mib": 27834,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4276,
+        "utilization_pct": 8
+      },
+      "peak_allocated_mib": 3503.4462890625,
+      "peak_reserved_mib": 3702.0,
+      "reserved_mib": 3674.0
+    },
+    "peak": {
+      "allocated_mib": 3477.1357421875,
+      "nvidia_smi": {
+        "free_mib": 27670,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4440,
+        "utilization_pct": 89
+      },
+      "peak_allocated_mib": 3659.708984375,
+      "peak_reserved_mib": 3838.0,
+      "reserved_mib": 3838.0
+    }
+  },
+  "reward": [
+    -4.15625,
+    -7.1171875,
+    0.045928955078125,
+    1.333984375,
+    6.49609375,
+    6.796875,
+    -4.15625,
+    1.333984375,
+    -1.6484375,
+    5.49609375,
+    -1.7509765625,
+    1.5078125,
+    -5.6875,
+    -0.33984375,
+    0.204833984375,
+    -2.5078125,
+    -5.28515625,
+    -5.48828125
+  ],
+  "reward_memory": {
+    "after_release": {
+      "allocated_mib": 8.12646484375,
+      "nvidia_smi": {
+        "free_mib": 31464,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 646,
+        "utilization_pct": 2
+      },
+      "peak_allocated_mib": 3659.708984375,
+      "peak_reserved_mib": 3878.0,
+      "reserved_mib": 44.0,
+      "status": "PASS"
+    },
+    "before": {
+      "allocated_mib": 0.0,
+      "nvidia_smi": {
+        "free_mib": 32106,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4,
+        "utilization_pct": 0
+      },
+      "peak_allocated_mib": 0.0,
+      "peak_reserved_mib": 0.0,
+      "reserved_mib": 0.0
+    },
+    "loaded": {
+      "allocated_mib": 3469.0107421875,
+      "nvidia_smi": {
+        "free_mib": 27846,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4264,
+        "utilization_pct": 28
+      },
+      "peak_allocated_mib": 3495.3212890625,
+      "peak_reserved_mib": 3702.0,
+      "reserved_mib": 3674.0
+    },
+    "peak": {
+      "allocated_mib": 3477.1357421875,
+      "nvidia_smi": {
+        "free_mib": 27630,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4480,
+        "utilization_pct": 67
+      },
+      "peak_allocated_mib": 3659.708984375,
+      "peak_reserved_mib": 3878.0,
+      "reserved_mib": 3878.0
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "method": "cura",
+  "signals": ["genarm", "rad", "cdq", "args"],
+  "objective": "sentiment",
+  "tokenization_mismatch_threshold": 0.05,
+  "base_model": "gpt2-large",
+  "signal_objectives": {
+    "genarm": "harmlessness",
+    "rad": "sentiment",
+    "cdq": "sentiment",
+    "args": "sentiment"
+  },
+  "score_directions": {
+    "genarm": "higher_is_better",
+    "rad": "higher_is_better",
+    "cdq": "higher_is_better",
+    "args": "higher_is_better"
+  },
+  "controller": {
+    "hidden_dim": 256,
+    "num_layers": 2,
+    "dropout": 0.1,
+    "lambda_max": 3.0,
+    "kappa": 0.5,
+    "disagreement_penalty": 0.1,
+    "epsilon_kl": 0.15,
+    "signal_costs": [1.0, 1.0, 1.0, 1.0]
+  },
+  "calibration": {
+    "mode": "robust_zscore",
+    "epsilon": 0.000001,
+    "default_log_var": -2.0
+  },
+  "cache": {
+    "schema_version": 2,
+    "shard_size": 100,
+    "dtype": "float16",
+    "max_retries": 2,
+    "store_text": false
+  },
+  "training": {
+    "batch_size": 32,
+    "epochs": 10,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "gamma_cal": 0.0,
+    "gamma_kl": 0.1,
+    "gamma_cost": 0.01,
+    "gamma_gate": 0.1,
+    "num_workers": 0,
+    "mixed_precision": true
+  }
+}

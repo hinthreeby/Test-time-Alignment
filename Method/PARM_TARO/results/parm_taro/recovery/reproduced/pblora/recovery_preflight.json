@@ -1,0 +1,18 @@
+{
+  "all_non_pblora_parameters_frozen": true,
+  "expected_tulu_7b_r4_parameter_count": 6296064,
+  "pblora_tensor_counts": {
+    "pblora_A": 96,
+    "pblora_B": 96,
+    "pblora_W1": 96,
+    "pblora_W2": 96
+  },
+  "resume_from_checkpoint": null,
+  "sampled_base_fingerprint_after": "73cc0aab80516f74f848ac7ee5f4468d9e0aa64df03bac631b8f98700605d31a",
+  "sampled_base_fingerprint_before": "73cc0aab80516f74f848ac7ee5f4468d9e0aa64df03bac631b8f98700605d31a",
+  "sampled_base_state_unchanged": true,
+  "status": "PASS",
+  "trainable_parameter_count": 6296064,
+  "trainable_tensor_count": 384,
+  "unexpected_trainable_parameters": []
+}

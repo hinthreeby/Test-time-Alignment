@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "conclusion": "LAMBDA1_PARITY_FAIL",
+  "mode": "deterministic_cpu_source_equation_probe",
+  "real_model_executed": false,
+  "device": "cpu",
+  "comparison": "original_parm_author_vs_parm_taro_fixed_lambda_1",
+  "tolerance": 1e-05,
+  "alpha_named_order": [
+    "helpfulness",
+    "harmlessness"
+  ],
+  "alpha": [
+    0.5,
+    0.5
+  ],
+  "prompt_template": "parm_author",
+  "metrics": {
+    "max_abs_logprob_diff": 2.141449130237178,
+    "mean_abs_logprob_diff": 0.7032898737311515,
+    "top1_agreement": true,
+    "topk_overlap": 1.0,
+    "static_top1_token_id": 1,
+    "taro_top1_token_id": 1,
+    "static_topk_token_ids": [
+      1,
+      3,
+      0,
+      2,
+      4
+    ],
+    "taro_topk_token_ids": [
+      1,
+      3,
+      0,
+      2,
+      4
+    ],
+    "stage10_static_vs_bypass_max_abs_logprob_diff": 0.0
+  },
+  "trace_file": "results/parm_taro/recovery/quick100/lambda1_token_traces.pt",
+  "stage10_static_note": "Stage-10 parm_static and bypass lambda=1 call the same PARM-TARO fusion function and are exact by construction.",
+  "runtime_prerequisites": {
+    "base_model_config_present": true,
+    "base_model_weight_index_present": true,
+    "tokenizer_present": true,
+    "pblora_adapter_config_present": false,
+    "pblora_weights_present": false
+  }
+}

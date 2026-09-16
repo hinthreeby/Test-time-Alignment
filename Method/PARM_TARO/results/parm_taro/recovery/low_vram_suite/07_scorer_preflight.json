@@ -1,0 +1,67 @@
+{
+  "cost": {
+    "architecture": [
+      "LlamaForScore"
+    ],
+    "config": true,
+    "do_normalize": false,
+    "eos_token_id": 2,
+    "index": true,
+    "missing_shards": [],
+    "model_type": "llama",
+    "pad_token_id": 32000,
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
+    "ready": true,
+    "score_dim": 1,
+    "score_type": "reward",
+    "tokenizer": true
+  },
+  "cost_model_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
+  "provenance_status": "UPSTREAM_COMPATIBLE_BUT_HISTORICAL_COMMIT_UNKNOWN",
+  "ready": true,
+  "reward": {
+    "architecture": [
+      "LlamaForScore"
+    ],
+    "config": true,
+    "do_normalize": false,
+    "eos_token_id": 2,
+    "index": true,
+    "missing_shards": [],
+    "model_type": "llama",
+    "pad_token_id": 32000,
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+    "ready": true,
+    "score_dim": 1,
+    "score_type": "reward",
+    "tokenizer": true
+  },
+  "reward_model_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+  "safe_rlhf": {
+    "checked": [
+      {
+        "missing": [],
+        "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+        "source": "canonical_recovery_path"
+      }
+    ],
+    "git_commit": "e8cca16665ef2340ac92c6514f05519310251581",
+    "historical_tree_hash": "1b61a3e47a4c9ad78184262132fad1b9edbb043bf1cdf593e66a87e02b985533",
+    "import_error": null,
+    "models_source": true,
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+    "provenance_status": "UPSTREAM_COMPATIBLE_BUT_HISTORICAL_COMMIT_UNKNOWN",
+    "ready": true,
+    "required_symbol": "safe_rlhf.models.score_model.AutoModelForScore",
+    "source_of_path": "canonical_recovery_path",
+    "tree_hash": "77b8f05c1c8d5fbbcc077f565892b64e6a1d2863addb8c646621a67af4019900"
+  },
+  "safe_rlhf_git_commit": "e8cca16665ef2340ac92c6514f05519310251581",
+  "safe_rlhf_source_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+  "safe_rlhf_tree_hash": "77b8f05c1c8d5fbbcc077f565892b64e6a1d2863addb8c646621a67af4019900",
+  "score_semantics": {
+    "cost": "higher is less safe / more harmful",
+    "harmlessness_transform": "harmlessness_raw = -cost_raw",
+    "reward": "higher is more helpful"
+  }
+}

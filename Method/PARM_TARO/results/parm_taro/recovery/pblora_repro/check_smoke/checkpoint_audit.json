@@ -1,0 +1,129 @@
+{
+  "adapter_config": {
+    "auto_mapping": null,
+    "base_model_name_or_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
+    "bias": "none",
+    "fan_in_fan_out": false,
+    "inference_mode": true,
+    "layers_pattern": null,
+    "layers_to_transform": null,
+    "lora_alpha": 8.0,
+    "lora_dropout": 0.05,
+    "modules_to_save": null,
+    "obj_num": 2,
+    "peft_type": "PBLORA",
+    "pref_vec_init": null,
+    "r1": 4,
+    "r2": 4,
+    "revision": null,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj"
+    ],
+    "task_type": "CAUSAL_LM"
+  },
+  "adapter_module_count": 96,
+  "adapter_parameter_count": 6296064,
+  "adapter_tensor_count": 384,
+  "all_adapter_parameters_finite": true,
+  "expected_parameter_count": 6296064,
+  "files": [
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/adapter_config.json",
+      "sha256": "7c4d1c4f538dc28265c75dd2d06405c51474beb1805bd4f384eb7d30fa0b58e0",
+      "size": 525
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/adapter_model.safetensors",
+      "sha256": "4d65253070de18f5b1e6108bca56c95bd649a68f8569701063077e28856f6470",
+      "size": 25233088
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/final_checkpoint/adapter_config.json",
+      "sha256": "7c4d1c4f538dc28265c75dd2d06405c51474beb1805bd4f384eb7d30fa0b58e0",
+      "size": 525
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/final_checkpoint/adapter_model.safetensors",
+      "sha256": "4d65253070de18f5b1e6108bca56c95bd649a68f8569701063077e28856f6470",
+      "size": 25233088
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25/adapter_config.json",
+      "sha256": "7c4d1c4f538dc28265c75dd2d06405c51474beb1805bd4f384eb7d30fa0b58e0",
+      "size": 525
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25/adapter_model.safetensors",
+      "sha256": "b9d66e8a179e95bef14e3d4ad2098766d283668053e32bcfd3f4e0a0b8d49d3b",
+      "size": 25233088
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25/trainer_state.json",
+      "sha256": "58b0558359f4f11fa3065733a328425bb8c3962531a96aff77e3afc846fba635",
+      "size": 8573
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25/optimizer.pt",
+      "sha256": "b48cc529376e09aa4ab053302fb6173b885ebe4c9088c9c01a34dfd126db42fd",
+      "size": 50690467
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25/scheduler.pt",
+      "sha256": "e3778c68f61432912cae70dbc1da0c856107494cf071ece3d29bd8a6e69c2da1",
+      "size": 1465
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25/rng_state.pth",
+      "sha256": "3e2d35b68844a07fa72326feb12f0a9a4235bd3bd75212ed3f0d92909671899e",
+      "size": 14709
+    },
+    {
+      "exists": true,
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25/training_args.bin",
+      "sha256": "1055fe3017db66f4b8398dac23e484d90527c2188fc6e1cf775e090caeab18d2",
+      "size": 6417
+    }
+  ],
+  "final_training_step": 30,
+  "inference_adapter": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora_smoke/final_checkpoint",
+  "pointers": {
+    "best": {
+      "is_symlink": true,
+      "target": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25",
+      "valid": true
+    },
+    "last": {
+      "is_symlink": true,
+      "target": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25",
+      "valid": true
+    }
+  },
+  "resumable_checkpoints": [
+    {
+      "complete": true,
+      "missing": [],
+      "path": "results/parm_taro/recovery/reproduced/pblora_smoke/checkpoint-25",
+      "step": 25
+    }
+  ],
+  "status": "PASS",
+  "target_module_types": [
+    "k_proj",
+    "q_proj",
+    "v_proj"
+  ],
+  "training_root": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora_smoke",
+  "unexpected_target_tensors": []
+}

@@ -1,0 +1,76 @@
+{
+  "model_loaded": true,
+  "model_released_before_cpu_sweep": true,
+  "no_evaluators": true,
+  "no_generation": true,
+  "num_cases": 20,
+  "preliminary_verdict": "LOW-VRAM DIAGNOSTIC SUGGESTS LAMBDA COLLAPSE OBJECTIVE ISSUE",
+  "runtime": {
+    "batch_size": 1,
+    "gpu_preflight": {
+      "free_mib": 6866,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 25244,
+      "utilization_pct": 98
+    },
+    "physical_model_copies": 1,
+    "quantization": "4-bit NF4, double quantization, float16 compute",
+    "resumed_from_complete_cache": false,
+    "vram": {
+      "after_cache_build": {
+        "nvidia_smi": {
+          "free_mib": 2121,
+          "gpu_name": "NVIDIA GeForce RTX 5090",
+          "total_mib": 32607,
+          "used_mib": 29989,
+          "utilization_pct": 98
+        },
+        "torch_allocated_mib": 3847.2587890625,
+        "torch_peak_allocated_mib": 4046.81396484375,
+        "torch_peak_reserved_mib": 4148.0,
+        "torch_reserved_mib": 4148.0
+      },
+      "after_model_delete": {
+        "nvidia_smi": {
+          "free_mib": 2345,
+          "gpu_name": "NVIDIA GeForce RTX 5090",
+          "total_mib": 32607,
+          "used_mib": 29765,
+          "utilization_pct": 99
+        },
+        "torch_allocated_mib": 3847.2587890625,
+        "torch_peak_allocated_mib": 4046.81396484375,
+        "torch_peak_reserved_mib": 4148.0,
+        "torch_reserved_mib": 3924.0
+      },
+      "after_model_load": {
+        "nvidia_smi": {
+          "free_mib": 2353,
+          "gpu_name": "NVIDIA GeForce RTX 5090",
+          "total_mib": 32607,
+          "used_mib": 29757,
+          "utilization_pct": 99
+        },
+        "torch_allocated_mib": 3839.1337890625,
+        "torch_peak_allocated_mib": 3863.2275390625,
+        "torch_peak_reserved_mib": 3928.0,
+        "torch_reserved_mib": 3928.0
+      },
+      "before_model_load": {
+        "nvidia_smi": {
+          "free_mib": 6363,
+          "gpu_name": "NVIDIA GeForce RTX 5090",
+          "total_mib": 32607,
+          "used_mib": 25747,
+          "utilization_pct": 98
+        },
+        "torch_allocated_mib": 0.0,
+        "torch_peak_allocated_mib": 0.0,
+        "torch_peak_reserved_mib": 0.0,
+        "torch_reserved_mib": 0.0
+      }
+    }
+  },
+  "status": "COMPLETE"
+}

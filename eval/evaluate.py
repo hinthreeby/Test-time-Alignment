@@ -28,6 +28,7 @@ METHOD_FILES = {
     "CD-Q-blockwise": "cdq_blockwise.json",
     "GenARM": "genarm.json",
     "multi-signal": "multi_signal.jsonl",
+    "CURA": "cura.jsonl",
 }
 
 BASE_MODELS = {method: "gpt2-large" for method in METHOD_FILES}
@@ -76,6 +77,11 @@ def parse_args():
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--ppl-batch-size", type=int, default=4)
     parser.add_argument("--max-length", type=int, default=512)
+    parser.add_argument(
+        "--max-samples",
+        type=int,
+        help="Chỉ đánh giá N mẫu hợp lệ đầu tiên của mỗi method.",
+    )
     parser.add_argument("--device", choices=["auto", "cuda", "cpu"], default="auto")
 
     parser.add_argument(
@@ -600,6 +606,10 @@ def load_existing_metrics(path):
 
 def main():
     args = parse_args()
+
+    if args.max_samples is not None and args.max_samples <= 0:
+        raise ValueError("--max-samples phải lớn hơn 0.")
+
     device = get_device(args.device)
     selected_methods = resolve_selected_methods(args)
     selective_run = bool(args.methods or args.files)
@@ -607,6 +617,9 @@ def main():
     args.results_dir.mkdir(parents=True, exist_ok=True)
     baseline_path = args.results_dir / args.baseline_file
     baseline_records = load_records(baseline_path)
+
+    if args.max_samples is not None:
+        baseline_records = baseline_records[:args.max_samples]
 
     if not baseline_records:
         raise RuntimeError(f"Không tìm thấy baseline hợp lệ: {baseline_path}")
@@ -616,6 +629,9 @@ def main():
     for method in selected_methods:
         path = args.results_dir / METHOD_FILES[method]
         records = load_records(path)
+
+        if args.max_samples is not None:
+            records = records[:args.max_samples]
 
         if records:
             records_by_method[method] = records

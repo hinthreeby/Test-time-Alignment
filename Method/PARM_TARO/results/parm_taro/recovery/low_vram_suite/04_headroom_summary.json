@@ -1,0 +1,128 @@
+{
+  "current": {
+    "boundary_flags": {
+      "OPTIMUM_AT_UPPER_BOUNDARY": false,
+      "OPTIMUM_AT_ZERO_BOUNDARY": true,
+      "upper_fraction": 0.0,
+      "zero_fraction": 0.6166666666666667
+    },
+    "classification": "HEADROOM WEAK",
+    "fraction_cases_oracle_differs_global": 0.38333333333333336,
+    "fraction_prompts_multiple_alpha_optima": 0.3333333333333333,
+    "global_fixed": {
+      "lambda": "0.0",
+      "nll": 1.641580488284429
+    },
+    "num_cases": 60,
+    "num_unique_prompts": 12,
+    "oracle_absolute_gain": 0.0005288779735566074,
+    "oracle_gain_bootstrap_95pct_ci_over_prompts": [
+      0.00014109412829081217,
+      0.001045260826746645
+    ],
+    "oracle_relative_gain_pct": 0.03221760841646719,
+    "per_alpha": {
+      "0.00,1.00": {
+        "lambda": "0.0",
+        "lambda_value": 0.0,
+        "mean_nll": 1.6175426244735718
+      },
+      "0.25,0.75": {
+        "lambda": "0.0",
+        "lambda_value": 0.0,
+        "mean_nll": 1.6295615434646606
+      },
+      "0.50,0.50": {
+        "lambda": "0.0",
+        "lambda_value": 0.0,
+        "mean_nll": 1.6415805021921794
+      },
+      "0.75,0.25": {
+        "lambda": "0.0",
+        "lambda_value": 0.0,
+        "mean_nll": 1.6535994211832683
+      },
+      "1.00,0.00": {
+        "lambda": "0.0",
+        "lambda_value": 0.0,
+        "mean_nll": 1.6656183501084645
+      }
+    },
+    "per_alpha_nll": 1.641580488284429,
+    "per_case_oracle_nll": 1.6410516103108723,
+    "per_prompt_nll": 1.6412479559580484,
+    "selected_distribution": {
+      "0.0": 37,
+      "0.001": 1,
+      "0.01": 17,
+      "0.05": 5
+    }
+  },
+  "normalized": {
+    "boundary_flags": {
+      "OPTIMUM_AT_UPPER_BOUNDARY": false,
+      "OPTIMUM_AT_ZERO_BOUNDARY": true,
+      "upper_fraction": 0.0,
+      "zero_fraction": 0.3333333333333333
+    },
+    "classification": "HEADROOM CLEAR",
+    "fraction_cases_oracle_differs_global": 0.6666666666666666,
+    "fraction_prompts_multiple_alpha_optima": 0.75,
+    "global_fixed": {
+      "lambda": "0.0",
+      "nll": 1.641580488284429
+    },
+    "num_cases": 60,
+    "num_unique_prompts": 12,
+    "oracle_absolute_gain": 0.053644047180811505,
+    "oracle_gain_bootstrap_95pct_ci_over_prompts": [
+      0.02292484839757279,
+      0.09558996955553689
+    ],
+    "oracle_relative_gain_pct": 3.2678292391787283,
+    "per_alpha": {
+      "0.00,1.00": {
+        "lambda": "0.0",
+        "lambda_value": 0.0,
+        "mean_nll": 1.6175426244735718
+      },
+      "0.25,0.75": {
+        "lambda": "0.0",
+        "lambda_value": 0.0,
+        "mean_nll": 1.6295615434646606
+      },
+      "0.50,0.50": {
+        "lambda": "0.0",
+        "lambda_value": 0.0,
+        "mean_nll": 1.6415805021921794
+      },
+      "0.75,0.25": {
+        "lambda": "0.01",
+        "lambda_value": 0.01,
+        "mean_nll": 1.6531774997711182
+      },
+      "1.00,0.00": {
+        "lambda": "0.05",
+        "lambda_value": 0.05,
+        "mean_nll": 1.6634770532449086
+      }
+    },
+    "per_alpha_nll": 1.6410678446292877,
+    "per_case_oracle_nll": 1.5879364411036174,
+    "per_prompt_nll": 1.5970832467079163,
+    "selected_distribution": {
+      "0.0": 20,
+      "0.001": 1,
+      "0.01": 1,
+      "0.1": 2,
+      "0.25": 5,
+      "0.5": 6,
+      "0.75": 3,
+      "1.0": 2,
+      "1.5": 6,
+      "2.0": 8,
+      "4.0": 5,
+      "8.0": 1
+    }
+  }
+}

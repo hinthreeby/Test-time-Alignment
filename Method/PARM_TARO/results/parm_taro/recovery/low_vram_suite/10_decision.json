@@ -1,0 +1,137 @@
+{
+  "full_scored_feasibility_complete": true,
+  "reason": "Meaningful scored oracle MIP headroom",
+  "regret_not_independent_from_mip": true,
+  "root_causes": [
+    {
+      "evidence_file": "01_artifact_audit.json",
+      "hypothesis": "PBLoRA missing/wrong",
+      "measured_number": "6296064",
+      "rc": "RC1",
+      "recommended_action": "",
+      "status": "NOT SUPPORTED"
+    },
+    {
+      "evidence_file": "../pblora_repro/epoch1_validation/alpha_probe_summary.json",
+      "hypothesis": "Alpha not entering PBLoRA",
+      "measured_number": "0.3194837313145399",
+      "rc": "RC2",
+      "recommended_action": "",
+      "status": "NOT SUPPORTED"
+    },
+    {
+      "evidence_file": "02_guide_utility_summary.json",
+      "hypothesis": "Weak guide/preference ranking",
+      "measured_number": "0.8947368421052632",
+      "rc": "RC3",
+      "recommended_action": "",
+      "status": "NOT SUPPORTED"
+    },
+    {
+      "evidence_file": "01_artifact_audit.json",
+      "hypothesis": "Model/tokenizer/checkpoint provenance wrong",
+      "measured_number": "",
+      "rc": "RC4",
+      "recommended_action": "",
+      "status": "NOT SUPPORTED"
+    },
+    {
+      "evidence_file": "03_summary.json",
+      "hypothesis": "Fusion mismatch with author PARM",
+      "measured_number": "{'author': 0.0, 'paper': 0.0}",
+      "rc": "RC5",
+      "recommended_action": "Treat author/current/paper formulations separately",
+      "status": "CONFIRMED"
+    },
+    {
+      "evidence_file": "03_fusion_scale.csv",
+      "hypothesis": "Scale/temperature confound",
+      "measured_number": "",
+      "rc": "RC6",
+      "recommended_action": "Compare entropy/max-probability curves",
+      "status": "WEAKLY SUPPORTED"
+    },
+    {
+      "evidence_file": "historical Stage-10 only",
+      "hypothesis": "Router checkpoint wrong/random",
+      "measured_number": "",
+      "rc": "RC7",
+      "recommended_action": "Audit only after router reproduction",
+      "status": "NOT TESTED"
+    },
+    {
+      "evidence_file": "historical Stage-10 only",
+      "hypothesis": "Router ignores alpha",
+      "measured_number": "",
+      "rc": "RC8",
+      "recommended_action": "Requires valid reproduced router",
+      "status": "NOT TESTED"
+    },
+    {
+      "evidence_file": "03_gradient_summary.csv",
+      "hypothesis": "NLL pushes lambda to zero",
+      "measured_number": "{'fusion': 'current', 'lambda': 0.0, 'mean_nll': 1.641580488284429}",
+      "rc": "RC9",
+      "recommended_action": "",
+      "status": "STRONGLY SUPPORTED"
+    },
+    {
+      "evidence_file": "router checkpoint unavailable",
+      "hypothesis": "Gate saturation",
+      "measured_number": "",
+      "rc": "RC10",
+      "recommended_action": "Requires router runtime",
+      "status": "NOT TESTED"
+    },
+    {
+      "evidence_file": "router cache/router checkpoint unavailable",
+      "hypothesis": "Feature normalization/cache issue",
+      "measured_number": "",
+      "rc": "RC11",
+      "recommended_action": "",
+      "status": "NOT TESTED"
+    },
+    {
+      "evidence_file": "05_exposure_shift_summary.json",
+      "hypothesis": "Teacher-forced/autoregressive exposure shift",
+      "measured_number": "0.52",
+      "rc": "RC12",
+      "recommended_action": "",
+      "status": "NOT SUPPORTED"
+    },
+    {
+      "evidence_file": "04_headroom_summary.json; 09_metrics_summary.json",
+      "hypothesis": "No adaptive headroom",
+      "measured_number": "",
+      "rc": "RC13",
+      "recommended_action": "Teacher-forced result alone cannot confirm",
+      "status": "NOT TESTED"
+    },
+    {
+      "evidence_file": "04_headroom_summary.json",
+      "hypothesis": "Headroom exists but router fails",
+      "measured_number": "",
+      "rc": "RC14",
+      "recommended_action": "",
+      "status": "WEAKLY SUPPORTED"
+    },
+    {
+      "evidence_file": "04_headroom_summary.json",
+      "hypothesis": "Optimal lambda varies by alpha",
+      "measured_number": "0.75",
+      "rc": "RC15",
+      "recommended_action": "",
+      "status": "WEAKLY SUPPORTED"
+    },
+    {
+      "evidence_file": "07_scorer_summary.json",
+      "hypothesis": "Evaluator wiring bad",
+      "measured_number": "",
+      "rc": "RC16",
+      "recommended_action": "",
+      "status": "NOT SUPPORTED"
+    }
+  ],
+  "status": "GO ROUTER",
+  "teacher_forced_nll_not_final": true
+}

@@ -1,0 +1,90 @@
+{
+  "current": {
+    "best_global_lambda": 0.0,
+    "best_global_nll": 1.7308394074440003,
+    "fraction_oracle_differs_from_global": 0.25,
+    "oracle_absolute_gain": 0.00018528699874886811,
+    "oracle_lambda_distribution": {
+      "0.0": 15,
+      "0.01": 5
+    },
+    "oracle_nll": 1.7306541204452515,
+    "oracle_relative_gain_pct": 0.010705036986792947,
+    "per_alpha": [
+      {
+        "absolute_gain": 0.00012737512588500977,
+        "alpha": "1.00,0.00",
+        "global_fixed_nll": 1.718851387500763,
+        "oracle_nll": 1.718724012374878
+      },
+      {
+        "absolute_gain": 0.00016137957572937012,
+        "alpha": "0.75,0.25",
+        "global_fixed_nll": 1.7248454093933105,
+        "oracle_nll": 1.7246840298175812
+      },
+      {
+        "absolute_gain": 0.0002072155475616455,
+        "alpha": "0.50,0.50",
+        "global_fixed_nll": 1.7308394014835358,
+        "oracle_nll": 1.7306321859359741
+      },
+      {
+        "absolute_gain": 0.00022020936012268066,
+        "alpha": "0.25,0.75",
+        "global_fixed_nll": 1.7368334233760834,
+        "oracle_nll": 1.7366132140159607
+      },
+      {
+        "absolute_gain": 0.00021025538444519043,
+        "alpha": "0.00,1.00",
+        "global_fixed_nll": 1.7428274154663086,
+        "oracle_nll": 1.7426171600818634
+      }
+    ]
+  },
+  "normalized": {
+    "best_global_lambda": 0.0,
+    "best_global_nll": 1.7308394074440003,
+    "fraction_oracle_differs_from_global": 0.3,
+    "oracle_absolute_gain": 0.024467223882675304,
+    "oracle_lambda_distribution": {
+      "0.0": 14,
+      "2.0": 6
+    },
+    "oracle_nll": 1.706372183561325,
+    "oracle_relative_gain_pct": 1.4136045075843882,
+    "per_alpha": [
+      {
+        "absolute_gain": 0.04632699489593506,
+        "alpha": "1.00,0.00",
+        "global_fixed_nll": 1.718851387500763,
+        "oracle_nll": 1.6725243926048279
+      },
+      {
+        "absolute_gain": 0.02042481303215027,
+        "alpha": "0.75,0.25",
+        "global_fixed_nll": 1.7248454093933105,
+        "oracle_nll": 1.7044205963611603
+      },
+      {
+        "absolute_gain": 0.02023988962173462,
+        "alpha": "0.50,0.50",
+        "global_fixed_nll": 1.7308394014835358,
+        "oracle_nll": 1.7105995118618011
+      },
+      {
+        "absolute_gain": 0.019051730632781982,
+        "alpha": "0.25,0.75",
+        "global_fixed_nll": 1.7368334233760834,
+        "oracle_nll": 1.7177816927433014
+      },
+      {
+        "absolute_gain": 0.016292691230773926,
+        "alpha": "0.00,1.00",
+        "global_fixed_nll": 1.7428274154663086,
+        "oracle_nll": 1.7265347242355347
+      }
+    ]
+  }
+}

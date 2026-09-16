@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "method": "cura",
+  "split": "validation",
+  "dataset_path": "dataset/multisignal_train/validation.jsonl",
+  "dataset_fingerprint": "sha256:d1226cdd2c5ef9f14acbd5b1d671ab928e1b14d8e3a23ba7251cb5e7d0711b72",
+  "config_fingerprint": "sha256:9e4b106146814168f197acd30879eca067eb43477e4838106fdaf0dd7802214f",
+  "signals": [
+    "rad",
+    "cdq",
+    "args"
+  ],
+  "objective": "sentiment",
+  "base_model": "gpt2-large",
+  "paper_mode": false,
+  "score_directions": {
+    "rad": "higher_is_better",
+    "cdq": "higher_is_better",
+    "args": "higher_is_better"
+  },
+  "tokenization_mismatch_threshold": 0.05,
+  "top_k": 20,
+  "max_response_tokens": 32,
+  "shard_size": 100,
+  "total_prompts": 200,
+  "completed_prompts": 200,
+  "completed_shards": [
+    {
+      "id": 0,
+      "file": "shards/shard_000000.pt",
+      "start_index": 0,
+      "end_index": 99,
+      "num_prompts": 100,
+      "num_steps": 2929,
+      "sha256": "b902e72464094551a471001e0f1d88ad484e9568dc1f322573fc76b37fc58ad9"
+    },
+    {
+      "id": 1,
+      "file": "shards/shard_000001.pt",
+      "start_index": 100,
+      "end_index": 199,
+      "num_prompts": 100,
+      "num_steps": 2900,
+      "sha256": "847cd3f67f4b3fd0077a579bf0693b613784e93b79fb15b70d377d9fabbbe0e1"
+    }
+  ],
+  "failed_prompt_ids": [],
+  "status": "complete"
+}

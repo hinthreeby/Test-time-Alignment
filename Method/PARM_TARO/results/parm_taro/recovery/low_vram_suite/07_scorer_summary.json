@@ -1,0 +1,131 @@
+{
+  "cost_memory": {
+    "after_release": {
+      "allocated_mib": 8.12646484375,
+      "nvidia_smi": {
+        "free_mib": 31464,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 646,
+        "utilization_pct": 8
+      },
+      "peak_allocated_mib": 3659.708984375,
+      "peak_reserved_mib": 3838.0,
+      "reserved_mib": 44.0,
+      "status": "PASS"
+    },
+    "before": {
+      "allocated_mib": 8.1259765625,
+      "nvidia_smi": {
+        "free_mib": 31464,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 646,
+        "utilization_pct": 5
+      },
+      "peak_allocated_mib": 8.1259765625,
+      "peak_reserved_mib": 44.0,
+      "reserved_mib": 44.0
+    },
+    "loaded": {
+      "allocated_mib": 3477.1357421875,
+      "nvidia_smi": {
+        "free_mib": 27834,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4276,
+        "utilization_pct": 8
+      },
+      "peak_allocated_mib": 3503.4462890625,
+      "peak_reserved_mib": 3702.0,
+      "reserved_mib": 3674.0
+    },
+    "peak": {
+      "allocated_mib": 3477.1357421875,
+      "nvidia_smi": {
+        "free_mib": 27670,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4440,
+        "utilization_pct": 89
+      },
+      "peak_allocated_mib": 3659.708984375,
+      "peak_reserved_mib": 3838.0,
+      "reserved_mib": 3838.0
+    }
+  },
+  "cost_model_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
+  "cost_std": 2.3476117355518733,
+  "finite": true,
+  "labelled_cost_direction_accuracy": 1.0,
+  "labelled_reward_direction_accuracy": 0.5,
+  "models_loaded_simultaneously": false,
+  "provenance_status": "UPSTREAM_COMPATIBLE_BUT_HISTORICAL_COMMIT_UNKNOWN",
+  "records": 10,
+  "reward_memory": {
+    "after_release": {
+      "allocated_mib": 8.12646484375,
+      "nvidia_smi": {
+        "free_mib": 31464,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 646,
+        "utilization_pct": 2
+      },
+      "peak_allocated_mib": 3659.708984375,
+      "peak_reserved_mib": 3878.0,
+      "reserved_mib": 44.0,
+      "status": "PASS"
+    },
+    "before": {
+      "allocated_mib": 0.0,
+      "nvidia_smi": {
+        "free_mib": 32106,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4,
+        "utilization_pct": 0
+      },
+      "peak_allocated_mib": 0.0,
+      "peak_reserved_mib": 0.0,
+      "reserved_mib": 0.0
+    },
+    "loaded": {
+      "allocated_mib": 3469.0107421875,
+      "nvidia_smi": {
+        "free_mib": 27846,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4264,
+        "utilization_pct": 28
+      },
+      "peak_allocated_mib": 3495.3212890625,
+      "peak_reserved_mib": 3702.0,
+      "reserved_mib": 3674.0
+    },
+    "peak": {
+      "allocated_mib": 3477.1357421875,
+      "nvidia_smi": {
+        "free_mib": 27630,
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "total_mib": 32607,
+        "used_mib": 4480,
+        "utilization_pct": 67
+      },
+      "peak_allocated_mib": 3659.708984375,
+      "peak_reserved_mib": 3878.0,
+      "reserved_mib": 3878.0
+    }
+  },
+  "reward_model_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+  "reward_std": 4.5620997791034625,
+  "safe_rlhf_git_commit": "e8cca16665ef2340ac92c6514f05519310251581",
+  "safe_rlhf_source_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+  "safe_rlhf_tree_hash": "77b8f05c1c8d5fbbcc077f565892b64e6a1d2863addb8c646621a67af4019900",
+  "score_semantics": {
+    "cost": "higher is less safe / more harmful",
+    "harmlessness_transform": "harmlessness_raw = -cost_raw",
+    "reward": "higher is more helpful"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,95 @@
+{
+  "adapter_config": {
+    "auto_mapping": null,
+    "base_model_name_or_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
+    "bias": "none",
+    "fan_in_fan_out": false,
+    "inference_mode": true,
+    "layers_pattern": null,
+    "layers_to_transform": null,
+    "lora_alpha": 8.0,
+    "lora_dropout": 0.05,
+    "modules_to_save": null,
+    "obj_num": 2,
+    "peft_type": "PBLORA",
+    "pref_vec_init": null,
+    "r1": 4,
+    "r2": 4,
+    "revision": null,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj"
+    ],
+    "task_type": "CAUSAL_LM"
+  },
+  "adapter_payload_reload": "PASS_SAFE_TENSORS_CPU",
+  "all_adapter_tensors_finite": true,
+  "base_frozen_during_training": true,
+  "expected_total_steps": 240,
+  "files": [
+    {
+      "bytes": 5136,
+      "path": "README.md",
+      "sha256": "fb7a19c3aadf9bff2d7d9371140ca7ce3bf658b9a899a1e51ffc56bb791e247d"
+    },
+    {
+      "bytes": 525,
+      "path": "adapter_config.json",
+      "sha256": "7c4d1c4f538dc28265c75dd2d06405c51474beb1805bd4f384eb7d30fa0b58e0"
+    },
+    {
+      "bytes": 25233088,
+      "path": "adapter_model.safetensors",
+      "sha256": "c0ee843c467e8d58f50c20280c8efe25da27c4d462036769feda6966abd4db4e"
+    }
+  ],
+  "final_checkpoint": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora/final_checkpoint",
+  "final_epoch": 1.0,
+  "final_tree_sha256": "1c7cb5bcc803514b79c7c8b94bb8e648546b533ed3271ce5c9c437bcd87def67",
+  "full_4bit_model_reload": "PENDING_ALPHA_PROBE",
+  "latest_completed_global_step": 240,
+  "latest_resumable_checkpoint": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora/checkpoint-200",
+  "latest_resumable_global_step": 200,
+  "latest_resumable_state_loadable_and_finite": true,
+  "note": "The final adapter is step 240. checkpoint-200 is only the latest resumable optimizer checkpoint because save_steps=50.",
+  "periodic_checkpoints": [
+    {
+      "epoch": 0.2077922077922078,
+      "global_step": 50,
+      "max_steps": 240,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora/checkpoint-50",
+      "required_state_files_present": true
+    },
+    {
+      "epoch": 0.4155844155844156,
+      "global_step": 100,
+      "max_steps": 240,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora/checkpoint-100",
+      "required_state_files_present": true
+    },
+    {
+      "epoch": 0.6233766233766234,
+      "global_step": 150,
+      "max_steps": 240,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora/checkpoint-150",
+      "required_state_files_present": true
+    },
+    {
+      "epoch": 0.8311688311688312,
+      "global_step": 200,
+      "max_steps": 240,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora/checkpoint-200",
+      "required_state_files_present": true
+    }
+  ],
+  "root_and_final_weights_identical": true,
+  "sampled_base_state_unchanged": true,
+  "schema_version": 1,
+  "status": "PASS",
+  "structure_matches_expected": true,
+  "tensor_count": 384,
+  "trainable_parameter_count": 6296064,
+  "training_output": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora",
+  "zero_byte_files": []
+}

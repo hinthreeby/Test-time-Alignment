@@ -2,8 +2,10 @@
 set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 ROOT="${TTA_PROJECT_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
-PY="${TTA_PYTHON:-$(command -v python3)}"
-[[ -x "$PY" ]] || { echo "Python is not executable: $PY" >&2; exit 2; }
+source "$SCRIPT_DIR/gpu_env.sh"
+resolve_gpu_python TARO_PYTHON
+PY="$GPU_PYTHON_BIN"
+gpu_env_preflight "$PY" false false
 OUT="$ROOT/results/parm_taro/recovery/reproduced/taro"
 mkdir -p "$OUT"
 [[ -e "$OUT/last.pt" ]] || ln -s latest.pt "$OUT/last.pt"

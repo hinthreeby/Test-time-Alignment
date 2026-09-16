@@ -1,0 +1,29 @@
+{
+  "status": "UPSTREAM_COMPATIBLE_BUT_HISTORICAL_COMMIT_UNKNOWN",
+  "classification": "REPRODUCED_RUNTIME",
+  "repository_url": "https://github.com/PKU-Alignment/safe-rlhf.git",
+  "recovered_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+  "git_commit": "e8cca16665ef2340ac92c6514f05519310251581",
+  "git_commit_date": "2024-06-13T18:06:45+08:00",
+  "retrieval_date": "2026-09-16",
+  "source_python_tree_sha256": "77b8f05c1c8d5fbbcc077f565892b64e6a1d2863addb8c646621a67af4019900",
+  "historical_stage10_tree": {
+    "tree_sha256": "1b61a3e47a4c9ad78184262132fad1b9edbb043bf1cdf593e66a87e02b985533",
+    "file_count": 219,
+    "total_bytes": 9035956,
+    "included_git_metadata": true,
+    "usable_to_recover_commit": false
+  },
+  "exact_historical_commit_found": false,
+  "evidence_searched": [
+    "project Git history",
+    "README and Stage 9/10 reports",
+    "requirements and environment metadata",
+    "protocol_lock.json",
+    "old logs and scripts",
+    "shell history",
+    "local home/cache/conda trees",
+    "Beaver model metadata"
+  ],
+  "note": "The official repository commit is pinned. It is API-compatible with the Beaver checkpoints, but no evidence proves it was the byte-identical Stage-10 checkout."
+}

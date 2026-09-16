@@ -3288,6 +3288,7 @@
     "sources": [
       "Method/PARM_TARO/configs/evaluate_stage10_parm_taro.json",
       "Method/PARM_TARO/evaluation/config.py",
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py",
       "Method/PARM_TARO/results/parm_taro/evaluation/preflight.json",
       "Method/PARM_TARO/results/parm_taro/evaluation/protocol/protocol_lock.json",
       "Method/PARM_TARO/scripts/audit_stage9_tokenization.py",
@@ -3395,6 +3396,13 @@
     "sources": [
       "Method/PARM_TARO/recovery/build_snapshot_evidence.py",
       "Method/PARM_TARO/results/parm_taro/recovery/diagnosis/static_equivalence.json"
+    ]
+  },
+  {
+    "path": "PARM_TARO/evaluation/scoring.py imports safe_rlhf.models.AutoModelForScore",
+    "reference_type": "text-reference",
+    "sources": [
+      "Method/PARM_TARO/results/parm_taro/recovery/reconstruction/scripts/check_downloads.py"
     ]
   },
   {
@@ -4020,6 +4028,7 @@
     "reference_type": "text-reference",
     "sources": [
       "Method/PARM_TARO/recovery/prepare_staged_preflight.py",
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py",
       "Method/PARM_TARO/recovery/validate_paths.py",
       "Method/PARM_TARO/results/parm_taro/recovery/val200/manifest.json"
     ]
@@ -4582,7 +4591,22 @@
     "reference_type": "text-reference",
     "sources": [
       "Method/PARM_TARO/recovery/prepare_staged_preflight.py",
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py",
       "Method/PARM_TARO/results/parm_taro/recovery/val200/preflight.json"
+    ]
+  },
+  {
+    "path": "models/tulu-2-7b/pytorch_model.bin.index.json",
+    "reference_type": "text-reference",
+    "sources": [
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py"
+    ]
+  },
+  {
+    "path": "models/tulu-2-7b/tokenizer.model",
+    "reference_type": "text-reference",
+    "sources": [
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py"
     ]
   },
   {
@@ -4751,7 +4775,22 @@
     "reference_type": "text-reference",
     "sources": [
       "Method/PARM_TARO/recovery/prepare_staged_preflight.py",
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py",
       "Method/PARM_TARO/results/parm_taro/recovery/val200/preflight.json"
+    ]
+  },
+  {
+    "path": "results/parm_taro/checkpoints/parm_pku_pblora/adapter_model.bin",
+    "reference_type": "text-reference",
+    "sources": [
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py"
+    ]
+  },
+  {
+    "path": "results/parm_taro/checkpoints/parm_pku_pblora/adapter_model.safetensors",
+    "reference_type": "text-reference",
+    "sources": [
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py"
     ]
   },
   {
@@ -4851,6 +4890,20 @@
     "reference_type": "text-reference",
     "sources": [
       "Method/PARM_TARO/recovery/validate_paths.py"
+    ]
+  },
+  {
+    "path": "results/parm_taro/recovery/quick100",
+    "reference_type": "text-reference",
+    "sources": [
+      "Method/PARM_TARO/recovery/run_lambda1_parity.py"
+    ]
+  },
+  {
+    "path": "results/parm_taro/recovery/quick100/lambda1_token_traces.pt",
+    "reference_type": "text-reference",
+    "sources": [
+      "Method/PARM_TARO/results/parm_taro/recovery/quick100/lambda1_parity.json"
     ]
   },
   {

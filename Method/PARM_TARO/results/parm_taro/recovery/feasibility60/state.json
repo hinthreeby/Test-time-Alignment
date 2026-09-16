@@ -1,0 +1,30 @@
+{
+  "details": {
+    "alpha": "BLOCKED \u2014 PBLORA AND ROUTER CHECKPOINTS UNAVAILABLE",
+    "decision": "BLOCKED \u2014 PBLORA / MODEL / EVALUATOR NOT READY",
+    "equation": "FUSION_SCALE_CONFOUND; F4/F2 diff=0.0; F3/F2 diff=3.6538293989184556",
+    "exposure": "BLOCKED \u2014 PBLORA AND ROUTER CHECKPOINTS UNAVAILABLE",
+    "gradient": "BLOCKED \u2014 PBLORA CHECKPOINT UNAVAILABLE",
+    "guide_utility": "BLOCKED \u2014 PBLORA CHECKPOINT UNAVAILABLE",
+    "pblora": "BLOCKED \u2014 PBLORA CHECKPOINT UNAVAILABLE",
+    "preflight": "inventory complete; fatal missing=['pblora', 'taro_checkpoint', 'v2_no_alpha', 'v2_full_alpha', 'safe_rlhf']",
+    "router": "ROUTER_CHECKPOINT_UNAVAILABLE",
+    "score": "NOT_RUN \u2014 SAFE_RLHF SOURCE/PROVENANCE NOT READY",
+    "sweep": "BLOCKED \u2014 PBLORA RUNTIME GATE DID NOT PASS"
+  },
+  "phases": {
+    "alpha": "blocked",
+    "decision": "blocked",
+    "equation": "done",
+    "exposure": "blocked",
+    "gradient": "blocked",
+    "guide_utility": "blocked",
+    "pblora": "blocked",
+    "preflight": "done",
+    "router": "blocked",
+    "score": "blocked",
+    "sweep": "blocked"
+  },
+  "schema_version": 1,
+  "updated_at": "2026-09-14T09:42:21.510485+00:00"
+}

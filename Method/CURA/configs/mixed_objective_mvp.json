@@ -1,0 +1,6 @@
+{
+  "extends": "default.json",
+  "objective": "sentiment",
+  "paper_mode": false,
+  "notes": "Diagnostic-only four-signal config. GenARM-HH objective mismatch requires --allow-objective-mismatch."
+}

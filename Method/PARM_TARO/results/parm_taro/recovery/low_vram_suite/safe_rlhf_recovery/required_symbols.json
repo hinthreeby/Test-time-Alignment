@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "symbols": [
+    {
+      "module": "safe_rlhf.models",
+      "symbol": "AutoModelForScore",
+      "canonical_definition": "safe_rlhf.models.score_model.AutoModelForScore",
+      "used_by": [
+        "PARM/code/evaluation/compute_reward.py",
+        "PARM/code/data/relabel.py",
+        "PARM_TARO/evaluation/scoring.py",
+        "PARM_TARO/recovery/low_vram_suite/common.py"
+      ],
+      "purpose": "Dispatch model_type=llama to LlamaForScore and load Beaver checkpoint shards."
+    },
+    {
+      "module": "safe_rlhf.models.score_model",
+      "symbol": "ScoreModelOutput.end_scores",
+      "used_by": [
+        "PARM/code/evaluation/compute_reward.py",
+        "PARM_TARO/evaluation/scoring.py",
+        "PARM_TARO/recovery/low_vram_suite/common.py"
+      ],
+      "purpose": "Scalar score at the last token selected by the attention mask."
+    },
+    {
+      "module": "safe_rlhf.models.score_model.llama.modeling_llama",
+      "symbol": "LlamaForScore",
+      "used_by": ["AutoModelForScore model mapping"],
+      "purpose": "LLaMA backbone plus scalar score head required by checkpoint architecture metadata."
+    },
+    {
+      "module": "safe_rlhf.models.score_model",
+      "symbol": "ScoreModelMixin.get_scores",
+      "used_by": ["LlamaForScore.forward"],
+      "purpose": "Apply score head and gather end_scores at the final non-padding attention-mask index."
+    },
+    {
+      "module": "transformers",
+      "symbol": "AutoTokenizer",
+      "used_by": ["all scorer paths"],
+      "purpose": "Tokenize the historical conversation template with checkpoint-local tokenizer files."
+    }
+  ]
+}
