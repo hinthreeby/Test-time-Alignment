@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "method": "Adaptive PARM Fusion",
+  "device": "cpu",
+  "model_loaded": false,
+  "formula": "z = (1 - w) * base_logprobs + w * parm_logprobs",
+  "weight_domain": [0.0, 1.0],
+  "tests": {
+    "passed": 17,
+    "failed": 0,
+    "pytest": "8.3.5",
+    "python": "3.10.21"
+  },
+  "numerical_parity": {
+    "w0_distribution_max_abs_error": 2.9802322387695312e-08,
+    "w1_distribution_max_abs_error": 5.960464477539063e-08,
+    "midpoint_logits_max_abs_error": 0.0,
+    "lambda_mapping_max_abs_error": 4.76837158203125e-07,
+    "magnitude_equivariance_max_abs_error": 0.0,
+    "overall_max_abs_error": 4.76837158203125e-07,
+    "fp32_tolerance": 1e-06
+  },
+  "dtype_coverage": ["float16", "bfloat16", "float32"],
+  "weight_shapes_tested": ["scalar", "per_batch", "per_token"],
+  "protected_directories": {
+    "PARM": "UNTOUCHED",
+    "router": "UNTOUCHED",
+    "Method/RAD": "UNTOUCHED"
+  }
+}

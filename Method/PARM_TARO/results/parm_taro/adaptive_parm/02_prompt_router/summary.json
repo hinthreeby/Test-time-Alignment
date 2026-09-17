@@ -1,0 +1,62 @@
+{
+  "classifier": {
+    "collapsed_to_one_weight": false,
+    "gain_over_global": -0.049301769197800493,
+    "num_distinct_selected_weights": 7,
+    "offline_policy_mip": 0.5975750546437026,
+    "oracle_action_accuracy": 0.23333333333333334,
+    "oracle_gap_capture": -0.6789622827864461,
+    "oracle_set_accuracy": 0.25,
+    "selected_weight_distribution": {
+      "0.0": 21,
+      "0.047619047619047616": 8,
+      "0.09090909090909091": 9,
+      "0.3333333333333333": 1,
+      "0.5": 2,
+      "0.6666666666666666": 7,
+      "1.0": 12
+    },
+    "top2_action_accuracy": 0.4666666666666667
+  },
+  "global_best_fixed_mip": 0.6468768238415031,
+  "limitations": [
+    "12 unique prompts",
+    "offline candidate-policy evaluation",
+    "no statistical significance claim",
+    "architecture/config selected a priori without random row split"
+  ],
+  "num_cases": 60,
+  "num_folds": 12,
+  "num_prompts": 12,
+  "oracle_gap": 0.0726134138047656,
+  "oracle_mip": 0.7194902376462687,
+  "per_alpha_fixed_mip": 0.6537874919153464,
+  "preferred_model": "utility_ridge",
+  "prompt_leakage": false,
+  "split": "leave-one-prompt-out",
+  "status": "COMPLETE",
+  "utility_predictor": {
+    "collapsed_to_one_weight": false,
+    "gain_over_global": -0.02938159013185615,
+    "mean_case_pairwise_accuracy": 0.5025809484890339,
+    "mean_case_spearman": 0.006788626103585345,
+    "num_distinct_selected_weights": 7,
+    "offline_policy_mip": 0.617495233709647,
+    "oracle_action_accuracy": 0.2,
+    "oracle_gap_capture": -0.40463033745877736,
+    "oracle_set_accuracy": 0.25,
+    "selected_weight_distribution": {
+      "0.0": 13,
+      "0.047619047619047616": 1,
+      "0.09090909090909091": 3,
+      "0.3333333333333333": 2,
+      "0.5": 4,
+      "0.6666666666666666": 4,
+      "1.0": 33
+    },
+    "top2_action_accuracy": 0.31666666666666665,
+    "utility_mae": 0.11902578146855634,
+    "utility_mse": 0.022610513324172854
+  },
+  "verdict": "FAIL"
+}

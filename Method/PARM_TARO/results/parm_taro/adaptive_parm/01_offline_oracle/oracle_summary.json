@@ -1,0 +1,165 @@
+{
+  "audits": {
+    "all_scores_finite": true,
+    "alpha_order_helpfulness_harmlessness": true,
+    "cases_60": true,
+    "eight_weights_per_case": true,
+    "five_alpha_values": true,
+    "method_lambda_weight_mapping": true,
+    "no_duplicate_case_weight": true,
+    "phase08_phase09_generation_identity": true,
+    "phase09_candidate_regret_exact": true,
+    "phase09_harmlessness_is_negative_cost": true,
+    "phase09_mip_formula_exact": true,
+    "twelve_cases_per_alpha": true,
+    "unique_prompts_12": true
+  },
+  "best_global": {
+    "is_best_global": true,
+    "mean_candidate_regret": 0.07261341380476553,
+    "mean_mip": 0.6468768238415031,
+    "mean_pcs": 0.8554322042059949,
+    "n": 60,
+    "oracle_gap_capture": 0.0,
+    "source_lambda": "",
+    "source_method": "normalized_guide_only",
+    "weight": 1.0
+  },
+  "best_global_mip": 0.6468768238415031,
+  "best_per_alpha": [
+    {
+      "alpha_harmlessness": 0.0,
+      "alpha_helpfulness": 1.0,
+      "mean_candidate_regret": 0.039186566882008535,
+      "mean_mip": 0.6194754508494841,
+      "mean_pcs": 0.7067386693572769,
+      "n": 12,
+      "source_lambda": "",
+      "source_method": "normalized_guide_only",
+      "weight": 1.0
+    },
+    {
+      "alpha_harmlessness": 0.25,
+      "alpha_helpfulness": 0.75,
+      "mean_candidate_regret": 0.059155033464187386,
+      "mean_mip": 0.6043045287226951,
+      "mean_pcs": 0.8800731997346222,
+      "n": 12,
+      "source_lambda": "",
+      "source_method": "normalized_guide_only",
+      "weight": 1.0
+    },
+    {
+      "alpha_harmlessness": 0.5,
+      "alpha_helpfulness": 0.5,
+      "mean_candidate_regret": 0.07117692592321918,
+      "mean_mip": 0.6129266332955569,
+      "mean_pcs": 0.9847593635396615,
+      "n": 12,
+      "source_lambda": 0.5,
+      "source_method": "normalized_0.5",
+      "weight": 0.3333333333333333
+    },
+    {
+      "alpha_harmlessness": 0.75,
+      "alpha_helpfulness": 0.25,
+      "mean_candidate_regret": 0.0722328211208051,
+      "mean_mip": 0.6882172046944013,
+      "mean_pcs": 0.9241178508100276,
+      "n": 12,
+      "source_lambda": "",
+      "source_method": "normalized_guide_only",
+      "weight": 1.0
+    },
+    {
+      "alpha_harmlessness": 1.0,
+      "alpha_helpfulness": 0.0,
+      "mean_candidate_regret": 0.08676238126439172,
+      "mean_mip": 0.7440136420145945,
+      "mean_pcs": 0.7818696080216633,
+      "n": 12,
+      "source_lambda": "",
+      "source_method": "normalized_guide_only",
+      "weight": 1.0
+    }
+  ],
+  "best_per_alpha_mip": 0.6537874919153464,
+  "candidate_weights": [
+    0.0,
+    0.009900990099009901,
+    0.047619047619047616,
+    0.09090909090909091,
+    0.3333333333333333,
+    0.5,
+    0.6666666666666666,
+    1.0
+  ],
+  "hv_usage": "global evaluation only; never a per-case training target",
+  "method": "Adaptive PARM Fusion",
+  "normalization": {
+    "anchors": {
+      "harmlessness": {
+        "high": 18.98453125,
+        "low": -43.375
+      },
+      "helpfulness": {
+        "high": 15.426249999999996,
+        "low": -13.500625
+      }
+    },
+    "clip_range": [
+      0.0,
+      1.0
+    ],
+    "fit_records": 1000,
+    "fit_split": "validation",
+    "lower_quantile": 0.01,
+    "method": "validation_quantile_minmax_clip",
+    "objective_order": [
+      "helpfulness",
+      "harmlessness"
+    ],
+    "upper_quantile": 0.99
+  },
+  "normalization_source": "results/parm_taro/recovery/low_vram_suite/09_metrics_summary.json",
+  "num_alpha_values": 5,
+  "num_candidate_records": 480,
+  "num_candidate_weights": 8,
+  "num_cases": 60,
+  "num_unique_prompts": 12,
+  "oracle_gap": 0.0726134138047656,
+  "oracle_gap_capture_by_method": {
+    "base": -1.1235484647202096,
+    "normalized_0.01": -1.1235484647202096,
+    "normalized_0.05": -1.1999201771077856,
+    "normalized_0.1": -1.0277540400304808,
+    "normalized_0.5": -0.6040233136348967,
+    "normalized_1": -0.42687203724408584,
+    "normalized_2": -0.11615069029390256,
+    "normalized_guide_only": 0.0
+  },
+  "oracle_mip": 0.7194902376462687,
+  "oracle_primary_weight_distribution": {
+    "0.0": 14,
+    "0.009900990099009901": 0,
+    "0.047619047619047616": 1,
+    "0.09090909090909091": 5,
+    "0.3333333333333333": 10,
+    "0.5": 8,
+    "0.6666666666666666": 10,
+    "1.0": 12
+  },
+  "phase09_candidate_regret_max_abs_error": 0.0,
+  "phase09_harmlessness_sign_max_abs_error": 0.0,
+  "phase09_mip_recalculation_max_abs_error": 0.0,
+  "primary_utility": "Phase09 MIP",
+  "relative_oracle_headroom": 0.1122523038830608,
+  "source_artifacts": {
+    "results/parm_taro/recovery/feasibility60/manifest.jsonl": "95477ef0e34e199fcc214c36df4483853e69b040d6ed01fffdc28427cfe11e51",
+    "results/parm_taro/recovery/low_vram_suite/08_generations.jsonl": "b97323b22a2a3a601ec3dfdcd77c0538754a3052e3af10a856df3b4d2a563614",
+    "results/parm_taro/recovery/low_vram_suite/09_metrics_summary.json": "3007c3021ca384eec3c1c0eff35a6fbed31929057b84d48ab0cd2268fedbe229",
+    "results/parm_taro/recovery/low_vram_suite/09_scored_generations.jsonl": "e6940112a3491375b649a7f9d06a6f436b872af51ae98b6d4fa5b7053c8859ce"
+  },
+  "status": "PASS",
+  "tie_break": "minimum weight among MIP ties within absolute tolerance 1e-12"
+}

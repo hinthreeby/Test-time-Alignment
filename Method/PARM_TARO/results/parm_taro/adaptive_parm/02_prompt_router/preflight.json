@@ -1,0 +1,27 @@
+{
+  "status": "READY_FOR_HOST_FEATURE_EXTRACTION",
+  "training_complete": false,
+  "scientific_verdict_available": false,
+  "gpu_access_from_codex": false,
+  "paths": {
+    "base_model": "models/tulu-2-7b",
+    "pblora": "results/parm_taro/recovery/reproduced/pblora/final_checkpoint",
+    "manifest": "results/parm_taro/recovery/feasibility60/manifest.jsonl",
+    "candidate_utility": "results/parm_taro/adaptive_parm/01_offline_oracle/candidate_utility.csv"
+  },
+  "teacher_forced_cache_rejected": {
+    "reason": "Prompt/response concatenation can create a response-dependent boundary-crossing BPE token.",
+    "response_branch_first_base_max_abs_diff": 0.038674354553222656,
+    "response_branch_first_pblora_max_abs_diff": 0.06337738037109375
+  },
+  "feature_extraction": {
+    "prompt_format": "raw prompt, add_special_tokens=false",
+    "time": "before first generated token",
+    "one_physical_backbone": true,
+    "pblora_frozen": true,
+    "scorer_loaded": false,
+    "generation_performed": false
+  },
+  "cross_validation": "leave-one-unique-prompt-out; 12 folds; 11 train prompts and 1 held-out prompt per fold",
+  "unit_tests": "21 passed"
+}

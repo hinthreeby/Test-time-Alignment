@@ -1,0 +1,47 @@
+{
+  "candidate_weights": [
+    0.0,
+    0.009900990099009901,
+    0.047619047619047616,
+    0.09090909090909091,
+    0.3333333333333333,
+    0.5,
+    0.6666666666666666,
+    1.0
+  ],
+  "classifier": {
+    "C": 0.1,
+    "class_weight": "balanced",
+    "max_iter": 5000,
+    "type": "StandardScaler + LogisticRegression"
+  },
+  "feature_columns": [
+    "alpha_helpfulness",
+    "alpha_harmlessness",
+    "prompt_token_length",
+    "base_entropy",
+    "base_top1_probability",
+    "base_top1_top2_margin",
+    "base_topk_mass",
+    "parm_entropy",
+    "parm_top1_probability",
+    "parm_top1_top2_margin",
+    "parm_topk_mass",
+    "top1_disagreement",
+    "topk_overlap",
+    "js_divergence",
+    "symmetric_kl",
+    "logprob_correlation",
+    "candidate_rank_disagreement"
+  ],
+  "grouping": "leave-one-unique-prompt-out (12 folds)",
+  "inference_features_exclude_scorer_values": true,
+  "random_row_split": false,
+  "seed": 42,
+  "utility_predictor": {
+    "alpha": 10.0,
+    "design": "state,w,w^2,state*w,state*w^2",
+    "type": "StandardScaler + Ridge"
+  },
+  "verdict_rule": "PASS iff utility gain > 0, gap capture >= 10%, and selected weights > 1; WEAK iff gain > 0 and non-collapsed; otherwise FAIL"
+}

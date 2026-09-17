@@ -1,0 +1,49 @@
+{
+  "adapter_path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/final_checkpoint",
+  "adapter_sha256_after": "c0ee843c467e8d58f50c20280c8efe25da27c4d462036769feda6966abd4db4e",
+  "adapter_sha256_before": "c0ee843c467e8d58f50c20280c8efe25da27c4d462036769feda6966abd4db4e",
+  "feature_columns": [
+    "alpha_helpfulness",
+    "alpha_harmlessness",
+    "prompt_token_length",
+    "base_entropy",
+    "base_top1_probability",
+    "base_top1_top2_margin",
+    "base_topk_mass",
+    "parm_entropy",
+    "parm_top1_probability",
+    "parm_top1_top2_margin",
+    "parm_topk_mass",
+    "top1_disagreement",
+    "topk_overlap",
+    "js_divergence",
+    "symmetric_kl",
+    "logprob_correlation",
+    "candidate_rank_disagreement"
+  ],
+  "generation_performed": false,
+  "gpu_after": {
+    "free_mib": 27604,
+    "name": "NVIDIA GeForce RTX 5090",
+    "total_mib": 32607,
+    "used_mib": 4506,
+    "utilization_pct": 0
+  },
+  "gpu_before": {
+    "free_mib": 32109,
+    "name": "NVIDIA GeForce RTX 5090",
+    "total_mib": 32607,
+    "used_mib": 2,
+    "utilization_pct": 0
+  },
+  "model_copies": 1,
+  "num_cases": 60,
+  "num_unique_prompts": 12,
+  "pblora_frozen": true,
+  "peak_allocated_mib": 4040.4814453125,
+  "prompt_format": "raw prompt, add_special_tokens=False (matches Phase 08 generation)",
+  "scorer_features_used": false,
+  "status": "PASS",
+  "time_of_feature": "after complete prompt and before first generated token",
+  "top_k": 10
+}
