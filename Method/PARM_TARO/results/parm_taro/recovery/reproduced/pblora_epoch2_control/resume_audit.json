@@ -1,0 +1,20 @@
+{
+  "checkpoint_epoch": 0.8311688311688312,
+  "compatibility_load_events": [
+    "optimizer.pt",
+    "scheduler.pt",
+    "rng_state.pth"
+  ],
+  "completed_global_step": 480,
+  "gradient_accumulation_steps": 8,
+  "optimizer_state_restored": true,
+  "remaining_steps": 280,
+  "restored_global_step": 200,
+  "resume_checkpoint": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora/checkpoint-200",
+  "rng_state_restored": true,
+  "scheduler_state_restored": true,
+  "status": "PASS",
+  "target_total_steps": 480,
+  "train_dataloader_batches": 1925,
+  "updates_per_epoch": 240
+}

@@ -1,0 +1,28 @@
+{
+  "extends": "sentiment_paper.json",
+  "signals": ["rad", "cdq"],
+  "signal_objectives": {
+    "rad": "sentiment",
+    "cdq": "sentiment"
+  },
+  "controller": {
+    "lambda_max": 6.0,
+    "kappa": 0.25,
+    "disagreement_penalty": 0.05,
+    "disagreement_clip": 16.0,
+    "epsilon_kl": 0.3,
+    "signal_costs": [1.0, 0.8]
+  },
+  "training": {
+    "gamma_nll": 0.1,
+    "gamma_utility": 2.0,
+    "gamma_pref": 1.0,
+    "gamma_cal": 1.0,
+    "gamma_kl": 0.05,
+    "gamma_cost": 0.005,
+    "gamma_gate": 0.25,
+    "gamma_selector": 0.25,
+    "ignore_forced_gold": true
+  },
+  "notes": "A*-oriented paper protocol. RAD and CD-Q are signals; the held-out sentiment classifier is reserved for rollout targets/evaluation. Use fresh paper-mode caches."
+}

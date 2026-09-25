@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "method": "cura",
+  "split": "train",
+  "dataset_path": "dataset/cura_astar_source/train.jsonl",
+  "dataset_fingerprint": "sha256:cde167cca8b71be5c5c985c36107ad118f341680703ef103f75cecde95fbb73e",
+  "config_fingerprint": "sha256:c571ca0778aefffb10273b065a182acfb487a1e5a4f1c329b6b19a2aa2fde18b",
+  "signals": [
+    "rad",
+    "cdq"
+  ],
+  "objective": "sentiment",
+  "base_model": "gpt2-large",
+  "paper_mode": true,
+  "score_directions": {
+    "rad": "higher_is_better",
+    "cdq": "higher_is_better"
+  },
+  "candidate_support": "natural_topk_v1",
+  "tokenization_mismatch_threshold": 0.05,
+  "top_k": 20,
+  "max_response_tokens": 32,
+  "shard_size": 50,
+  "total_prompts": 500,
+  "completed_prompts": 500,
+  "completed_shards": [
+    {
+      "id": 0,
+      "file": "shards/shard_000000.pt",
+      "start_index": 0,
+      "end_index": 49,
+      "num_prompts": 50,
+      "num_steps": 375,
+      "sha256": "e2a2e6004ef0a6688f2f20495efb6fe635a0987c5dbbf1552b8f8f8d91b51cc4",
+      "target_file": "target_shards/shard_000000.pt",
+      "target_sha256": "c51adcd007090a7313492090881ec45214c0569f423c4ec64327cd8b5b7706d4"
+    },
+    {
+      "id": 1,
+      "file": "shards/shard_000001.pt",
+      "start_index": 50,
+      "end_index": 99,
+      "num_prompts": 50,
+      "num_steps": 358,
+      "sha256": "56fb224e5fcad2851c24286ce097a1b5879301fe3de778f1081b6151deaa31b9",
+      "target_file": "target_shards/shard_000001.pt",
+      "target_sha256": "340076ab70214af001dcdf50436067e6a959c37ef0c8f2ada67f9afc3962bcc9"
+    },
+    {
+      "id": 2,
+      "file": "shards/shard_000002.pt",
+      "start_index": 100,
+      "end_index": 149,
+      "num_prompts": 50,
+      "num_steps": 436,
+      "sha256": "451fdc06196d34bce2ded615db77b10d295bc3444f83c4677401fdc338aa69a9",
+      "target_file": "target_shards/shard_000002.pt",
+      "target_sha256": "b0800f69936cacabf156488943b9f3d565c5a10bf9f7a4d5dadc60a9b96b2c96"
+    },
+    {
+      "id": 3,
+      "file": "shards/shard_000003.pt",
+      "start_index": 150,
+      "end_index": 199,
+      "num_prompts": 50,
+      "num_steps": 384,
+      "sha256": "728b5373cdfe6406712a83fd27c0935b46de45736029f6ec481a7c83c7126f46",
+      "target_file": "target_shards/shard_000003.pt",
+      "target_sha256": "cd1d80614ed4ba3c9235af5734cc958c6f353c85e204818b8362de6373daec83"
+    },
+    {
+      "id": 4,
+      "file": "shards/shard_000004.pt",
+      "start_index": 200,
+      "end_index": 249,
+      "num_prompts": 50,
+      "num_steps": 404,
+      "sha256": "d6756ee66a893e22141de20b9b67a609a7d837c1b6ff400bfd06105bd69fd735",
+      "target_file": "target_shards/shard_000004.pt",
+      "target_sha256": "5b55eae5dd466654cf60c284ceb33cc06eb7fed69ce05629d9af2fb371dfad3f"
+    },
+    {
+      "id": 5,
+      "file": "shards/shard_000005.pt",
+      "start_index": 250,
+      "end_index": 299,
+      "num_prompts": 50,
+      "num_steps": 318,
+      "sha256": "6adef25119e2db09d84db12cf1ba70dd8b199ee74eb1516a1ccbfa6688392d3f",
+      "target_file": "target_shards/shard_000005.pt",
+      "target_sha256": "0e8a93d5bea62fd323fa8983b623d59b10b341f0d5da12c3fdf6aaa09d6bca71"
+    },
+    {
+      "id": 6,
+      "file": "shards/shard_000006.pt",
+      "start_index": 300,
+      "end_index": 349,
+      "num_prompts": 50,
+      "num_steps": 402,
+      "sha256": "9a5f8f1546c657a004513e67398fd8c6acc62734ddf7b4e0fc00ae1230f7377b",
+      "target_file": "target_shards/shard_000006.pt",
+      "target_sha256": "a104be7b32282fa7d0b8f74b01eb0b64e69aa8715267b8532f3993f8e508bf0b"
+    },
+    {
+      "id": 7,
+      "file": "shards/shard_000007.pt",
+      "start_index": 350,
+      "end_index": 399,
+      "num_prompts": 50,
+      "num_steps": 358,
+      "sha256": "d3323078ed93eb2c059b516941f315ade36b37fe5757bcbcbc7935e900f4b5a6",
+      "target_file": "target_shards/shard_000007.pt",
+      "target_sha256": "c8ac806fb5a09a0bfa1362419b92e434a94aa4841ce86c0a939a552de394a4ca"
+    },
+    {
+      "id": 8,
+      "file": "shards/shard_000008.pt",
+      "start_index": 400,
+      "end_index": 449,
+      "num_prompts": 50,
+      "num_steps": 373,
+      "sha256": "8cfdfe2a3117e68aea11c60441f28c0b53766f79a528ee2d080037c327c25341",
+      "target_file": "target_shards/shard_000008.pt",
+      "target_sha256": "54ad1895192a9f1e94abf260d7218e5f847652b8a4e5857bfb5276e6a957686d"
+    },
+    {
+      "id": 9,
+      "file": "shards/shard_000009.pt",
+      "start_index": 450,
+      "end_index": 499,
+      "num_prompts": 50,
+      "num_steps": 423,
+      "sha256": "52012f7d7943bee74b6e1db6813b957ea2d0645801215959f4b6d89d7b115f6e",
+      "target_file": "target_shards/shard_000009.pt",
+      "target_sha256": "8e6ab1648ccae5522924bc36c0e334e1b76444810871c2f1805e33d291985101"
+    }
+  ],
+  "failed_prompt_ids": [],
+  "status": "complete",
+  "target_utility": {
+    "status": "complete",
+    "fingerprint": "sha256:90184a4ada9acaf0e9c93dcd732488fc6750b1c2104117d9e463d299ad6224a9",
+    "evaluator": "/home/jupyter-iec2024se10/Test-time-Alignment/models/sentiment-roberta-large-english",
+    "rollouts": 2,
+    "rollout_tokens": 16,
+    "seed": 42,
+    "annotation_version": 3,
+    "candidate_batch_size": 5
+  }
+}

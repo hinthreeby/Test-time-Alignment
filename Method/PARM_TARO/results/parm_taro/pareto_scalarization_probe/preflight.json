@@ -1,0 +1,17 @@
+{
+  "alpha_grid": 21,
+  "checks": {
+    "adapter": true,
+    "base": true,
+    "cost": true,
+    "protocol": true,
+    "reward": true,
+    "train": true
+  },
+  "expected_phase_a_generations": 420,
+  "fresh_prompts": 20,
+  "gradient_batches": 20,
+  "loads_model": false,
+  "phase_c": "PREPARED_NOT_RUN",
+  "status": "PASS"
+}

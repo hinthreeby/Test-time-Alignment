@@ -1,0 +1,32 @@
+{
+  "seed": 42,
+  "benchmark_fingerprints": 39621,
+  "splits": {
+    "train": {
+      "counts": {
+        "0": 2000,
+        "1": 2000
+      },
+      "removed_exact_benchmark_overlap": 3,
+      "removed_short": 2087,
+      "rows": 4000,
+      "source": "dataset/RAD_train/sst2_hf/downloads/957ab2910aea282ec0210237edfda0ceefe5cccc48ae5c03a2d1c3a28fd3a370",
+      "source_sha256": "c7921283b75a42e685f50edecb96798607ea0fcbfd0739ee8975f22c12d55f09",
+      "output": "dataset/cura_astar_source/train.jsonl",
+      "output_sha256": "cde167cca8b71be5c5c985c36107ad118f341680703ef103f75cecde95fbb73e"
+    },
+    "validation": {
+      "counts": {
+        "0": 400,
+        "1": 400
+      },
+      "removed_exact_benchmark_overlap": 3,
+      "removed_short": 10,
+      "rows": 800,
+      "source": "dataset/RAD_train/sst2_hf/downloads/5b5fe3bc8f7b1e4af336eaf85e0cd19c42b6d21824e30c8dfdaa556214102cab",
+      "source_sha256": "fb00fe008f6828f86ba2beda8415a4cf5da0c884f21c5f238c87131b5aa19529",
+      "output": "dataset/cura_astar_source/validation.jsonl",
+      "output_sha256": "eabf237194e571ac07f74c5c9844e9eb0606e1d9b42eb28cdd15fc9a410accf8"
+    }
+  }
+}

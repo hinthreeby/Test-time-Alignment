@@ -1,0 +1,214 @@
+{
+  "adapter_sha256": "c0ee843c467e8d58f50c20280c8efe25da27c4d462036769feda6966abd4db4e",
+  "cases": 50,
+  "gpu_after": {
+    "free_mib": 29566,
+    "gpu_name": "NVIDIA GeForce RTX 5090",
+    "total_mib": 32607,
+    "used_mib": 2544,
+    "utilization_pct": 0
+  },
+  "leakage": {
+    "audits": [
+      {
+        "alpha": [
+          1.0,
+          0.0
+        ],
+        "case_id": "f60_a0_p00",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00058",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          0.75,
+          0.25
+        ],
+        "case_id": "f60_a1_p01",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00094",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          0.5,
+          0.5
+        ],
+        "case_id": "f60_a2_p02",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00115",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          0.25,
+          0.75
+        ],
+        "case_id": "f60_a3_p03",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00123",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          0.0,
+          1.0
+        ],
+        "case_id": "f60_a4_p04",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00126",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          1.0,
+          0.0
+        ],
+        "case_id": "f60_a0_p05",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00146",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          0.75,
+          0.25
+        ],
+        "case_id": "f60_a1_p06",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00198",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          0.5,
+          0.5
+        ],
+        "case_id": "f60_a2_p07",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00203",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          0.25,
+          0.75
+        ],
+        "case_id": "f60_a3_p08",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00209",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      },
+      {
+        "alpha": [
+          0.0,
+          1.0
+        ],
+        "case_id": "f60_a4_p09",
+        "comparisons": {
+          "base_prefix_vs_future_a": 0.0,
+          "base_prefix_vs_future_b": 0.0,
+          "guide_prefix_vs_future_a": 0.0,
+          "guide_prefix_vs_future_b": 0.0
+        },
+        "future_tokens_not_used_by_operational_path": true,
+        "max_abs_logprob_diff": 0.0,
+        "sample_id": "pku_round0_00217",
+        "state_position": 32,
+        "status": "PASS",
+        "tolerance": 0.0001
+      }
+    ],
+    "max_abs_logprob_diff": 0.0,
+    "num_sampled_states": 10,
+    "status": "PASS",
+    "tolerance": 0.0001
+  },
+  "pblora_frozen": true,
+  "rollouts": 1250,
+  "states": 250,
+  "status": "PASS",
+  "unique_responses": 244
+}

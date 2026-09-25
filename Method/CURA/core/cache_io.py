@@ -104,9 +104,14 @@ def verify_cache(cache_dir: Path, strict=True):
 
 
 class ShardedCuraDataset(Dataset):
-    """Map-style lazy shard reader; keeps at most one shard in memory per worker."""
+    """Map-style shard reader with optional in-memory preloading.
 
-    def __init__(self, cache_dir):
+    Lazy mode keeps at most one shard in memory. Training uses ``preload=True``
+    because shuffled indices would otherwise reload a shard for nearly every
+    sample in a batch.
+    """
+
+    def __init__(self, cache_dir, preload=False):
         self.cache_dir = Path(cache_dir)
         self.manifest = read_manifest(self.cache_dir)
         if self.manifest is None:
@@ -117,14 +122,24 @@ class ShardedCuraDataset(Dataset):
                 self.index.append((descriptor.get("target_file", descriptor["file"]), local_index))
         self._loaded_name = None
         self._loaded_rows = None
+        self._preloaded_rows = {}
+        if preload:
+            for filename, _ in self.index:
+                if filename not in self._preloaded_rows:
+                    self._preloaded_rows[filename] = self._load_rows(filename)
+
+    def _load_rows(self, filename):
+        payload = torch.load(self.cache_dir / filename, map_location="cpu", weights_only=False)
+        validate_shard(payload)
+        return payload["rows"]
 
     def __len__(self):
         return len(self.index)
 
     def __getitem__(self, index):
         filename, local_index = self.index[index]
+        if filename in self._preloaded_rows:
+            return self._preloaded_rows[filename][local_index]
         if filename != self._loaded_name:
-            payload = torch.load(self.cache_dir / filename, map_location="cpu", weights_only=False)
-            validate_shard(payload)
-            self._loaded_name, self._loaded_rows = filename, payload["rows"]
+            self._loaded_name, self._loaded_rows = filename, self._load_rows(filename)
         return self._loaded_rows[local_index]

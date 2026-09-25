@@ -1,0 +1,35 @@
+{
+  "criterion": "irregular iff combined monotonicity violations >= 8/40 or any unsupported nondominated point",
+  "delta": {
+    "HV": 0.048901285299257136,
+    "MIP": 0.01202727797307257,
+    "harmlessness_monotonicity_violations": -1,
+    "harmlessness_spearman": 0.007792207792208017,
+    "helpfulness_monotonicity_violations": -2,
+    "helpfulness_spearman": 0.16103896103896104,
+    "nondominated_points": -2,
+    "unsupported_nondominated_points": 0
+  },
+  "epoch1": {
+    "HV": 0.37151903734430036,
+    "MIP": 0.5860978484453275,
+    "harmlessness_monotonicity_violations": 7,
+    "harmlessness_spearman": -0.9402597402597404,
+    "helpfulness_monotonicity_violations": 10,
+    "helpfulness_spearman": 0.2545454545454545,
+    "nondominated_points": 6,
+    "unsupported_nondominated_points": 2
+  },
+  "epoch2": {
+    "HV": 0.4204203226435575,
+    "MIP": 0.5981251264184001,
+    "harmlessness_monotonicity_violations": 6,
+    "harmlessness_spearman": -0.9324675324675323,
+    "helpfulness_monotonicity_violations": 8,
+    "helpfulness_spearman": 0.41558441558441556,
+    "nondominated_points": 4,
+    "unsupported_nondominated_points": 2
+  },
+  "same_prompts_and_alpha_grid": true,
+  "verdict": "IRREGULARITY_PERSISTS_AFTER_EPOCH2"
+}

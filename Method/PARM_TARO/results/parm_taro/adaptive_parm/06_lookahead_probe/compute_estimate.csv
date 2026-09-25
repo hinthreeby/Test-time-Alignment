@@ -1,0 +1,7 @@
+candidate_set,candidate_count,horizon,actionable_fraction,additional_forward_token_units_per_generated_token,estimated_relative_forward_token_multiplier,note
+W3,3,4,0.256,2.048,3.048,token-work estimate only; not wall-clock latency
+W3,3,8,0.256,4.096,5.096,token-work estimate only; not wall-clock latency
+W3,3,16,0.256,8.192,9.192,token-work estimate only; not wall-clock latency
+W5,5,4,0.256,4.096,5.096,token-work estimate only; not wall-clock latency
+W5,5,8,0.256,8.192,9.192,token-work estimate only; not wall-clock latency
+W5,5,16,0.256,16.384,17.384,token-work estimate only; not wall-clock latency

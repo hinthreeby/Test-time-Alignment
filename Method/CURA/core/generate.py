@@ -51,9 +51,43 @@ def completed(row):
 
 
 def load_existing(path):
-    if not path.exists(): return []
-    with path.open(encoding="utf-8") as handle:
-        return [json.loads(line) for line in handle if line.strip()]
+    if not path.exists():
+        return []
+    content = path.read_text(encoding="utf-8").strip()
+    if not content:
+        return []
+    try:
+        payload = json.loads(content)
+    except json.JSONDecodeError:
+        payload = [json.loads(line) for line in content.splitlines() if line.strip()]
+    if not isinstance(payload, list) or not all(isinstance(row, dict) for row in payload):
+        raise ValueError(f"CURA output must contain a JSON list or JSONL objects: {path}")
+    return payload
+
+
+def save_results(rows, path):
+    """Atomically publish the final result using the repo-wide JSON-list format."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    with temporary.open("w", encoding="utf-8") as handle:
+        json.dump(rows, handle, indent=2, ensure_ascii=False)
+    temporary.replace(path)
+
+
+def synchronize_cuda():
+    if torch.cuda.is_available():
+        torch.cuda.synchronize()
+
+
+def apply_inference_overrides(output, args):
+    """Apply explicit inference controls after the learned controller heads."""
+    if args.ablation == "no-gate":
+        output["gate"] = torch.ones_like(output["gate"])
+    elif args.fixed_gate is not None:
+        output["gate"] = torch.full_like(output["gate"], args.fixed_gate)
+    if args.fixed_lambda is not None:
+        output["strength"] = torch.full_like(output["strength"], args.fixed_lambda)
+    return output
 
 
 def load_models(checkpoint_path, device):
@@ -75,9 +109,16 @@ def generate_one(model, tokenizer, adapters, calibrator, controller, config, pro
     prompt_length = ids.size(1); telemetry = []
     running_weights = []
     prompt_weights = None
+    past_key_values = None
+    model_input = ids
     cfg = config["controller"]
     for position in range(args.max_new_tokens):
-        logits = model(ids).logits[0, -1].float(); base, candidates = torch.topk(logits, args.top_k)
+        base_output = model(
+            model_input, past_key_values=past_key_values, use_cache=True
+        )
+        logits = base_output.logits[0, -1].float()
+        past_key_values = base_output.past_key_values
+        base, candidates = torch.topk(logits, args.top_k)
         routing = base_routing_features(
             base.unsqueeze(0), torch.tensor([position], device=device), torch.tensor([ids.size(1)], device=device),
             logits.unsqueeze(0)
@@ -126,16 +167,23 @@ def generate_one(model, tokenizer, adapters, calibrator, controller, config, pro
         if args.ablation == "prompt-router":
             if prompt_weights is None: prompt_weights = output["weights"]
             output["weights"] = prompt_weights
-        if args.ablation == "no-gate": output["gate"] = torch.ones_like(output["gate"])
-        if args.fixed_lambda is not None: output["strength"] = torch.full_like(output["strength"], args.fixed_lambda)
+        output = apply_inference_overrides(output, args)
         disagreement_penalty = 0.0 if args.ablation == "no-disagreement" else cfg["disagreement_penalty"]
         epsilon_kl = None if args.ablation == "no-kl" else cfg["epsilon_kl"]
-        fused = fuse_policies(base.unsqueeze(0), mu, log_var, output, cfg["kappa"], disagreement_penalty, epsilon_kl)
+        fused = fuse_policies(
+            base.unsqueeze(0), mu, log_var, output, cfg["kappa"], disagreement_penalty, epsilon_kl,
+            disagreement_clip=cfg.get("disagreement_clip"),
+        )
         probabilities = fused["probabilities"][0]
         selected = torch.multinomial(probabilities, 1).item() if args.do_sample else probabilities.argmax().item()
         token = candidates[selected].reshape(1, 1); ids = torch.cat([ids, token], 1)
+        model_input = token
         telemetry.append({"weights": output["weights"][0].cpu(), "uncertainty": log_var.exp().mean(1)[0].cpu(),
-                          "disagreement": float(fused["step_disagreement"][0]), "strength": float(fused["projected_strength"][0]),
+                          "disagreement": float(fused["step_disagreement"][0]),
+                          "strength_pre_projection": float(fused["requested_strength"][0]),
+                          "strength_post_projection": float(fused["projected_strength"][0]),
+                          "pre_projection_kl": float(fused["pre_projection_kl"][0]),
+                          "kl_limit_hit": float(fused["kl_limit_hit"][0]),
                           "gate": float(output["gate"][0]), "kl": float(fused["kl"][0]),
                           "cost_ms": costs, "sources": sources,
                           "mismatch_rate": mismatch_rates,
@@ -151,7 +199,13 @@ def generate_one(model, tokenizer, adapters, calibrator, controller, config, pro
         "mean_cost_ms": {name: average("cost_ms", j) for j, name in enumerate(names)},
         "selection_rate": {name: average("selected", j) for j, name in enumerate(names)},
         "tokenization_mismatch_rate": {name: average("mismatch_rate", j) for j, name in enumerate(names)},
-        "mean_disagreement": average("disagreement"), "mean_strength": average("strength"),
+        "mean_disagreement": average("disagreement"),
+        "mean_strength_pre_projection": average("strength_pre_projection"),
+        "mean_strength_post_projection": average("strength_post_projection"),
+        "mean_strength": average("strength_post_projection"),
+        "mean_pre_projection_kl": average("pre_projection_kl"),
+        "kl_limit_hit_rate": average("kl_limit_hit"),
+        "signal_calls_per_token": sum(average("selected", j) for j in range(len(names))),
         "mean_gate": average("gate"), "mean_base_weight": 1.0 - average("gate"), "mean_kl": average("kl"),
     }
 
@@ -160,7 +214,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint", default="Method/CURA/checkpoints/cura_controller.pt")
     parser.add_argument("--input", default="dataset/rad_benchmark/all.jsonl")
-    parser.add_argument("--output", default="results/cura.jsonl")
+    parser.add_argument("--output", default="results/cura.json")
     parser.add_argument("--num-prompts", type=int, default=10000)
     parser.add_argument("--max-new-tokens", type=int, default=32)
     parser.add_argument("--top-k", type=int, default=20)
@@ -175,11 +229,22 @@ def main():
         "inverse-uncertainty", "no-disagreement", "no-gate", "no-kl", "mean-weights", "prompt-router"
     ], default="none")
     parser.add_argument("--fixed-lambda", type=float)
+    parser.add_argument(
+        "--fixed-gate",
+        type=float,
+        help="Override the learned gate with a value in [0, 1]; keeps KL projection enabled.",
+    )
     parser.add_argument("--leave-out", choices=["genarm", "rad", "cdq", "args"])
     parser.add_argument("--corrupt-signal", choices=["genarm", "rad", "cdq", "args"])
     parser.add_argument("--corrupt-std", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
+    if args.fixed_gate is not None and not 0.0 <= args.fixed_gate <= 1.0:
+        parser.error("--fixed-gate must be in [0, 1]")
+    if args.fixed_gate is not None and args.ablation == "no-gate":
+        parser.error("--fixed-gate cannot be combined with --ablation no-gate")
+    if args.fixed_lambda is not None and args.fixed_lambda < 0.0:
+        parser.error("--fixed-lambda must be non-negative")
     device = torch.device("cuda" if args.base_device in ("auto", "cuda") and torch.cuda.is_available() else "cpu")
     signal_device = torch.device("cuda" if args.signal_device in ("auto", "cuda") and torch.cuda.is_available() else "cpu")
     if args.base_device == "cuda" and device.type != "cuda" or args.signal_device == "cuda" and signal_device.type != "cuda": raise RuntimeError("CUDA requested but unavailable")
@@ -193,9 +258,20 @@ def main():
     args.signal_budget = args.signal_budget or len(config["signals"])
     if not 1 <= args.signal_budget <= len(config["signals"]): raise ValueError("signal-budget is outside available signals")
     if objective_mismatches(config) and not args.allow_objective_mismatch: raise RuntimeError("Objective mismatch blocks generation; use compatible checkpoints")
-    samples = load_samples(input_path, args.num_prompts); existing = {key(row): row for row in load_existing(output_path)}
+    partial_path = output_path.with_name(output_path.name + ".partial.jsonl")
+    existing = {}
+    for resume_path in (output_path, partial_path):
+        for row in load_existing(resume_path):
+            existing[key(row)] = row
+    samples = load_samples(input_path, args.num_prompts)
     pending = [(i, sample) for i, sample in enumerate(samples) if not completed(existing.get(key(sample)))]
     print(f"Target: {len(samples)} | complete: {len(samples)-len(pending)} | pending: {len(pending)}")
+    if not pending:
+        ordered = [existing[key(sample)] for sample in samples]
+        save_results(ordered, output_path)
+        partial_path.unlink(missing_ok=True)
+        print(f"Saved -> {output_path}")
+        return
     model_path = Path(args.base_model) if args.base_model else PROJECT_ROOT / "models" / config["base_model"]
     if not model_path.is_absolute():
         model_path = PROJECT_ROOT / model_path if model_path.parts[0] == "models" else PROJECT_ROOT / "models" / model_path
@@ -204,34 +280,62 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(model_path, local_files_only=True,
         torch_dtype=torch.float16 if device.type == "cuda" else torch.float32).to(device).eval()
     adapters = load_adapters(config, PROJECT_ROOT, signal_device); output_path.parent.mkdir(parents=True, exist_ok=True)
+    timing_warmup_prompts = 0
+    if device.type == "cuda" and pending:
+        warmup_index, warmup_sample = pending[0]
+        torch.manual_seed(args.seed + warmup_index)
+        torch.cuda.manual_seed_all(args.seed + warmup_index)
+        generate_one(model, tokenizer, adapters, calibrator, controller, config, warmup_sample["prompt"], args, device)
+        synchronize_cuda()
+        timing_warmup_prompts = 1
+    if not partial_path.exists() and existing:
+        with partial_path.open("w", encoding="utf-8") as handle:
+            for sample in samples:
+                row = existing.get(key(sample))
+                if row is not None:
+                    handle.write(json.dumps(row, ensure_ascii=False) + "\n")
     try:
-        with output_path.open("a", encoding="utf-8") as handle:
+        with partial_path.open("a", encoding="utf-8") as handle:
             for index, sample in tqdm(pending, desc="CURA generation"):
+                synchronize_cuda()
                 started = time.perf_counter()
                 try:
                     torch.manual_seed(args.seed + index)
                     if torch.cuda.is_available(): torch.cuda.manual_seed_all(args.seed + index)
                     generated = generate_one(model, tokenizer, adapters, calibrator, controller, config, sample["prompt"], args, device)
+                    synchronize_cuda()
                     if not generated["response"]: raise RuntimeError("empty response")
                     status, error = "success", None
                 except Exception as exception:
+                    synchronize_cuda()
                     generated, status, error = {"response": None}, "failed", f"{type(exception).__name__}: {exception}"
+                elapsed = time.perf_counter() - started
+                generated_tokens = int(generated.get("tokens", 0) or 0)
                 row = {**sample, **generated, "method": "cura", "objective": config["objective"],
                        "signal_objectives": config["signal_objectives"], "calibration_mode": config["calibration"]["mode"],
+                       "paper_mode": bool(config.get("paper_mode")),
+                       "training_data_provenance": checkpoint.get("data_provenance", {}),
                        "top_k": args.top_k, "max_new_tokens": args.max_new_tokens,
-                       "decoding_method": "sample" if args.do_sample else "greedy", "latency_ms": (time.perf_counter()-started)*1000,
+                       "decoding_method": "sample" if args.do_sample else "greedy", "latency_ms": elapsed * 1000,
+                       "generated_tokens_per_second": generated_tokens / elapsed if elapsed > 0 else None,
+                       "timing_warmup_prompts": timing_warmup_prompts,
                        "signal_budget": args.signal_budget, "ablation": args.ablation,
                        "seed": args.seed,
                        "checkpoint": str(checkpoint_path), "checkpoint_sha256": checkpoint_sha256,
                        "config_fingerprint": config_fingerprint,
                        "base_model": str(model_path), "transfer_base": args.base_model is not None,
-                       "fixed_lambda": args.fixed_lambda, "leave_out": args.leave_out,
+                       "fixed_lambda": args.fixed_lambda, "fixed_gate": args.fixed_gate,
+                       "leave_out": args.leave_out,
                        "corrupt_signal": args.corrupt_signal, "corrupt_std": args.corrupt_std if args.corrupt_signal else None,
                        "status": status, "error": error}
+                existing[key(sample)] = row
                 handle.write(json.dumps(row, ensure_ascii=False) + "\n"); handle.flush()
     finally:
         del adapters, model; gc.collect()
         if torch.cuda.is_available(): torch.cuda.empty_cache()
+    ordered = [existing[key(sample)] for sample in samples if key(sample) in existing]
+    save_results(ordered, output_path)
+    partial_path.unlink(missing_ok=True)
     print(f"Saved -> {output_path}")
 
 

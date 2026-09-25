@@ -1,0 +1,41 @@
+{
+  "adapter_sha256": "c0ee843c467e8d58f50c20280c8efe25da27c4d462036769feda6966abd4db4e",
+  "canonical_fusion": "(1-w)*a+w*b",
+  "cases": 1000,
+  "generations": 4000,
+  "greedy": true,
+  "max_new_tokens": 64,
+  "memory": {
+    "after_release": {
+      "free_mib": 9714,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 22396,
+      "utilization_pct": 0
+    },
+    "before": {
+      "free_mib": 14235,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 17875,
+      "utilization_pct": 0
+    },
+    "loaded": {
+      "free_mib": 9722,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 22388,
+      "utilization_pct": 17
+    },
+    "peak_allocated_mib": 4301.6669921875
+  },
+  "methods": [
+    "base",
+    "parm_fixed",
+    "midpoint",
+    "disagreement_gate"
+  ],
+  "new_generations": 3000,
+  "status": "COMPLETE",
+  "unique_responses": 1211
+}

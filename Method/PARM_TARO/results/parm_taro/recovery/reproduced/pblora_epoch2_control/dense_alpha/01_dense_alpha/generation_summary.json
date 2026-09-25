@@ -1,0 +1,31 @@
+{
+  "adapter_path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora_epoch2_control/final_checkpoint",
+  "adapter_sha256": "73c91f162a970cc41c3b0b8ef83ede36ebd6fcda100a6712320482b4b657100b",
+  "cases": 420,
+  "greedy": true,
+  "memory": {
+    "after_release": {
+      "free_mib": 25638,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 6472,
+      "utilization_pct": 19
+    },
+    "before": {
+      "free_mib": 30160,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 1950,
+      "utilization_pct": 0
+    },
+    "loaded": {
+      "free_mib": 25646,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 6464,
+      "utilization_pct": 6
+    }
+  },
+  "new_generations": 420,
+  "status": "COMPLETE"
+}

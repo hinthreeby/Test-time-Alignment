@@ -1,0 +1,29 @@
+{
+  "checkpoint": "Method/CURA/checkpoints/cura_controller.pt",
+  "cache": "dataset/cura_cache/validation",
+  "steps": 5829,
+  "signals": [
+    "rad",
+    "cdq",
+    "args"
+  ],
+  "metrics": {
+    "base_nll": 3.274162571269461,
+    "cura_nll": 3.239581532330267,
+    "base_top1": 0.35323383084577115,
+    "cura_top1": 0.35289071881969464,
+    "argmax_changed": 0.049922799794132784,
+    "gate": 0.22045528420372879,
+    "strength": 1.637789425381176,
+    "kl": 0.017705957115279357,
+    "disagreement": 4055.242339438692,
+    "gold_in_top_k": null,
+    "gold_in_top_k_coverage": 0.0
+  },
+  "mean_weights": {
+    "rad": 0.5726234912872314,
+    "cdq": 0.4253503084182739,
+    "args": 0.002026196103543043
+  },
+  "target_rows": 0
+}

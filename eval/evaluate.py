@@ -28,10 +28,13 @@ METHOD_FILES = {
     "CD-Q-blockwise": "cdq_blockwise.json",
     "GenARM": "genarm.json",
     "multi-signal": "multi_signal.jsonl",
-    "CURA": "cura.jsonl",
+    "CURA": "cura.json",
+    "GSI": "gsi.json",
+    "PARM": "parm.json",
 }
 
 BASE_MODELS = {method: "gpt2-large" for method in METHOD_FILES}
+BASE_MODELS["PARM"] = "tulu-2-7b"
 
 REWARD_MODELS = {
     "Base": "none",
@@ -48,6 +51,8 @@ REWARD_MODELS = {
     "CD-Q-blockwise": "CD-Q prefix scorer",
     "GenARM": "genarm-gpt2-medium-hh",
     "multi-signal": "multi-signal-gpt2-medium-hh",
+    "GSI": "sentiment-roberta-large-english",
+    "PARM": "PBLoRA helpfulness+harmlessness",
 }
 
 BASELINE_FILE = "base.json"

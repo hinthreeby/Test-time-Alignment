@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "checkpoint_200_complete": true,
+    "epoch1_adapter": true,
+    "epoch1_dense_complete": true,
+    "train_script": true
+  },
+  "epoch1_adapter_sha256": "c0ee843c467e8d58f50c20280c8efe25da27c4d462036769feda6966abd4db4e",
+  "epoch1_manifest_sha256": "3eb2d655d5d9d5bdd7ffa087515312ffc4f6bfc6032fe68304a4561860c78ede",
+  "source_checkpoint": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/checkpoint-200",
+  "status": "PASS",
+  "target_total_epochs": 2
+}

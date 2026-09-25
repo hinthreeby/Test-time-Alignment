@@ -1,0 +1,28 @@
+{
+  "steps": 9251,
+  "base_utility": 0.5834071248457272,
+  "expert_utilities": {
+    "rad": 0.6254505173552553,
+    "cdq": 0.56454672891763,
+    "genarm": 0.6002473815455719
+  },
+  "fixed_best": "rad",
+  "fixed_best_utility": 0.6254505173552553,
+  "token_oracle_utility": 0.9269184220121971,
+  "fixed_to_token_oracle_gap": 0.30146790465694184,
+  "expert_win_counts": {
+    "rad": 4240,
+    "cdq": 2401,
+    "genarm": 2610
+  },
+  "target_utility": {
+    "status": "complete",
+    "fingerprint": "sha256:99238a419349b8a221a5bb3a3289e8ea1787be968ba950e3fe6675ce52dbf20e",
+    "evaluator": "/home/jupyter-iec2024se10/Test-time-Alignment/models/distilbert-sst2",
+    "rollouts": 2,
+    "rollout_tokens": 16,
+    "seed": 42,
+    "annotation_version": 3,
+    "candidate_batch_size": 5
+  }
+}

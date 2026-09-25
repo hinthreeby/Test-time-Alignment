@@ -1,0 +1,35 @@
+{
+  "generic_all_states": {
+    "all_pair_count": 2500,
+    "defined_spearman_states": 64,
+    "epsilon": 1e-06,
+    "fraction_undefined_spearman": 0.744,
+    "informative_pair_count": 296,
+    "informative_pair_fraction": 0.1184,
+    "mean_defined_spearman": -0.03116848109250952,
+    "oracle_set_accuracy": 0.872,
+    "pairwise_ranking_accuracy": 0.47297297297297297,
+    "split": "leave-one-unique-prompt-out",
+    "top2_oracle_set_coverage": 0.944,
+    "undefined_spearman_states": 186
+  },
+  "primary_epsilon": 1e-06,
+  "stage_b_actionable_advantage": {
+    "advantage_mae": 0.035722814810075755,
+    "advantage_mse": 0.007022684295725426,
+    "all_pair_count": 640,
+    "defined_spearman_states": 64,
+    "fraction_undefined_spearman": 0.0,
+    "informative_pair_count": 296,
+    "informative_pair_fraction": 0.4625,
+    "mean_defined_spearman": -0.12951439076536717,
+    "model": "StandardScaler + Ridge(alpha=10) advantage predictor",
+    "oracle_set_accuracy": 0.40625,
+    "pairwise_ranking_accuracy": 0.40540540540540543,
+    "split": "leave-one-unique-prompt-out actionable states only",
+    "states": 64,
+    "top2_oracle_set_coverage": 0.671875,
+    "undefined_spearman_states": 0,
+    "utility_rows": 320
+  }
+}

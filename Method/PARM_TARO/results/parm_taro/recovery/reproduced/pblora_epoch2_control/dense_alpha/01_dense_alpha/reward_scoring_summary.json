@@ -1,0 +1,32 @@
+{
+  "kind": "reward",
+  "memory": {
+    "after_release": {
+      "free_mib": 29514,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 2596,
+      "utilization_pct": 20
+    },
+    "before": {
+      "free_mib": 30148,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 1962,
+      "utilization_pct": 21
+    },
+    "loaded": {
+      "free_mib": 25896,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 6214,
+      "utilization_pct": 4
+    }
+  },
+  "model_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+  "new_scores": 176,
+  "records": 420,
+  "safe_rlhf_source": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+  "status": "PASS",
+  "unique_responses": 176
+}

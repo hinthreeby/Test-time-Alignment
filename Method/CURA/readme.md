@@ -12,9 +12,11 @@ Code hiện có hai protocol tách biệt:
 
 - `configs/sentiment.json`: CURA-MVP trainable với robust calibration và teacher-forced token loss;
 - `configs/sentiment_paper.json`: protocol nghiên cứu dùng held-out rollout targets, learned
-  heteroscedastic calibration, preference loss, utility-derived gate target và learned budget selector.
+  heteroscedastic calibration, token-level candidate-ranking loss, utility-derived gate target
+  và learned budget selector.
 
-Các thành phần đã triển khai gồm objective/checkpoint audit; cache v2 theo shard với
+Các thành phần đã triển khai gồm kiểm tra checkpoint tồn tại và objective khai báo;
+cache v2 theo shard với
 atomic save, checksum, fingerprint và resume; target annotation bằng nhiều rollout;
 candidate-specific uncertainty; disagreement-aware policy fusion; KL projection;
 selector có thể thật sự bỏ qua expert để giảm số signal call; validation/best-checkpoint;
@@ -29,6 +31,62 @@ tương thích `rad`, `cdq`, `args` và không silently fallback. Cấu hình ch
 Full four-signal paper run vẫn cần một GenARM checkpoint cùng objective. Code hoàn chỉnh
 không đồng nghĩa đã có bằng chứng A*: các benchmark nhiều seed, baseline, ablation và
 transfer experiment bên dưới vẫn phải được chạy và báo cáo.
+
+### Protocol A* khuyến nghị
+
+`configs/sentiment_astar.json` là cấu hình chính để cải thiện kết quả sentiment. Cấu
+hình này giữ `RAD` và `CD-Q` làm signal, đồng thời dành
+`models/sentiment-roberta-large-english` làm rollout evaluator độc lập. `ARGS` bị loại
+khỏi signal set vì nó dùng chính classifier đó; dùng cả hai sẽ gây target leakage.
+
+Phải dùng cache mới: paper cache giữ nguyên natural top-k thay vì chèn gold token ngoài
+support; rollout evaluator chỉ chấm response-so-far thay vì để negative prompt làm lệch
+target; và checkpoint lưu provenance của train/validation rollout targets.
+
+```bash
+python Method/CURA/core/prepare_astar_data.py \
+  --output-dir dataset/cura_astar_source \
+  --train-per-class 2000 --validation-per-class 400
+
+python Method/run_method.py --method cura --action cache --split train \
+  --config Method/CURA/configs/sentiment_astar.json \
+  --input dataset/cura_astar_source/train.jsonl \
+  --cache-dir dataset/cura_cache_astar/train --shard-size 100 \
+  --max-response-tokens 32 --top-k 20 --resume
+python Method/run_method.py --method cura --action cache --split validation \
+  --config Method/CURA/configs/sentiment_astar.json \
+  --input dataset/cura_astar_source/validation.jsonl \
+  --cache-dir dataset/cura_cache_astar/validation --shard-size 50 \
+  --max-response-tokens 32 --top-k 20 --resume
+
+python Method/run_method.py --method cura --action annotate-targets --split train \
+  --cache-dir dataset/cura_cache_astar/train \
+  --evaluator models/sentiment-roberta-large-english \
+  --rollouts 2 --rollout-tokens 16 --candidate-batch-size 10
+python Method/run_method.py --method cura --action annotate-targets --split validation \
+  --cache-dir dataset/cura_cache_astar/validation \
+  --evaluator models/sentiment-roberta-large-english \
+  --rollouts 2 --rollout-tokens 16 --candidate-batch-size 10
+
+python Method/run_method.py --method cura --action train \
+  --config Method/CURA/configs/sentiment_astar.json \
+  --cache-dir dataset/cura_cache_astar/train \
+  --validation-cache-dir dataset/cura_cache_astar/validation \
+  --output Method/CURA/checkpoints/cura_astar.pt
+
+python Method/run_method.py --method cura --action diagnose \
+  --checkpoint Method/CURA/checkpoints/cura_astar.pt \
+  --cache-dir dataset/cura_cache_astar/validation \
+  --output Method/CURA/reports/astar_diagnostic.json
+```
+
+Trước khi chạy full benchmark, dùng pipeline inference-tuning mặc định trên 250 prompt
+validation không trùng train/final test. Pipeline so sánh learned CURA, `fixed-lambda`
+2/3/4, `fixed-gate=0.75` và `no-gate`, sau đó ghi báo cáo riêng dưới
+`results/experiments/cura_inference_tune_v1/`. Chỉ mở rộng run khi diagnostic cho thấy
+`cura_gain_over_base > 0` và khoảng cách tới token oracle còn đủ lớn.
+`configs/sentiment_stable_mvp.json` có thể dùng cho vòng smoke test không có rollout
+targets, nhưng không đủ điều kiện làm kết quả A* chính.
 
 Để train, build cả train và validation cache rồi gọi trainer:
 
@@ -54,10 +112,10 @@ bằng evaluator độc lập (không trùng bất kỳ signal model nào), sau 
 | --- | --- | --- |
 | Sharded/resumable cache | Có | Unit/integration test |
 | Learned calibration và uncertainty | Có | Chưa chạy full held-out benchmark |
-| Preference + KL + utility gate loss | Có | Chưa tune nhiều seed |
+| Token ranking + utility + KL + gate loss | Có | Chưa tune nhiều seed |
 | Conditional signal budget | Có | Chưa lập quality/latency Pareto |
-| Objective và tokenizer audit | Có | Cần kiểm tra trên toàn bộ paper run |
-| Oracle/corruption/leave-one-out | Có CLI | Chưa có bảng kết quả |
+| Objective declaration audit + cache-time tokenizer check | Có | Cần kiểm tra trên toàn bộ paper run |
+| Fixed/token oracle + corruption/leave-one-out | Có CLI | Prompt oracle chưa có; chưa có bảng kết quả |
 | Unseen-base/domain transfer | Protocol sẵn | Chưa chạy |
 | Kết luận A* | Không thể kết luận từ code | Cần kết quả và peer review |
 
@@ -92,7 +150,7 @@ Câu hỏi nghiên cứu của CURA là:
 | Controller học trộn score | Controller học độ tin cậy rồi mới trộn |
 | Không mô hình hóa bất đồng rõ ràng | Có disagreement features và uncertainty |
 | `strength` và `trust` có thể trùng vai trò | `strength` điều chỉnh reward; `gate` trộn hai policy |
-| Oracle chủ yếu ở cấp prompt | Có global, prompt và token/step oracle |
+| Oracle chủ yếu ở cấp prompt | Có fixed-best/global và token-candidate oracle; prompt oracle còn thiếu |
 | Có thể dùng checkpoint khác mục tiêu | Paper run bắt buộc kiểm tra objective compatibility |
 
 ## 3. Giả thuyết nghiên cứu
@@ -110,7 +168,7 @@ Không được mặc định rằng bốn checkpoint hiện tại đo cùng m�
 
 Ví dụ hiện tại:
 
-- `models/genarm-gpt2-medium-hh`: helpfulness/harmlessness;
+- `models/genarm-gpt2-small-hh`: helpfulness/harmlessness;
 - `models/rad_rm_sentiment`: sentiment;
 - `models/sentiment-roberta-large-english`: sentiment;
 - `Method/CD/checkpoints/cd_q.pt`: phụ thuộc reward dùng khi train.
@@ -120,6 +178,91 @@ Trước khi fusion, mỗi experiment phải chọn một trong hai chế độ.
 ### 4.1. Chế độ A — một objective, nhiều estimator
 
 Tất cả `GenARM`, `RAD`, `CD-Q`, `ARGS` phải cùng đo một objective, ví dụ sentiment hoặc harmlessness. Đây là chế độ nên triển khai đầu tiên vì dễ kiểm chứng câu hỏi arbitration.
+
+#### Signal set mục tiêu cho CURA sentiment
+
+Signal set được chọn cho experiment CURA sentiment tiếp theo là:
+
+```text
+RAD + CD-Q + sentiment-GenARM
+```
+
+Ba signal phải có cùng objective `sentiment` nhưng cung cấp bằng chứng khác nhau:
+
+- `rad`: reward của từng prefix sau khi nối candidate;
+- `cdq`: long-horizon prefix value;
+- `genarm`: autoregressive sentiment reward ở cấp token.
+
+Config logic tương ứng phải khai báo đúng thứ tự (thứ tự này cũng quyết định thứ tự
+calibrator, controller head và `signal_costs`):
+
+```json
+{
+  "signals": ["rad", "cdq", "genarm"],
+  "objective": "sentiment",
+  "signal_objectives": {
+    "rad": "sentiment",
+    "cdq": "sentiment",
+    "genarm": "sentiment"
+  },
+  "score_directions": {
+    "rad": "higher_is_better",
+    "cdq": "higher_is_better",
+    "genarm": "higher_is_better"
+  },
+  "controller": {
+    "signal_costs": [1.0, 0.8, 1.2]
+  }
+}
+```
+
+**Trạng thái artifact hiện tại:** signal set này chưa thể dùng cho paper run. Repo hiện
+chỉ có `models/genarm-gpt2-small-hh`, được train cho helpfulness/harmlessness; đây
+không phải sentiment-GenARM và không được đổi nhãn thành `sentiment`. Cần train hoặc
+cung cấp một autoregressive reward checkpoint sentiment riêng, ví dụ
+`models/genarm-gpt2-small-sentiment`, rồi trỏ GenARM adapter tới đúng artifact đó.
+`audit-signals` phải kiểm tra chính đường dẫn checkpoint thực tế, không chỉ kiểm tra
+chuỗi `signal_objectives` trong JSON.
+
+Checkpoint `Method/CURA/checkpoints/cura_astar_full_v1.pt` chỉ chứa hai signal
+`["rad", "cdq"]`. Không được nạp checkpoint này với config ba signal. Khi có
+sentiment-GenARM, bắt buộc phải:
+
+1. tạo config ba signal mới, không sửa ngược config/checkpoint của run cũ;
+2. build train và validation cache mới với đúng thứ tự `rad, cdq, genarm`;
+3. annotate rollout targets bằng evaluator sentiment độc lập với cả ba signal;
+4. fit lại calibrator và controller rồi lưu checkpoint mới;
+5. chạy `signal-budget=3` ở baseline đầu tiên để đo complementarity thật; chỉ thử
+   budget 2 sau đó như một ablation quality/latency;
+6. đánh giá final bằng bộ evaluator local đã khóa revision, tách khỏi evaluator tạo
+   training targets.
+
+Không tái sử dụng cache, calibration, checkpoint hoặc output của cấu hình hai signal
+cho cấu hình ba signal. Mỗi output phải ghi đủ `signal_sources`,
+`signal_objectives`, config fingerprint và checkpoint hash để phát hiện nhầm artifact.
+
+Preference dataset cho sentiment-GenARM được tạo hoàn toàn local bằng GPT-2 Large và
+teacher `sentiment-roberta-large-english`. Script tự loại prompt trùng final benchmark,
+chấm response-only, lọc theo score margin/độ dài và hỗ trợ resume:
+
+```bash
+python Method/GenARM/training_trl/build_sentiment_preferences.py \
+  --split train --device cuda
+
+python Method/GenARM/training_trl/build_sentiment_preferences.py \
+  --split validation --device cuda
+```
+
+Output DPO/ARM-compatible nằm tại:
+
+```text
+dataset/GenARM/sentiment_preferences/train/preferences.jsonl
+dataset/GenARM/sentiment_preferences/validation/preferences.jsonl
+```
+
+Không dùng `distilbert-sst2` để pseudo-label; checkpoint đó được giữ riêng cho final
+evaluation. Không đổi generation/threshold trong cùng output directory vì script sẽ
+chặn fingerprint không tương thích; dùng một thư mục output mới cho mỗi protocol.
 
 ### 4.2. Chế độ B — nhiều objective, nhiều estimator
 
@@ -169,10 +312,12 @@ s_raw[t, j, k]
 
 ### 5.1. Signal calibration
 
-Mỗi signal có calibrator riêng:
+Mỗi signal có calibrator riêng. Với calibrator học được, input hiện gồm raw score và
+các thống kê robust trong candidate set; code chưa đưa toàn bộ prefix/context embedding
+vào calibrator:
 
 ```text
-mu[t, j, k], log_var[t, j, k] = Calibrator_j(s_raw, context_features)
+mu[t, j, k], log_var[t, j, k] = Calibrator_j(s_raw, candidate_set_statistics)
 ```
 
 Trong đó:
@@ -186,7 +331,10 @@ MVP có thể dùng robust normalization:
 z = (score - median(score)) / (MAD(score) + eps)
 ```
 
-Paper-grade nên dùng calibrator học được trên validation/rollout targets. Không được fit calibrator trên test set.
+Paper mode dùng rollout target độc lập trên **train** để jointly train calibrator cùng
+controller. Validation rollout target chỉ dùng để tính validation loss và chọn best
+checkpoint. Không được fit calibrator hoặc controller trên test set. Lệnh `calibrate`
+hiện chỉ kiểm tra cache có đủ target cho calibration mode, không tạo checkpoint riêng.
 
 ### 5.2. Disagreement
 
@@ -202,18 +350,22 @@ Step-level disagreement:
 D_step[t] = mean_k(D[t, k])
 ```
 
-Ngoài variance, lưu pairwise Spearman correlation giữa các signal trên top-k candidates.
+Code hiện dùng weighted variance ở bước fusion và một scalar unweighted disagreement
+trong controller features. Pairwise Spearman correlation chưa được tính hoặc lưu.
 
 ### 5.3. Controller
 
 Controller nhận:
 
 - base entropy, margin và top-k probability mass;
-- thống kê `mu` và `var` của từng signal;
-- pairwise disagreement/correlation;
+- mean/std của `mu` và mean `var` theo candidate cho từng signal;
+- một step-level disagreement scalar;
 - vị trí token và độ dài prefix;
-- signal availability và signal cost;
-- `alpha` nếu chạy multi-objective.
+- signal availability mask.
+
+Signal cost chưa phải input feature. Nó được dùng làm fixed bias trong weight/selector
+logits và trong cost regularization. `preference_alpha` và multi-objective routing chưa
+được triển khai; code hiện tại là single-objective.
 
 Controller xuất:
 
@@ -262,46 +414,44 @@ KL(p_final || p_base) <= epsilon_kl
 
 Nếu vượt ngân sách, giảm `lambda_t` bằng binary search hoặc projection.
 
-## 6. Kiến trúc mã nguồn đề xuất
+## 6. Kiến trúc mã nguồn hiện tại
 
 ```text
 Method/CURA/
-├── README.md
+├── readme.md
 ├── configs/
 │   ├── default.json
 │   ├── sentiment.json
-│   └── harmlessness.json
+│   ├── sentiment_paper.json
+│   ├── sentiment_astar.json
+│   ├── sentiment_stable_mvp.json
+│   └── mixed_objective_mvp.json
 ├── core/
 │   ├── cache.py
-│   ├── cache_io.py       # shard, atomic save, manifest và resume
-│   ├── calibrate.py
+│   ├── cache_io.py
+│   ├── cache_status.py
+│   ├── annotate_targets.py
+│   ├── calibrate.py      # readiness check, không fit model riêng
 │   ├── features.py
 │   ├── fusion.py
 │   ├── generate.py
 │   ├── train.py
 │   ├── oracle_study.py
+│   ├── diagnose_checkpoint.py
 │   └── validate_run.py
 ├── models/
 │   ├── calibrator.py
-│   ├── controller.py
-│   └── uncertainty.py
+│   └── controller.py
 ├── router/
 │   ├── adapters/
 │   │   ├── base.py
-│   │   ├── genarm.py
-│   │   ├── rad.py
-│   │   ├── cdq.py
-│   │   ├── args.py
-│   │   ├── fallback.py
 │   │   └── registry.py
-│   └── configs/
-│       ├── genarm.json
-│       ├── rad.json
-│       ├── cdq.json
-│       └── args.json
 ├── checkpoints/
 └── reports/
 ```
+
+`registry.py` bọc lại adapter đã có trong `Method/MultiSignal`; CURA chưa tách mỗi
+signal thành một file adapter riêng.
 
 ## 7. Interface bắt buộc của adapter
 
@@ -333,7 +483,8 @@ Quy ước:
 {
     "prompt_id": str,
     "step": int,
-    "prefix": str,
+    "prefix_token_ids": Tensor[L],
+    "prefix": str | None,          # chỉ có khi cache.store_text=true
     "candidate_token_ids": Tensor[K],
     "candidate_text": list[str],
     "base_logits": Tensor[K],
@@ -447,22 +598,27 @@ Nếu fingerprint khác, chương trình phải dừng với thông báo rõ rà
 
 ### 8.5. Error handling
 
-- Lỗi của một prompt được ghi vào `errors.jsonl` cùng `prompt_id`, exception và số lần thử.
+- Lỗi cuối cùng của một prompt được ghi vào `errors.jsonl` cùng `prompt_id`, index,
+  exception và traceback; code chưa lưu riêng số lần thử.
 - Cho phép `max_retries` cho lỗi tạm thời.
 - Sau khi hoàn thành các prompt hợp lệ, chạy `--retry-errors` để xử lý lại prompt lỗi.
-- Shard chỉ được đánh dấu hoàn chỉnh khi số prompt thành công và lỗi khớp với khoảng index của shard.
+- Shard vẫn có descriptor cho toàn bộ khoảng prompt ngay cả khi có lỗi; prompt lỗi được
+  theo dõi bằng `failed_prompt_ids`. Trainer mặc định từ chối cache còn prompt lỗi.
 - Không silently thay signal thật bằng fallback khi một adapter lỗi trong paper mode.
 
-### 8.6. Lazy loading
+### 8.6. Shard index và chế độ nạp dữ liệu
 
-Trainer và calibrator phải đọc lần lượt từng shard thay vì merge toàn bộ thành một file lớn hoặc tải toàn bộ cache vào RAM:
+`ShardedCuraDataset` tạo index `(shard_file, local_index)` và mặc định chỉ giữ một shard
+trong RAM:
 
 ```python
-dataset = ShardedCuraDataset(cache_dir="dataset/cura_cache/train")
+dataset = ShardedCuraDataset(cache_dir="dataset/cura_cache/train", preload=False)
 loader = DataLoader(dataset, batch_size=32, shuffle=True)
 ```
 
-Có thể tạo một index nhỏ ánh xạ sample sang `(shard_id, local_index)`. Không cần tạo lại `train.pt` sau khi cache hoàn thành.
+Trainer hiện dùng `preload=True` vì random shuffle với cache một shard sẽ gây reload
+liên tục; do đó toàn bộ các row train/validation được nạp vào RAM khi train. Cache vẫn
+được lưu và verify theo shard, không merge thành `train.pt`.
 
 ## 9. Dữ liệu huấn luyện
 
@@ -478,65 +634,104 @@ Chế độ này dùng teacher forcing để kiểm tra pipeline, nhưng không 
 
 ### 9.2. Paper mode
 
-Ưu tiên preference pairs:
-
-```json
-{
-  "prompt": "...",
-  "chosen": "...",
-  "rejected": "...",
-  "objective": "sentiment"
-}
-```
-
-Hoặc scored responses:
+Input hiện vẫn là một response cho mỗi prompt:
 
 ```json
 {
   "prompt": "...",
   "response": "...",
-  "objective_scores": {"sentiment": 0.82},
-  "evaluator": "held_out_evaluator_name"
+  "objective": "sentiment"
 }
 ```
 
-Train, validation và test phải tách theo prompt. Evaluator tạo target không được trùng model dùng làm signal chính.
+Cache giữ natural top-k ở mỗi teacher-forced step. Sau đó `annotate-targets` rollout
+từng candidate và thêm:
+
+```text
+target_utilities[t, k] = mean held-out evaluator score over rollouts
+```
+
+Schema response-level `chosen/rejected` và trường `objective_scores` chưa được loader
+sử dụng. Train, validation và test vẫn phải tách theo prompt. Evaluator tạo target không
+được trùng model dùng làm signal chính.
 
 ## 10. Training objectives
 
-### 10.1. Preference loss
+### 10.1. Teacher-forced token loss
 
-Với cặp `chosen` và `rejected`:
+MVP tối ưu negative log-likelihood của gold token trong candidate support:
 
 ```text
-L_pref = -log sigmoid(
-    beta * (log P_CURA(chosen|x) - log P_CURA(rejected|x))
-)
+L_nll = -log p_final(gold_token)
 ```
 
-### 10.2. Calibration/uncertainty loss
+Paper cache giữ natural top-k. Khi `ignore_forced_gold=true`, những step mà gold token
+không nằm trong natural top-k không đóng góp vào `L_nll`.
+
+### 10.2. Candidate utility và ranking loss
+
+Với rollout utility `q*` trên top-k candidate:
+
+```text
+L_utility = mean(max_k q*[k] - sum_k p_final[k] q*[k])
+
+k+ = argmax_k q*[k]
+k- = argmin_k q*[k]
+L_pref = softplus(-beta * (log p_final[k+] - log p_final[k-]))
+```
+
+Đây là token-level candidate-ranking loss, không phải sequence preference loss trên
+một cặp response `chosen/rejected`.
+
+### 10.3. Calibration/uncertainty loss
 
 Nếu có candidate rollout utility `q*`:
 
 ```text
-L_cal = mean((q* - mu)^2 / exp(log_var) + log_var)
+L_cal = 0.5 * mean((q* - mu)^2 / exp(log_var) + log_var)
 ```
 
-### 10.3. KL regularization
+### 10.4. KL regularization
 
 ```text
 L_kl = mean_t KL(p_final_t || p_base_t)
 ```
 
-### 10.4. Cost regularization
+### 10.5. Cost regularization
 
 ```text
 L_cost = mean_t sum_j w_t[j] * signal_cost[j]
 ```
 
-### 10.5. Gate regularization
+### 10.6. Selector loss
 
-Không ép `g_t` luôn bằng 1. Khi reward evidence yếu, target mong muốn là quay về base:
+Với mỗi signal, code đo mean squared error giữa calibrated utility và rollout target.
+Target phân phối của selector ưu tiên signal có error thấp và cost nhỏ:
+
+```text
+e_j = mean_k (mu[j,k] - q*[k])^2
+selector_target = softmax(-e_j / tau_selector - eta_cost * cost_j)
+L_selector = CE(selector_logits(base_features), selector_target)
+```
+
+Selector chỉ dùng tám base-routing features để quyết định signal nào được gọi trước
+khi reward score tồn tại.
+
+### 10.7. Gate regularization
+
+Khi có rollout target, gate target được suy ra từ chênh lệch expected utility giữa
+guided và base policy, sau khi trừ uncertainty/disagreement penalty:
+
+```text
+gate_target = sigmoid(
+    (U_guided - U_base
+     - eta_u * uncertainty
+     - eta_d * disagreement) / tau_gate
+)
+L_gate = BCEWithLogits(gate_logit, stop_gradient(gate_target))
+```
+
+Khi không có rollout target, MVP dùng heuristic theo median trong batch:
 
 ```text
 uncertain_step = high_uncertainty OR high_disagreement
@@ -546,22 +741,40 @@ L_gate = BCE(g_t, 1 - uncertain_step)
 Tổng loss:
 
 ```text
-L_total = L_pref
-        + gamma_cal  * L_cal
-        + gamma_kl   * L_kl
-        + gamma_cost * L_cost
-        + gamma_gate * L_gate
+L_total = gamma_nll      * L_nll
+        + gamma_utility  * L_utility
+        + gamma_pref     * L_pref
+        + gamma_cal      * L_cal
+        + gamma_kl       * L_kl
+        + gamma_cost     * L_cost
+        + gamma_gate     * L_gate
+        + gamma_selector * L_selector
 ```
 
-Nếu chưa có rollout targets, đặt `gamma_cal=0` và dùng heuristic uncertainty. Kết quả này phải được ghi là CURA-MVP, không phải full CURA.
+Mỗi thành phần chỉ có tác dụng khi hệ số tương ứng khác 0. Nếu chưa có rollout targets,
+`L_cal`, `L_utility`, `L_pref` và `L_selector` bằng 0; gate dùng heuristic. Kết quả này
+phải được ghi là CURA-MVP, không phải full CURA.
 
-## 11. Config đề xuất
+## 11. Config đại diện cho code hiện tại
+
+Đoạn dưới là dạng rút gọn sau khi merge `sentiment_paper.json` với config cha. Các
+trường atomic save/checksum/resume là hành vi của code, không phải feature flag trong
+config. Đây là config generic cũ dùng `ARGS`; không phải signal set mục tiêu mới.
+Checkpoint full hiện có `cura_astar_full_v1.pt` dùng `rad, cdq`, còn experiment kế
+tiếp chỉ chuyển sang `rad, cdq, genarm` sau khi có checkpoint sentiment-GenARM đúng
+objective và đã rebuild toàn bộ cache/controller như mô tả ở mục 4.1.
 
 ```json
 {
   "method": "cura",
-  "signals": ["genarm", "rad", "cdq", "args"],
+  "signals": ["rad", "cdq", "args"],
   "objective": "sentiment",
+  "paper_mode": true,
+  "signal_objectives": {
+    "rad": "sentiment",
+    "cdq": "sentiment",
+    "args": "sentiment"
+  },
   "controller": {
     "hidden_dim": 256,
     "num_layers": 2,
@@ -570,46 +783,56 @@ Nếu chưa có rollout targets, đặt `gamma_cal=0` và dùng heuristic uncert
     "kappa": 0.5,
     "disagreement_penalty": 0.1,
     "epsilon_kl": 0.15,
-    "signal_costs": [1.0, 1.0, 1.0, 1.0]
+    "signal_costs": [1.0, 0.8, 1.1]
   },
   "calibration": {
     "mode": "learned_heteroscedastic",
-    "fallback_mode": "robust_zscore",
-    "fit_split": "validation"
+    "hidden_dim": 32,
+    "epsilon": 0.000001
   },
   "cache": {
     "schema_version": 2,
     "shard_size": 100,
     "dtype": "float16",
-    "atomic_write": true,
-    "verify_after_write": true,
-    "checksum": "sha256",
     "max_retries": 2,
-    "resume": true,
     "store_text": false
   },
   "training": {
     "batch_size": 32,
     "epochs": 10,
     "lr": 0.0001,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "gamma_nll": 0.25,
+    "gamma_utility": 1.0,
+    "gamma_pref": 1.0,
     "gamma_cal": 1.0,
     "gamma_kl": 0.1,
     "gamma_cost": 0.01,
     "gamma_gate": 0.1,
+    "gamma_selector": 0.25,
+    "preference_beta": 1.0,
+    "selector_temperature": 0.25,
+    "selector_cost_weight": 0.01,
+    "gate_temperature": 0.1,
+    "gate_uncertainty_penalty": 0.05,
+    "gate_disagreement_penalty": 0.05,
+    "ignore_forced_gold": true,
     "num_workers": 0,
-    "mixed_precision": true
+    "mixed_precision": false
   }
 }
 ```
 
-Các giá trị trên là điểm khởi đầu để code, không phải hyperparameter đã được chứng minh tối ưu.
+Các giá trị trên là mặc định hiện tại của `sentiment_paper.json`, không phải
+hyperparameter đã được chứng minh tối ưu.
 
 ## 12. Pipeline CLI đề xuất
 
 Chạy từ repo root:
 
 ```bash
-cd "/home/jupyter-iec2024se10/Reward Decoding"
+cd "/home/jupyter-iec2024se10/Test-time-Alignment"
 ```
 
 ### 12.1. Audit checkpoint và objective
@@ -625,8 +848,10 @@ Audit phải fail nếu:
 
 - thiếu checkpoint thật;
 - objective không khớp;
-- score direction không xác định;
-- tokenizer mapping vượt mismatch threshold.
+- score direction không được khai báo là `higher_is_better`.
+
+Tokenizer mapping chưa được kiểm tra bởi action `audit-signals`. Mismatch được đo khi
+adapter chấm candidate và paper cache sẽ fail nếu mismatch rate vượt threshold.
 
 ### 12.2. Build cache
 
@@ -700,6 +925,10 @@ python Method/run_method.py \
   --cache-dir dataset/cura_cache/validation
 ```
 
+Lệnh `calibrate` trên chỉ verify shard và kiểm tra mọi row validation có
+`target_utilities` khi dùng learned calibration. Calibrator được train cùng controller
+ở action `train`, không được fit hoặc lưu riêng bởi action này.
+
 ### 12.4. Train controller
 
 ```bash
@@ -718,7 +947,7 @@ python Method/run_method.py \
   --method cura \
   --action generate \
   --input dataset/rad_benchmark/all.jsonl \
-  --output results/cura.jsonl \
+  --output results/cura.json \
   --num-prompts 1000 \
   --max-new-tokens 32 \
   --top-k 20
@@ -745,7 +974,7 @@ python Method/run_method.py --method cura --action generate \
 
 ```bash
 python Method/CURA/core/validate_run.py \
-  --input results/cura.jsonl \
+  --input results/cura.json \
   --paper-mode
 ```
 
@@ -772,41 +1001,52 @@ python Method/CURA/core/analyze_results.py \
 
 ## 13. Output telemetry
 
-Mỗi sample output phải chứa:
+Mỗi sample thành công hiện chứa metadata đầu vào (`id`, `md5_hash`, `prompt`,
+`reference`) cùng các trường generation sau. Ví dụ rút gọn cho config ba signal:
 
 ```json
 {
-  "prompt_id": "...",
+  "id": "...",
+  "md5_hash": "...",
   "response": "...",
   "method": "cura",
   "objective": "sentiment",
-  "signal_sources": ["real", "real", "real", "real"],
-  "signal_objectives": ["sentiment", "sentiment", "sentiment", "sentiment"],
-  "mean_weights": {"genarm": 0.3, "rad": 0.2, "cdq": 0.3, "args": 0.2},
-  "mean_uncertainty": {"genarm": 0.1, "rad": 0.2, "cdq": 0.1, "args": 0.3},
+  "signal_sources": ["rad_reward_model", "cd_prefix_value_scorer", "skipped_by_selector"],
+  "signal_objectives": {"rad": "sentiment", "cdq": "sentiment", "args": "sentiment"},
+  "mean_weights": {"rad": 0.4, "cdq": 0.35, "args": 0.25},
+  "mean_uncertainty": {"rad": 0.1, "cdq": 0.2, "args": 0.3},
+  "selection_rate": {"rad": 1.0, "cdq": 1.0, "args": 0.0},
+  "tokenization_mismatch_rate": {"rad": 0.0, "cdq": 0.0, "args": 0.0},
   "mean_disagreement": 0.12,
   "mean_strength": 1.1,
   "mean_gate": 0.76,
   "mean_base_weight": 0.24,
   "mean_kl": 0.08,
   "latency_ms": 123.4,
-  "token_trace_path": "optional/path.jsonl"
+  "checkpoint_sha256": "...",
+  "config_fingerprint": "sha256:...",
+  "status": "success",
+  "error": null
 }
 ```
 
-Token trace nên lưu riêng để tránh file generation quá lớn.
+`signal_sources` hiện lấy từ decoding step cuối cùng; các thống kê `mean_*` và
+`selection_rate` mới được aggregate trên toàn response. Code chưa ghi token trace hoặc
+`token_trace_path`.
 
 ## 14. Oracle study đúng cho CURA
 
-### 14.1. Global oracle
+### 14.1. Fixed-best/global expert (đã có CLI)
 
-Chọn một expert tốt nhất trên toàn bộ dataset.
+CLI tính utility trung bình của từng expert và chọn một expert tốt nhất trên toàn bộ
+token rows có rollout target.
 
-### 14.2. Prompt oracle
+### 14.2. Prompt oracle (chưa triển khai trong CURA CLI)
 
-Chọn expert có final reward tốt nhất cho từng prompt. Đây là phiên bản oracle study hiện có.
+Mục tiêu dự kiến là chọn expert có final reward tốt nhất cho từng prompt. Action
+`oracle` hiện chưa group token rows theo prompt và chưa tính prompt-oracle gap.
 
-### 14.3. Token/step oracle
+### 14.3. Token/step oracle (đã có CLI)
 
 Tại một subset nhỏ, rollout mỗi candidate bằng cùng continuation policy và chấm bằng held-out evaluator:
 
@@ -814,12 +1054,12 @@ Tại một subset nhỏ, rollout mỗi candidate bằng cùng continuation poli
 q*(prefix, candidate) = mean final evaluator score over N rollouts
 ```
 
-Token oracle chọn candidate hoặc expert có `q*` cao nhất. Báo cáo:
+CLI hiện báo cáo base greedy utility, utility của candidate do từng expert chọn,
+fixed-best expert, candidate-level token oracle và số step mỗi expert thắng. Các metric
+sau vẫn là phần mở rộng chưa triển khai:
 
-- fixed-best to prompt-oracle gap;
 - prompt-oracle to token-oracle gap;
 - CURA regret so với từng oracle;
-- số lần mỗi expert thắng;
 - hiệu năng theo mức disagreement.
 
 Không đưa output của CURA vào tập expert khi tính baseline oracle chính, vì điều này làm thay đổi ý nghĩa của oracle gap.
@@ -911,8 +1151,8 @@ Một run chỉ được đưa vào bảng chính khi:
 
 ## 18. Lộ trình triển khai
 
-Trạng thái dưới đây tách **code path** khỏi **experiment**. Stage 1–5 đã có code
-và synthetic integration test; Stage 6 có CLI nhưng chưa có kết quả full-scale;
+Trạng thái dưới đây tách **code path** khỏi **experiment**. Stage 1–5 đã có code path
+chính và một số synthetic test; Stage 6 có một phần CLI nhưng chưa có kết quả full-scale;
 Stage 7 chưa chạy. Không được đánh dấu paper-ready chỉ dựa trên unit test.
 
 ### Stage 0 — Giữ baseline cũ
@@ -932,12 +1172,15 @@ Stage 7 chưa chạy. Không được đánh dấu paper-ready chỉ dựa trên
 - Thêm atomic save cho shard và manifest.
 - Thêm dataset/config fingerprint.
 - Thêm `--resume`, `cache-status`, `cache-verify` và `--retry-errors`.
-- Cho trainer/calibrator đọc shard theo lazy loading.
-- Mô phỏng dừng tiến trình giữa shard và xác nhận lần chạy sau tiếp tục đúng.
+- Dataset hỗ trợ lazy one-shard loading; trainer hiện preload toàn bộ row để shuffle hiệu quả.
+- Resume/checksum đã có code path; fault-injection test cho dừng giữa shard vẫn còn thiếu.
 
 ### Stage 2 — Objective audit (code hoàn thành; full four-signal artifact còn thiếu)
 
-- Kiểm tra từng checkpoint được train cho mục tiêu nào.
+- Kiểm tra artifact khai báo có tồn tại, objective metadata có khớp và score direction
+  có được khai báo là `higher_is_better`.
+- Code chưa tự suy luận training objective từ nội dung checkpoint; độ đúng của metadata
+  vẫn cần người chạy xác nhận.
 - Chọn một objective chung cho thí nghiệm đầu tiên.
 - Không tiếp tục full run nếu objective chưa khớp.
 
@@ -953,19 +1196,20 @@ Stage 7 chưa chạy. Không được đánh dấu paper-ready chỉ dựa trên
 - Tách `strength` và `gate` theo công thức policy mixture.
 - Thêm KL projection.
 
-### Stage 5 — Training và sanity checks (synthetic path hoàn thành)
+### Stage 5 — Training và sanity checks (synthetic train path hoàn thành một phần)
 
 - Overfit một batch nhỏ.
 - Kiểm tra weights tổng bằng 1.
 - Kiểm tra probabilities hữu hạn và tổng bằng 1.
 - Khi `g=0`, output phải bằng base policy.
-- Khi `lambda=0`, guided policy phải bằng base policy.
-- Khi uncertainty của một signal tăng, weight kỳ vọng không tăng.
+- Khi `lambda=0`, guided policy phải bằng base policy (invariant từ công thức, chưa có test riêng).
+- Monotonic relation giữa uncertainty và learned weight chưa được đảm bảo bởi kiến trúc;
+  cần đánh giá thực nghiệm thay vì coi là invariant.
 
-### Stage 6 — Oracle và ablation (CLI hoàn thành; experiment chưa chạy)
+### Stage 6 — Oracle và ablation (CLI hoàn thành một phần; experiment chưa chạy)
 
-- Chạy global/prompt oracle trên full test.
-- Chạy token oracle trên subset đủ lớn.
+- Fixed-best/global expert và token-candidate oracle đã có CLI.
+- Prompt oracle, CURA oracle regret và disagreement-bucket report chưa có.
 - Chạy corrupted-signal và leave-one-out.
 
 ### Stage 7 — Scale-up (chưa chạy)
@@ -1039,5 +1283,5 @@ Tên ngắn cho code:
 method = cura
 folder = Method/CURA
 checkpoint = cura_controller.pt
-result = results/cura.jsonl
+result = results/cura.json
 ```

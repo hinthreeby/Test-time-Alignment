@@ -1,0 +1,34 @@
+{
+  "checkpoint": "Method/CURA/checkpoints/cura_astar_full_v1.pt",
+  "cache": "dataset/cura_astar_full_v1_cache/validation",
+  "steps": 9251,
+  "signals": [
+    "rad",
+    "cdq"
+  ],
+  "metrics": {
+    "base_nll": 1.6471404695188478,
+    "cura_nll": 1.6822015801015338,
+    "base_top1": 0.5208973570989551,
+    "cura_top1": 0.5082974800245851,
+    "argmax_changed": 0.1354448167765647,
+    "gate": 0.5516533043922933,
+    "strength": 5.901379706601609,
+    "kl": 0.04558281934064165,
+    "disagreement": 2.9310243558043726e-07,
+    "gold_in_top_k": 0.7034915144308723,
+    "gold_in_top_k_coverage": 1.0
+  },
+  "mean_weights": {
+    "rad": 0.9999940991401672,
+    "cdq": 5.884969141334295e-06
+  },
+  "target_rows": 9251,
+  "target_metrics": {
+    "base_utility": 0.5920089978989286,
+    "cura_utility": 0.6006105740693257,
+    "oracle_utility": 0.9255709963068551,
+    "cura_gain_over_base": 0.00860157617039714,
+    "remaining_oracle_gap": 0.3249604222375294
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "finite": true,
+  "kind": "cost",
+  "memory": {
+    "after_release": {
+      "free_mib": 13596,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 18514,
+      "utilization_pct": 17
+    },
+    "before": {
+      "free_mib": 14235,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 17875,
+      "utilization_pct": 0
+    },
+    "loaded": {
+      "free_mib": 9976,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 22134,
+      "utilization_pct": 12
+    }
+  },
+  "model_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
+  "new_scores": 851,
+  "records": 4000,
+  "safe_rlhf_commit": "e8cca16665ef2340ac92c6514f05519310251581",
+  "safe_rlhf_source": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+  "score_semantics": "higher reward is more helpful; higher cost is more harmful",
+  "status": "PASS",
+  "unique_responses": 1211
+}

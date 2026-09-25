@@ -8,6 +8,7 @@ Các phương pháp chính trong repo:
 - RAD (Reward-Augmented Decoding)
 - GenARM (Generative Autoregressive Reward Model)
 - ARGS (Arguments / reward-based decoding utilities)
+- GSI (Guided Speculative Inference)
 - MultiSignal (kết hợp nhiều signal bằng controller)
 
 ---
@@ -20,6 +21,7 @@ Các phương pháp chính trong repo:
 | RAD | Reward model được train bằng YAML config trong `Method/RAD` với dữ liệu sentiment / toxicity / reward datasets; eval dùng `dataset/rad_benchmark` và prompt benchmark | `models/gpt2-large` (base LM), `models/gpt2-small` (base RM), `models/rad_rm_sentiment` (reward model checkpoint), `models/sentiment-rm-sst2`, `models/sentiment-roberta-large-english`, `models/toxic-bert` | Có. Reward model có thể train/finetune; decoder RAD không có model riêng mới trong `models/` ngoài base LM và RM |
 | GenARM | Training scripts dùng external HF datasets như HH, SafeRLHF, Alpaca; không có 1 file dataset cố định trong repo | `models/genarm-gpt2-medium-hh`, `models/genarm-gpt2-medium-hh-adapter`, `models/genarm-gpt2-medium-sentiment-adapter`, `models/genarm-tulu2-hh`, `models/AutoregressiveRM-tulu2-7b` | Có. Có model GenARM đã được train sẵn trong `models/`; các script `Method/GenARM/...` chạy generation hoặc train mới nếu cần |
 | ARGS | Dùng external datasets từ HuggingFace như `Dahoas/full-hh-rlhf` và `stanfordnlp/SHP`; không có dataset local cố định trong repo | Không có một model ARGS riêng trong `models/`; chạy dựa trên LM + RM bên ngoài / config từ CLI | Không có model ARGS riêng được bundle trong `models/`; chủ yếu là generation script + reward steering |
+| GSI | Eval trên `dataset/rad_benchmark/all.jsonl`; upstream gốc hỗ trợ các benchmark toán học | `models/gpt2-large` (big LM), `models/gpt2-small` (draft LM), `models/sentiment-roberta-large-english` (reward) | Không train thêm. Giữ thuật toán reward-tilted GSI và thêm Hugging Face adapter để sinh `results/gsi.json` |
 | MultiSignal | `dataset/multisignal_train/train.jsonl` và `dataset/multisignal_train/validation.jsonl` cho cache/train; `dataset/rad_benchmark/...` cho generation test | `models/gpt2-large` (base LM), controller checkpoint `Method/MultiSignal/checkpoints/controller_4signal.pt` | Có. Controller MLP là model được train bằng `Method/MultiSignal/core/train.py`; nếu chưa train thì checkpoint chưa tồn tại |
 
 ### Ghi chú nhanh
@@ -322,15 +324,16 @@ PY
 2. RAD baseline
 3. GenARM baseline
 4. ARGS baseline
-5. MultiSignal cache + train
-6. So sánh output trên cùng tập benchmark
+5. GSI baseline
+6. MultiSignal cache + train
+7. So sánh output trên cùng tập benchmark
 ```
 
 ---
 
 ## 9. Lưu ý
 
-- RAD / GenARM / MultiSignal có thể yêu cầu GPU mạnh hơn.
+- RAD / GenARM / GSI / MultiSignal có thể yêu cầu GPU mạnh hơn.
 - MultiSignal hiện đang phụ thuộc vào controller và cache preprocessing.
 - Nếu chạy trên CPU, nên giảm batch size hoặc số prompt test.
 - Với GPU, nên dùng `torch.cuda.is_available()` để kiểm tra runtime.
@@ -343,6 +346,7 @@ PY
 - RAD: reward-augmented decoding bằng reward model.
 - GenARM: autoregressive reward model để steer generation.
 - ARGS: utility / generation / evaluation với arg-based rewards.
+- GSI: guided speculative inference với reward tilt và big/small likelihood correction.
 - MultiSignal: kết hợp các signal theo trọng số học được.
 
 Đây là các phương pháp chính mà repo đang triển khai.

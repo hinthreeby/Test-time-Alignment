@@ -13,16 +13,30 @@ from argsearch import ARGS
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-LLM_PATH = BASE_DIR / "models" / "gpt2-large"
-RM_PATH = BASE_DIR / "models" / "rad_rm_sentiment"
-RM_BASE_PATH = BASE_DIR / "models" / "gpt2-small"
+LLM_PATH = BASE_DIR / "models" / "tulu-2-7b"
+GPT2_RM_PATH = BASE_DIR / "models" / "rad_rm_sentiment"
+GPT2_RM_BASE_PATH = BASE_DIR / "models" / "gpt2-small"
+LLAMA_RM_PATH = BASE_DIR / "models" / "distilbert-sst2"
 INPUT_FILE = BASE_DIR / "dataset" / "rad_benchmark" / "all.jsonl"
+
+
+def resolve_reward_model(llm_path):
+    config_path = llm_path / "config.json"
+    if not config_path.exists():
+        raise FileNotFoundError(f"Không tìm thấy config của base model: {config_path}")
+    with config_path.open("r", encoding="utf-8") as file:
+        model_type = json.load(file).get("model_type")
+    if model_type == "gpt2":
+        return GPT2_RM_PATH, GPT2_RM_BASE_PATH
+    if model_type == "llama":
+        return LLAMA_RM_PATH, None
+    raise ValueError(f"Chưa cấu hình reward model cho model_type={model_type!r}")
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run resumable ARGS decoding.")
     parser.add_argument("--method", choices=["greedy", "topk"], default="topk")
-    parser.add_argument("--num-prompts", type=int, default=10000)
+    parser.add_argument("--num-prompts", type=int, default=1000)
     parser.add_argument("--topk", type=int, default=10)
     parser.add_argument("--weight", type=float, default=2.0)
     parser.add_argument("--temperature", type=float, default=0.7)
@@ -35,7 +49,7 @@ def parse_args():
     if args.topk <= 0 or args.max_new_tokens <= 0 or args.temperature <= 0:
         parser.error("topk, max-new-tokens và temperature phải > 0")
     if args.output_path is None:
-        args.output_path = BASE_DIR / "results" / f"args_{args.method}.json"
+        args.output_path = BASE_DIR / "results" / f"args_tulu2_7b_{args.method}.json"
     return args
 
 
@@ -105,6 +119,7 @@ def save_results(results, path):
 
 def main():
     args = parse_args()
+    rm_path, rm_base_path = resolve_reward_model(LLM_PATH)
     dataset = load_dataset(args.input_path, args.num_prompts)
     existing_results = load_existing_results(args.output_path)
     results_by_key = {record_key(record): record for record in existing_results}
@@ -123,21 +138,20 @@ def main():
         return
     if not LLM_PATH.exists():
         raise FileNotFoundError(f"Không tìm thấy base model: {LLM_PATH}")
-    if not RM_PATH.exists():
+    if not rm_path.exists():
         raise FileNotFoundError(
-            f"Không tìm thấy ARGS reward model: {RM_PATH}\n"
-            "Hãy train RAD reward model trước."
+            f"Không tìm thấy ARGS reward model: {rm_path}"
         )
-    if not RM_BASE_PATH.exists():
-        raise FileNotFoundError(f"Không tìm thấy reward backbone: {RM_BASE_PATH}")
+    if rm_base_path is not None and not rm_base_path.exists():
+        raise FileNotFoundError(f"Không tìm thấy reward backbone: {rm_base_path}")
 
     searcher = ARGS(
         llm_path=str(LLM_PATH),
-        rm_path=str(RM_PATH),
+        rm_path=str(rm_path),
         llm_dev="cuda:0",
         rm_dev="cuda:0",
         torch_dtype=torch.float16,
-        rm_base_path=str(RM_BASE_PATH),
+        rm_base_path=str(rm_base_path) if rm_base_path is not None else None,
     )
 
     for index, sample in tqdm(pending, desc="ARGS decoding", unit="prompt"):
@@ -172,7 +186,7 @@ def main():
             "response": response,
             "num_positive": sample.get("num_positive"),
             "method": "ARGS",
-            "reward_model": str(RM_PATH),
+            "reward_model": str(rm_path),
             "decoding_method": args.method,
             "topk": args.topk,
             "weight": args.weight,

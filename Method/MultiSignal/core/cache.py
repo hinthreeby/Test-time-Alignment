@@ -44,8 +44,10 @@ def resolve_device(name):
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-def load_adapter(name, device):
+def load_adapter(name, device, config_override=None):
     config = load_config(name)
+    if config_override:
+        config = {**config, **config_override}
     adapter = get_adapter(name)(config, PROJECT_ROOT, device)
     adapter.load_models()
     return adapter

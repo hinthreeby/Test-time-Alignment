@@ -1,0 +1,16 @@
+{
+  "decision": "LINEAR_SCALARIZATION_BOTTLENECK_NOT_ESTABLISHED",
+  "gate_policy": "Exploratory fail-fast thresholds declared in code; evidence is reported continuously and conclusions are not forced.",
+  "h1_evidence": {
+    "low_sensitivity_fraction_at_least_0.25": false,
+    "monotonicity_violation_fraction_at_least_0.20": true,
+    "unsupported_nondominated_point_exists": true
+  },
+  "h1_supported": true,
+  "h2_evidence": {
+    "midpoint_median_cancellation_below_0.80": false,
+    "negative_cosine_majority": false
+  },
+  "h2_supported": false,
+  "phase_c_started": false
+}

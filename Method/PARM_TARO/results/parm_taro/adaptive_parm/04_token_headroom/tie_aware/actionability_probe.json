@@ -1,0 +1,36 @@
+{
+  "features": [
+    "alpha_helpfulness",
+    "alpha_harmlessness",
+    "normalized_generation_position",
+    "generated_token_count",
+    "prompt_token_count",
+    "base_entropy",
+    "base_top1_probability",
+    "base_top1_top2_margin",
+    "base_topk_mass",
+    "parm_entropy",
+    "parm_top1_probability",
+    "parm_top1_top2_margin",
+    "parm_topk_mass",
+    "top1_disagreement",
+    "topk_overlap",
+    "js_divergence",
+    "symmetric_kl",
+    "logprob_correlation",
+    "candidate_rank_disagreement"
+  ],
+  "logistic_regression": {
+    "auprc": 1.0,
+    "auroc": 1.0,
+    "balanced_accuracy": 1.0
+  },
+  "positive_count": 64,
+  "positive_fraction": 0.256,
+  "random_forest_diagnostic": {
+    "auprc": 1.0,
+    "auroc": 1.0,
+    "balanced_accuracy": 1.0
+  },
+  "split": "leave-one-unique-prompt-out"
+}

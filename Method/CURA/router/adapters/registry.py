@@ -12,10 +12,10 @@ from Method.MultiSignal.core.cache import load_adapter
 class CuraAdapter:
     """Metadata-safe wrapper around the established MultiSignal adapters."""
 
-    def __init__(self, name, objective, project_root: Path, device: torch.device):
+    def __init__(self, name, objective, project_root: Path, device: torch.device, config_override=None):
         self.name = name
         self.objective = objective
-        self.adapter = load_adapter(name, device)
+        self.adapter = load_adapter(name, device, config_override=config_override)
         self.project_root = project_root
 
     @property
@@ -83,7 +83,14 @@ class CuraAdapter:
 
 def load_adapters(config, project_root: Path, device: torch.device):
     objectives = config.get("signal_objectives", {})
+    overrides = config.get("signal_adapter_configs", {})
     return [
-        CuraAdapter(name, objectives.get(name, "unknown"), project_root, device)
+        CuraAdapter(
+            name,
+            objectives.get(name, "unknown"),
+            project_root,
+            device,
+            config_override=overrides.get(name),
+        )
         for name in config["signals"]
     ]

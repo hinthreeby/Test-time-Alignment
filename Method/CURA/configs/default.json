@@ -49,6 +49,6 @@
     "gamma_cost": 0.01,
     "gamma_gate": 0.1,
     "num_workers": 0,
-    "mixed_precision": true
+    "mixed_precision": false
   }
 }

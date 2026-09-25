@@ -1,0 +1,11 @@
+{
+  "ordered_package_roots": [
+    "/home/jupyter-iec2024se10/Test-time-Alignment/Method/Router_Apdative",
+    "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO",
+    "/home/jupyter-iec2024se10/Test-time-Alignment"
+  ],
+  "returncode": 0,
+  "status": "PASS",
+  "stderr": "",
+  "stdout": "{\"router_device_module\": \"router_v2.device\", \"frozen_base_module\": \"PARM_TARO.training.runtime\", \"generation_module\": \"PARM_TARO.pareto_scalarization_probe.generation\"}"
+}

@@ -1,0 +1,48 @@
+{
+  "fixed_w1_mip": 0.6068836809138523,
+  "model": "StandardScaler + Ridge(alpha=10), action interactions",
+  "mutual_information_by_feature": {
+    "alpha_harmlessness": 0.0,
+    "alpha_helpfulness": 0.0,
+    "base_entropy": 0.04464106511811883,
+    "base_top1_probability": 0.11457186191656032,
+    "base_top1_top2_margin": 0.06654472653897936,
+    "base_topk_mass": 0.029654823396096708,
+    "candidate_rank_disagreement": 0.06428849125664904,
+    "generated_token_count": 0.04346636699775619,
+    "js_divergence": 0.11270208859145825,
+    "logprob_correlation": 0.0627396172927579,
+    "normalized_generation_position": 0.060766205889005276,
+    "parm_entropy": 0.07187586751696151,
+    "parm_top1_probability": 0.10921552468719153,
+    "parm_top1_top2_margin": 0.11637318101835659,
+    "parm_topk_mass": 0.07048711552102804,
+    "prompt_token_count": 0.0,
+    "symmetric_kl": 0.12728077431171125,
+    "top1_disagreement": 0.20052852902103435,
+    "topk_overlap": 0.05386137955977821
+  },
+  "num_folds": 10,
+  "offline_policy_mip": 0.6112609840464366,
+  "oracle_action_accuracy": 0.432,
+  "oracle_gap_capture": 0.3047074056154623,
+  "oracle_mip": 0.6212492757497994,
+  "pairwise_ranking_accuracy": 0.8676666666666666,
+  "prompt_leakage": false,
+  "prompt_level_comparison": {
+    "pairwise_ranking_accuracy": 0.5025809484890339,
+    "spearman": 0.006788626103585345
+  },
+  "selected_weight_distribution": {
+    "0.0": 126,
+    "0.25": 9,
+    "0.5": 14,
+    "0.75": 18,
+    "1.0": 83
+  },
+  "spearman": -0.007979131159682436,
+  "split": "leave-one-unique-prompt-out",
+  "top2_action_accuracy": 0.532,
+  "utility_mae": 0.10160774598672448,
+  "utility_mse": 0.01890035348018238
+}

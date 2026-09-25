@@ -1,0 +1,54 @@
+{
+  "actionable_states": 64,
+  "horizons": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "loads_model": false,
+  "no_beaver": true,
+  "no_generation": true,
+  "paths": {
+    "adapter_config": {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/final_checkpoint/adapter_config.json",
+      "ready": true
+    },
+    "adapter_weights": {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/final_checkpoint/adapter_model.safetensors",
+      "ready": true
+    },
+    "base_config": {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b/config.json",
+      "ready": true
+    },
+    "leakage_audit": {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/04_token_headroom/leakage_audit.json",
+      "ready": true
+    },
+    "rich_policy": {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/05_rich_state_probe/best_policy_predictions.csv",
+      "ready": true
+    },
+    "rollouts": {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/04_token_headroom/counterfactual_rollouts.jsonl",
+      "ready": true
+    },
+    "states": {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/04_token_headroom/state_features.csv",
+      "ready": true
+    },
+    "utility": {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/04_token_headroom/state_utility.csv",
+      "ready": true
+    }
+  },
+  "rollouts": 1250,
+  "source_leakage_audit": "PASS",
+  "states": 250,
+  "status": "PASS",
+  "unique_branches": 315,
+  "utility_rows": 1250
+}

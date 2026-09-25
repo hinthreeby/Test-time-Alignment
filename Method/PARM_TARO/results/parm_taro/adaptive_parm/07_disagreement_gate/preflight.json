@@ -1,0 +1,24 @@
+{
+  "cases": 1000,
+  "checks": {
+    "adapter": true,
+    "base": true,
+    "cost": true,
+    "protocol": true,
+    "reward": true,
+    "safe_rlhf": true
+  },
+  "diagnostic_prompts_excluded": true,
+  "expected_generations": 4000,
+  "fresh_unique_prompts": 200,
+  "loads_model": false,
+  "max_new_tokens": 64,
+  "methods": [
+    "base",
+    "parm_fixed",
+    "midpoint",
+    "disagreement_gate"
+  ],
+  "split": "validation",
+  "status": "PASS"
+}

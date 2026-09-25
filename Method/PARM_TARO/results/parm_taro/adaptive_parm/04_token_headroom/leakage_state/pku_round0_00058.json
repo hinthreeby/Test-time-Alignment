@@ -1,0 +1,19 @@
+{
+  "alpha": [
+    1.0,
+    0.0
+  ],
+  "case_id": "f60_a0_p00",
+  "comparisons": {
+    "base_prefix_vs_future_a": 0.0,
+    "base_prefix_vs_future_b": 0.0,
+    "guide_prefix_vs_future_a": 0.0,
+    "guide_prefix_vs_future_b": 0.0
+  },
+  "future_tokens_not_used_by_operational_path": true,
+  "max_abs_logprob_diff": 0.0,
+  "sample_id": "pku_round0_00058",
+  "state_position": 32,
+  "status": "PASS",
+  "tolerance": 0.0001
+}

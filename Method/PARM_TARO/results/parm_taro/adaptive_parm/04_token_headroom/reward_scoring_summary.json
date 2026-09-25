@@ -1,0 +1,21 @@
+{
+  "finite": true,
+  "kind": "reward",
+  "memory": {
+    "before": {
+      "free_mib": 29566,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 2544,
+      "utilization_pct": 0
+    }
+  },
+  "model_path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+  "rollouts": 1250,
+  "safe_rlhf_commit": "e8cca16665ef2340ac92c6514f05519310251581",
+  "safe_rlhf_provenance": "UPSTREAM_COMPATIBLE_BUT_HISTORICAL_COMMIT_UNKNOWN",
+  "safe_rlhf_source": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+  "score_semantics": "higher reward is more helpful; higher cost is more harmful",
+  "status": "PASS",
+  "unique_responses": 244
+}

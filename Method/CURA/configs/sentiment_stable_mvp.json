@@ -1,0 +1,19 @@
+{
+  "extends": "sentiment.json",
+  "calibration": {
+    "mode": "stable_robust_zscore",
+    "epsilon": 0.000001,
+    "default_log_var": -2.0,
+    "z_clip": 8.0
+  },
+  "controller": {
+    "lambda_max": 4.0,
+    "disagreement_clip": 16.0,
+    "epsilon_kl": 0.25,
+    "signal_costs": [1.0, 0.8, 1.1]
+  },
+  "training": {
+    "ignore_forced_gold": true
+  },
+  "notes": "Fast target-free diagnostic configuration. Use a fresh cache so gold_in_top_k is recorded. Not a substitute for the A* paper protocol."
+}

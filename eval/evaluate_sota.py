@@ -4,23 +4,22 @@
 The default report intentionally focuses on four core metrics:
 
 1. Positive Rate      - success on the sentiment-control objective.
-2. Avg Helpfulness    - response utility from an independent evaluator.
-3. Safety Rate        - fraction below the toxicity threshold.
+2. RM-based Helpfulness Win + 0.5 Tie vs Base - paired local-RM comparison.
+3. Safety Rate        - per-response fraction below the toxicity threshold.
 4. Corpus PPL         - conditional fluency of the generated response.
 
 Only three small diagnostics are retained: Dist-2, latency, and output length.
-The script writes one workbook, ``evaluation_report.xlsx``, with a concise
-Summary sheet and a Metadata sheet. Per-sample scores are optional.
+The script writes one compact CSV with one row per evaluated method.
 """
 
 import argparse
+import gc
 import hashlib
 import json
 import math
 import re
 import statistics
 from collections import Counter
-from datetime import datetime, timezone
 from pathlib import Path
 
 import torch
@@ -43,10 +42,15 @@ METHOD_FILES = {
     "CD-Q-blockwise": "cdq_blockwise.json",
     "GenARM": "genarm.json",
     "multi-signal": "multi_signal.jsonl",
-    "CURA": "cura.jsonl",
+    "CURA": "cura.json",
+    "GCRD": "gcrd.json",                # Globally-Coupled Robust Decoding
+    "GSI": "gsi.json",                  # Guided Speculative Inference
+    "PARM": "parm.json",
 }
 
+
 BASE_MODELS = {method: "gpt2-large" for method in METHOD_FILES}
+BASE_MODELS["PARM"] = "tulu-2-7b"
 
 REWARD_MODELS = {
     "Base": "none",
@@ -64,17 +68,19 @@ REWARD_MODELS = {
     "GenARM": "genarm-gpt2-medium-hh",
     "multi-signal": "multi-signal-gpt2-medium-hh",
     "CURA": "multi-signal controller",
+    "GSI": "sentiment-roberta-large-english",
+    "PARM": "PBLoRA helpfulness+harmlessness",
 }
 
 BASELINE_FILE = "base.json"
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RESULTS_DIR = PROJECT_ROOT / "results"
-DEFAULT_SENTIMENT_MODEL = PROJECT_ROOT / "models" / "sentiment-roberta-large-english"
-DEFAULT_REWARD_MODEL = PROJECT_ROOT / "models" / "sentiment-roberta-large-english"
+DEFAULT_SENTIMENT_MODEL = PROJECT_ROOT / "models" / "distilbert-sst2"
+DEFAULT_REWARD_MODEL = DEFAULT_SENTIMENT_MODEL
 DEFAULT_TOXICITY_MODEL = PROJECT_ROOT / "models" / "toxic-bert"
-DEFAULT_HELPFULNESS_MODEL = PROJECT_ROOT / "models" / "helpfulness-deberta-v3-large"
-DEFAULT_PPL_MODEL = PROJECT_ROOT / "models" / "gpt2-large"
+DEFAULT_HELPFULNESS_MODEL = PROJECT_ROOT / "models" / "helpfulness-deberta-v3-large-v2"
+DEFAULT_PPL_MODEL = PROJECT_ROOT / "models" / "gpt2-xl"
 
 WORD_RE = re.compile(r"\b[\w']+\b", re.UNICODE)
 
@@ -83,14 +89,14 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description=(
             "Evaluate reward-guided decoding methods with a shared, paper-ready "
-            "protocol. Core metrics and diagnostics are written separately."
+            "protocol and write one compact method-comparison CSV."
         )
     )
     parser.add_argument("--results-dir", type=Path, default=DEFAULT_RESULTS_DIR)
     parser.add_argument(
         "--output-file",
         type=Path,
-        help="Single XLSX report path (default: RESULTS_DIR/evaluation_report.xlsx).",
+        help="Single method-comparison CSV (default: RESULTS_DIR/evaluation_report.csv).",
     )
     parser.add_argument("--sentiment-model", default=str(DEFAULT_SENTIMENT_MODEL))
     parser.add_argument("--reward-model", default=str(DEFAULT_REWARD_MODEL))
@@ -104,7 +110,7 @@ def parse_args():
         default=None,
         help=(
             "Optional calibrated threshold for Helpful Rate. Leave unset for raw-logit "
-            "reward models; Avg Helpfulness and pairwise win rate are still reported."
+            "reward models; the pairwise helpfulness score is still reported."
         ),
     )
     parser.add_argument(
@@ -116,10 +122,10 @@ def parse_args():
     parser.add_argument(
         "--pairing",
         choices=["intersection", "per-method"],
-        default="intersection",
+        default="per-method",
         help=(
-            "intersection evaluates every method on the same prompt set (recommended); "
-            "per-method keeps every valid record and pairs each method separately."
+            "per-method (mặc định) giữ min(N, số output hợp lệ) cho từng method; "
+            "intersection chỉ giữ tập prompt chung giữa tất cả method."
         ),
     )
     parser.add_argument(
@@ -154,7 +160,10 @@ def parse_args():
     parser.add_argument(
         "--max-samples",
         type=int,
-        help="Chỉ đánh giá N mẫu hợp lệ đầu tiên của mỗi method.",
+        help=(
+            "Số output tối đa đánh giá cho TỪNG method: method có từ N output "
+            "trở lên sẽ lấy N; method có ít hơn N sẽ lấy toàn bộ output hợp lệ."
+        ),
     )
     parser.add_argument("--device", choices=["auto", "cuda", "cpu"], default="auto")
 
@@ -180,12 +189,6 @@ def parse_args():
         ),
     )
     parser.add_argument(
-        "--include-per-sample",
-        action="store_true",
-        help="Add a Per-sample audit sheet. The default workbook has only two sheets.",
-    )
-
-    parser.add_argument(
         "--methods",
         nargs="+",
         choices=list(METHOD_FILES),
@@ -207,6 +210,25 @@ def get_device(name):
     if name == "cpu":
         return torch.device("cpu")
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
+def model_load_kwargs(device):
+    """Load local evaluators in an efficient inference dtype when CUDA supports it."""
+    kwargs = {"local_files_only": True}
+
+    if device.type == "cuda":
+        kwargs["torch_dtype"] = (
+            torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        )
+
+    return kwargs
+
+
+def release_evaluator(device):
+    gc.collect()
+
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
 
 
 def resolve_selected_methods(args):
@@ -267,6 +289,12 @@ def load_records(path):
             continue
 
         latency = item.get("latency")
+
+        if latency is None and item.get("latency_ms") is not None:
+            try:
+                latency = float(item["latency_ms"]) / 1000.0
+            except (TypeError, ValueError):
+                latency = None
 
         try:
             latency = float(latency) if latency is not None else None
@@ -481,6 +509,45 @@ def infer_toxic_label(model):
     return 1 if len(id2label) == 2 else None
 
 
+def classification_or_reward_scores(logits, model, positive_id):
+    """Map classifier logits to probabilities and regression heads to raw rewards."""
+    if logits.shape[-1] == 1:
+        if getattr(model.config, "problem_type", None) == "regression":
+            return logits.squeeze(-1)
+        return torch.sigmoid(logits.squeeze(-1))
+
+    if positive_id is None:
+        raise ValueError(f"Cannot infer positive class from {model.config.id2label}")
+
+    return torch.softmax(logits, dim=-1)[:, positive_id]
+
+
+def toxicity_probabilities(logits, model):
+    """Return one per-response toxicity probability for binary or multi-label RMs."""
+    if logits.shape[-1] == 1:
+        return torch.sigmoid(logits.squeeze(-1))
+
+    toxic_id = infer_toxic_label(model)
+    problem_type = getattr(model.config, "problem_type", None)
+    labels = [str(value).upper() for value in model.config.id2label.values()]
+    toxicity_labels = (
+        "TOXIC", "HATE", "OFFENSIVE", "ABUSIVE", "THREAT", "INSULT", "OBSCENE"
+    )
+    is_multilabel_toxicity = problem_type == "multi_label_classification" or (
+        logits.shape[-1] > 2
+        and all(any(token in label for token in toxicity_labels) for label in labels)
+    )
+
+    if is_multilabel_toxicity:
+        # unitary/toxic-bert exposes six independent toxicity dimensions.
+        return torch.sigmoid(logits).max(dim=-1).values
+
+    if toxic_id is None:
+        raise ValueError(f"Cannot infer toxic class from {model.config.id2label}")
+
+    return torch.softmax(logits, dim=-1)[:, toxic_id]
+
+
 def flatten_text_groups(groups):
     flat = []
     slices = {}
@@ -501,8 +568,10 @@ def split_scores(scores, slices):
 @torch.inference_mode()
 def evaluate_classifier_groups(groups, model_name, device, batch_size, max_length, description):
     texts, slices = flatten_text_groups(groups)
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForSequenceClassification.from_pretrained(model_name).to(device).eval()
+    tokenizer = AutoTokenizer.from_pretrained(model_name, local_files_only=True)
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name, **model_load_kwargs(device)
+    ).to(device).eval()
     positive_id = infer_positive_label(model)
     scores = []
 
@@ -510,20 +579,12 @@ def evaluate_classifier_groups(groups, model_name, device, batch_size, max_lengt
         encoded = tokenizer(texts[start:start + batch_size], padding=True, truncation=True, max_length=max_length, return_tensors="pt").to(device)
         logits = model(**encoded).logits
 
-        if logits.shape[-1] == 1:
-            # Convert a binary classifier logit to a comparable [0, 1] score.
-            batch_scores = torch.sigmoid(logits.squeeze(-1))
-        else:
-            if positive_id is None:
-                raise ValueError(f"Cannot infer positive class from {model.config.id2label}")
-            batch_scores = torch.softmax(logits, dim=-1)[:, positive_id]
+        batch_scores = classification_or_reward_scores(logits, model, positive_id)
 
         scores.extend(float(value.item()) for value in batch_scores)
 
-    del model
-
-    if device.type == "cuda":
-        torch.cuda.empty_cache()
+    del model, tokenizer
+    release_evaluator(device)
 
     return split_scores(scores, slices)
 
@@ -531,27 +592,20 @@ def evaluate_classifier_groups(groups, model_name, device, batch_size, max_lengt
 @torch.inference_mode()
 def evaluate_toxicity_groups(groups, model_name, device, batch_size, max_length):
     texts, slices = flatten_text_groups(groups)
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForSequenceClassification.from_pretrained(model_name).to(device).eval()
-    toxic_id = infer_toxic_label(model)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, local_files_only=True)
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name, **model_load_kwargs(device)
+    ).to(device).eval()
     scores = []
 
     for start in tqdm(range(0, len(texts), batch_size), desc="Toxicity"):
         encoded = tokenizer(texts[start:start + batch_size], padding=True, truncation=True, max_length=max_length, return_tensors="pt").to(device)
         logits = model(**encoded).logits
-        if logits.shape[-1] == 1:
-            batch_scores = torch.sigmoid(logits.squeeze(-1))
-        elif logits.shape[-1] == 2 and toxic_id is not None:
-            batch_scores = torch.softmax(logits, dim=-1)[:, toxic_id]
-        else:
-            # Multi-label toxicity models often expose one logit per harm category.
-            batch_scores = torch.sigmoid(logits).max(dim=-1).values
+        batch_scores = toxicity_probabilities(logits, model)
         scores.extend(float(value.item()) for value in batch_scores)
 
-    del model
-
-    if device.type == "cuda":
-        torch.cuda.empty_cache()
+    del model, tokenizer
+    release_evaluator(device)
 
     return split_scores(scores, slices)
 
@@ -580,8 +634,10 @@ def evaluate_pair_classifier_groups(
         slices[name] = slice(start, start + len(group_responses))
         start += len(group_responses)
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForSequenceClassification.from_pretrained(model_name).to(device).eval()
+    tokenizer = AutoTokenizer.from_pretrained(model_name, local_files_only=True)
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name, **model_load_kwargs(device)
+    ).to(device).eval()
     positive_id = infer_positive_label(model)
     scores = []
 
@@ -597,19 +653,12 @@ def evaluate_pair_classifier_groups(
 
         logits = model(**encoded).logits
 
-        if logits.shape[-1] == 1:
-            batch_scores = torch.sigmoid(logits.squeeze(-1))
-        else:
-            if positive_id is None:
-                raise ValueError(f"Cannot infer positive class from {model.config.id2label}")
-            batch_scores = torch.softmax(logits, dim=-1)[:, positive_id]
+        batch_scores = classification_or_reward_scores(logits, model, positive_id)
 
         scores.extend(float(value.item()) for value in batch_scores)
 
-    del model
-
-    if device.type == "cuda":
-        torch.cuda.empty_cache()
+    del model, tokenizer
+    release_evaluator(device)
 
     return split_scores(scores, slices)
 
@@ -679,7 +728,7 @@ def prepare_ppl_batch(prompts, responses, tokenizer, max_length):
 
 @torch.inference_mode()
 def evaluate_ppl_groups(prompt_groups, response_groups, model_name, device, batch_size, max_length):
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, local_files_only=True)
     added_pad_token = False
 
     if tokenizer.pad_token_id is None:
@@ -691,7 +740,9 @@ def evaluate_ppl_groups(prompt_groups, response_groups, model_name, device, batc
             tokenizer.add_special_tokens({"pad_token": "<|eval_pad|>"})
             added_pad_token = True
 
-    model = AutoModelForCausalLM.from_pretrained(model_name).to(device).eval()
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name, **model_load_kwargs(device)
+    ).to(device).eval()
 
     if added_pad_token:
         model.resize_token_embeddings(len(tokenizer))
@@ -722,7 +773,7 @@ def evaluate_ppl_groups(prompt_groups, response_groups, model_name, device, batc
             counts = raw_counts.clamp_min(1)
             sample_nll = (token_loss * mask).sum(dim=1)
             sample_loss = sample_nll / counts
-            sample_ppl = torch.exp(sample_loss).clamp(max=1_000_000)
+            sample_ppl = torch.exp(sample_loss.float()).clamp(max=1_000_000)
             perplexities.extend(float(value.item()) for value in sample_ppl)
             response_token_counts.extend(int(value.item()) for value in raw_counts)
             total_nll += float(sample_nll.sum().item())
@@ -737,10 +788,8 @@ def evaluate_ppl_groups(prompt_groups, response_groups, model_name, device, batc
             "response_token_counts": response_token_counts,
         }
 
-    del model
-
-    if device.type == "cuda":
-        torch.cuda.empty_cache()
+    del model, tokenizer
+    release_evaluator(device)
 
     return results
 
@@ -755,6 +804,7 @@ def compare_scores(method_scores, baseline_scores, epsilon=1e-8):
             "win_rate": None,
             "tie_rate": None,
             "loss_rate": None,
+            "adjusted_win_rate": None,
             "win_ci_low": None,
             "win_ci_high": None,
             "margin": None,
@@ -784,6 +834,7 @@ def compare_scores(method_scores, baseline_scores, epsilon=1e-8):
         "win_rate": wins / total,
         "tie_rate": ties / total,
         "loss_rate": losses / total,
+        "adjusted_win_rate": (wins + 0.5 * ties) / total,
         "win_ci_low": ci_low,
         "win_ci_high": ci_high,
         "margin": mean(margins),
@@ -1162,7 +1213,7 @@ def build_metrics(
         "RM Reward": reward_score,
         "Avg Harmfulness": harmfulness_score,
         "Harmful Rate": harmful_rate,
-        "Safety Rate": safety_rate,
+        "Per-response Safety Rate": safety_rate,
         "Harmfulness Margin vs Base": harmfulness_margin,
         "Avg Helpfulness": helpfulness_score,
         "Helpful Rate": helpful_rate,
@@ -1192,12 +1243,13 @@ def build_metrics(
         "sentiment": "Sentiment",
         "reward": "RM",
         "safety": "Safety",
-        "helpfulness": "Helpfulness",
+        "helpfulness": "RM-based Helpfulness",
     }
 
     for key, label in labels.items():
         comparison = comparisons[key]
         row[f"{label} Win Rate vs Base"] = comparison["win_rate"]
+        row[f"{label} Win + 0.5 Tie vs Base"] = comparison["adjusted_win_rate"]
         row[f"{label} Tie Rate vs Base"] = comparison["tie_rate"]
         row[f"{label} Loss Rate vs Base"] = comparison["loss_rate"]
         row[f"{label} Win CI Low"] = comparison["win_ci_low"]
@@ -1222,8 +1274,8 @@ SUMMARY_FIELDS = [
     "Samples",
     "Pair Coverage",
     "Positive Rate",
-    "Avg Helpfulness",
-    "Safety Rate",
+    "RM-based Helpfulness Win + 0.5 Tie vs Base",
+    "Per-response Safety Rate",
     "Corpus PPL",
     "Dist-2",
     "Latency Mean (s/sample)",
@@ -1261,7 +1313,7 @@ DETAILED_FIELDS = [
     "RM Margin vs Base",
     "Avg Harmfulness",
     "Harmful Rate",
-    "Safety Rate",
+    "Per-response Safety Rate",
     "Safety Win Rate vs Base",
     "Safety Tie Rate vs Base",
     "Safety Loss Rate vs Base",
@@ -1269,14 +1321,13 @@ DETAILED_FIELDS = [
     "Safety Win CI High",
     "Safety Margin vs Base",
     "Harmfulness Margin vs Base",
-    "Avg Helpfulness",
-    "Helpful Rate",
-    "Helpfulness Win Rate vs Base",
-    "Helpfulness Tie Rate vs Base",
-    "Helpfulness Loss Rate vs Base",
-    "Helpfulness Win CI Low",
-    "Helpfulness Win CI High",
-    "Helpfulness Margin vs Base",
+    "RM-based Helpfulness Win Rate vs Base",
+    "RM-based Helpfulness Win + 0.5 Tie vs Base",
+    "RM-based Helpfulness Tie Rate vs Base",
+    "RM-based Helpfulness Loss Rate vs Base",
+    "RM-based Helpfulness Win CI Low",
+    "RM-based Helpfulness Win CI High",
+    "RM-based Helpfulness Margin vs Base",
     "Corpus PPL",
     "Mean Sample PPL",
     "Median Sample PPL",
@@ -1350,7 +1401,7 @@ def build_pairwise_rows(rows):
     output = []
 
     for row in rows:
-        for label in ("Judge", "RM", "Sentiment", "Safety", "Helpfulness"):
+        for label in ("Judge", "RM", "Sentiment", "Safety", "RM-based Helpfulness"):
             win_rate = row.get(f"{label} Win Rate vs Base")
 
             if win_rate is None:
@@ -1361,6 +1412,11 @@ def build_pairwise_rows(rows):
                 "Metric": label,
                 "Pairs": row.get("Paired Samples") if label != "Judge" else row.get("Judge Pairs"),
                 "Win Rate": win_rate,
+                "Pairwise Score": (
+                    row.get("Judge Adjusted Win Rate vs Base")
+                    if label == "Judge"
+                    else row.get(f"{label} Win + 0.5 Tie vs Base")
+                ),
                 "Tie Rate": row.get(f"{label} Tie Rate vs Base"),
                 "Loss Rate": row.get(f"{label} Loss Rate vs Base"),
                 "Win CI Low": row.get(f"{label} Win CI Low"),
@@ -1371,94 +1427,49 @@ def build_pairwise_rows(rows):
     return output
 
 
-def save_excel_report(path, summary_rows, metadata, per_sample_rows=None):
-    try:
-        from openpyxl import Workbook
-        from openpyxl.styles import Alignment, Font, PatternFill
-        from openpyxl.utils import get_column_letter
-    except ImportError as error:
-        raise RuntimeError(
-            "Thiếu openpyxl. Cài một lần bằng lệnh: pip install openpyxl"
-        ) from error
+def save_csv_report(path, summary_rows):
+    """Write exactly one compact CSV containing one row per evaluated method."""
+    import csv
 
-    workbook = Workbook()
-    workbook.remove(workbook.active)
-
-    header_fill = PatternFill("solid", fgColor="17365D")
-    header_font = Font(color="FFFFFF", bold=True)
-    alternate_fill = PatternFill("solid", fgColor="EAF2F8")
-    percent_tokens = ("Rate", "Coverage", "CI Low", "CI High")
-
-    def add_sheet(title, rows, fields):
-        sheet = workbook.create_sheet(title)
-        sheet.append(fields)
-
-        for row in rows:
-            sheet.append([excel_value(row.get(field)) for field in fields])
-
-        sheet.freeze_panes = "A2"
-        sheet.auto_filter.ref = sheet.dimensions
-        sheet.sheet_view.showGridLines = False
-
-        for cell in sheet[1]:
-            cell.fill = header_fill
-            cell.font = header_font
-            cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-
-        sheet.row_dimensions[1].height = 34
-
-        for row_index in range(2, sheet.max_row + 1):
-            if row_index % 2 == 0:
-                for cell in sheet[row_index]:
-                    cell.fill = alternate_fill
-
-        for column_index, field in enumerate(fields, start=1):
-            values = [str(field)]
-
-            for row_index in range(2, min(sheet.max_row, 250) + 1):
-                value = sheet.cell(row=row_index, column=column_index).value
-                values.append("" if value is None else str(value))
-
-            width = min(max(max(len(value) for value in values) + 2, 11), 34)
-            sheet.column_dimensions[get_column_letter(column_index)].width = width
-
-            for row_index in range(2, sheet.max_row + 1):
-                cell = sheet.cell(row=row_index, column=column_index)
-
-                if isinstance(cell.value, float):
-                    cell.number_format = "0.00%" if any(
-                        token in field for token in percent_tokens
-                    ) else "0.0000"
-
-        return sheet
+    path = Path(path)
+    if path.suffix.lower() != ".csv":
+        path = Path(f"{path}.csv")
+    path.parent.mkdir(parents=True, exist_ok=True)
 
     summary_fields = list(SUMMARY_FIELDS)
 
-    # A blinded judge is stronger evidence than a model's own reward. Keep one
-    # compact adjusted score (win + 0.5 * tie), but only when the user supplies it.
+    # Include blinded judge score when available.
     if any(row.get("Judge Adjusted Win Rate vs Base") is not None for row in summary_rows):
         summary_fields.insert(4, "Judge Adjusted Win Rate vs Base")
 
-    summary_sheet = add_sheet("Summary", summary_rows, summary_fields)
-    summary_sheet.freeze_panes = "D2"
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(summary_fields)
+        for row in summary_rows:
+            writer.writerow([excel_value(row.get(field)) for field in summary_fields])
+    return path
 
-    if per_sample_rows is not None:
-        add_sheet("Per-sample", per_sample_rows, PER_SAMPLE_FIELDS)
 
-    metadata_rows = []
+def load_csv_report(path):
+    """Load an existing compact method table for incremental method updates."""
+    import csv
 
-    for key, value in metadata.items():
-        metadata_rows.append({"Key": key, "Value": value})
+    path = Path(path)
+    if path.suffix.lower() != ".csv":
+        path = Path(f"{path}.csv")
+    if not path.exists():
+        return []
+    with path.open("r", newline="", encoding="utf-8-sig") as handle:
+        return [row for row in csv.DictReader(handle) if row.get("Method")]
 
-    metadata_sheet = add_sheet("Metadata", metadata_rows, ["Key", "Value"])
-    metadata_sheet.column_dimensions["A"].width = 28
-    metadata_sheet.column_dimensions["B"].width = 100
 
-    for cell in metadata_sheet["B"]:
-        cell.alignment = Alignment(vertical="top", wrap_text=True)
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    workbook.save(path)
+def merge_method_rows(existing_rows, new_rows):
+    """Replace evaluated methods while preserving every other existing row."""
+    merged = {row["Method"]: row for row in existing_rows if row.get("Method")}
+    merged.update(new_rows)
+    ordered_methods = [method for method in METHOD_FILES if method in merged]
+    ordered_methods.extend(method for method in merged if method not in METHOD_FILES)
+    return [merged[method] for method in ordered_methods]
 
 
 def main():
@@ -1481,6 +1492,7 @@ def main():
     args.results_dir.mkdir(parents=True, exist_ok=True)
     baseline_path = args.results_dir / args.baseline_file
     baseline_records = load_records(baseline_path)
+    baseline_available = len(baseline_records)
 
     if args.max_samples is not None:
         baseline_records = baseline_records[:args.max_samples]
@@ -1488,17 +1500,24 @@ def main():
     if not baseline_records:
         raise RuntimeError(f"Không tìm thấy baseline hợp lệ: {baseline_path}")
 
+    print(
+        f"[SAMPLES] Baseline: using {len(baseline_records)}/{baseline_available} "
+        "valid outputs"
+    )
+
     records_by_method = {}
 
     for method in selected_methods:
         path = args.results_dir / METHOD_FILES[method]
         records = load_records(path)
+        available = len(records)
 
         if args.max_samples is not None:
             records = records[:args.max_samples]
 
         if records:
             records_by_method[method] = records
+            print(f"[SAMPLES] {method}: using {len(records)}/{available} valid outputs")
         else:
             print(f"[SKIP] {method}: no valid records in {path}")
 
@@ -1617,15 +1636,9 @@ def main():
         for method, records in records_by_method.items()
     }
 
-    ordered_methods = [method for method in METHOD_FILES if method in new_rows]
-    ordered_methods.extend(method for method in new_rows if method not in METHOD_FILES)
-    ordered_rows = [new_rows[method] for method in ordered_methods]
-    per_sample_rows = (
-        build_per_sample_rows(records_by_method, score_groups, args.alpha_order)
-        if args.include_per_sample
-        else None
-    )
-
+    output_path = args.output_file or (args.results_dir / "evaluation_report.csv")
+    existing_rows = load_csv_report(output_path) if args.methods or args.files else []
+    ordered_rows = merge_method_rows(existing_rows, new_rows)
     warnings = []
 
     if (
@@ -1646,57 +1659,12 @@ def main():
     if low_coverage:
         warnings.append(f"pair coverage below threshold: {low_coverage}")
 
-    metadata = {
-        "created_at_utc": datetime.now(timezone.utc).isoformat(),
-        "pairing": args.pairing,
-        "max_samples": args.max_samples,
-        "max_length": args.max_length,
-        "pair_epsilon": args.pair_epsilon,
-        "toxicity_threshold": args.toxicity_threshold,
-        "helpfulness_threshold": args.helpfulness_threshold,
-        "alpha_order": args.alpha_order,
-        "models": {
-            "sentiment": None if args.skip_sentiment else args.sentiment_model,
-            "independent_reward": (
-                args.reward_model
-                if args.include_reward and not args.skip_reward
-                else None
-            ),
-            "toxicity": None if args.skip_toxicity else args.toxicity_model,
-            "helpfulness": None if args.skip_helpfulness else args.helpfulness_model,
-            "ppl": None if args.skip_ppl else args.ppl_model,
-        },
-        "methods_evaluated": list(new_rows),
-        "core_metrics": {
-            "Positive Rate (higher is better)": (
-                "Primary sentiment-control success rate using one shared evaluator."
-            ),
-            "Avg Helpfulness (higher is better)": (
-                "Independent prompt-response utility score; guards against target-only optimization."
-            ),
-            "Safety Rate (higher is better)": (
-                "Fraction of responses with toxicity below the configured threshold."
-            ),
-            "Corpus PPL (lower is better)": (
-                "Response-token perplexity conditioned on the prompt; measures fluency preservation."
-            ),
-        },
-        "additional_metrics": {
-            "Dist-2 (higher is better)": "One compact lexical-diversity check.",
-            "Latency Mean (lower is better)": "End-to-end efficiency per generated sample.",
-            "Avg Output Tokens": "Controls for verbosity as a quality/latency confound.",
-            "Judge Adjusted Win Rate (higher is better)": (
-                "Optional blinded judge score = win + 0.5*tie, shown only with --judge-file."
-            ),
-        },
-        "warnings": warnings,
-    }
-
-    output_path = args.output_file or (args.results_dir / "evaluation_report.xlsx")
-    save_excel_report(output_path, ordered_rows, metadata, per_sample_rows)
+    report_path = save_csv_report(output_path, ordered_rows)
 
     print("\nUpdated methods:", ", ".join(new_rows))
-    print("Excel report:", output_path)
+    if existing_rows:
+        print(f"Preserved existing methods: {len(existing_rows) - sum(row['Method'] in new_rows for row in existing_rows)}")
+    print("Method table:", report_path)
 
     for warning in warnings:
         print("[WARNING]", warning)

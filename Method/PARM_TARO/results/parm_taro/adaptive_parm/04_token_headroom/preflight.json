@@ -1,0 +1,84 @@
+{
+  "checks": {
+    "adapter_weights": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/final_checkpoint/adapter_model.safetensors",
+      "readable": true
+    },
+    "base_model": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
+      "readable": true
+    },
+    "cost_model": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-cost",
+      "readable": true
+    },
+    "pblora_adapter": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/final_checkpoint",
+      "readable": true
+    },
+    "phase09_normalization": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/low_vram_suite/09_metrics_summary.json",
+      "readable": true
+    },
+    "reward_model": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/beaver-7b-v1.0-reward",
+      "readable": true
+    },
+    "safe_rlhf_source": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+      "readable": true
+    },
+    "source_manifest": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/feasibility60/manifest.jsonl",
+      "readable": true
+    }
+  },
+  "loads_large_models": false,
+  "max_action_rollouts": 1250,
+  "max_states": 250,
+  "num_cases": 50,
+  "num_prompts": 10,
+  "router_v2_import": {
+    "canonical_location": true,
+    "module_file": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/Router_Apdative/router_v2/__init__.py",
+    "ready": true,
+    "resolve_device_module": "router_v2.device",
+    "source_paths": [
+      "/home/jupyter-iec2024se10/Test-time-Alignment/Method/Router_Apdative",
+      "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO",
+      "/home/jupyter-iec2024se10/Test-time-Alignment"
+    ]
+  },
+  "safe_rlhf_resolution": {
+    "checked": [
+      {
+        "missing": [],
+        "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+        "source": "canonical_recovery_path"
+      }
+    ],
+    "git_commit": "e8cca16665ef2340ac92c6514f05519310251581",
+    "historical_tree_hash": "1b61a3e47a4c9ad78184262132fad1b9edbb043bf1cdf593e66a87e02b985533",
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/safe-rlhf-source",
+    "provenance_status": "UPSTREAM_COMPATIBLE_BUT_HISTORICAL_COMMIT_UNKNOWN",
+    "ready": true,
+    "source_of_path": "canonical_recovery_path",
+    "tree_hash": "77b8f05c1c8d5fbbcc077f565892b64e6a1d2863addb8c646621a67af4019900"
+  },
+  "status": "PASS",
+  "weight_grid": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ]
+}

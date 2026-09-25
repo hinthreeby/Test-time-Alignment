@@ -1,0 +1,26 @@
+{
+  "steps": 9251,
+  "base_utility": 0.5929853472113287,
+  "expert_utilities": {
+    "rad": 0.6475504821164584,
+    "cdq": 0.581185801636656
+  },
+  "fixed_best": "rad",
+  "fixed_best_utility": 0.6475504821164584,
+  "token_oracle_utility": 0.9255709948120678,
+  "fixed_to_token_oracle_gap": 0.27802051269560946,
+  "expert_win_counts": {
+    "rad": 6013,
+    "cdq": 3238
+  },
+  "target_utility": {
+    "status": "complete",
+    "fingerprint": "sha256:90184a4ada9acaf0e9c93dcd732488fc6750b1c2104117d9e463d299ad6224a9",
+    "evaluator": "/home/jupyter-iec2024se10/Test-time-Alignment/models/sentiment-roberta-large-english",
+    "rollouts": 2,
+    "rollout_tokens": 16,
+    "seed": 42,
+    "annotation_version": 3,
+    "candidate_batch_size": 5
+  }
+}

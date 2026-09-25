@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "split": "validation",
+  "source": {
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/cura_astar_source/validation.jsonl",
+    "sha256": "eabf237194e571ac07f74c5c9844e9eb0606e1d9b42eb28cdd15fc9a410accf8"
+  },
+  "final_test": {
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/rad_benchmark/all.jsonl",
+    "sha256": "b2de6535c694c6472dc013c25bd392126682229aa166a2e64e862ec34fbb1723"
+  },
+  "excluded_final_test_overlap": 0,
+  "eligible_prompts": 800,
+  "candidate_rows": 800,
+  "candidate_successes": 800,
+  "labeled_rows": 800,
+  "preference_pairs": 737,
+  "generator": {
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/gpt2-large",
+    "config_sha256": "7fccdcfd6622055342a734c663ee0b61ff4fd697f42467595df0bf4448c8c170",
+    "weights": [
+      {
+        "name": "model.safetensors",
+        "bytes": 3247159078
+      }
+    ]
+  },
+  "teacher": {
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/sentiment-roberta-large-english",
+    "config_sha256": "a019c4e77e23d9d6daf514efd52bf7988ef63a4cf4f01cee85593dc74940fc58",
+    "weights": [
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 1421616707
+      }
+    ]
+  },
+  "final_evaluator": {
+    "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/distilbert-sst2",
+    "config_sha256": "582122c8f414793d131e10022ce9ba04e3811a9da6389137ee2f18665b4f4d15",
+    "weights": [
+      {
+        "name": "model.safetensors",
+        "bytes": 267832558
+      }
+    ]
+  },
+  "generation": {
+    "fingerprint": "sha256:e9e620d2f573489c0a5fd234adf06881e4bb434fc829e6094a5502b40a8b3f52",
+    "num_candidates": 8,
+    "max_new_tokens": 32,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 0,
+    "seed": 42
+  },
+  "pair_filter": {
+    "fingerprint": "sha256:2cde63d49d252071c9c5c60b3a2e7df6b1ded75d2c570c7643a68a26091871f4",
+    "min_chosen_score": 0.7,
+    "max_rejected_score": 0.3,
+    "min_score_margin": 0.4,
+    "max_length_ratio": 1.25
+  },
+  "outputs": {
+    "candidates": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/GenARM/sentiment_preferences/validation/candidates.jsonl",
+    "labeled_candidates": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/GenARM/sentiment_preferences/validation/labeled_candidates.jsonl",
+    "preferences": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/GenARM/sentiment_preferences/validation/preferences.jsonl"
+  }
+}

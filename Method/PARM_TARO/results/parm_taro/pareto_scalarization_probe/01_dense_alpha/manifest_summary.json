@@ -1,0 +1,143 @@
+{
+  "alphas": [
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.05,
+      0.95
+    ],
+    [
+      0.1,
+      0.9
+    ],
+    [
+      0.15,
+      0.85
+    ],
+    [
+      0.2,
+      0.8
+    ],
+    [
+      0.25,
+      0.75
+    ],
+    [
+      0.3,
+      0.7
+    ],
+    [
+      0.35,
+      0.65
+    ],
+    [
+      0.4,
+      0.6
+    ],
+    [
+      0.45,
+      0.55
+    ],
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.55,
+      0.45
+    ],
+    [
+      0.6,
+      0.4
+    ],
+    [
+      0.65,
+      0.35
+    ],
+    [
+      0.7,
+      0.3
+    ],
+    [
+      0.75,
+      0.25
+    ],
+    [
+      0.8,
+      0.2
+    ],
+    [
+      0.85,
+      0.15
+    ],
+    [
+      0.9,
+      0.1
+    ],
+    [
+      0.95,
+      0.05
+    ],
+    [
+      1.0,
+      0.0
+    ]
+  ],
+  "cases": 420,
+  "excluded_unique_prompt_hashes": 163,
+  "exclusion_sources": [
+    {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/feasibility60/manifest.jsonl",
+      "present": true,
+      "prompt_hashes": 12
+    },
+    {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/04_token_headroom/manifest.jsonl",
+      "present": true,
+      "prompt_hashes": 10
+    },
+    {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/05_rich_state_probe/feature_manifest.jsonl",
+      "present": true,
+      "prompt_hashes": 0
+    },
+    {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/06_lookahead_probe/manifest.jsonl",
+      "present": false,
+      "prompt_hashes": 0
+    },
+    {
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/07_disagreement_gate/manifest.jsonl",
+      "present": true,
+      "prompt_hashes": 156
+    }
+  ],
+  "fresh_prompts": 20,
+  "prompt_hashes": [
+    "cb16be305ce329bda82babf3a5f1e699c731055e3f03d7d65e5263699fe2e608",
+    "b843a5a29aa2981174c66be411b4d83dab45b0a5209363c854b1206f473b9d8d",
+    "a91c944fd08f24e6830fa7df1e8742dc459315b9953be1434b50b60351ac11c2",
+    "0956bee92c6f6122350677ce71222de01a83104ac719316f641ba3efe26282b8",
+    "2c2db4906ab75366804a87a07c4f46aa5258388a9ebafe53aa2389558e54a19a",
+    "c40d9c2f45dfdeac7d2d06ee22e6ee41fc202f59c664633db8dad140f848ff19",
+    "05e4842104587167eb3aac84c1fda10b8aa6268756ad5b1b69cab29d0485f44d",
+    "a9b843d72ee60a705532e91fa01af46c4b4dea747069c4913bb4e0f2d0d6fe9c",
+    "f56d84db78b8103d45cc4fc672a771a0f9de348889529a702d362a5d923535d4",
+    "07e295c4eb67803d4ef7f75bdb2170938998338c11817b293454843c3a1d72d6",
+    "d5db9ef2299a777ed21f070d46a6bab86faa7a7618a63f4da7f9b903c26c2b02",
+    "94aee0fae6efe061a50942509e694333134296f4ddafc435eef90ffde0877db9",
+    "aa6812390fd3c321db645cbd431bf93e812d74e334ba2e0b54f5da220dcd80e3",
+    "4bf471c62b83ce22199b85b9765a05be1f98a63df52bc8ca53bd7c7db0e3a12a",
+    "f339ce66e122885f2ef0e0d1bc99436db8e1674dc42610feb14b98d92110a2a9",
+    "63b87f1c30a9f6c3b14b381fea686df6c2caf79e037ea38c8d7e26fb08f1f528",
+    "d3f0df7a8f858700a79b0456f8511369eb81771aaf85d13c9c6f932a54d08140",
+    "474c232c61ee0d5548b1e0e0ce38b191931e8de78c5280e40274fe89fe29cff6",
+    "edc2d8eb7ed12fefcad4b47efea0398eda33d0d193b2cdd0b52e32c91ccd5533",
+    "05b2ef582bd88d7ecaab376a2d0f647348e7f857ea976acbafafe88e5b3710e7"
+  ],
+  "split": "validation",
+  "status": "PASS",
+  "test_set_used": false
+}

@@ -1,0 +1,34 @@
+{
+  "best_direct_score": {
+    "beneficial_decision_fraction": 0.6,
+    "defined_spearman_states": 64,
+    "fixed_w1_utility": 0.60178208149443,
+    "gain_over_fixed": 0.018321632251337205,
+    "harmful_decision_fraction": 0.4,
+    "horizon": 2,
+    "informative_pair_count": 296,
+    "intervention_rate": 0.546875,
+    "mean_defined_spearman": 0.0798611111111111,
+    "oracle_gap_capture": 0.32649799120087053,
+    "oracle_utility": 0.6578976863223484,
+    "pairwise_accuracy": 0.527027027027027,
+    "policy_utility": 0.6201037137457672,
+    "score_family": "base",
+    "selected_weight_distribution": "{\"0.0\": 34, \"0.5\": 1, \"1.0\": 29}",
+    "states": 64,
+    "subset": "actionable",
+    "top1_oracle_set_accuracy": 0.53125,
+    "top2_oracle_set_coverage": 0.640625,
+    "undefined_spearman_fraction": 0.0
+  },
+  "horizon_improvement": {
+    "best_long_horizon_pairwise": 0.527027027027027,
+    "h1_pairwise": 0.5608108108108109
+  },
+  "no_generation": true,
+  "no_learned_parameters": true,
+  "no_rescoring_with_beaver": true,
+  "primary_subset": "64 actionable states",
+  "status": "COMPLETE",
+  "verdict": "LOOKAHEAD_PARM_WEAK"
+}

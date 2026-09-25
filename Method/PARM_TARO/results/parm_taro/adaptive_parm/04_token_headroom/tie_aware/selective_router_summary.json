@@ -1,0 +1,149 @@
+{
+  "delta_grid": [
+    0.0,
+    0.0001,
+    0.0005,
+    0.001,
+    0.0025,
+    0.005,
+    0.01,
+    0.02,
+    0.05
+  ],
+  "delta_selection": "inner grouped OOF on outer-training prompts only",
+  "fixed_delta_sensitivity": {
+    "0.0": {
+      "fraction_harmful_interventions": 0.46808510638297873,
+      "gain_over_fixed": 0.0014875071369867543,
+      "intervention_rate": 0.188,
+      "mean_true_advantage_on_interventions": 0.007912272005248798,
+      "policy_mip": 0.608371188050839,
+      "selected_weight_distribution": {
+        "0.0": 42,
+        "0.75": 5,
+        "1.0": 203
+      }
+    },
+    "0.0001": {
+      "fraction_harmful_interventions": 0.46808510638297873,
+      "gain_over_fixed": 0.0014875071369867543,
+      "intervention_rate": 0.188,
+      "mean_true_advantage_on_interventions": 0.007912272005248798,
+      "policy_mip": 0.608371188050839,
+      "selected_weight_distribution": {
+        "0.0": 42,
+        "0.75": 5,
+        "1.0": 203
+      }
+    },
+    "0.0005": {
+      "fraction_harmful_interventions": 0.4782608695652174,
+      "gain_over_fixed": 0.0014875071369867543,
+      "intervention_rate": 0.184,
+      "mean_true_advantage_on_interventions": 0.008084277918406381,
+      "policy_mip": 0.608371188050839,
+      "selected_weight_distribution": {
+        "0.0": 42,
+        "0.75": 4,
+        "1.0": 204
+      }
+    },
+    "0.001": {
+      "fraction_harmful_interventions": 0.4782608695652174,
+      "gain_over_fixed": 0.0014875071369867543,
+      "intervention_rate": 0.184,
+      "mean_true_advantage_on_interventions": 0.008084277918406381,
+      "policy_mip": 0.608371188050839,
+      "selected_weight_distribution": {
+        "0.0": 42,
+        "0.75": 4,
+        "1.0": 204
+      }
+    },
+    "0.0025": {
+      "fraction_harmful_interventions": 0.4782608695652174,
+      "gain_over_fixed": 0.0014875071369867543,
+      "intervention_rate": 0.184,
+      "mean_true_advantage_on_interventions": 0.008084277918406381,
+      "policy_mip": 0.608371188050839,
+      "selected_weight_distribution": {
+        "0.0": 42,
+        "0.75": 4,
+        "1.0": 204
+      }
+    },
+    "0.005": {
+      "fraction_harmful_interventions": 0.4782608695652174,
+      "gain_over_fixed": 0.0014875071369867543,
+      "intervention_rate": 0.184,
+      "mean_true_advantage_on_interventions": 0.008084277918406381,
+      "policy_mip": 0.608371188050839,
+      "selected_weight_distribution": {
+        "0.0": 42,
+        "0.75": 4,
+        "1.0": 204
+      }
+    },
+    "0.01": {
+      "fraction_harmful_interventions": 0.4883720930232558,
+      "gain_over_fixed": 0.0016202822206999867,
+      "intervention_rate": 0.172,
+      "mean_true_advantage_on_interventions": 0.00942024546918625,
+      "policy_mip": 0.6085039631345522,
+      "selected_weight_distribution": {
+        "0.0": 40,
+        "0.75": 3,
+        "1.0": 207
+      }
+    },
+    "0.02": {
+      "fraction_harmful_interventions": 0.5294117647058824,
+      "gain_over_fixed": 0.0025244865313749365,
+      "intervention_rate": 0.136,
+      "mean_true_advantage_on_interventions": 0.018562400965992244,
+      "policy_mip": 0.6094081674452272,
+      "selected_weight_distribution": {
+        "0.0": 34,
+        "1.0": 216
+      }
+    },
+    "0.05": {
+      "fraction_harmful_interventions": 0.46153846153846156,
+      "gain_over_fixed": -0.0013352869415206303,
+      "intervention_rate": 0.052,
+      "mean_true_advantage_on_interventions": -0.025678595029243443,
+      "policy_mip": 0.6055483939723316,
+      "selected_weight_distribution": {
+        "0.0": 13,
+        "1.0": 237
+      }
+    }
+  },
+  "fixed_w1_mip": 0.6068836809138523,
+  "fraction_beneficial_interventions": 0.36363636363636365,
+  "fraction_harmful_interventions": 0.6060606060606061,
+  "generic_oracle_gap_capture": 0.3047074056154623,
+  "generic_policy_mip": 0.6112609840464366,
+  "intervention_rate": 0.132,
+  "mean_true_advantage_on_interventions": -0.03030183229731996,
+  "oracle_mip": 0.6212492757497994,
+  "oracle_set_accuracy": 0.824,
+  "scientific_verdict": "TOKEN_HEADROOM_EXISTS_BUT_NOT_PREDICTABLE",
+  "selected_delta_distribution": {
+    "0.001": 25,
+    "0.005": 25,
+    "0.01": 25,
+    "0.02": 125,
+    "0.05": 50
+  },
+  "selected_weight_distribution": {
+    "0.0": 32,
+    "0.75": 1,
+    "1.0": 217
+  },
+  "selective_gain_over_fixed": -0.003999841863246312,
+  "selective_oracle_gap_capture": -0.278432039113165,
+  "selective_policy_mip": 0.6028838390506059,
+  "selective_relative_gain_over_fixed": -0.00659078829937115,
+  "split": "nested leave-one-unique-prompt-out"
+}

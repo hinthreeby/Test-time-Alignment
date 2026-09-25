@@ -1,0 +1,69 @@
+{
+  "bootstrap_unit": "unique prompt",
+  "cases": 1000,
+  "greedy_gate_output_identical_to_base": true,
+  "normalization_source": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/evaluation/protocol/protocol_lock.json",
+  "per_alpha_comparison": [
+    {
+      "alpha_harmlessness": 1.0,
+      "alpha_helpfulness": 0.0,
+      "gate_mip": 0.6766000335754607,
+      "mip_difference": 0.026527936968023025,
+      "parm_fixed_mip": 0.6500720966074377,
+      "prompt_bootstrap_ci95": "[-0.0001017342629904505, 0.052784167205834155]"
+    },
+    {
+      "alpha_harmlessness": 0.75,
+      "alpha_helpfulness": 0.25,
+      "gate_mip": 0.6206954979219916,
+      "mip_difference": -0.00014312094634150174,
+      "parm_fixed_mip": 0.6208386188683331,
+      "prompt_bootstrap_ci95": "[-0.01982782366829048, 0.01929679609509214]"
+    },
+    {
+      "alpha_harmlessness": 0.5,
+      "alpha_helpfulness": 0.5,
+      "gate_mip": 0.5647909622685225,
+      "mip_difference": -0.037964352190960726,
+      "parm_fixed_mip": 0.6027553144594833,
+      "prompt_bootstrap_ci95": "[-0.05797067945900395, -0.018476567398060757]"
+    },
+    {
+      "alpha_harmlessness": 0.25,
+      "alpha_helpfulness": 0.75,
+      "gate_mip": 0.5088864266150533,
+      "mip_difference": -0.06603924477053336,
+      "parm_fixed_mip": 0.5749256713855867,
+      "prompt_bootstrap_ci95": "[-0.0910151102527306, -0.041571930566875484]"
+    },
+    {
+      "alpha_harmlessness": 0.0,
+      "alpha_helpfulness": 1.0,
+      "gate_mip": 0.45298189096158425,
+      "mip_difference": -0.11479944419724841,
+      "parm_fixed_mip": 0.5677813351588327,
+      "prompt_bootstrap_ci95": "[-0.14639812984367237, -0.0828313927803034]"
+    }
+  ],
+  "primary": {
+    "gate_hv": 0.3064875626336836,
+    "gate_latency_per_token": 0.06223726018520038,
+    "gate_mip": 0.5647909622685225,
+    "hv_difference": -0.06794154622041149,
+    "intervention_rate": 0.16063965300007382,
+    "latency_ratio": 1.643923233041183,
+    "mip_difference": -0.038483645027412194,
+    "parm_fixed_hv": 0.3744291088540951,
+    "parm_fixed_latency_per_token": 0.037858982058465274,
+    "parm_fixed_mip": 0.6032746072959347,
+    "prompt_bootstrap_ci95": [
+      -0.05749304594069633,
+      -0.019928065202511377
+    ]
+  },
+  "primary_gate_has_tuned_parameters": false,
+  "prompts": 200,
+  "records": 4000,
+  "status": "COMPLETE",
+  "verdict": "ADAPTIVE_PARM_NO_GO"
+}

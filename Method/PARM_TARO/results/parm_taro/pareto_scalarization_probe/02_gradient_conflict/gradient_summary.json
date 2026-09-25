@@ -1,0 +1,88 @@
+{
+  "adapter_sha256_before_after": "c0ee843c467e8d58f50c20280c8efe25da27c4d462036769feda6966abd4db4e",
+  "all_trainable_parameters_pblora": true,
+  "batch_size": 1,
+  "batches": 20,
+  "cancellation_by_alpha": {
+    "0.0": {
+      "mean": 0.899999988079071,
+      "median": 1.0,
+      "p25": 0.9999999403953552,
+      "p75": 1.0,
+      "std": 0.29999999602635796
+    },
+    "0.25": {
+      "mean": 0.9596168212592602,
+      "median": 0.9999999701976776,
+      "p25": 0.9999999105930328,
+      "p75": 1.0,
+      "std": 0.1756409021192768
+    },
+    "0.5": {
+      "mean": 0.9816025942564011,
+      "median": 1.0,
+      "p25": 0.9999999403953552,
+      "p75": 1.0,
+      "std": 0.08005669754762522
+    },
+    "0.75": {
+      "mean": 0.9930085122585297,
+      "median": 1.0,
+      "p25": 0.999999925494194,
+      "p75": 1.0,
+      "std": 0.030408532503749912
+    },
+    "1.0": {
+      "mean": 0.9499999850988388,
+      "median": 1.0,
+      "p25": 0.9999999403953552,
+      "p75": 1.0,
+      "std": 0.21794494375847434
+    }
+  },
+  "cosine_similarity": {
+    "mean": 0.501038313978443,
+    "median": 0.9999999516619884,
+    "p25": 0.0,
+    "p75": 1.0000000110282365,
+    "std": 0.7336020791486549
+  },
+  "fraction_cosine_below_zero": 0.2,
+  "memory": {
+    "after_release": {
+      "free_mib": 26240,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 5870,
+      "utilization_pct": 25
+    },
+    "loaded": {
+      "free_mib": 26276,
+      "gpu_name": "NVIDIA GeForce RTX 5090",
+      "total_mib": 32607,
+      "used_mib": 5834,
+      "utilization_pct": 7
+    }
+  },
+  "norm_help": {
+    "mean": 76.16232617929708,
+    "median": 74.75740623474121,
+    "p25": 0.06658174376934767,
+    "p75": 134.40968322753906,
+    "std": 77.24713958026733
+  },
+  "norm_safe": {
+    "mean": 95.09901540070423,
+    "median": 74.75740623474121,
+    "p25": 0.06658174376934767,
+    "p75": 154.32530212402344,
+    "std": 104.94415754543934
+  },
+  "optimizer_steps": 0,
+  "preference_used_for_conditioning": [
+    0.5,
+    0.5
+  ],
+  "status": "COMPLETE",
+  "trainable_parameter_count": 6296064
+}

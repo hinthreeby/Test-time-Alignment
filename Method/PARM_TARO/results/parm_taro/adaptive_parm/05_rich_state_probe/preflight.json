@@ -1,0 +1,40 @@
+{
+  "causal_prefix_schema": true,
+  "checks": {
+    "adapter": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/final_checkpoint/adapter_model.safetensors",
+      "readable": true
+    },
+    "advantage_dataset": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/04_token_headroom/tie_aware/advantage_dataset.csv",
+      "readable": true
+    },
+    "base_model": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/models/tulu-2-7b",
+      "readable": true
+    },
+    "state_features": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/04_token_headroom/state_features.csv",
+      "readable": true
+    },
+    "state_utility": {
+      "exists": true,
+      "path": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/adaptive_parm/04_token_headroom/state_utility.csv",
+      "readable": true
+    }
+  },
+  "loads_model": false,
+  "phases": [
+    "extract frozen features on GPU",
+    "terminate extractor process",
+    "grouped CPU analysis"
+  ],
+  "states": 250,
+  "status": "PASS",
+  "unique_prompts": 10,
+  "utility_rows": 1250
+}

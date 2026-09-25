@@ -6,16 +6,22 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import torch
 
 from Method.CURA.core.cache_io import SCHEMA_VERSION, ShardedCuraDataset, atomic_json, atomic_shard, verify_cache
 from Method.CURA.core.features import controller_features
 from Method.CURA.core.fusion import fuse_policies
-from Method.CURA.models.calibrator import HeteroscedasticSignalCalibrator, RobustSignalCalibrator
+from Method.CURA.models.calibrator import (
+    HeteroscedasticSignalCalibrator, RobustSignalCalibrator, StableRobustSignalCalibrator,
+)
 from Method.CURA.models.controller import CuraController
 from Method.CURA.core.train import collate, compute_loss
 from Method.CURA.core.config import load_config
+from Method.CURA.core.audit_signals import artifact_path, audit
+from Method.CURA.core.annotate_targets import annotate_row
+from Method.CURA.core.generate import apply_inference_overrides
 
 
 class CuraMathTests(unittest.TestCase):
@@ -40,6 +46,25 @@ class CuraMathTests(unittest.TestCase):
         self.assertTrue(torch.isfinite(log_var).all())
         self.assertGreater(float(log_var.var(dim=1).mean()), 0.0)
 
+    def test_stable_calibrator_bounds_degenerate_scores(self):
+        calibrator = StableRobustSignalCalibrator(2, z_clip=6.0)
+        raw = torch.zeros(1, 10, 2)
+        raw[0, -1, 0] = 1e6
+        mu, log_var = calibrator(raw, torch.ones(1, 2, dtype=torch.bool))
+        self.assertTrue(torch.isfinite(mu).all())
+        self.assertTrue(torch.isfinite(log_var).all())
+        self.assertLessEqual(float(mu.abs().max()), 6.0)
+
+    def test_disagreement_clip_limits_penalty(self):
+        output = self.controller(self.features, self.mask)
+        extreme = self.mu.clone()
+        extreme[:, 0, 0] = 1e6
+        fused = fuse_policies(
+            self.base, extreme, self.log_var, output,
+            disagreement_penalty=0.1, disagreement_clip=4.0,
+        )
+        self.assertLessEqual(float(fused["disagreement"].max()), 4.0)
+
     def test_controller_ranges(self):
         output = self.controller(self.features, self.mask)
         torch.testing.assert_close(output["weights"].sum(-1), torch.ones(3))
@@ -53,13 +78,43 @@ class CuraMathTests(unittest.TestCase):
         output = self.controller(self.features, self.mask)
         fused = fuse_policies(self.base, self.mu, self.log_var, output, epsilon_kl=0.05)
         self.assertTrue((fused["kl"] <= 0.05001).all())
+        self.assertTrue((fused["pre_projection_kl"] >= fused["kl"] - 1e-7).all())
+        torch.testing.assert_close(fused["kl_limit_hit"], fused["pre_projection_kl"] > 0.05)
         torch.testing.assert_close(fused["probabilities"].sum(-1), torch.ones(3))
+
+    def test_fixed_strength_is_reported_and_only_changed_by_kl_projection(self):
+        output = self.controller(self.features, self.mask)
+        output["strength"] = torch.full_like(output["strength"], 4.0)
+        unbounded = fuse_policies(self.base, self.mu, self.log_var, output, epsilon_kl=None)
+        torch.testing.assert_close(unbounded["requested_strength"], torch.full((3,), 4.0))
+        torch.testing.assert_close(unbounded["projected_strength"], torch.full((3,), 4.0))
+        self.assertFalse(unbounded["kl_limit_hit"].any())
+
+        bounded = fuse_policies(self.base, self.mu, self.log_var, output, epsilon_kl=1e-4)
+        torch.testing.assert_close(bounded["requested_strength"], torch.full((3,), 4.0))
+        self.assertTrue(bounded["kl_limit_hit"].any())
+        self.assertTrue((bounded["projected_strength"] <= bounded["requested_strength"]).all())
 
     def test_zero_gate_equals_base(self):
         output = self.controller(self.features, self.mask)
         output["gate"] = torch.zeros_like(output["gate"])
         fused = fuse_policies(self.base, self.mu, self.log_var, output)
         torch.testing.assert_close(fused["probabilities"], torch.softmax(self.base, -1))
+
+    def test_fixed_gate_override_preserves_strength(self):
+        output = self.controller(self.features, self.mask)
+        original_strength = output["strength"].clone()
+        args = SimpleNamespace(ablation="none", fixed_gate=0.75, fixed_lambda=None)
+        overridden = apply_inference_overrides(output, args)
+        torch.testing.assert_close(overridden["gate"], torch.full((3,), 0.75))
+        torch.testing.assert_close(overridden["strength"], original_strength)
+
+    def test_no_gate_override_takes_full_guided_policy(self):
+        output = self.controller(self.features, self.mask)
+        args = SimpleNamespace(ablation="no-gate", fixed_gate=None, fixed_lambda=3.0)
+        overridden = apply_inference_overrides(output, args)
+        torch.testing.assert_close(overridden["gate"], torch.ones(3))
+        torch.testing.assert_close(overridden["strength"], torch.full((3,), 3.0))
 
     def test_training_step_updates_controller(self):
         config, _ = load_config("Method/CURA/configs/sentiment.json")
@@ -101,11 +156,108 @@ class CuraMathTests(unittest.TestCase):
         loss.backward()
         self.assertTrue(torch.isfinite(loss))
         self.assertGreater(float(pieces["preference"]), 0.0)
+        self.assertGreaterEqual(float(pieces["utility"]), 0.0)
         self.assertIsNotNone(calibrator.networks[0][0].weight.grad)
         self.assertIsNotNone(controller.selector[-1].weight.grad)
 
+    def test_paper_loss_ignores_gold_outside_natural_top_k(self):
+        config, _ = load_config("Method/CURA/configs/sentiment_paper.json")
+        rows = [{
+            "base_logits": torch.randn(6), "raw_scores": torch.randn(3, 6),
+            "signal_mask": torch.ones(3, dtype=torch.bool), "gold_index": 0,
+            "gold_in_top_k": False, "position": 0, "step": 0, "prefix_length": 8,
+            "target_utilities": torch.linspace(0, 1, 6),
+        } for _ in range(2)]
+        batch = collate(rows)
+        calibrator = HeteroscedasticSignalCalibrator(3, hidden_dim=8)
+        mu, log_var = calibrator(batch["raw_scores"], batch["signal_mask"])
+        features = controller_features(batch["base_logits"], mu, log_var, batch["signal_mask"])
+        controller = CuraController(3, features.size(-1), hidden_dim=16, dropout=0.0, signal_costs=[1, .8, 1.1])
+        loss, pieces = compute_loss(batch, calibrator, controller, config, torch.device("cpu"))
+        self.assertTrue(torch.isfinite(loss))
+        self.assertEqual(float(pieces["nll"]), 0.0)
+        self.assertGreater(float(pieces["utility"]), 0.0)
+
+    def test_astar_two_signal_loss_is_finite(self):
+        config, _ = load_config("Method/CURA/configs/sentiment_astar.json")
+        self.assertEqual(config["signals"], ["rad", "cdq"])
+        rows = [{
+            "base_logits": torch.randn(8), "raw_scores": torch.randn(2, 8),
+            "signal_mask": torch.ones(2, dtype=torch.bool), "gold_index": 0,
+            "gold_in_top_k": True, "position": index, "step": index, "prefix_length": 10,
+            "target_utilities": torch.rand(8),
+        } for index in range(3)]
+        batch = collate(rows)
+        calibrator = HeteroscedasticSignalCalibrator(2, hidden_dim=8)
+        mu, log_var = calibrator(batch["raw_scores"], batch["signal_mask"])
+        features = controller_features(batch["base_logits"], mu, log_var, batch["signal_mask"])
+        controller = CuraController(2, features.size(-1), hidden_dim=16, dropout=0.0, signal_costs=[1, .8])
+        loss, pieces = compute_loss(batch, calibrator, controller, config, torch.device("cpu"))
+        loss.backward()
+        self.assertTrue(torch.isfinite(loss))
+        self.assertGreater(float(pieces["utility"]), 0.0)
+
+    def test_sentiment_genarm_config_uses_new_artifact(self):
+        config, _ = load_config("Method/CURA/configs/sentiment_astar_genarm.json")
+        self.assertEqual(config["signals"], ["rad", "cdq", "genarm"])
+        self.assertEqual(config["signal_objectives"]["genarm"], "sentiment")
+        self.assertEqual(
+            config["signal_adapter_configs"]["genarm"]["arm_model"],
+            "genarm-gpt2-small-sentiment",
+        )
+        self.assertEqual(
+            artifact_path(config, "genarm").name,
+            "genarm-gpt2-small-sentiment",
+        )
+        self.assertTrue(audit(config)["valid"])
+
 
 class CuraCacheTests(unittest.TestCase):
+    def test_rollout_targets_score_response_without_prompt(self):
+        class BaseModel:
+            def generate(self, initial, **kwargs):
+                suffix = torch.full((initial.size(0), 1), 9, dtype=initial.dtype)
+                return torch.cat([initial, suffix], dim=1)
+
+        class BaseTokenizer:
+            eos_token_id = 0
+
+            def __init__(self):
+                self.decoded = []
+
+            def batch_decode(self, rows, **kwargs):
+                self.decoded = [row.tolist() for row in rows]
+                return [" ".join(map(str, row)) for row in self.decoded]
+
+        class Encoded(dict):
+            def to(self, device):
+                return self
+
+        class EvaluatorTokenizer:
+            def __call__(self, texts, **kwargs):
+                return Encoded(input_ids=torch.ones(len(texts), 2, dtype=torch.long))
+
+        class Evaluator:
+            def __call__(self, **kwargs):
+                count = kwargs["input_ids"].size(0)
+                return SimpleNamespace(logits=torch.tensor([[0.0, 1.0]]).repeat(count, 1))
+
+        tokenizer = BaseTokenizer()
+        row = {
+            "prompt_id": "p0", "step": 2,
+            "prefix_token_ids": torch.tensor([100, 101, 7, 8]),
+            "candidate_token_ids": torch.tensor([1, 2]),
+        }
+        args = SimpleNamespace(
+            candidate_batch_size=10, rollouts=1, seed=42, rollout_tokens=1,
+            top_p=0.95, temperature=1.0, positive_label=1,
+        )
+        annotated = annotate_row(
+            row, BaseModel(), tokenizer, Evaluator(), EvaluatorTokenizer(), args, torch.device("cpu")
+        )
+        self.assertEqual(tokenizer.decoded, [[7, 8, 1, 9], [7, 8, 2, 9]])
+        self.assertEqual(annotated["target_utilities"].numel(), 2)
+
     def test_atomic_shard_verify_and_lazy_read(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

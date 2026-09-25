@@ -17,15 +17,24 @@ def _policies(base_logits, risk_reward, strength, gate):
 
 
 def fuse_policies(base_logits, mu, log_var, output, kappa=0.5, disagreement_penalty=0.1,
-                  epsilon_kl=0.15, projection_steps=16):
+                  epsilon_kl=0.15, projection_steps=16, disagreement_clip=None):
     weights = output["weights"]
     disagreement, step_disagreement = weighted_disagreement(mu, weights)
+    if disagreement_clip is not None:
+        disagreement = disagreement.clamp_max(float(disagreement_clip))
+        step_disagreement = disagreement.mean(dim=-1)
     adjusted = mu - float(kappa) * torch.sqrt(log_var.exp().clamp_min(1e-8))
     risk_reward = (weights.unsqueeze(1) * adjusted).sum(-1) - float(disagreement_penalty) * disagreement
     strength = output["strength"]
+    requested_strength = strength
     gate = output["gate"]
     p_base, p_guided, p_final = _policies(base_logits, risk_reward, strength, gate)
     kl = categorical_kl(p_final, p_base)
+    pre_projection_kl = kl
+    kl_limit_hit = (
+        torch.zeros_like(kl, dtype=torch.bool)
+        if epsilon_kl is None else kl > float(epsilon_kl)
+    )
 
     # Project by shrinking reward strength; differentiable unprojected path is used when feasible.
     if epsilon_kl is not None and (kl > epsilon_kl).any():
@@ -47,5 +56,8 @@ def fuse_policies(base_logits, mu, log_var, output, kappa=0.5, disagreement_pena
         "disagreement": disagreement,
         "step_disagreement": step_disagreement,
         "kl": kl,
+        "pre_projection_kl": pre_projection_kl,
+        "kl_limit_hit": kl_limit_hit,
+        "requested_strength": requested_strength,
         "projected_strength": strength,
     }

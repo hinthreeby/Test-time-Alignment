@@ -15,7 +15,7 @@ _ROOT = Path(__file__).resolve().parents[3]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from Method.CURA.core.audit_signals import ARTIFACTS, audit
+from Method.CURA.core.audit_signals import artifact_path, audit
 from Method.CURA.core.cache_io import (
     SCHEMA_VERSION, atomic_json, atomic_shard, fingerprint, read_manifest, sha256_file, verify_cache,
 )
@@ -37,7 +37,7 @@ def text(value):
 def config_fingerprint(config, args):
     artifacts = {}
     for signal in config["signals"]:
-        path = PROJECT_ROOT / ARTIFACTS[signal]
+        path = artifact_path(config, signal)
         if path.is_dir():
             files = sorted(
                 (str(item.relative_to(path)), item.stat().st_size, item.stat().st_mtime_ns)
@@ -55,6 +55,7 @@ def config_fingerprint(config, args):
         "top_k": args.top_k, "max_response_tokens": args.max_response_tokens,
         "max_samples": args.max_samples, "shard_size": args.shard_size,
         "dtype": config["cache"]["dtype"], "paper_mode": config.get("paper_mode", False),
+        "candidate_support": "natural_topk_v1" if config.get("paper_mode") else "teacher_forced_gold_v1",
         "tokenization_mismatch_threshold": config.get("tokenization_mismatch_threshold"),
         "artifacts": artifacts,
     })
@@ -82,8 +83,13 @@ def build_prompt_rows(sample, index, base, adapters, args, config):
         )[0]
         gold_id = int(gold_token)
         matches = (candidate_ids == gold_id).nonzero(as_tuple=False)
-        gold_index = int(matches[0]) if len(matches) else args.top_k - 1
-        if not len(matches):
+        gold_in_top_k = bool(len(matches))
+        gold_index = int(matches[0]) if gold_in_top_k else 0
+        # Teacher-forced MVP training needs the gold token in its support. Paper
+        # training uses rollout utilities, so retaining the natural top-k avoids
+        # a train/inference candidate-set mismatch.
+        if not gold_in_top_k and not config.get("paper_mode"):
+            gold_index = args.top_k - 1
             candidate_ids[-1], top_logits[-1] = gold_id, full_logits[gold_id]
         candidate_text = base.tokenizer.batch_decode(candidate_ids)
         prefix_text = base.tokenizer.decode(prefix_ids[0], skip_special_tokens=True)
@@ -121,7 +127,8 @@ def build_prompt_rows(sample, index, base, adapters, args, config):
             "tokenization_mismatch": [output.metadata.get("tokenization_mismatch", False) for output in outputs],
             "tokenization_mismatch_rate": [output.metadata.get("tokenization_mismatch_rate", 0.0) for output in outputs],
             "candidate_mapping": [output.metadata.get("candidate_mapping") for output in outputs],
-            "gold_index": gold_index, "target_utilities": None, "preference_alpha": None,
+            "gold_index": gold_index, "gold_in_top_k": gold_in_top_k,
+            "target_utilities": None, "preference_alpha": None,
             "position": step, "prefix_length": prefix_ids.size(1),
         }
         if config["cache"].get("store_text"):
@@ -138,7 +145,11 @@ def initial_manifest(args, config, dataset_path, dataset_sha, cfg_fingerprint, t
         "dataset_fingerprint": "sha256:" + dataset_sha,
         "config_fingerprint": cfg_fingerprint, "signals": config["signals"],
         "objective": config["objective"], "base_model": config["base_model"],
+        "signal_artifacts": {
+            signal: str(artifact_path(config, signal)) for signal in config["signals"]
+        },
         "paper_mode": config.get("paper_mode", False), "score_directions": config["score_directions"],
+        "candidate_support": "natural_topk_v1" if config.get("paper_mode") else "teacher_forced_gold_v1",
         "tokenization_mismatch_threshold": config.get("tokenization_mismatch_threshold", 0.05),
         "top_k": args.top_k,
         "max_response_tokens": args.max_response_tokens, "shard_size": args.shard_size,

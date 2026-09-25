@@ -42,6 +42,8 @@ def collate(rows):
         "raw_scores": torch.stack([row["raw_scores"].float().transpose(0, 1) for row in rows]),
         "signal_mask": torch.stack([row["signal_mask"].bool() for row in rows]),
         "gold_index": torch.tensor([row["gold_index"] for row in rows], dtype=torch.long),
+        "gold_in_top_k": torch.tensor([row.get("gold_in_top_k", True) for row in rows], dtype=torch.bool),
+        "gold_in_top_k_known": torch.tensor(["gold_in_top_k" in row for row in rows], dtype=torch.bool),
         "position": positions,
         "prefix_length": prefix_lengths,
         "base_routing_features": routing_features,
@@ -57,7 +59,9 @@ def resolve(path):
 
 def validate_cache(cache_dir, config, expected_split, allow_incomplete=False):
     report = verify_cache(cache_dir)
-    dataset = ShardedCuraDataset(cache_dir)
+    # Random shuffling and a one-shard lazy cache cause almost every sample to
+    # reload a ~9 MB file. These training caches are small enough to keep in RAM.
+    dataset = ShardedCuraDataset(cache_dir, preload=True)
     manifest = dataset.manifest
     errors = []
     if manifest.get("schema_version") != 2:
@@ -70,6 +74,8 @@ def validate_cache(cache_dir, config, expected_split, allow_incomplete=False):
         errors.append(f"expected {expected_split} split, got {manifest.get('split')}")
     if config.get("paper_mode") and not manifest.get("paper_mode"):
         errors.append("paper training requires a cache built in paper mode")
+    if config.get("paper_mode") and manifest.get("candidate_support") != "natural_topk_v1":
+        errors.append("paper training requires natural_topk_v1 candidate support")
     if manifest.get("status") != "complete" and not allow_incomplete:
         errors.append("cache is not complete")
     if manifest.get("failed_prompt_ids") and not allow_incomplete:
@@ -115,14 +121,21 @@ def compute_loss(batch, calibrator, controller, config, device):
     output = controller(features, mask)
     cfg = config["controller"]
     fused = fuse_policies(
-        base, mu, log_var, output, cfg["kappa"], cfg["disagreement_penalty"], cfg["epsilon_kl"]
+        base, mu, log_var, output, cfg["kappa"], cfg["disagreement_penalty"], cfg["epsilon_kl"],
+        disagreement_clip=cfg.get("disagreement_clip"),
     )
-    token_nll = -fused["probabilities"].gather(1, gold.unsqueeze(1)).clamp_min(1e-8).log().mean()
+    token_losses = -fused["probabilities"].gather(1, gold.unsqueeze(1)).clamp_min(1e-8).log().squeeze(1)
+    if config["training"].get("ignore_forced_gold", False):
+        natural_gold = batch["gold_in_top_k"].to(device)
+        token_nll = token_losses[natural_gold].mean() if natural_gold.any() else token_losses.sum() * 0.0
+    else:
+        token_nll = token_losses.mean()
     cost = (output["weights"] * controller.signal_costs).sum(-1).mean()
     settings = config["training"]
     preference = torch.zeros((), device=device)
     calibration = torch.zeros((), device=device)
     selector = torch.zeros((), device=device)
+    utility_regret = torch.zeros((), device=device)
     if has_targets.any():
         selected_targets = targets[has_targets]
         selected_mu, selected_log_var = mu[has_targets], log_var[has_targets]
@@ -133,6 +146,8 @@ def compute_loss(batch, calibrator, controller, config, device):
         )
         calibration = calibration_terms.masked_select(selected_mask.unsqueeze(1).expand_as(calibration_terms)).mean()
         probabilities = fused["probabilities"][has_targets]
+        expected_utility = (probabilities * selected_targets).sum(-1)
+        utility_regret = (selected_targets.max(-1).values - expected_utility).mean()
         chosen, rejected = selected_targets.argmax(-1), selected_targets.argmin(-1)
         logp = probabilities.clamp_min(1e-8).log()
         margin = logp.gather(1, chosen.unsqueeze(1)) - logp.gather(1, rejected.unsqueeze(1))
@@ -154,14 +169,19 @@ def compute_loss(batch, calibrator, controller, config, device):
             - settings.get("gate_disagreement_penalty", 0.05) * fused["step_disagreement"][has_targets]
         ) / settings.get("gate_temperature", 0.1)
         gate_target = torch.sigmoid(gate_logit).detach()
-        gate_loss = torch.nn.functional.binary_cross_entropy(output["gate"][has_targets], gate_target)
+        gate_loss = torch.nn.functional.binary_cross_entropy_with_logits(
+            output["gate_logits"][has_targets], gate_target
+        )
     else:
         uncertainty = log_var.exp().mean((1, 2)).detach()
         disagreement = fused["step_disagreement"].detach()
         uncertain = ((uncertainty > uncertainty.median()) | (disagreement > disagreement.median())).float()
-        gate_loss = torch.nn.functional.binary_cross_entropy(output["gate"], 1.0 - uncertain)
+        gate_loss = torch.nn.functional.binary_cross_entropy_with_logits(
+            output["gate_logits"], 1.0 - uncertain
+        )
     loss = (
         settings.get("gamma_nll", 1.0) * token_nll
+        + settings.get("gamma_utility", 0.0) * utility_regret
         + settings.get("gamma_pref", 0.0) * preference
         + settings.get("gamma_cal", 0.0) * calibration
         + settings["gamma_kl"] * fused["kl"].mean()
@@ -169,7 +189,8 @@ def compute_loss(batch, calibrator, controller, config, device):
         + settings.get("gamma_selector", 0.0) * selector
     )
     return loss, {
-        "nll": token_nll, "preference": preference, "calibration": calibration,
+        "nll": token_nll, "utility": utility_regret,
+        "preference": preference, "calibration": calibration,
         "kl": fused["kl"].mean(), "cost": cost, "gate": gate_loss, "selector": selector,
     }
 
@@ -177,7 +198,7 @@ def compute_loss(batch, calibrator, controller, config, device):
 @torch.no_grad()
 def evaluate(loader, calibrator, controller, config, device, use_amp):
     controller.eval()
-    totals = {name: 0.0 for name in ("loss", "nll", "preference", "calibration", "kl", "cost", "gate", "selector")}
+    totals = {name: 0.0 for name in ("loss", "nll", "utility", "preference", "calibration", "kl", "cost", "gate", "selector")}
     count = 0
     for batch in loader:
         with torch.autocast(device_type=device.type, enabled=use_amp, dtype=torch.float16):
@@ -191,13 +212,14 @@ def evaluate(loader, calibrator, controller, config, device, use_amp):
 
 
 def checkpoint_payload(config, config_path, feature_dim, controller, calibrator, optimizer, scaler,
-                       epoch, best_validation_loss, history):
+                       epoch, best_validation_loss, history, data_provenance=None):
     return {
         "schema_version": 1, "method": "cura", "config": config, "config_path": str(config_path),
         "signals": config["signals"], "feature_dim": feature_dim, "epoch": epoch,
         "best_validation_loss": best_validation_loss, "history": history,
         "controller_state_dict": controller.state_dict(), "calibrator_state_dict": calibrator.state_dict(),
         "optimizer_state_dict": optimizer.state_dict(), "scaler_state_dict": scaler.state_dict(),
+        "data_provenance": data_provenance or {},
     }
 
 
@@ -249,12 +271,24 @@ def main():
         num_workers=settings.get("num_workers", 0), pin_memory=device.type == "cuda"
     )
     calibrator, controller, feature_dim = build_components(config, train_data[0], device)
+    data_provenance = {
+        "train": {
+            "dataset_fingerprint": train_data.manifest.get("dataset_fingerprint"),
+            "config_fingerprint": train_data.manifest.get("config_fingerprint"),
+            "target_utility": train_data.manifest.get("target_utility"),
+        },
+        "validation": {
+            "dataset_fingerprint": validation_data.manifest.get("dataset_fingerprint"),
+            "config_fingerprint": validation_data.manifest.get("config_fingerprint"),
+            "target_utility": validation_data.manifest.get("target_utility"),
+        },
+    }
     optimizer = torch.optim.AdamW(
         list(controller.parameters()) + list(calibrator.parameters()),
         lr=settings["lr"], weight_decay=settings["weight_decay"]
     )
     use_amp = device.type == "cuda" and settings.get("mixed_precision", True)
-    scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+    scaler = torch.amp.GradScaler(device.type, enabled=use_amp)
     output_path = resolve(args.output)
     latest_path = output_path.with_name(output_path.stem + ".latest" + output_path.suffix)
     start_epoch, best_validation_loss, history = 1, float("inf"), []
@@ -278,7 +312,7 @@ def main():
     }, indent=2))
     for epoch in range(start_epoch, settings["epochs"] + 1):
         controller.train()
-        totals = {name: 0.0 for name in ("loss", "nll", "preference", "calibration", "kl", "cost", "gate", "selector")}
+        totals = {name: 0.0 for name in ("loss", "nll", "utility", "preference", "calibration", "kl", "cost", "gate", "selector")}
         count = 0
         for batch in tqdm(train_loader, desc=f"CURA epoch {epoch}/{settings['epochs']}"):
             optimizer.zero_grad(set_to_none=True)
@@ -302,7 +336,7 @@ def main():
             best_validation_loss = validation_metrics["loss"]
         payload = checkpoint_payload(
             config, config_path, feature_dim, controller, calibrator, optimizer, scaler,
-            epoch, best_validation_loss, history
+            epoch, best_validation_loss, history, data_provenance
         )
         atomic_torch_save(payload, latest_path)
         if improved:

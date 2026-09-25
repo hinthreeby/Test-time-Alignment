@@ -13,35 +13,50 @@ if str(_ROOT) not in sys.path:
 def validate_records(path, require_real_signals=False, require_objective_match=False,
                      require_calibration=False, paper_mode=False, mismatch_threshold=0.05):
     records, errors = [], []
-    with Path(path).open(encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, 1):
-            if not line.strip():
-                continue
-            try:
-                row = json.loads(line)
-                records.append(row)
-                sources = row.get("signal_sources", [])
-                objectives = row.get("signal_objectives", {})
-                if row.get("status") != "success":
-                    errors.append(f"line {line_number}: generation not successful")
-                if require_real_signals and any("fallback" in source for source in sources):
-                    errors.append(f"line {line_number}: fallback signal present")
-                if require_objective_match and any(value != row.get("objective") for value in objectives.values()):
-                    errors.append(f"line {line_number}: objective mismatch")
-                if require_calibration and not row.get("calibration_mode"):
-                    errors.append(f"line {line_number}: calibration metadata absent")
-                if paper_mode:
-                    if row.get("calibration_mode") != "learned_heteroscedastic":
-                        errors.append(f"line {line_number}: learned calibration required")
-                    if row.get("ablation", "none") != "none":
-                        errors.append(f"line {line_number}: ablation output is not a main paper run")
-                    if not row.get("checkpoint_sha256") or not row.get("config_fingerprint"):
-                        errors.append(f"line {line_number}: reproducibility provenance absent")
-                    rates = row.get("tokenization_mismatch_rate", {})
-                    if any(float(rate) > mismatch_threshold for rate in rates.values()):
-                        errors.append(f"line {line_number}: tokenizer mismatch exceeds threshold")
-            except Exception as error:
-                errors.append(f"line {line_number}: {type(error).__name__}: {error}")
+    content = Path(path).read_text(encoding="utf-8").strip()
+    if not content:
+        rows = []
+    else:
+        try:
+            payload = json.loads(content)
+            rows = payload if isinstance(payload, list) else [payload]
+        except json.JSONDecodeError:
+            rows = [line for line in content.splitlines() if line.strip()]
+    for line_number, item in enumerate(rows, 1):
+        try:
+            row = json.loads(item) if isinstance(item, str) else item
+            if not isinstance(row, dict):
+                raise TypeError("record is not a JSON object")
+            records.append(row)
+            sources = row.get("signal_sources", [])
+            objectives = row.get("signal_objectives", {})
+            if row.get("status") != "success":
+                errors.append(f"record {line_number}: generation not successful")
+            if require_real_signals and any("fallback" in source for source in sources):
+                errors.append(f"record {line_number}: fallback signal present")
+            if require_objective_match and any(value != row.get("objective") for value in objectives.values()):
+                errors.append(f"record {line_number}: objective mismatch")
+            if require_calibration and not row.get("calibration_mode"):
+                errors.append(f"record {line_number}: calibration metadata absent")
+            if paper_mode:
+                if not row.get("paper_mode"):
+                    errors.append(f"record {line_number}: checkpoint was not trained in paper mode")
+                if row.get("calibration_mode") != "learned_heteroscedastic":
+                    errors.append(f"record {line_number}: learned calibration required")
+                if row.get("ablation", "none") != "none":
+                    errors.append(f"record {line_number}: ablation output is not a main paper run")
+                if not row.get("checkpoint_sha256") or not row.get("config_fingerprint"):
+                    errors.append(f"record {line_number}: reproducibility provenance absent")
+                provenance = row.get("training_data_provenance", {})
+                for split in ("train", "validation"):
+                    target = provenance.get(split, {}).get("target_utility") or {}
+                    if target.get("status") != "complete":
+                        errors.append(f"record {line_number}: {split} rollout targets are not complete")
+                rates = row.get("tokenization_mismatch_rate", {})
+                if any(float(rate) > mismatch_threshold + 1e-12 for rate in rates.values()):
+                    errors.append(f"record {line_number}: tokenizer mismatch exceeds threshold")
+        except Exception as error:
+            errors.append(f"record {line_number}: {type(error).__name__}: {error}")
     return {"valid": not errors, "records": len(records), "errors": errors[:100]}
 
 

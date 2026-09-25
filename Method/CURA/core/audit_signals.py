@@ -20,10 +20,16 @@ ARTIFACTS = {
 }
 
 
+def artifact_path(config, signal):
+    configured = config.get("signal_artifacts", {}).get(signal, ARTIFACTS[signal])
+    path = Path(configured)
+    return path if path.is_absolute() else PROJECT_ROOT / path
+
+
 def audit(config):
     artifacts = {}
     for signal in config["signals"]:
-        path = PROJECT_ROOT / ARTIFACTS[signal]
+        path = artifact_path(config, signal)
         artifacts[signal] = {"path": str(path), "exists": path.exists()}
     mismatches = objective_mismatches(config)
     errors = [f"missing checkpoint for {name}" for name, item in artifacts.items() if not item["exists"]]

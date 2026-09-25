@@ -1,0 +1,32 @@
+{
+  "alphas": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.75,
+      0.25
+    ],
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.25,
+      0.75
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "cases": 1000,
+  "excluded_diagnostic_prompts": 12,
+  "selection": "first 200 validation prompts after excluding every Feasibility60 diagnostic prompt",
+  "source": "/home/jupyter-iec2024se10/Test-time-Alignment/dataset/parm_taro/validation.json",
+  "split": "validation",
+  "status": "PASS",
+  "test_set_used": false,
+  "unique_prompts": 200
+}

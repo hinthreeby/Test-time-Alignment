@@ -8,6 +8,7 @@
   },
   "training": {
     "gamma_nll": 0.25,
+    "gamma_utility": 1.0,
     "gamma_pref": 1.0,
     "gamma_cal": 1.0,
     "gamma_kl": 0.1,
@@ -19,6 +20,7 @@
     "selector_cost_weight": 0.01,
     "gate_temperature": 0.1,
     "gate_uncertainty_penalty": 0.05,
-    "gate_disagreement_penalty": 0.05
+    "gate_disagreement_penalty": 0.05,
+    "ignore_forced_gold": true
   }
 }

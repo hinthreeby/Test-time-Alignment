@@ -1,0 +1,43 @@
+{
+  "extends": "sentiment_paper.json",
+  "signals": ["rad", "cdq", "genarm"],
+  "objective": "sentiment",
+  "signal_objectives": {
+    "rad": "sentiment",
+    "cdq": "sentiment",
+    "genarm": "sentiment"
+  },
+  "score_directions": {
+    "rad": "higher_is_better",
+    "cdq": "higher_is_better",
+    "genarm": "higher_is_better"
+  },
+  "signal_artifacts": {
+    "genarm": "models/genarm-gpt2-small-sentiment"
+  },
+  "signal_adapter_configs": {
+    "genarm": {
+      "arm_model": "genarm-gpt2-small-sentiment"
+    }
+  },
+  "controller": {
+    "lambda_max": 6.0,
+    "kappa": 0.25,
+    "disagreement_penalty": 0.05,
+    "disagreement_clip": 16.0,
+    "epsilon_kl": 0.3,
+    "signal_costs": [1.0, 0.8, 1.2]
+  },
+  "training": {
+    "gamma_nll": 0.1,
+    "gamma_utility": 2.0,
+    "gamma_pref": 1.0,
+    "gamma_cal": 1.0,
+    "gamma_kl": 0.05,
+    "gamma_cost": 0.005,
+    "gamma_gate": 0.25,
+    "gamma_selector": 0.25,
+    "ignore_forced_gold": true
+  },
+  "notes": "Three-signal sentiment paper run: RAD + CD-Q + sentiment-GenARM. Requires fresh caches and a new checkpoint."
+}

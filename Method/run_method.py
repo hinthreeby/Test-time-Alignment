@@ -18,13 +18,13 @@ def build_parser():
     )
     parser.add_argument(
         "--method",
-        choices=["all", "base", "rad", "genarm", "cd", "multisignal", "cura"],
+        choices=["all", "base", "rad", "genarm", "gsi", "cd", "parm", "multisignal", "cura"],
         default="all",
         help="Method to run.",
     )
     parser.add_argument(
         "--action",
-        choices=["generate", "train", "cache", "audit-signals", "cache-status", "cache-verify", "calibrate", "annotate-targets", "oracle"],
+        choices=["generate", "train", "cache", "audit-signals", "cache-status", "cache-verify", "calibrate", "annotate-targets", "oracle", "diagnose"],
         default="generate",
         help="What to execute for the selected method.",
     )
@@ -51,9 +51,12 @@ def build_parser():
     parser.add_argument("--evaluator", type=str, default=None, help="Independent held-out evaluator for CURA targets.")
     parser.add_argument("--rollouts", type=int, default=2, help="Rollouts per CURA candidate target.")
     parser.add_argument("--rollout-tokens", type=int, default=16, help="Continuation tokens per CURA rollout.")
+    parser.add_argument("--candidate-batch-size", type=int, default=10, help="CURA candidates annotated per rollout batch.")
+    parser.add_argument("--target-save-every", type=int, default=100, help="Checkpoint CURA target shards every N token rows.")
     parser.add_argument("--signal-budget", type=int, default=None, help="Maximum CURA signals called per token.")
     parser.add_argument("--ablation", default="none", help="CURA generation ablation.")
     parser.add_argument("--fixed-lambda", type=float, default=None, help="CURA fixed-strength ablation.")
+    parser.add_argument("--fixed-gate", type=float, default=None, help="CURA fixed gate in [0, 1].")
     parser.add_argument("--leave-out", type=str, default=None, help="CURA leave-one-signal-out ablation.")
     parser.add_argument("--corrupt-signal", type=str, default=None, help="CURA corrupted-signal test.")
     parser.add_argument("--corrupt-std", type=float, default=1.0, help="Noise scale for corrupted CURA signal.")
@@ -63,6 +66,9 @@ def build_parser():
     parser.add_argument("--signal-device", choices=["auto", "cuda", "cpu"], default="cpu", help="Signal model device for MultiSignal cache/generate.")
     parser.add_argument("--cd-scorer", choices=["fudge", "cdq"], default="fudge", help="CD scorer type.")
     parser.add_argument("--cd-mode", choices=["tokenwise", "blockwise"], default="tokenwise", help="CD generation mode.")
+    parser.add_argument("--alpha-helpfulness", type=float, default=0.5, help="PARM helpfulness preference weight.")
+    parser.add_argument("--alpha-harmlessness", type=float, default=0.5, help="PARM harmlessness preference weight.")
+    parser.add_argument("--parm-adapter", type=str, default=None, help="PARM PBLoRA adapter directory.")
     parser.add_argument("--dry-run", action="store_true", help="Print command without executing it.")
     return parser
 
@@ -77,6 +83,23 @@ def build_method_command(method: str, action: str, args):
         if action != "generate":
             raise ValueError("GenARM method supports only generate.")
         return [PYTHON, str(ROOT / "Method" / "GenARM" / "generate_arm_gpt2_medium.py")]
+
+    if method == "gsi":
+        if action != "generate":
+            raise ValueError("GSI supports only generate.")
+        cmd = [PYTHON, str(ROOT / "Method" / "GSI" / "generate_gsi.py")]
+        if args.input:
+            cmd.extend(["--dataset-path", str(ROOT / args.input) if not Path(args.input).is_absolute() else args.input])
+        if args.output:
+            cmd.extend(["--output-path", str(ROOT / args.output) if not Path(args.output).is_absolute() else args.output])
+        cmd.extend([
+            "--num-prompts", str(args.num_prompts),
+            "--max-new-tokens", str(args.max_new_tokens),
+            "--temperature", str(args.temperature),
+            "--device", args.base_device,
+            "--seed", str(args.seed),
+        ])
+        return cmd
 
     if method == "rad":
         if action != "generate":
@@ -93,6 +116,27 @@ def build_method_command(method: str, action: str, args):
         if action != "generate":
             raise ValueError("CD method supports only generate.")
         return [PYTHON, str(ROOT / "Method" / "CD" / "generate_cd.py"), "--mode", args.cd_mode, "--scorer", args.cd_scorer, "--num-prompts", str(args.num_prompts)]
+
+    if method == "parm":
+        if action != "generate":
+            raise ValueError("PARM supports only generate.")
+        cmd = [
+            PYTHON, str(ROOT / "Method" / "PARM" / "generate.py"),
+            "--num-prompts", str(args.num_prompts),
+            "--max-new-tokens", str(args.max_new_tokens),
+            "--alpha-helpfulness", str(args.alpha_helpfulness),
+            "--alpha-harmlessness", str(args.alpha_harmlessness),
+            "--seed", str(args.seed),
+        ]
+        if args.input:
+            cmd.extend(["--dataset-path", str(ROOT / args.input) if not Path(args.input).is_absolute() else args.input])
+        if args.output:
+            cmd.extend(["--output-path", str(ROOT / args.output) if not Path(args.output).is_absolute() else args.output])
+        if args.base_model:
+            cmd.extend(["--base-model", str(ROOT / args.base_model) if not Path(args.base_model).is_absolute() else args.base_model])
+        if args.parm_adapter:
+            cmd.extend(["--parm-adapter", str(ROOT / args.parm_adapter) if not Path(args.parm_adapter).is_absolute() else args.parm_adapter])
+        return cmd
 
     if method == "multisignal":
         if action == "generate":
@@ -156,10 +200,18 @@ def build_method_command(method: str, action: str, args):
                    "--cache-dir", args.cache_dir or f"dataset/cura_cache/{args.split}",
                    "--evaluator", args.evaluator, "--rollouts", str(args.rollouts),
                    "--rollout-tokens", str(args.rollout_tokens), "--seed", str(args.seed),
+                   "--candidate-batch-size", str(args.candidate_batch_size),
+                   "--save-every-rows", str(args.target_save_every),
                    "--device", args.base_device]
         elif action == "oracle":
             cmd = [PYTHON, str(core / "oracle_study.py"),
                    "--cache-dir", args.cache_dir or "dataset/cura_cache/validation"]
+        elif action == "diagnose":
+            cmd = [PYTHON, str(core / "diagnose_checkpoint.py"),
+                   "--cache-dir", args.cache_dir or "dataset/cura_cache/validation"]
+            if args.checkpoint: cmd.extend(["--checkpoint", args.checkpoint])
+            if args.output: cmd.extend(["--output", args.output])
+            if args.base_device != "auto": cmd.extend(["--device", args.base_device])
         elif action == "train":
             cmd = [PYTHON, str(core / "train.py"), *common,
                    "--cache-dir", args.cache_dir or "dataset/cura_cache/train",
@@ -171,7 +223,7 @@ def build_method_command(method: str, action: str, args):
         elif action == "generate":
             cmd = [PYTHON, str(core / "generate.py"),
                    "--input", args.input or "dataset/rad_benchmark/all.jsonl",
-                   "--output", args.output or "results/cura.jsonl", "--num-prompts", str(args.num_prompts),
+                   "--output", args.output or "results/cura.json", "--num-prompts", str(args.num_prompts),
                    "--max-new-tokens", str(args.max_new_tokens), "--top-k", str(args.top_k),
                    "--base-device", args.base_device, "--signal-device", args.signal_device]
             if args.checkpoint: cmd.extend(["--checkpoint", args.checkpoint])
@@ -180,6 +232,7 @@ def build_method_command(method: str, action: str, args):
             if args.signal_budget is not None: cmd.extend(["--signal-budget", str(args.signal_budget)])
             if args.ablation != "none": cmd.extend(["--ablation", args.ablation])
             if args.fixed_lambda is not None: cmd.extend(["--fixed-lambda", str(args.fixed_lambda)])
+            if args.fixed_gate is not None: cmd.extend(["--fixed-gate", str(args.fixed_gate)])
             if args.leave_out: cmd.extend(["--leave-out", args.leave_out])
             if args.corrupt_signal: cmd.extend(["--corrupt-signal", args.corrupt_signal, "--corrupt-std", str(args.corrupt_std)])
             cmd.extend(["--seed", str(args.seed)])
@@ -196,7 +249,7 @@ def method_cmds(method: str, action: str, args):
     if method == "all":
         return [
             build_method_command(name, action, args)
-            for name in ["base", "genarm", "rad", "cd", "multisignal"]
+            for name in ["base", "genarm", "gsi", "rad", "cd", "multisignal"]
         ]
     return [build_method_command(method, action, args)]
 
@@ -219,7 +272,7 @@ def main():
         return
 
     if args.method == "all":
-        for method_name, cmd in zip(["base", "genarm", "rad", "cd", "multisignal"], commands):
+        for method_name, cmd in zip(["base", "genarm", "gsi", "rad", "cd", "multisignal"], commands):
             print(f"\n=== Running {method_name} [{args.action}] ===")
             run(cmd)
         return

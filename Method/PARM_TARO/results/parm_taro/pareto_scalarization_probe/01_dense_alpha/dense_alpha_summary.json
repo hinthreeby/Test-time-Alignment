@@ -1,0 +1,17 @@
+{
+  "cases": 420,
+  "dense_alpha_hv": 0.37151903734430036,
+  "low_sensitivity_definition": "both absolute finite-difference slopes < 0.02",
+  "low_sensitivity_intervals": 0,
+  "monotonicity_violations": {
+    "harmlessness": 7,
+    "helpfulness": 10
+  },
+  "nondominated_points": 6,
+  "normalization_source": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/evaluation/protocol/protocol_lock.json",
+  "prompts": 20,
+  "spearman_alpha_harmlessness": -0.9402597402597404,
+  "spearman_alpha_helpfulness": 0.2545454545454545,
+  "status": "COMPLETE",
+  "unsupported_nondominated_points": 2
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "method": "cura",
+  "split": "validation",
+  "dataset_path": "dataset/cura_astar_source/validation.jsonl",
+  "dataset_fingerprint": "sha256:eabf237194e571ac07f74c5c9844e9eb0606e1d9b42eb28cdd15fc9a410accf8",
+  "config_fingerprint": "sha256:751ed9c82d0a614e79517802600121bfa929dcdb54f058a0292a98dedca6c45a",
+  "signals": [
+    "rad",
+    "cdq"
+  ],
+  "objective": "sentiment",
+  "base_model": "gpt2-large",
+  "paper_mode": true,
+  "score_directions": {
+    "rad": "higher_is_better",
+    "cdq": "higher_is_better"
+  },
+  "candidate_support": "natural_topk_v1",
+  "tokenization_mismatch_threshold": 0.05,
+  "top_k": 20,
+  "max_response_tokens": 32,
+  "shard_size": 50,
+  "total_prompts": 100,
+  "completed_prompts": 100,
+  "completed_shards": [
+    {
+      "id": 0,
+      "file": "shards/shard_000000.pt",
+      "start_index": 0,
+      "end_index": 49,
+      "num_prompts": 50,
+      "num_steps": 522,
+      "sha256": "ab852a82f0ac8da4baccae0c9c2dfd168f1d73d34fba3bee73595fd8a1681b87",
+      "target_file": "target_shards/shard_000000.pt",
+      "target_sha256": "270414a60214a5dbca99c0db16d640b78b7156e4409d8e80b36047f19bd11571"
+    },
+    {
+      "id": 1,
+      "file": "shards/shard_000001.pt",
+      "start_index": 50,
+      "end_index": 99,
+      "num_prompts": 50,
+      "num_steps": 606,
+      "sha256": "3ced332805d8ef8c4322b20bf1fd3f1b0eff0a84da051d2a176d7d1b13edd1b9",
+      "target_file": "target_shards/shard_000001.pt",
+      "target_sha256": "0cfe4a28f47473e8acbed5557726e10f70e86cc4e1b4160b22fbeb0afcf7931e"
+    }
+  ],
+  "failed_prompt_ids": [],
+  "status": "complete",
+  "target_utility": {
+    "status": "complete",
+    "fingerprint": "sha256:90184a4ada9acaf0e9c93dcd732488fc6750b1c2104117d9e463d299ad6224a9",
+    "evaluator": "/home/jupyter-iec2024se10/Test-time-Alignment/models/sentiment-roberta-large-english",
+    "rollouts": 2,
+    "rollout_tokens": 16,
+    "seed": 42,
+    "annotation_version": 3,
+    "candidate_batch_size": 5
+  }
+}

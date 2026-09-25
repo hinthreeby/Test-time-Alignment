@@ -1,0 +1,6 @@
+{
+  "checkpoint": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora_epoch2_control/checkpoint-250",
+  "global_step": 250,
+  "metric": "eval_loss",
+  "value": 0.7166845902004837
+}

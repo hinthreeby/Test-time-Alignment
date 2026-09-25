@@ -1,5 +1,6 @@
 from pathlib import Path
 from types import SimpleNamespace
+import types
 from typing import List
 import sys
 import torch
@@ -16,6 +17,30 @@ import numpy as np
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
+SAFE_RLHF_SOURCE = PROJECT_ROOT / "models" / "safe-rlhf-source"
+
+
+def load_safe_rlhf_score_model_class(source):
+    """Load only Safe-RLHF's score runtime, without its DeepSpeed trainers."""
+    package_root = source / "safe_rlhf"
+    models_root = package_root / "models"
+    safe_package = types.ModuleType("safe_rlhf")
+    safe_package.__file__ = str(package_root / "__init__.py")
+    safe_package.__path__ = [str(package_root)]
+    safe_package.__package__ = "safe_rlhf"
+    models_package = types.ModuleType("safe_rlhf.models")
+    models_package.__file__ = str(models_root / "__init__.py")
+    models_package.__path__ = [str(models_root)]
+    models_package.__package__ = "safe_rlhf.models"
+    sys.modules["safe_rlhf"] = safe_package
+    sys.modules["safe_rlhf.models"] = models_package
+    try:
+        from safe_rlhf.models.score_model import AutoModelForScore
+    except Exception:
+        sys.modules.pop("safe_rlhf.models", None)
+        sys.modules.pop("safe_rlhf", None)
+        raise
+    return AutoModelForScore
 
 def factors(x):
     return [i for i in range(1,x+1) if x%i==0]
@@ -61,6 +86,10 @@ class ARGS:
             self.tokenizer.pad_token = self.tokenizer.eos_token
 
         self.LLM.config.pad_token_id = self.tokenizer.pad_token_id
+        self.rm_supports_prefix_cache = True
+        self.rm_uses_text_tokenizer = False
+        self.rm_tokenizer = None
+        self.rm_positive_label_id = None
 
         print("Loading RM...")
         rm_path_obj = Path(rm_path)
@@ -90,19 +119,100 @@ class ARGS:
                 )
             self.RM.config = self.RM.model.config
             self.RM.to(device=self.rm_dev, dtype=torch_dtype)
+        elif (rm_path_obj / "config.json").exists():
+            rm_config = transformers.AutoConfig.from_pretrained(rm_path)
+            architectures = set(getattr(rm_config, "architectures", []) or [])
+            if "LlamaForScore" in architectures:
+                AutoModelForScore = load_safe_rlhf_score_model_class(SAFE_RLHF_SOURCE)
+                quantization_config = transformers.BitsAndBytesConfig(
+                    load_in_4bit=True,
+                    bnb_4bit_quant_type="nf4",
+                    bnb_4bit_use_double_quant=True,
+                    bnb_4bit_compute_dtype=torch_dtype,
+                )
+                self.RM = AutoModelForScore.from_pretrained(
+                    rm_path,
+                    torch_dtype=torch_dtype,
+                    quantization_config=quantization_config,
+                    device_map={"": self.rm_dev},
+                )
+                self.rm_supports_prefix_cache = False
+            else:
+                self.RM = AutoModelForSequenceClassification.from_pretrained(
+                    rm_path, torch_dtype=torch_dtype,
+                ).to(self.rm_dev)
+                self.rm_tokenizer = AutoTokenizer.from_pretrained(rm_path)
+                self.rm_positive_label_id = next(
+                    (
+                        int(index) for index, label in self.RM.config.id2label.items()
+                        if "POS" in str(label).upper()
+                    ),
+                    1 if self.RM.config.num_labels == 2 else None,
+                )
+                self.rm_supports_prefix_cache = False
+                self.rm_uses_text_tokenizer = True
         else:
             self.RM = AutoModelForSequenceClassification.from_pretrained(
-                rm_path, num_labels=1, torch_dtype=torch_dtype,
+                rm_path, torch_dtype=torch_dtype,
             ).to(self.rm_dev)
-        self.RM.config.pad_token_id = self.tokenizer.pad_token_id
+            self.rm_tokenizer = AutoTokenizer.from_pretrained(rm_path)
+            self.rm_positive_label_id = next(
+                (
+                    int(index) for index, label in self.RM.config.id2label.items()
+                    if "POS" in str(label).upper()
+                ),
+                1 if self.RM.config.num_labels == 2 else None,
+            )
+            self.rm_supports_prefix_cache = False
+            self.rm_uses_text_tokenizer = True
+        if not self.rm_uses_text_tokenizer:
+            self.RM.config.pad_token_id = self.tokenizer.pad_token_id
         self.RM.eval()
 
     def _reward_forward(self, **kwargs):
         output = self.RM(**kwargs)
+        if hasattr(output, "end_scores"):
+            return SimpleNamespace(logits=output.end_scores, past_key_values=None)
         if isinstance(output, tuple):
             _, logits, past_key_values = output
             return SimpleNamespace(logits=logits, past_key_values=past_key_values)
         return output
+
+    def _score_reward_candidates(self, input_ids, rm_cached=None):
+        if self.rm_uses_text_tokenizer:
+            texts = self.tokenizer.batch_decode(input_ids, skip_special_tokens=True)
+            rm_inputs = self.rm_tokenizer(
+                texts,
+                padding=True,
+                truncation=True,
+                max_length=self.RM.config.max_position_embeddings,
+                return_tensors="pt",
+            ).to(self.rm_dev)
+            logits = self.RM(**rm_inputs).logits
+            if logits.shape[-1] == 1:
+                rewards = logits.squeeze(-1)
+            elif self.rm_positive_label_id is not None:
+                rewards = F.log_softmax(logits, dim=-1)[:, self.rm_positive_label_id]
+            else:
+                raise ValueError("Không xác định được positive label của reward model")
+            return SimpleNamespace(logits=rewards, past_key_values=None)
+        input_ids = input_ids.to(self.rm_dev)
+        attention_mask = create_attention_mask(
+            input_ids.shape[1], input_ids.shape[0]
+        ).to(self.rm_dev)
+        if not self.rm_supports_prefix_cache:
+            return self._reward_forward(
+                input_ids=input_ids,
+                attention_mask=attention_mask,
+                use_cache=False,
+            )
+        rm_inputs = self.LLM.prepare_inputs_for_generation(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            past_key_values=rm_cached,
+            use_cache=True,
+        )
+        return self._reward_forward(**rm_inputs)
         
     def get_input_ids(self, prompt: str) -> torch.Tensor:
         tokens = self.tokenizer(prompt, return_tensors="pt").input_ids.to(self.llm_dev)
@@ -133,7 +243,7 @@ class ARGS:
         for chunk, chunk_logits in zip(even_chunk(flat_trme.to(self.rm_dev), chunk_size), even_chunk(prescreen_logits.flatten(), chunk_size)):
             pkv = None if not _use_cache else rm_cached
 
-            rm_out = self._reward_forward(**self.LLM.prepare_inputs_for_generation(input_ids=chunk, attention_mask=create_attention_mask(chunk.shape[1], chunk.shape[0]).to(self.rm_dev), past_key_values=pkv, use_cache=True))
+            rm_out = self._score_reward_candidates(chunk, pkv)
             current_rm_cached = rm_out.past_key_values
             rewards = rm_out.logits.flatten().to(self.llm_dev)
             del rm_out
@@ -150,7 +260,8 @@ class ARGS:
                 
                 current_best_score = current_score
                 current_best_tokens = chunk.to(self.llm_dev)[top_k_ids]
-                new_rm_cached = self.LLM._reorder_cache(current_rm_cached, top_k_ids.repeat(chunk_size,))
+                if current_rm_cached is not None:
+                    new_rm_cached = self.LLM._reorder_cache(current_rm_cached, top_k_ids.repeat(chunk_size,))
             
         if debug: print(f"{new_scores.shape=}")
         
@@ -171,12 +282,8 @@ class ARGS:
         flat_trme = to_rm_eval.view(out_logits.shape[0] * pre_screen_beam_width, -1)
         if debug: print(f"{flat_trme.shape=}")
 
-        if rm_cached is None:
-            rm_out = self._reward_forward(**self.LLM.prepare_inputs_for_generation(input_ids=flat_trme.to(self.rm_dev), attention_mask=create_attention_mask(flat_trme.shape[1], flat_trme.shape[0]).to(self.rm_dev), past_key_values=None, use_cache=True))
-            rm_cached = rm_out.past_key_values
-        else:
-            rm_out = self._reward_forward(**self.LLM.prepare_inputs_for_generation(input_ids=flat_trme.to(self.rm_dev), attention_mask=create_attention_mask(flat_trme.shape[1], flat_trme.shape[0]).to(self.rm_dev), past_key_values=rm_cached, use_cache=True))
-            rm_cached = rm_out.past_key_values
+        rm_out = self._score_reward_candidates(flat_trme, rm_cached)
+        rm_cached = rm_out.past_key_values
 
         if debug: print(f"{rm_out.logits.flatten()=}")
 
@@ -199,7 +306,8 @@ class ARGS:
             raise ValueError(f"Invalid method '{method}'")
             
         if debug: print(f"{top_k_ids.shape=}")
-        rm_cached = self.LLM._reorder_cache(rm_cached, top_k_ids.repeat(pre_screen_beam_width,))
+        if rm_cached is not None:
+            rm_cached = self.LLM._reorder_cache(rm_cached, top_k_ids.repeat(pre_screen_beam_width,))
         if debug: print(f"{rewards[top_k_ids]=}")
 
         return flat_trme[top_k_ids], rm_cached

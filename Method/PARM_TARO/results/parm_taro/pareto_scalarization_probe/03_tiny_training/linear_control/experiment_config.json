@@ -1,0 +1,13 @@
+{
+  "data_order": "sha256(seed,sample_id)",
+  "experiment": "linear_control",
+  "learning_rate": 0.0005,
+  "optimizer": "paged_adamw_32bit",
+  "optional_max_steps": 200,
+  "scalarization": "linear",
+  "seed": 42,
+  "starting_checkpoint": "/home/jupyter-iec2024se10/Test-time-Alignment/results/parm_taro/recovery/reproduced/pblora/final_checkpoint",
+  "status": "PREPARED_NOT_RUN",
+  "steps": 100,
+  "trainable_parameters": "pblora_* only"
+}

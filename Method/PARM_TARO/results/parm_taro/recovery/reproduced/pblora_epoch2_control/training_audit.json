@@ -1,0 +1,15 @@
+{
+  "adapter_sha256": "73c91f162a970cc41c3b0b8ef83ede36ebd6fcda100a6712320482b4b657100b",
+  "adapter_tensor_count": 384,
+  "all_adapter_weights_finite": true,
+  "base_model_fingerprint_after": "73cc0aab80516f74f848ac7ee5f4468d9e0aa64df03bac631b8f98700605d31a",
+  "base_model_fingerprint_before": "73cc0aab80516f74f848ac7ee5f4468d9e0aa64df03bac631b8f98700605d31a",
+  "base_model_fingerprint_unchanged": true,
+  "epoch1_adapter_unchanged": true,
+  "last_eval_loss": 0.7232986464205459,
+  "last_full_checkpoint_step": 450,
+  "last_train_loss": 0.7543,
+  "status": "PASS",
+  "target_total_epochs": 2,
+  "total_optimizer_steps": 480
+}

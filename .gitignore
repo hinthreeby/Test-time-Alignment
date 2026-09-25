@@ -78,6 +78,8 @@ results/*.pdf
 !Method/CD/models/*.py
 !Method/MultiSignal/models/
 !Method/MultiSignal/models/*.py
+!Method/CAP_PARM_MATO/src/models/
+!Method/CAP_PARM_MATO/src/models/*.py
 
 # Dataset artifacts that are commonly large
 dataset/**/*.zip

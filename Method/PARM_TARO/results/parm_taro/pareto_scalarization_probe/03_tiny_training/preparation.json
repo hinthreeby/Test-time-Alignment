@@ -1,0 +1,14 @@
+{
+  "automatic_execution": false,
+  "matched_fields": [
+    "starting_checkpoint",
+    "data_order",
+    "batches",
+    "seed",
+    "optimizer",
+    "learning_rate",
+    "steps"
+  ],
+  "requires_decision": "HYPOTHESIS_SUPPORTED_FOR_TINY_TRAIN",
+  "status": "PREPARED_NOT_RUN"
+}

@@ -1,0 +1,36 @@
+{
+  "bytes_unchanged": true,
+  "compatibility_load_events": [
+    "rng_state.pth",
+    "optimizer.pt",
+    "scheduler.pt"
+  ],
+  "epoch": 0.8311688311688312,
+  "expected_step_from_checkpoint_name": 200,
+  "global_step": 200,
+  "optional_scaler_present": false,
+  "required_files": [
+    "rng_state.pth",
+    "optimizer.pt",
+    "scheduler.pt",
+    "trainer_state.json"
+  ],
+  "resume_checkpoint": "/home/jupyter-iec2024se10/Test-time-Alignment/Method/PARM_TARO/results/parm_taro/recovery/reproduced/pblora/checkpoint-200",
+  "sha256_after": {
+    "optimizer.pt": "61c11f2890c8f3818b357f89778245227c353c92c6af727daa38b77ab601f3e8",
+    "rng_state.pth": "966ea9580e898287f456fd083897e07eab440569d4a5a4274d7fc3e9e8535f82",
+    "scheduler.pt": "2ff7d61e757c62d843ecde712126619e1580aab253105d25d71de9a5ee59f235"
+  },
+  "sha256_before": {
+    "optimizer.pt": "61c11f2890c8f3818b357f89778245227c353c92c6af727daa38b77ab601f3e8",
+    "rng_state.pth": "966ea9580e898287f456fd083897e07eab440569d4a5a4274d7fc3e9e8535f82",
+    "scheduler.pt": "2ff7d61e757c62d843ecde712126619e1580aab253105d25d71de9a5ee59f235"
+  },
+  "status": "PASS",
+  "test_load_types": {
+    "optimizer.pt": "dict",
+    "rng_state.pth": "dict",
+    "scheduler.pt": "dict"
+  },
+  "trusted_local_checkpoint": true
+}
